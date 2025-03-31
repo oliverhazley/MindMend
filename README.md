@@ -34,7 +34,51 @@
       },
 
 
-### 6. Structure for frontend
+
+### 6. tailwind.config.js
+
+    /*
+      tailwind.config.js
+      Tells Tailwind which files to scan, plus sets up dark theme & color palette.
+    */
+    
+    /** @type {import('tailwindcss').Config} */
+    module.exports = {
+      content: [
+        "./index.html",
+        "./pages/**/*.html",
+        "./src/**/*.{js,ts}"
+      ],
+      theme: {
+        extend: {
+          // Example dark/blueish gradient styling
+          colors: {
+            primary: {
+              light: "#2A2F3D", // mid-dark background
+              DEFAULT: "#1D202B", // main dark background
+            },
+            card: {
+              DEFAULT: "#252A37", // card background color
+            },
+            accent: {
+              DEFAULT: "#1E90FF", // a bright accent color (e.g. for buttons)
+            },
+            success: {
+              DEFAULT: "#3CB371", // green for "connected"
+            },
+            danger: {
+              DEFAULT: "#e53e3e", // red for "disconnected" or alerts
+            },
+            // add more here
+          },
+        },
+      },
+      plugins: [],
+    };
+
+
+
+### 7. Structure for frontend
 
     Front
     ├── node_modules             //  do not edit manually
@@ -50,7 +94,7 @@
     ├── public
     │   └── sounds
     │       └── therapy-sound.mp3  // exercise sounds go here... 
-    │   └── images
+    │   └── images                 // images here
     ├── src
     │   ├── scripts
     │   │   ├── chat.js
