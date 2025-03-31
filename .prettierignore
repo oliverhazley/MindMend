@@ -1,0 +1,7 @@
+# Ignore HTML files
+*.html
+**/*.html
+
+# Ignore CSS files
+*.css
+**/*.css
