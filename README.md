@@ -41,5 +41,5 @@ for backend:
 
 ### Icons from Lucide https://lucide.dev/
 
-## Sound files from Freesound https://freesound.org/
+### Sound files from Freesound https://freesound.org/
 
