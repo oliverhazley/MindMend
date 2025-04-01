@@ -5,6 +5,8 @@
     backend/
     ├── package.json
     ├── .env
+    ├── database/
+    │   └── schema.sql
     └── src/
        ├── index.js
        ├── config/
@@ -33,3 +35,23 @@
 2.  Start the server
 
         npm run dev
+
+3.  Initialize the database
+
+        source <filepath>
+
+    And to make sure it's created correctly run:
+
+        show tables;
+
+    It should look something like this:
+
+        +-----------------------+
+        | Tables_in_mindmend    |
+        +-----------------------+
+        | hrv_readings          |
+        | daily_hrv_max         |
+        | weekly_hrv_avg        |
+        | monthly_hrv_trend     |
+        | users                 |
+        +-----------------------+
