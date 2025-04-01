@@ -35,3 +35,11 @@ for backend:
 [Frontend documentation](frontend/README.md)
 
 [Backend documentation](backend/README.md)
+
+
+## WE Used :
+
+### Icons from Lucide https://lucide.dev/
+
+## Sound files from Freesound https://freesound.org/
+
