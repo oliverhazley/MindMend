@@ -6,7 +6,7 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE
 );
 
 CREATE TABLE hrv_readings (
@@ -25,7 +25,7 @@ CREATE TABLE daily_hrv_max (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE TABLE weekyly_hrv_avg (
+CREATE TABLE weekly_hrv_avg (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     week_start_date DATE NOT NULL,
