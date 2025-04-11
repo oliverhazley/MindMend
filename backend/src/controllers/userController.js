@@ -88,10 +88,6 @@ const loginUser = async (req, res) => {
         email: user.email,
       },
     });
-
-    res.status(200).json({
-      message: 'User logged in successfully',
-    });
   } catch (error) {
     console.error('Error logging in user:', error);
     return res.status(500).json({message: 'Internal server error'});
