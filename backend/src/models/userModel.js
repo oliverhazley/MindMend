@@ -1,4 +1,5 @@
 import promisePool from '../utils/database.js';
+import bcrypt from 'bcryptjs';
 
 const getAllUsers = async () => {
   try {
@@ -53,21 +54,29 @@ const deleteUser = async (userId) => {
     const [rows] = await promisePool.query('DELETE FROM users WHERE id = ?', [
       userId,
     ]);
+    return rows.affectedRows > 0;
   } catch (error) {
     console.error('Error deleting user:', error);
     throw error;
   }
 };
 
-// TODO: use bcrypt to hash password before storing it in the database
 const createUser = async (user) => {
   try {
-    const {name, email, password} = user;
+    // Hash the password before storing it in the database
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(user.password, salt);
+
+    const {name, email} = user;
     const [result] = await promisePool.query(
       'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-      [name, email, password],
+      [name, email, hashedPassword],
     );
-    return result.insertId;
+    return {
+      userId: result.insertId,
+      name: user.name,
+      email: user.email,
+    };
   } catch (error) {
     console.error('Error creating user:', error);
     throw error;

@@ -24,17 +24,20 @@
     MindMend/
     ├── frontend/
     ├── backend/
+    ├── tests/
     ├── .gitignore
     ├── .prettierignore
     ├── .prettierrc.cjs
     ├── eslint.config.js
     └── README.md
 
-## Detailed structure and documentation for both front- and backend
+## Detailed structure and documentation for frontend, backend and tests
 
 [Frontend documentation](frontend/README.md)
 
 [Backend documentation](backend/README.md)
+
+[Test documentation](tests/README.md)
 
 ## Refrences and graphics libraries
 

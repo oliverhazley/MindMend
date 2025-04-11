@@ -1,4 +1,7 @@
 import * as userModel from '../models/userModel.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
 const getAllUsers = async (req, res) => {
   try {
@@ -62,12 +65,28 @@ const loginUser = async (req, res) => {
       return res.status(401).json({message: 'Invalid email or password'});
     }
 
-    // TODO: Verify password using bcrypt
+    const verifyPassword = await bcrypt.compare(password, user.password);
+    if (!verifyPassword) {
+      return res.status(401).json({message: 'Invalid email or password'});
+    }
 
-    // TODO: use JWT to generate a token
+    const token = jwt.sign(
+      {userId: user.user_Id, email: user.email},
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '24h',
+      },
+    );
 
-    res.status(200).json({
-      message: 'User logged in successfully',
+    // Respond with user data and token
+    res.json({
+      message: 'Login successful',
+      token,
+      user: {
+        userId: user.user_id,
+        name: user.name,
+        email: user.email,
+      },
     });
   } catch (error) {
     console.error('Error logging in user:', error);
