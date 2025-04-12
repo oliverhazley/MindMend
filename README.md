@@ -4,7 +4,7 @@
 
 ### 1. check versions : 
 
-    node --version
+    node --version v22.13.0
     npm --version
 
 
