@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MindMend - Dashboard</title>
+  <link rel="stylesheet" href="../../dist/tailwind.css" />
+
+  <!-- Chart.js (CDN or local) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- NAVBAR -->
+  <nav class="w-full bg-primary-light/80 p-4 flex justify-between items-center">
+    <div class="text-2xl font-bold">
+      <a href="../../index.html" class="hover:text-accent">MindMend</a>
+    </div>
+    <div class="space-x-4">
+      <!-- Dashboard, Exercises, Tetris, Chat, Info, Settings, Login -->
+      <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
+      <a href="./exercises.html" class="hover:text-accent">Exercises</a>
+      <a href="./tetris.html" class="hover:text-accent">Tetris</a>
+      <a href="./chat.html" class="hover:text-accent">Chat</a>
+      <a href="./info.html" class="hover:text-accent">Info</a>
+      <a href="./settings.html" class="hover:text-accent">Settings</a>
+      <a href="./login.html" class="hover:text-accent">Log Out</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT: Now only HRV data and charts. No device integration or logout here. -->
+  <main class="flex-1 p-4 md:p-8 space-y-8 max-w-5xl mx-auto w-full">
+    <!-- Current HRV Level Card -->
+    <section class="card">
+      <h2 class="text-xl font-semibold mb-2">Current HRV Level</h2>
+      <div class="flex flex-col items-center justify-center text-center">
+        <div id="currentHRVValue" class="text-4xl font-bold my-2">78</div>
+        <div class="text-6xl mb-2 text-red-500">&#10084;</div>
+        <p id="currentHRVText" class="text-gray-200">
+          Your HRV is moderate, suggesting balanced recovery and stress levels.
+        </p>
+      </div>
+    </section>
+
+    <!-- HRV Progress: Bar Chart -->
+    <section class="card">
+      <h2 class="text-xl font-semibold mb-2 flex items-center">
+        HRV Progress <span class="ml-2 text-green-400">&#9650;</span>
+      </h2>
+      <!--
+        We wrap the canvas in a container with a set height or aspect ratio.
+        "max-w-full" ensures it doesn't overflow horizontally.
+      -->
+      <div class="relative w-full h-64">
+        <canvas id="hrvBarChart" class="max-w-full h-full"></canvas>
+      </div>
+      <p class="text-gray-200 text-center mt-2">
+        Your HRV is showing an upward trend...
+      </p>
+    </section>
+
+    <!-- HRV Distribution: Donut Chart -->
+    <section class="card">
+      <h2 class="text-xl font-semibold mb-2 flex items-center">
+        HRV Distribution <span class="ml-2 text-purple-400">&#8767;</span>
+      </h2>
+      <div class="relative w-full h-64">
+        <canvas id="hrvDonutChart" class="max-w-full h-full"></canvas>
+      </div>
+      <p class="text-gray-200 text-center mt-2">
+        Your stress distribution is well-balanced...
+      </p>
+    </section>
+
+    <!-- RR Intervals: Line Chart -->
+    <section class="card">
+      <h2 class="text-xl font-semibold mb-2">RR Intervals</h2>
+      <div class="relative w-full h-64">
+        <canvas id="rrLineChart" class="max-w-full h-full"></canvas>
+      </div>
+      <!-- No export or device integration here; moved to settings. -->
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-primary-light/80 p-4 text-center">
+    <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
+  </footer>
+
+  <!-- Dashboard chart logic (with limited width/height) -->
+  <script type="module" src="../scripts/dashboard.js"></script>
+  <script type="module" src="../scripts/main.js"></script>
+</body>
+</html>

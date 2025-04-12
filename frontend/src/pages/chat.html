@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MindMend - Chat</title>
+  <link rel="stylesheet" href="../../dist/tailwind.css" />
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- NAVBAR -->
+  <nav class="w-full bg-primary-light/80 p-4 flex justify-between items-center">
+    <div class="text-2xl font-bold">
+      <a href="../../index.html" class="hover:text-accent">MindMend</a>
+    </div>
+    <div class="space-x-4">
+      <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
+      <a href="./chat.html" class="hover:text-accent">Chat</a>
+      <a href="./info.html" class="hover:text-accent">Info</a>
+      <a href="./login.html" class="hover:text-accent">Log Out</a>
+    </div>
+  </nav>
+
+  <!-- MAIN: Center the chat card on larger screens -->
+  <main class="flex-1 p-4 md:p-8 flex flex-col items-center justify-center">
+    <!-- Card with a fixed max-width so it doesn't stretch too wide -->
+    <div class="card w-full max-w-xl">
+      <h2 class="text-xl font-semibold mb-4">Support Chat</h2>
+      <!-- Chat messages area -->
+      <div
+        id="chatWindow"
+        class="flex flex-col space-y-2 p-4 bg-primary-light rounded mb-4 h-64 overflow-y-auto"
+      >
+        <!-- Example message from the chatbot to start -->
+        <div class="bg-gray-700 p-2 rounded text-gray-200">
+          Hello, I'm here to help you manage stress...
+        </div>
+      </div>
+      <!-- Chat input -->
+      <form id="chatForm" class="flex">
+        <input
+          id="chatInput"
+          type="text"
+          class="flex-1 px-3 py-2 bg-primary-dark rounded-l focus:ring-2 focus:ring-accent"
+          placeholder="Type your message..."
+          required
+        />
+        <button
+          type="submit"
+          class="btn btn-primary rounded-none rounded-r"
+        >
+          Send
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-primary-light/80 p-4 text-center">
+    <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
+  </footer>
+
+  <script type="module" src="../scripts/chat.js"></script>
+</body>
+</html>

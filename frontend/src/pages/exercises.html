@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>MindMend - Exercises</title>
+  <!-- Adjust path to your compiled Tailwind CSS if needed -->
+  <link rel="stylesheet" href="../../dist/tailwind.css" />
+</head>
+<body class="bg-gradient-to-b from-primary to-[#151721] text-white min-h-screen flex flex-col">
+  <!-- Nav bar -->
+  <nav class="bg-gray-800 p-4 flex items-center justify-between">
+    <div class="text-2xl font-bold"><a href="../../index.html" class="hover:text-accent">MindMend</a></div>
+    <a href="./dashboard.html" class="hover:text-accent transition">Dashboard</a>
+  </nav>
+
+  <main class="max-w-5xl mx-auto p-6 space-y-6 flex-1 w-full">
+    <!-- Mindfulness Card -->
+    <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+      <h2 class="text-xl font-bold mb-4">Mindfulness Exercises</h2>
+      <div id="mindfulnessList" class="space-y-4">
+        <!-- Will be populated by JS -->
+      </div>
+    </div>
+
+    <!-- Breathing Card -->
+    <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+      <h2 class="text-xl font-bold mb-4">Breathing Exercises</h2>
+      <div id="breathingList" class="space-y-4">
+        <!-- Will be populated by JS -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-center text-gray-400 p-4">
+    <p class="text-sm">© 2025 MindMend. All rights reserved.</p>
+  </footer>
+
+  <!-- Lucide icons from CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <!-- Our separate JS file -->
+  <script type="module" src="../scripts/exercises.js"></script>
+</body>
+</html>
