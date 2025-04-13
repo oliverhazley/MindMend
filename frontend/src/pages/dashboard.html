@@ -10,21 +10,47 @@
 </head>
 
 <body class="min-h-screen flex flex-col bg-gradient-to-b from-primary to-[#151721] text-white">
-  <!-- NAVBAR -->
-  <nav class="w-full bg-gray-800 p-4 flex justify-between items-center">
-    <div class="text-2xl font-bold">
-      <a href="../../index.html" class="hover:text-accent">MindMend</a>
-    </div>
-    <div class="space-x-4">
-      <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
-      <a href="./exercises.html" class="hover:text-accent">Exercises</a>
-      <a href="./tetris.html" class="hover:text-accent">Tetris</a>
-      <a href="./chat.html" class="hover:text-accent">Chat</a>
-      <a href="./info.html" class="hover:text-accent">Info</a>
-      <a href="./settings.html" class="hover:text-accent">Settings</a>
-      <a href="./login.html" class="hover:text-accent">Log Out</a>
-    </div>
-  </nav>
+
+
+
+<!-- Navbar  -->
+<nav class="w-full bg-gray-800 px-6 py-4 flex justify-between items-center shadow-md relative z-50">
+  <div class="text-2xl font-bold text-white">
+    <a href="../../index.html" class="hover:text-accent">MindMend</a>
+  </div>
+
+  <!-- Desktop Links -->
+  <div class="hidden md:flex space-x-6 text-white">
+    <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
+    <a href="./exercises.html" class="hover:text-accent">Exercises</a>
+    <a href="./tetris.html" class="hover:text-accent">Tetris</a>
+    <a href="./chat.html" class="hover:text-accent">Chat</a>
+    <a href="./info.html" class="hover:text-accent">Info</a>
+    <a href="./settings.html" class="hover:text-accent">Settings</a>
+    <a href="./login.html" class="hover:text-accent">Log Out</a>
+  </div>
+
+  <!-- Hamburger Icon (mobile) -->
+  <button id="burgerBtn" class="md:hidden text-white focus:outline-none z-50">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <!-- Mobile Dropdown -->
+  <div id="mobileMenu"
+    class="hidden absolute top-full left-0 w-full bg-gray-800 text-white py-6 space-y-4 text-center shadow-xl md:hidden">
+    <a href="./dashboard.html" class="block hover:text-accent">Dashboard</a>
+    <a href="./exercises.html" class="block hover:text-accent">Exercises</a>
+    <a href="./tetris.html" class="block hover:text-accent">Tetris</a>
+    <a href="./chat.html" class="block hover:text-accent">Chat</a>
+    <a href="./info.html" class="block hover:text-accent">Info</a>
+    <a href="./settings.html" class="block hover:text-accent">Settings</a>
+    <a href="./login.html" class="block hover:text-accent">Log Out</a>
+  </div>
+</nav>
+
+
 
   <main class="flex-1 p-4 md:p-8 space-y-8 max-w-5xl mx-auto w-full">
     <!-- Current Pulse Card -->
@@ -109,6 +135,7 @@
   <!-- Scripts -->
   <script type="module" src="../scripts/dashboard.js"></script>
   <script type="module" src="../scripts/main.js"></script>
+  <script type="module" src="../scripts/navbar.js"></script>
   <script>
     lucide.createIcons();
   </script>
