@@ -17,7 +17,7 @@
 
 
 <!-- NAVBAR -->
-<nav class="w-full bg-gray-800 px-6 py-4 flex justify-between items-center shadow-md relative z-50">
+<nav class="w-full bg-primary-light/80 px-6 py-4 flex justify-between items-center shadow-md relative z-50">
   <div class="text-2xl font-bold text-white">
     <a href="../../index.html" class="hover:text-accent">MindMend</a>
   </div>
@@ -42,7 +42,7 @@
 
   <!-- Mobile Dropdown -->
   <div id="mobileMenu"
-       class="hidden absolute top-full left-0 w-full bg-gray-800 text-white py-6 space-y-4 text-center shadow-xl md:hidden">
+       class="hidden absolute top-full left-0 w-full bg-primary-light/80 text-white py-6 space-y-4 text-center shadow-xl md:hidden">
     <a href="./dashboard.html" class="block hover:text-accent">Dashboard</a>
     <a href="./exercises.html" class="block hover:text-accent">Exercises</a>
     <a href="./tetris.html" class="block hover:text-accent">Tetris</a>
@@ -57,22 +57,28 @@
 
 
 <main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-4">
+
+
   <!-- Intro Card (above accordion dropdowns)-->
-  <section class="infocard p-6 bg-gray-800 border border-gray-700 rounded-lg">
-    <p class="text-gray-200 mb-4">
-      Mind Mend is designed to support mental wellness and PTSD management by leveraging
-      Heart Rate Variability (HRV) data and evidence-based techniques. Compatible with
-      devices such as Oura Ring, Polar H10, and other HRV-enabled sensors, it offers
-      actionable insights, guided exercises, and interactive tools like Tetris therapy.
-    </p>
-  </section>
+    <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+      <div class="bg-primary px-4 py-3 flex items-center gap-4">
+        <i data-lucide="sparkles" class="w-6 h-6 text-accent"></i>
+        <h2 class="text-lg font-semibold">MindMend</h2>
+      </div>
+      <div class="p-4 text-gray-200">
+        MindMend is designed to support mental wellness and PTSD management by leveraging
+        Heart Rate Variability (HRV) data and evidence-based techniques. Compatible with
+        devices such as Oura Ring, Polar H10, and other HRV-enabled sensors, it offers
+        actionable insights, guided exercises, and interactive tools like Tetris therapy.
+      </div>
+    </section>
 
   <!-- Accordion items (dropdown info boxes contents) -->
   <section class="space-y-2">
     <!-- 1) WHAT IS HRV? -->
-    <div class="infocard p-0 overflow-hidden bg-gray-800 border border-gray-700 rounded-lg">
+    <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
       <button
-        class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left rounded-t"
+        class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-t"
         data-target="hrvPanel"
       >
         <div class="flex items-center space-x-2">
@@ -89,9 +95,9 @@
     </div>
 
     <!-- 2) PTSD and HRV -->
-    <div class="infocard p-0 overflow-hidden bg-gray-800 border border-gray-700 rounded-lg">
+    <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
       <button
-        class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left"
+        class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left"
         data-target="ptsdPanel"
       >
         <div class="flex items-center space-x-2">
@@ -108,9 +114,9 @@
     </div>
 
     <!-- 3) HOW THIS APP HELPS -->
-    <div class="infocard p-0 overflow-hidden bg-gray-800 border border-gray-700 rounded-lg">
+    <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
       <button
-        class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left"
+        class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left"
         data-target="appHelpsPanel"
       >
         <div class="flex items-center space-x-2">
@@ -127,9 +133,9 @@
     </div>
 
     <!-- 4) TETRIS, REALLY? -->
-    <div class="infocard p-0 overflow-hidden bg-gray-800 border border-gray-700 rounded-lg">
+    <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
       <button
-        class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left"
+        class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left"
         data-target="tetrisPanel"
       >
         <div class="flex items-center space-x-2">
@@ -146,9 +152,9 @@
     </div>
 
     <!-- 5) export data  -->
-    <div class="infocard p-0 overflow-hidden bg-gray-800 border border-gray-700 rounded-lg">
+    <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
       <button
-        class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left rounded-b"
+        class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-b"
         data-target="therapyPanel"
       >
         <div class="flex items-center space-x-2">
@@ -165,7 +171,7 @@
   </section>
 </main>
 
-<footer class="bg-gray-800 p-4 text-center">
+<footer class="bg-primary-light/80 p-4 text-center">
   <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
 </footer>
 

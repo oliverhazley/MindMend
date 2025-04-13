@@ -12,7 +12,7 @@
 <body class="bg-gradient-to-b from-primary to-[#151721] text-white min-h-screen flex flex-col">
 
 <!-- NAVBAR -->
-<nav class="w-full bg-gray-800 px-6 py-4 flex justify-between items-center shadow-md relative z-50">
+<nav class="w-full bg-primary-light/80 px-6 py-4 flex justify-between items-center shadow-md relative z-50">
   <div class="text-2xl font-bold text-white">
     <a href="../../index.html" class="hover:text-accent">MindMend</a>
   </div>
@@ -38,7 +38,7 @@
   <!-- Mobile Dropdown -->
   <div
     id="mobileMenu"
-    class="hidden absolute top-full left-0 w-full bg-gray-800 text-white py-6 space-y-4 text-center shadow-xl md:hidden"
+    class="hidden absolute top-full left-0 w-full bg-primary-light/80 text-white py-6 space-y-4 text-center shadow-xl md:hidden"
   >
     <a href="./dashboard.html" class="block hover:text-accent">Dashboard</a>
     <a href="./exercises.html" class="block hover:text-accent">Exercises</a>
@@ -53,24 +53,33 @@
 
 
 <main class="max-w-5xl mx-auto p-6 space-y-6 flex-1 w-full">
-  <!-- Mindfulness Card -->
-  <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
-    <h2 class="text-xl font-bold mb-4">Mindfulness Exercises</h2>
-    <div id="mindfulnessList" class="space-y-4">
-      <!-- JS fills this space up for us -->
-    </div>
-  </div>
 
-  <!-- Breathing Card -->
-  <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
-    <h2 class="text-xl font-bold mb-4">Breathing Exercises</h2>
-    <div id="breathingList" class="space-y-4">
-      <!-- JS fills this space up for us -->
+  <!-- Mindfulness Exercises -->
+  <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+    <div class="bg-primary px-4 py-3 flex items-center gap-4">
+      <i data-lucide="mountain" class="w-6 h-6 text-accent"></i>
+      <h2 class="text-lg font-semibold">Mindfulness Exercises</h2>
     </div>
-  </div>
+    <div class="p-4 space-y-4" id="mindfulnessList">
+      <!-- JS will populate -->
+    </div>
+  </section>
+
+  <!-- Breathing Exercises -->
+  <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+    <div class="bg-primary px-4 py-3 flex items-center gap-4">
+      <i data-lucide="wind" class="w-6 h-6 text-accent"></i>
+      <h2 class="text-lg font-semibold">Breathing Exercises</h2>
+    </div>
+    <div class="p-4 space-y-4" id="breathingList">
+      <!-- JS will populate -->
+    </div>
+  </section>
+
 </main>
 
-<footer class="bg-gray-800 text-center text-gray-400 p-4">
+
+<footer class="bg-primary-light/80 text-center text-gray-400 p-4">
   <p class="text-sm">© 2025 MindMend. All rights reserved.</p>
 </footer>
 
