@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <title>MindMend - Dashboard</title>
   <link rel="stylesheet" href="../../dist/tailwind.css" />
-
-  <!-- Chart.js (CDN or local) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-<body class="min-h-screen flex flex-col">
- <!-- NAVBAR -->
+
+<body class="min-h-screen flex flex-col bg-gradient-to-b from-primary to-[#151721] text-white">
+  <!-- NAVBAR -->
   <nav class="w-full bg-gray-800 p-4 flex justify-between items-center">
     <div class="text-2xl font-bold">
       <a href="../../index.html" class="hover:text-accent">MindMend</a>
     </div>
     <div class="space-x-4">
-      <!-- Dashboard, Exercises, Tetris, Chat, Info, Settings, Login -->
       <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
       <a href="./exercises.html" class="hover:text-accent">Exercises</a>
       <a href="./tetris.html" class="hover:text-accent">Tetris</a>
@@ -26,15 +26,47 @@
     </div>
   </nav>
 
-  <!-- MAIN CONTENT: Now only HRV data and charts. No device integration or logout here. -->
   <main class="flex-1 p-4 md:p-8 space-y-8 max-w-5xl mx-auto w-full">
-    <!-- Current HRV Level Card -->
+    <!-- Current Pulse Card -->
     <section class="card">
-      <h2 class="text-xl font-semibold mb-2">Current HRV Level</h2>
+      <h2 class="text-xl font-semibold mb-2 flex items-center gap-5">
+        <i data-lucide="heart-pulse" class="w-8 h-8 text-accent"></i>
+        Current Pulse
+      </h2>
       <div class="flex flex-col items-center justify-center text-center">
-        <div id="currentHRVValue" class="text-4xl font-bold my-2">78</div>
-        <div class="text-6xl mb-2 text-red-500">&#10084;</div>
+        <div id="currentHRVValue" class="text-6xl font-bold my-2">78</div>
+        <div class="mb-4">
+          <i data-lucide="heart-pulse" class="w-12 h-12 text-red-500 pulse"></i>
+        </div>
         <p id="currentHRVText" class="text-gray-200">
+          Your pulse is in a healthy range.
+        </p>
+      </div>
+    </section>
+
+    <!-- RR Intervals: Line Chart -->
+    <section class="card">
+      <h2 class="text-xl font-semibold mb-2 flex items-center gap-5">
+        <i data-lucide="activity" class="w-8 h-8 text-accent"></i>
+        RR Intervals
+      </h2>
+      <div class="relative w-full h-64">
+        <canvas id="rrLineChart" class="max-w-full h-full"></canvas>
+      </div>
+    </section>
+
+    <!-- Calculated RMSSD -->
+    <section class="card">
+      <h2 class="text-xl font-semibold mb-2 flex items-center gap-5">
+        <i data-lucide="hand-heart" class="w-8 h-8 text-accent"></i>
+        Calculated RMSSD
+      </h2>
+      <div class="flex flex-col items-center justify-center text-center">
+        <div id="RMSSDval" class="text-6xl font-bold my-2">32</div>
+        <div class="mb-4">
+          <i data-lucide="hand-heart" class="w-12 h-12 text-red-500 pulse"></i>
+        </div>
+        <p id="RMSSDvaltext" class="text-gray-200">
           Your HRV is moderate, suggesting balanced recovery and stress levels.
         </p>
       </div>
@@ -42,13 +74,10 @@
 
     <!-- HRV Progress: Bar Chart -->
     <section class="card">
-      <h2 class="text-xl font-semibold mb-2 flex items-center">
-        HRV Progress <span class="ml-2 text-green-400">&#9650;</span>
+      <h2 class="text-xl font-semibold mb-2 flex items-center gap-5">
+        <i data-lucide="trending-up" class="w-8 h-8 text-green-400"></i>
+        HRV Progress
       </h2>
-      <!--
-        We wrap the canvas in a container with a set height or aspect ratio.
-        "max-w-full" ensures it doesn't overflow horizontally.
-      -->
       <div class="relative w-full h-64">
         <canvas id="hrvBarChart" class="max-w-full h-full"></canvas>
       </div>
@@ -59,8 +88,9 @@
 
     <!-- HRV Distribution: Donut Chart -->
     <section class="card">
-      <h2 class="text-xl font-semibold mb-2 flex items-center">
-        HRV Distribution <span class="ml-2 text-purple-400">&#8767;</span>
+      <h2 class="text-xl font-semibold mb-2 flex items-center gap-5">
+        <i data-lucide="pie-chart" class="w-8 h-8 text-purple-400"></i>
+        HRV Distribution
       </h2>
       <div class="relative w-full h-64">
         <canvas id="hrvDonutChart" class="max-w-full h-full"></canvas>
@@ -69,15 +99,6 @@
         Your stress distribution is well-balanced...
       </p>
     </section>
-
-    <!-- RR Intervals: Line Chart -->
-    <section class="card">
-      <h2 class="text-xl font-semibold mb-2">RR Intervals</h2>
-      <div class="relative w-full h-64">
-        <canvas id="rrLineChart" class="max-w-full h-full"></canvas>
-      </div>
-      <!-- No export or device integration here; moved to settings. -->
-    </section>
   </main>
 
   <!-- FOOTER -->
@@ -85,8 +106,11 @@
     <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
   </footer>
 
-  <!-- Dashboard chart logic (with limited width/height) -->
+  <!-- Scripts -->
   <script type="module" src="../scripts/dashboard.js"></script>
   <script type="module" src="../scripts/main.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>

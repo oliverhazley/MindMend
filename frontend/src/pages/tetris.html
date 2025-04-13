@@ -7,44 +7,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="bg-gradient-to-b from-primary to-[#151721] text-white min-h-screen flex flex-col">
-  <!-- NAV -->
-  <nav class="bg-primary-light p-4 flex justify-between items-center">
+  <!-- NAVBAR -->
+  <nav class="w-full bg-gray-800 p-4 flex justify-between items-center">
     <div class="text-2xl font-bold">
       <a href="../../index.html" class="hover:text-accent">MindMend</a>
     </div>
-    <div class="space-x-4 text-sm">
+    <div class="space-x-4">
+      <!-- Dashboard, Exercises, Tetris, Chat, Info, Settings, Login -->
       <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
       <a href="./exercises.html" class="hover:text-accent">Exercises</a>
-      <a href="./tetris.html" class="hover:text-accent font-semibold text-accent">Tetris</a>
+      <a href="./tetris.html" class="hover:text-accent">Tetris</a>
       <a href="./chat.html" class="hover:text-accent">Chat</a>
+      <a href="./info.html" class="hover:text-accent">Info</a>
+      <a href="./settings.html" class="hover:text-accent">Settings</a>
       <a href="./login.html" class="hover:text-accent">Log Out</a>
     </div>
   </nav>
 
-  <main class="flex-1 p-4 md:p-8 max-w-5xl mx-auto w-full">
+  <main class="flex-1 p-4 md:p-8 max-w-3xl mx-auto w-full">
     <!-- Title & instructions -->
     <div class="text-center mb-6">
       <h2 class="text-2xl font-bold">Tetris</h2>
       <p class="text-sm text-gray-400">Use arrow keys (← ↑ → ↓) or swipe. ↓ = instant drop</p>
     </div>
 
-    <!-- Two-column on desktop, stacked on mobile -->
-    <div
-      class="card p-4 flex flex-col lg:flex-row
-                 items-center lg:items-start
-                 gap-6 w-full
-                 lg:justify-center"
-    >
+    <!-- 2-col on desktop, stacked on mobile, horizontally centered on desktop -->
+    <div class="card p-4 flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:justify-center w-full">
       <!-- LEFT: Tetris Board (smaller) -->
       <div class="touch-none w-full max-w-[220px] mx-auto lg:mx-0">
-        <!-- Canvas is 160 wide x 320 tall internally, with 10 cols x 20 rows => 16px blocks. -->
+        <!-- 160 wide x 320 tall => 10 cols x 20 rows, 16px each -->
         <canvas
           id="tetrisBoard"
           width="160"
           height="320"
           class="bg-gray-900 rounded shadow-md w-full h-auto"
-        >
-        </canvas>
+        ></canvas>
       </div>
 
       <!-- RIGHT: Score + Next + Buttons -->
@@ -64,18 +61,23 @@
             ></canvas>
           </div>
         </div>
-
-        <!-- Buttons row -->
+        <!-- Buttons row: Start is visible initially, Pause & Restart are hidden at first. -->
         <div class="flex gap-2">
-          <button id="startTetrisBtn" class="btn btn-primary px-4 py-2">Start</button>
-          <button id="pauseTetrisBtn" class="btn btn-secondary px-4 py-2">Pause</button>
-          <button id="restartTetrisBtn" class="btn btn-danger px-4 py-2">Restart</button>
+          <button id="startTetrisBtn" class="btn btn-primary px-4 py-2">
+            Start
+          </button>
+          <button id="pauseResumeBtn" class="btn btn-secondary px-4 py-2 hidden">
+            Pause
+          </button>
+          <button id="restartTetrisBtn" class="btn btn-danger px-4 py-2 hidden">
+            Restart
+          </button>
         </div>
       </div>
     </div>
   </main>
 
-  <footer class="bg-primary-light p-4 text-center text-gray-400 text-sm">
+  <footer class="bg-gray-800 p-4 text-center text-gray-400 text-sm">
     &copy; 2025 MindMend. All rights reserved.
   </footer>
 

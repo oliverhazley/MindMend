@@ -27,9 +27,9 @@
 
   <main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-4">
     <!-- Intro Card -->
-    <section class="card p-6">
+    <section class="infocard p-6">
       <p class="text-gray-200 mb-4">
-        This app is designed to support mental wellness and PTSD management by leveraging
+        Mind Mend is designed to support mental wellness and PTSD management by leveraging
         Heart Rate Variability (HRV) data and evidence-based techniques. Compatible with
         devices such as Oura Ring, Polar H10, and other HRV-enabled sensors, it offers
         actionable insights, guided exercises, and interactive tools like Tetris therapy.
@@ -39,10 +39,10 @@
     <!-- Accordion items -->
     <section class="space-y-2">
       <!-- 1) WHAT IS HRV? -->
-      <div class="card p-0 overflow-hidden">
+      <div class="infocard p-0 overflow-hidden">
         <!-- Heading container with icon -->
         <button
-          class="accordion-btn w-full flex items-center justify-between bg-grey-800 px-4 py-3 text-left rounded-t"
+          class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left rounded-t"
           data-target="hrvPanel"
         >
           <div class="flex items-center space-x-2">
@@ -59,7 +59,7 @@
       </div>
 
       <!-- 2) PTSD and HRV -->
-      <div class="card p-0 overflow-hidden">
+      <div class="infocard p-0 overflow-hidden">
         <button
           class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left"
           data-target="ptsdPanel"
@@ -78,7 +78,7 @@
       </div>
 
       <!-- 3) HOW THIS APP HELPS -->
-      <div class="card p-0 overflow-hidden">
+      <div class="infocard p-0 overflow-hidden">
         <button
           class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left"
           data-target="appHelpsPanel"
@@ -97,7 +97,7 @@
       </div>
 
       <!-- 4) TETRIS, REALLY? -->
-      <div class="card p-0 overflow-hidden">
+      <div class="infocard p-0 overflow-hidden">
         <button
           class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left rounded-b"
           data-target="tetrisPanel"
@@ -114,6 +114,23 @@
           symptom intensity. It's a non-invasive, engaging mental health intervention.
         </div>
       </div>
+
+            <!-- 5) export data  -->
+      <div class="infocard p-0 overflow-hidden">
+        <button
+          class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left"
+          data-target="therapyPanel"
+        >
+          <div class="flex items-center space-x-2">
+            <i data-lucide="brain" class="w-5 h-5 text-accent"></i>
+            <span class="font-semibold">How do i export data?</span>
+          </div>
+          <span class="accordion-icon">▼</span>
+        </button>
+        <div id="therapyPanel" class="accordion-panel hidden p-4 text-gray-300">
+          You can safely export your data by clicking the "Export data" button, found in the analytics section, or in the settings section. Download your data, and send or show it to your therapist!
+        </div>
+      </div>
     </section>
   </main>
 
@@ -121,27 +138,6 @@
     <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
   </footer>
 
-  <!-- Simple JS to toggle panels -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Initialize Lucide icons
-      if (window.lucide) {
-        lucide.createIcons();
-      }
-
-      // Accordion toggles
-      document.querySelectorAll('.accordion-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const panelId = btn.getAttribute('data-target');
-          const panel = document.getElementById(panelId);
-          panel.classList.toggle('hidden');
-          // Toggle arrow
-          const icon = btn.querySelector('.accordion-icon');
-          icon.textContent = panel.classList.contains('hidden') ? '▼' : '▲';
-        });
-      });
-    });
-  </script>
   <script type="module" src="../scripts/info.js"></script>
 
 </body>
