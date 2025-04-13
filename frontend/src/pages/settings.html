@@ -3,86 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <title>MindMend - Settings</title>
+  <!-- meta viewport => mobile responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <link rel="stylesheet" href="../../dist/tailwind.css" />
 </head>
-<body class="min-h-screen flex flex-col">
-  <!-- NAVBAR -->
-  <nav class="w-full bg-primary-light/80 p-4 flex justify-between items-center">
-    <div class="text-2xl font-bold">
-      <a href="../../index.html" class="hover:text-accent">MindMend</a>
-    </div>
-    <div class="space-x-4">
-      <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
-      <a href="./settings.html" class="hover:text-accent">Settings</a>
-      <a href="./login.html" class="hover:text-accent">Log Out</a>
-    </div>
-  </nav>
+<body class="min-h-screen flex flex-col bg-gradient-to-b from-primary to-[#151721] text-white">
 
-  <main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-8">
-    <!-- User Settings (e.g. name, notifications) -->
-    <section class="card p-4">
-      <h2 class="text-xl font-semibold mb-4">User Settings</h2>
-      <form id="settingsForm" class="space-y-4">
-        <!-- Example setting: Username -->
-        <label class="block">
-          <span class="block text-sm text-gray-300 mb-1">Username</span>
-          <input
-            type="text"
-            name="username"
-            placeholder="e.g. user123"
-            class="w-full px-3 py-2 rounded bg-primary-dark text-white focus:ring-2 focus:ring-accent"
-          />
-        </label>
-        <!-- Example setting: Email notifications -->
-        <label class="block">
-          <span class="block text-sm text-gray-300 mb-1">Email Notifications</span>
-          <select
-            name="notifications"
-            class="w-full px-3 py-2 rounded bg-primary-dark text-white focus:ring-2 focus:ring-accent"
-          >
-            <option value="on">On</option>
-            <option value="off">Off</option>
-          </select>
-        </label>
-        <button type="submit" class="btn btn-primary">Save Settings</button>
-      </form>
-    </section>
+<!-- Navbar -->
+<nav class="w-full bg-gray-800 px-6 py-4 flex justify-between items-center shadow-md relative z-50">
+  <div class="text-2xl font-bold text-white">
+    <a href="../../index.html" class="hover:text-accent">MindMend</a>
+  </div>
 
-    <!-- Device Integration (moved from dashboard to here) -->
-    <section class="card p-4 space-y-4">
-      <h2 class="text-xl font-semibold">Device Integration</h2>
-      <!-- Oura Ring -->
-      <div class="flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-          <span class="text-gray-200">&#128142;</span>
-          <span>Oura Ring</span>
-        </div>
-        <span class="text-green-400">Connected</span>
+  <!-- Desktop Links -->
+  <div class="hidden md:flex space-x-6 text-white">
+    <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
+    <a href="./exercises.html" class="hover:text-accent">Exercises</a>
+    <a href="./tetris.html" class="hover:text-accent">Tetris</a>
+    <a href="./chat.html" class="hover:text-accent">Chat</a>
+    <a href="./info.html" class="hover:text-accent">Info</a>
+    <a href="./settings.html" class="hover:text-accent">Settings</a>
+    <a href="./login.html" class="hover:text-accent">Log Out</a>
+  </div>
+
+  <!-- Hamburger Icon (mobile) -->
+  <button id="burgerBtn" class="md:hidden text-white focus:outline-none z-50">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <!-- Mobile Dropdown -->
+  <div
+    id="mobileMenu"
+    class="hidden absolute top-full left-0 w-full bg-gray-800 text-white py-6 space-y-4 text-center shadow-xl md:hidden"
+  >
+    <a href="./dashboard.html" class="block hover:text-accent">Dashboard</a>
+    <a href="./exercises.html" class="block hover:text-accent">Exercises</a>
+    <a href="./tetris.html" class="block hover:text-accent">Tetris</a>
+    <a href="./chat.html" class="block hover:text-accent">Chat</a>
+    <a href="./info.html" class="block hover:text-accent">Info</a>
+    <a href="./settings.html" class="block hover:text-accent">Settings</a>
+    <a href="./login.html" class="block hover:text-accent">Log Out</a>
+  </div>
+</nav>
+
+<main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-8">
+  <!-- Device Integration -->
+  <section class="card p-4 space-y-4">
+    <h2 class="text-xl font-semibold">Device Integration</h2>
+    <!-- Oura Ring -->
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <span class="text-gray-200">&#128142;</span>
+        <span>Oura Ring</span>
       </div>
-      <hr class="border-gray-600"/>
-      <!-- Polar H10 -->
-      <div class="flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-          <span class="text-gray-200">&#128241;</span> <!-- bluetooth icon -->
-          <span>Polar H10</span>
-        </div>
-        <span class="text-red-400">Disconnected</span>
-        <button id="polarConnectBtn" class="btn btn-primary ml-4">Connect</button>
+      <span class="text-green-400">Connected</span>
+    </div>
+    <hr class="border-gray-600"/>
+    <!-- Polar H10 -->
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <span class="text-gray-200">&#128241;</span> <!-- bluetooth icon -->
+        <span>Polar H10</span>
       </div>
-    </section>
+      <span class="text-red-400">Disconnected</span>
+      <button id="polarConnectBtn" class="btn btn-primary ml-4">Connect</button>
+    </div>
+  </section>
 
-    <!-- Export Data and Logout buttons -->
-    <section class="card p-4 flex flex-col items-center space-y-4">
-      <button class="btn btn-primary">Export Data</button>
-      <button class="btn btn-danger">Logout</button>
-    </section>
-  </main>
+  <!-- Export Data and Logout buttons -->
+  <section class="p-4 flex flex-col items-center space-y-4">
+    <button class="btn btn-primary">Export Data</button>
+    <button class="btn btn-danger">Logout</button>
+  </section>
+</main>
 
-  <footer class="bg-primary-light/80 p-4 text-center">
-    <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
-  </footer>
+<footer class="bg-gray-800 p-4 text-center">
+  <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
+</footer>
 
-  <script type="module" src="../scripts/settings.js"></script>
-  <script type="module" src="../scripts/polarConnect.js"></script>
+<!-- Scripts -->
+<script type="module" src="../scripts/settings.js"></script>
+<script type="module" src="../scripts/polarConnect.js"></script>
+<script type="module" src="../scripts/navbar.js"></script>
 </body>
 </html>

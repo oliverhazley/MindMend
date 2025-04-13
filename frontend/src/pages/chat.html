@@ -3,43 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <title>MindMend - Chat</title>
+  <!--  meta viewport for mobile responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../../dist/tailwind.css" />
 </head>
-<body class="min-h-screen flex flex-col">
+
+<body class="min-h-screen flex flex-col bg-gradient-to-b from-primary to-[#151721] text-white">
+
   <!-- NAVBAR -->
-  <nav class="w-full bg-primary-light/80 p-4 flex justify-between items-center">
-    <div class="text-2xl font-bold">
+  <nav class="w-full bg-gray-800 px-6 py-4 flex justify-between items-center shadow-md relative z-50">
+    <!-- Left logo -->
+    <div class="text-2xl font-bold text-white">
       <a href="../../index.html" class="hover:text-accent">MindMend</a>
     </div>
-    <div class="space-x-4">
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex space-x-6 text-white">
       <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
+      <a href="./exercises.html" class="hover:text-accent">Exercises</a>
+      <a href="./tetris.html" class="hover:text-accent">Tetris</a>
       <a href="./chat.html" class="hover:text-accent">Chat</a>
       <a href="./info.html" class="hover:text-accent">Info</a>
+      <a href="./settings.html" class="hover:text-accent">Settings</a>
       <a href="./login.html" class="hover:text-accent">Log Out</a>
+    </div>
+
+    <!-- Hamburger icon (visible on mobile) -->
+    <button
+      id="burgerBtn"
+      class="md:hidden text-white focus:outline-none z-50"
+    >
+      <svg
+        class="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+    </button>
+
+    <!-- Mobile dropdown menu -->
+    <div
+      id="mobileMenu"
+      class="hidden absolute top-full left-0 w-full bg-gray-800 text-white py-6 space-y-4 text-center shadow-xl md:hidden"
+    >
+      <a href="./dashboard.html" class="block hover:text-accent">Dashboard</a>
+      <a href="./exercises.html" class="block hover:text-accent">Exercises</a>
+      <a href="./tetris.html" class="block hover:text-accent">Tetris</a>
+      <a href="./chat.html" class="block hover:text-accent">Chat</a>
+      <a href="./info.html" class="block hover:text-accent">Info</a>
+      <a href="./settings.html" class="block hover:text-accent">Settings</a>
+      <a href="./login.html" class="block hover:text-accent">Log Out</a>
     </div>
   </nav>
 
+
+
+
   <!-- MAIN: Center the chat card on larger screens -->
-  <main class="flex-1 p-4 md:p-8 flex flex-col items-center justify-center">
+  <main class="flex-1 p-4 md:p-8 flex flex-col items-center justify-center w-full max-w-5xl mx-auto">
     <!-- Card with a fixed max-width so it doesn't stretch too wide -->
     <div class="card w-full max-w-xl">
       <h2 class="text-xl font-semibold mb-4">Support Chat</h2>
+
       <!-- Chat messages area -->
       <div
         id="chatWindow"
-        class="flex flex-col space-y-2 p-4 bg-primary-light rounded mb-4 h-64 overflow-y-auto"
+        class="flex flex-col space-y-2 p-4 bg-gray-800 rounded mb-4 h-64 overflow-y-auto"
       >
         <!-- Example message from the chatbot to start -->
         <div class="bg-gray-700 p-2 rounded text-gray-200">
           Hello, I'm here to help you manage stress...
         </div>
       </div>
+
       <!-- Chat input -->
       <form id="chatForm" class="flex">
         <input
           id="chatInput"
           type="text"
-          class="flex-1 px-3 py-2 bg-primary-dark rounded-l focus:ring-2 focus:ring-accent"
+          class="flex-1 px-3 py-2 bg-gray-700 rounded-l focus:ring-2 focus:ring-accent"
           placeholder="Type your message..."
           required
         />
@@ -54,10 +103,13 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-primary-light/80 p-4 text-center">
+  <footer class="bg-gray-800 p-4 text-center">
     <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
   </footer>
 
+  <!-- chat logic -->
   <script type="module" src="../scripts/chat.js"></script>
+  <!-- Navbar logic: toggles burger menu on small screens -->
+  <script type="module" src="../scripts/navbar.js"></script>
 </body>
 </html>
