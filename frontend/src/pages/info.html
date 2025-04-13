@@ -3,16 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <title>MindMend - Info</title>
+  <!-- compiled Tailwind CSS -->
   <link rel="stylesheet" href="../../dist/tailwind.css" />
+  <!-- Lucide icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
-<body class="min-h-screen flex flex-col">
-  <nav class="w-full bg-primary-light/80 p-4 flex justify-between items-center">
+<body class="min-h-screen flex flex-col bg-gradient-to-b from-primary to-[#151721] text-white">
+  <!-- NAVBAR -->
+  <nav class="w-full bg-gray-800 p-4 flex justify-between items-center">
     <div class="text-2xl font-bold">
       <a href="../../index.html" class="hover:text-accent">MindMend</a>
     </div>
     <div class="space-x-4">
       <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
+      <a href="./exercises.html" class="hover:text-accent">Exercises</a>
+      <a href="./tetris.html" class="hover:text-accent">Tetris</a>
+      <a href="./chat.html" class="hover:text-accent">Chat</a>
       <a href="./info.html" class="hover:text-accent">Info</a>
+      <a href="./settings.html" class="hover:text-accent">Settings</a>
       <a href="./login.html" class="hover:text-accent">Log Out</a>
     </div>
   </nav>
@@ -21,63 +29,89 @@
     <!-- Intro Card -->
     <section class="card p-6">
       <p class="text-gray-200 mb-4">
-        This app is designed to support mental wellness and PTSD management by leveraging...
-        (Your introduction text from the screenshot)
+        This app is designed to support mental wellness and PTSD management by leveraging
+        Heart Rate Variability (HRV) data and evidence-based techniques. Compatible with
+        devices such as Oura Ring, Polar H10, and other HRV-enabled sensors, it offers
+        actionable insights, guided exercises, and interactive tools like Tetris therapy.
       </p>
     </section>
 
-    <!-- Accordion items (like FAQ or "What is HRV?", "PTSD and HRV", etc.) -->
+    <!-- Accordion items -->
     <section class="space-y-2">
-      <!-- Example accordion item -->
-      <div class="card p-4">
+      <!-- 1) WHAT IS HRV? -->
+      <div class="card p-0 overflow-hidden">
+        <!-- Heading container with icon -->
         <button
-          class="accordion-btn w-full flex justify-between items-center"
+          class="accordion-btn w-full flex items-center justify-between bg-grey-800 px-4 py-3 text-left rounded-t"
           data-target="hrvPanel"
         >
-          <span class="font-semibold">What is HRV?</span>
+          <div class="flex items-center space-x-2">
+            <i data-lucide="heart-pulse" class="w-5 h-5 text-accent"></i>
+            <span class="font-semibold">What is HRV?</span>
+          </div>
           <span class="accordion-icon">▼</span>
         </button>
-        <div id="hrvPanel" class="accordion-panel hidden mt-2 text-gray-300">
-          Heart Rate Variability (HRV) measures the variation in time between...
+        <div id="hrvPanel" class="accordion-panel hidden p-4 text-gray-300">
+          Heart Rate Variability (HRV) measures the variation in time between heartbeats.
+          It's an important indicator of autonomic nervous system health, reflecting stress
+          resilience and emotional regulation.
         </div>
       </div>
 
-      <div class="card p-4">
+      <!-- 2) PTSD and HRV -->
+      <div class="card p-0 overflow-hidden">
         <button
-          class="accordion-btn w-full flex justify-between items-center"
+          class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left"
           data-target="ptsdPanel"
         >
-          <span class="font-semibold">PTSD and HRV</span>
+          <div class="flex items-center space-x-2">
+            <i data-lucide="brain" class="w-5 h-5 text-accent"></i>
+            <span class="font-semibold">PTSD and HRV</span>
+          </div>
           <span class="accordion-icon">▼</span>
         </button>
-        <div id="ptsdPanel" class="accordion-panel hidden mt-2 text-gray-300">
-          PTSD can significantly impact HRV...
+        <div id="ptsdPanel" class="accordion-panel hidden p-4 text-gray-300">
+          PTSD can significantly impact HRV. Individuals with PTSD often show lower HRV,
+          indicating chronic stress and reduced ability to adapt to emotional challenges.
+          Monitoring HRV can help track recovery and stress management.
         </div>
       </div>
 
-      <div class="card p-4">
+      <!-- 3) HOW THIS APP HELPS -->
+      <div class="card p-0 overflow-hidden">
         <button
-          class="accordion-btn w-full flex justify-between items-center"
+          class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left"
           data-target="appHelpsPanel"
         >
-          <span class="font-semibold">How This App Helps</span>
+          <div class="flex items-center space-x-2">
+            <i data-lucide="info" class="w-5 h-5 text-accent"></i>
+            <span class="font-semibold">How This App Helps</span>
+          </div>
           <span class="accordion-icon">▼</span>
         </button>
-        <div id="appHelpsPanel" class="accordion-panel hidden mt-2 text-gray-300">
-          Our app provides real-time HRV tracking...
+        <div id="appHelpsPanel" class="accordion-panel hidden p-4 text-gray-300">
+          Our app provides real-time HRV tracking, personalized interventions like mindfulness
+          exercises, and data insights. By monitoring HRV patterns, users can better understand
+          their stress responses and develop coping strategies.
         </div>
       </div>
 
-      <div class="card p-4">
+      <!-- 4) TETRIS, REALLY? -->
+      <div class="card p-0 overflow-hidden">
         <button
-          class="accordion-btn w-full flex justify-between items-center"
+          class="accordion-btn w-full flex items-center justify-between bg-gray-700 px-4 py-3 text-left rounded-b"
           data-target="tetrisPanel"
         >
-          <span class="font-semibold">Tetris, really?</span>
+          <div class="flex items-center space-x-2">
+            <i data-lucide="gamepad-2" class="w-5 h-5 text-accent"></i>
+            <span class="font-semibold">Tetris, really?</span>
+          </div>
           <span class="accordion-icon">▼</span>
         </button>
-        <div id="tetrisPanel" class="accordion-panel hidden mt-2 text-gray-300">
-          Tetris therapy can provide a distraction and a simple mindfulness break...
+        <div id="tetrisPanel" class="accordion-panel hidden p-4 text-gray-300">
+          Research shows Tetris can interrupt traumatic memory formation. Cognitive interference
+          prevents vivid memory consolidation, helping reduce intrusive memories and PTSD
+          symptom intensity. It's a non-invasive, engaging mental health intervention.
         </div>
       </div>
     </section>
@@ -87,19 +121,30 @@
     <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
   </footer>
 
-  <!-- Simple JS to toggle .hidden on the panel -->
-  <script type="module">
-    document.querySelectorAll('.accordion-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const panelId = btn.getAttribute('data-target');
-        const panel = document.getElementById(panelId);
-        panel.classList.toggle('hidden');
-        // Toggle the arrow icon
-        const icon = btn.querySelector('.accordion-icon');
-        icon.textContent = panel.classList.contains('hidden') ? '▼' : '▲';
+  <!-- Simple JS to toggle panels -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Lucide icons
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+
+      // Accordion toggles
+      document.querySelectorAll('.accordion-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const panelId = btn.getAttribute('data-target');
+          const panel = document.getElementById(panelId);
+          panel.classList.toggle('hidden');
+          // Toggle arrow
+          const icon = btn.querySelector('.accordion-icon');
+          icon.textContent = panel.classList.contains('hidden') ? '▼' : '▲';
+        });
       });
     });
   </script>
   <script type="module" src="../scripts/info.js"></script>
+
 </body>
 </html>
+
+

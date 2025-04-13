@@ -3,14 +3,26 @@
 <head>
   <meta charset="UTF-8"/>
   <title>MindMend - Exercises</title>
-  <!-- Adjust path to your compiled Tailwind CSS if needed -->
+  <!-- Adjust path to compiled Tailwind CSS if needed -->
   <link rel="stylesheet" href="../../dist/tailwind.css" />
 </head>
 <body class="bg-gradient-to-b from-primary to-[#151721] text-white min-h-screen flex flex-col">
-  <!-- Nav bar -->
-  <nav class="bg-gray-800 p-4 flex items-center justify-between">
-    <div class="text-2xl font-bold"><a href="../../index.html" class="hover:text-accent">MindMend</a></div>
-    <a href="./dashboard.html" class="hover:text-accent transition">Dashboard</a>
+
+ <!-- NAVBAR -->
+  <nav class="w-full bg-gray-800 p-4 flex justify-between items-center">
+    <div class="text-2xl font-bold">
+      <a href="../../index.html" class="hover:text-accent">MindMend</a>
+    </div>
+    <div class="space-x-4">
+      <!-- Dashboard, Exercises, Tetris, Chat, Info, Settings, Login -->
+      <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
+      <a href="./exercises.html" class="hover:text-accent">Exercises</a>
+      <a href="./tetris.html" class="hover:text-accent">Tetris</a>
+      <a href="./chat.html" class="hover:text-accent">Chat</a>
+      <a href="./info.html" class="hover:text-accent">Info</a>
+      <a href="./settings.html" class="hover:text-accent">Settings</a>
+      <a href="./login.html" class="hover:text-accent">Log Out</a>
+    </div>
   </nav>
 
   <main class="max-w-5xl mx-auto p-6 space-y-6 flex-1 w-full">

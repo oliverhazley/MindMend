@@ -1,9 +1,9 @@
 // src/scripts/exercises.js
 document.addEventListener("DOMContentLoaded", () => {
   console.log("exercises.js loaded.");
-  lucide.createIcons(); // Initialize Lucide icons if any are in the HTML
+  lucide.createIcons(); // Initialize Lucide icons
 
-  // Mindfulness items with actual audio
+  // Mindfulness items with audio
   const mindfulnessItems = [
     {
       id: "nature",
@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
       description: "Relax with the calming sound of water and birds chirping",
       icon: "tree-pine",
       audioUrl: "/sounds/stream.mp3",
-      // adjust path, e.g. "../public/sounds/forest.mp3"
-      // or however your project is set up
     },
     {
       id: "waves",

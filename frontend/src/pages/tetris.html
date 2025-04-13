@@ -1,46 +1,84 @@
-<!-- pages/tetris.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <title>MindMend - Tetris</title>
-  <link rel="stylesheet" href="../../dist/tailwind.css" />
+  <link rel="stylesheet" href="../../dist/tailwind.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body class="min-h-screen flex flex-col">
-  <nav class="w-full bg-primary-light/80 p-4 flex justify-between items-center">
+<body class="bg-gradient-to-b from-primary to-[#151721] text-white min-h-screen flex flex-col">
+  <!-- NAV -->
+  <nav class="bg-primary-light p-4 flex justify-between items-center">
     <div class="text-2xl font-bold">
       <a href="../../index.html" class="hover:text-accent">MindMend</a>
     </div>
-    <div class="space-x-4">
+    <div class="space-x-4 text-sm">
       <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
       <a href="./exercises.html" class="hover:text-accent">Exercises</a>
-      <a href="./tetris.html" class="hover:text-accent">Tetris</a>
+      <a href="./tetris.html" class="hover:text-accent font-semibold text-accent">Tetris</a>
       <a href="./chat.html" class="hover:text-accent">Chat</a>
       <a href="./login.html" class="hover:text-accent">Log Out</a>
     </div>
   </nav>
 
-  <main class="flex-1 p-6 flex flex-col items-center">
-    <div class="card w-full max-w-xl">
-      <h2 class="text-2xl font-bold mb-4 text-center">Tetris Game</h2>
-      <!-- Tetris board container with background for better visual look -->
-      <div id="tetrisBoard" class="w-full h-96 bg-gradient-to-br from-gray-800 to-gray-700 relative overflow-hidden flex items-center justify-center">
-        <!-- The Tetris blocks will be rendered dynamically -->
-        <p class="text-center text-gray-200">Loading Tetris...</p>
+  <main class="flex-1 p-4 md:p-8 max-w-5xl mx-auto w-full">
+    <!-- Title & instructions -->
+    <div class="text-center mb-6">
+      <h2 class="text-2xl font-bold">Tetris</h2>
+      <p class="text-sm text-gray-400">Use arrow keys (← ↑ → ↓) or swipe. ↓ = instant drop</p>
+    </div>
+
+    <!-- Two-column on desktop, stacked on mobile -->
+    <div
+      class="card p-4 flex flex-col lg:flex-row
+                 items-center lg:items-start
+                 gap-6 w-full
+                 lg:justify-center"
+    >
+      <!-- LEFT: Tetris Board (smaller) -->
+      <div class="touch-none w-full max-w-[220px] mx-auto lg:mx-0">
+        <!-- Canvas is 160 wide x 320 tall internally, with 10 cols x 20 rows => 16px blocks. -->
+        <canvas
+          id="tetrisBoard"
+          width="160"
+          height="320"
+          class="bg-gray-900 rounded shadow-md w-full h-auto"
+        >
+        </canvas>
       </div>
-      <!-- Controls -->
-      <div class="flex justify-center space-x-4 mt-4">
-        <button id="startTetrisBtn" class="btn btn-primary">Start</button>
-        <button id="pauseTetrisBtn" class="btn btn-secondary">Pause</button>
+
+      <!-- RIGHT: Score + Next + Buttons -->
+      <div class="w-full lg:w-auto flex flex-col items-center lg:items-start space-y-4">
+        <!-- Score & Next piece -->
+        <div class="space-y-2 text-center lg:text-left">
+          <p class="text-xl font-semibold">
+            Score: <span id="score">0</span>
+          </p>
+          <div>
+            <p class="text-sm text-gray-400 mb-1">Next Piece:</p>
+            <canvas
+              id="nextPiece"
+              width="80"
+              height="80"
+              class="bg-gray-700 rounded"
+            ></canvas>
+          </div>
+        </div>
+
+        <!-- Buttons row -->
+        <div class="flex gap-2">
+          <button id="startTetrisBtn" class="btn btn-primary px-4 py-2">Start</button>
+          <button id="pauseTetrisBtn" class="btn btn-secondary px-4 py-2">Pause</button>
+          <button id="restartTetrisBtn" class="btn btn-danger px-4 py-2">Restart</button>
+        </div>
       </div>
     </div>
   </main>
 
-  <footer class="bg-primary-light/80 p-4 text-center">
-    <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
+  <footer class="bg-primary-light p-4 text-center text-gray-400 text-sm">
+    &copy; 2025 MindMend. All rights reserved.
   </footer>
 
   <script type="module" src="../scripts/tetris.js"></script>
-  <script type="module" src="../scripts/main.js"></script>
 </body>
 </html>
