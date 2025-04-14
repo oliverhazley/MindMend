@@ -29,6 +29,19 @@ body {
   @apply bg-primary-light/80 rounded-md shadow-md;
 }
 
+/* Tailwind-style custom scrollbar */
+#chatWindow::-webkit-scrollbar {
+  width: 8px;
+}
+#chatWindow::-webkit-scrollbar-thumb {
+  background-color: #3b82f6; /* accent */
+  border-radius: 4px;
+}
+#chatWindow::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+
 /* Dashboard pulse effects for icons */
 @keyframes pulse-icon {
   0%, 100% {

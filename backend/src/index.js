@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
+
+
 import userRouter from './routers/userRouter.js';
+import chatRouter from "./routers/chatRouter.js";
 
 const hostname = 'localhost';
 const port = 3000;
@@ -12,6 +15,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/users', userRouter);
+app.use("/api/chat", chatRouter);
 
 // Start server
 app.listen(port, hostname, () => {
