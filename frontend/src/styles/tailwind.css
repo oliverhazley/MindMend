@@ -15,12 +15,18 @@ body {
 
 .card {
   /* A card container with our theme background */
-  @apply bg-gray-800 rounded-md p-4 shadow-md;
+  @apply bg-primary-light/80 rounded-md pb-8 shadow-md;
+}
+
+.excard {
+   /* card container for exercises, no padding with our theme background */
+  @apply bg-primary-light/80 rounded-md pb-8 shadow-md;
+  padding: 0 !important;
 }
 
 .infocard {
   /* infosection card container with our theme background + no padding */
-  @apply bg-gray-800 rounded-md shadow-md;
+  @apply bg-primary-light/80 rounded-md shadow-md;
 }
 
 /* Dashboard pulse effects for icons */
