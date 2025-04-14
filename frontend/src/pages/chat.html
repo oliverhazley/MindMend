@@ -44,15 +44,16 @@
 
   <!-- MAIN CHAT CARD -->
   <main class="flex-1 p-4 md:p-8 flex flex-col items-center justify-center w-full max-w-5xl mx-auto">
-    <section class="card w-full max-w-xl p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-      <!-- Header -->
-      <div class="bg-primary px-4 py-3 flex items-center gap-4">
-        <i data-lucide="message-circle" class="w-6 h-6 text-accent"></i>
+    <section class="infocard w-full max-w-xl p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+      <!-- Header + icon -->
+      <div class="bg-primary px-4 py-3 flex items-center gap-3">
+        <i data-lucide="message-circle-heart" class="w-7 h-7 text-accent"></i>
         <h2 class="text-lg font-semibold">Support Chat</h2>
       </div>
 
+
       <!-- Chat messages area -->
-      <div id="chatWindow" class="flex flex-col space-y-2 p-4 bg-gray-800 rounded-none mb-4 h-64 overflow-y-auto">
+      <div id="chatWindow" class="flex flex-col space-y-2 p-4 bg-card rounded-none mb-4 h-64 overflow-y-auto">
         <div class="bg-gray-700 p-2 rounded text-gray-200">
           Hello, I'm here to help you manage stress...
         </div>
@@ -82,10 +83,14 @@
   <!-- Scripts -->
   <script type="module" src="../scripts/chat.js"></script>
   <script type="module" src="../scripts/navbar.js"></script>
+
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     if (window.lucide) {
       lucide.createIcons();
     }
   </script>
+
 </body>
 </html>

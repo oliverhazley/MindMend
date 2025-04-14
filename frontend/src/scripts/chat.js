@@ -1,3 +1,6 @@
+import { API_BASE_URL } from "./config.js";
+
+
 document.addEventListener("DOMContentLoaded", () => {
   console.log("chat.js loaded: setting up chat window.");
 
@@ -19,10 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       chatInput.value = "";
 
-      // Simulate or call real API
+      // call API
       try {
-        // Example: fetch from chatbot backend
-        const response = await fetch("/api/chat", {
+        // fetch from chatbot backend
+        const response = await fetch(`${API_BASE_URL}/chat`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: userMsg }),
@@ -37,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Display bot reply
         const botBubble = document.createElement("div");
-        botBubble.className = "p-2 bg-card text-gray-200 rounded-md self-start max-w-sm mr-auto";
+        botBubble.className = "p-2 bg-gray-700 text-gray-200 rounded-md self-start max-w-sm mr-auto";
         botBubble.innerText = botReply;
         chatWindow.appendChild(botBubble);
 
