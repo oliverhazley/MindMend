@@ -25,7 +25,7 @@
     <a href="./chat.html" class="hover:text-accent">Chat</a>
     <a href="./info.html" class="hover:text-accent">Info</a>
     <a href="./settings.html" class="hover:text-accent">Settings</a>
-    <a href="./login.html" class="hover:text-accent">Log Out</a>
+    <a href="./login.html" id="logoutButton" class="hover:text-accent">Logout</a>
   </div>
 
   <!-- Hamburger Icon (mobile) -->
@@ -83,15 +83,13 @@
   <p class="text-sm">© 2025 MindMend. All rights reserved.</p>
 </footer>
 
+
+<!-- Scripts -->
+<script type="module" src="../scripts/exercises.js"></script>
+<script type="module" src="../scripts/navbar.js"></script>
+<script type="module" src="../scripts/logout.js"></script>
 <!-- Lucide icons from CDN - just got to hope the CDN isnt down on presentation day :o -->
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-
-<!-- page logic -->
-<script type="module" src="../scripts/exercises.js"></script>
-<!-- The nav logic that toggles burger menu -->
-<script type="module" src="../scripts/navbar.js"></script>
-
-<!-- run createIcons() for lucide icons-->
 <script>
   if (window.lucide) {
     lucide.createIcons();
