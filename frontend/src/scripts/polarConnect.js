@@ -1,45 +1,192 @@
-/*
-  polarConnect.js
-  - Showcases how you might handle connecting to a Polar H10 device
-  - using the Web Bluetooth API or your own backend logic.
-  - This code is illustrative only; actual connections can require BLE service IDs, etc.
-*/
+// src/scripts/polarConnect.js
+import { API_BASE_URL } from "./config.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("polarConnect.js loaded: setting up Polar H10 connect button.");
+/**
+ * artifact correction logic , window=5, threshold=150
+ */
+function correctRRIntervalsThreshold(rrArray, windowSize = 5, thresholdMs = 150) {
+  if (rrArray.length < 2) return rrArray.slice();
+  const corrected = rrArray.slice(); // don't mutate original
 
-  const connectBtn = document.getElementById("polarConnectBtn");
-  if (connectBtn) {
-    connectBtn.addEventListener("click", async () => {
-      try {
-        console.log("Attempting to connect to Polar H10 via BLE...");
+  for (let i = 0; i < corrected.length; i++) {
+    const start = Math.max(0, i - windowSize);
+    const end = Math.min(corrected.length - 1, i + windowSize);
 
-        // Using Web Bluetooth:
-        // Example:
-        // const device = await navigator.bluetooth.requestDevice({
-        //   filters: [{ name: "Polar H10" }],
-        //   optionalServices: ["heart_rate"]
-        // });
-        // console.log("Found device:", device.name);
+    const localSeg = corrected.slice(start, end + 1).sort((a, b) => a - b);
+    const mid = Math.floor(localSeg.length / 2);
 
-        // For demonstration, we just simulate success/failure:
-        const isConnected = confirm("Simulate Polar H10 device found. Connect?");
-        if (!isConnected) {
-          console.log("User canceled connect flow.");
-          return;
-        }
+    const localMedian =
+      localSeg.length % 2
+        ? localSeg[mid]
+        : (localSeg[mid - 1] + localSeg[mid]) / 2;
 
-        // If connected, update the UI, do real read/write logic, etc.
-        connectBtn.parentElement.querySelector(".text-danger").textContent = "Connected";
-        connectBtn.parentElement.querySelector(".text-danger").classList.remove("text-danger");
-        connectBtn.parentElement.querySelector(".text-danger")?.classList.add("text-success");
-        connectBtn.textContent = "Disconnect";
-
-        // Later, handle real data streaming or do something with the connected device...
-      } catch (error) {
-        console.error("Polar H10 connection error:", error);
-        alert("Failed to connect to Polar H10. Make sure BLE is enabled.");
-      }
-    });
+    const diff = Math.abs(corrected[i] - localMedian);
+    if (diff > thresholdMs) {
+      corrected[i] = localMedian;
+    }
   }
-});
+  return corrected;
+}
+
+/**
+ * standard RMSSD formula:
+ *   RMSSD = sqrt( sum( (diff^2) ) / (N-1) )
+ */
+function calculateRMSSD(rrArray) {
+  if (rrArray.length < 2) return null;
+
+  let sumOfSquares = 0;
+  for (let i = 1; i < rrArray.length; i++) {
+    const diff = rrArray[i] - rrArray[i - 1];
+    sumOfSquares += diff * diff;
+  }
+  const meanSq = sumOfSquares / (rrArray.length - 1);
+  return Math.sqrt(meanSq);
+}
+
+// We'll keep these data in memory
+let polarDevice = null;
+let pulse = null;                 // live BPM, not stored in DB
+let rrBuffer = [];               // raw intervals for 5-min chunk
+let rrLive = [];                 // live RR intervals for chart display
+let latestRMSSD = null;          // for dashboard live view
+let uploadTimer = null;          // for 5-minute uploads
+
+/**
+ * Called from settings.js "Connect" button
+ */
+export async function connectPolarH10() {
+  try {
+    console.log("Requesting Polar H10 over BLE...");
+    const device = await navigator.bluetooth.requestDevice({
+      filters: [{ namePrefix: "Polar" }],
+      optionalServices: ["heart_rate"],
+    });
+
+    polarDevice = await device.gatt.connect();
+    const service = await polarDevice.getPrimaryService("heart_rate");
+    const char = await service.getCharacteristic("00002a37-0000-1000-8000-00805f9b34fb");
+
+    console.log("Subscribing to Heart Rate notifications...");
+    await char.startNotifications();
+    char.addEventListener("characteristicvaluechanged", handleHRNotification);
+
+    if (!uploadTimer) {
+      uploadTimer = setInterval(() => {
+        uploadRMSSD();
+      }, 5 * 60 * 1000);
+    }
+  } catch (error) {
+    console.error("Error connecting to Polar H10:", error);
+    alert("Could not connect to Polar H10. Check Bluetooth & device power.");
+  }
+}
+
+/**
+ * BLE Notification Handler
+ */
+function handleHRNotification(event) {
+  const value = event.target.value;
+
+  // parse BPM
+  let is16bit = (value.getUint8(0) & 0x01) !== 0;
+  let offset = 1;
+  pulse = is16bit ? value.getUint16(offset, true) : value.getUint8(offset);
+  console.log("Pulse (BPM):", pulse);
+
+  // parse RR intervals
+  const newRRs = [];
+  offset = 2;
+  while (offset < value.byteLength) {
+    const rrValue = value.getUint16(offset, true) * (1000 / 1024);
+    newRRs.push(rrValue);
+    offset += 2;
+  }
+  console.log("Raw RR intervals:", newRRs);
+
+  // push to buffers
+  rrBuffer.push(...newRRs);
+  rrBuffer = rrBuffer.slice(-600);   // for DB use
+
+  rrLive.push(...newRRs);
+  rrLive = rrLive.slice(-60);        // for chart display
+
+  // Live RMSSD calculation
+  const corrected = correctRRIntervalsThreshold(rrLive);
+  latestRMSSD = calculateRMSSD(corrected);
+}
+
+/**
+ * 5-minute chunk => calculate RMSSD => store in DB (hrv_readings)
+ */
+async function uploadRMSSD() {
+  console.log("Uploading RMSSD (5-minute interval)");
+  if (rrBuffer.length < 10) {
+    console.log("Not enough data to calculate RMSSD.");
+    rrBuffer = [];
+    return;
+  }
+
+  const corrected = correctRRIntervalsThreshold(rrBuffer);
+  const rmssd = calculateRMSSD(corrected);
+  rrBuffer = [];
+
+  if (!rmssd || !isFinite(rmssd)) {
+    console.log("Invalid RMSSD. Skipping DB upload.");
+    return;
+  }
+
+  const user_id = localStorage.getItem("user_id") || 1;
+  const token = localStorage.getItem("token") || "";
+
+  try {
+    const resp = await fetch(`${API_BASE_URL}/hrv`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token ? `Bearer ${token}` : "",
+      },
+      body: JSON.stringify({
+        user_id,
+        hrv_value: parseFloat(rmssd.toFixed(2)),
+      }),
+    });
+
+    if (!resp.ok) {
+      throw new Error(`Upload RMSSD failed: ${resp.statusText}`);
+    }
+
+    console.log(`Successfully posted RMSSD = ${rmssd.toFixed(2)} ms`);
+  } catch (err) {
+    console.error("Error uploading RMSSD to server:", err);
+  }
+}
+
+/**
+ * function to get current pulse
+ * so Dashboard can read `pulse` from here
+ */
+export function getCurrentPulse() {
+  return pulse || 0;
+}
+
+/**
+ * get latest live-calculated RMSSD
+ */
+export function getCurrentRMSSD() {
+  return latestRMSSD;
+}
+
+/**
+ * return recent RR intervals for dashboard chart
+ */
+export function getRRData() {
+  return rrLive;
+}
+
+/**
+ * simulate saveRMSSDtoDB for dashboard interval (points to internal logic)
+ */
+export function saveRMSSDtoDB() {
+  return uploadRMSSD();
+}

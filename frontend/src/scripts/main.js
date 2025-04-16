@@ -2,7 +2,7 @@
   main.js
   - This file is loaded in "index.html" as the site's main entry point.
   - It imports the Tailwind CSS so that Vite can bundle and serve it live.
-  - Contains any global logic you'd like to run on the landing page or site-wide tasks.
+  - Contains any global logic that should run on all pages.
 */
 
 // Import Tailwind entry CSS so that the dev server can compile & inject it
