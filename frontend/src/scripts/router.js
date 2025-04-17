@@ -1,9 +1,7 @@
-// src/scripts/router.js
-
 // ✅ Section initializers
 import { initDashboard } from "./dashboard.js";
 import { initChat } from "./chat.js";
-import { initExercises } from "./exercises.js";
+import { initExercises, stopAllExerciseAudio } from "./exercises.js";
 import { initTetris } from "./tetris.js";
 import { initInfo } from "./info.js";
 import { initSettings } from "./settings.js";
@@ -13,9 +11,9 @@ import { initSignup } from "./signup.js";
 // ✅ Global utilities
 import { requireAuth } from "./utils.js";
 import { updateNavbar } from "./navbar.js";
-import { initLogout } from "./logout.js"; // ✅ Add this
+import { initLogout } from "./logout.js";
 
-// Route identifiers
+// ✅ List of valid route names
 const routes = [
   "dashboard",
   "chat",
@@ -27,8 +25,20 @@ const routes = [
   "signup",
 ];
 
-// Show one SPA page and hide the rest
+// ✅ Stop all audio playback when navigating
+function stopAllAudio() {
+  document.querySelectorAll("audio").forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+
+  stopAllExerciseAudio(); // ✅ Also stop manually created audio players
+}
+
+// ✅ Show one SPA page and hide the rest
 export function showPage(page) {
+  stopAllAudio(); // ✅ Stop sound before switching page
+
   document.querySelectorAll(".spa-page").forEach((section) => {
     section.classList.add("hidden");
   });
@@ -41,7 +51,7 @@ export function showPage(page) {
     showPage("dashboard"); // fallback
   }
 
-  // Toggle nav visibility
+  // ✅ Toggle nav visibility
   const token = localStorage.getItem("token");
   const fullNav = document.querySelectorAll(".spa-protected-nav");
   const publicNav = document.querySelectorAll(".spa-public-nav");
@@ -55,7 +65,7 @@ export function showPage(page) {
   }
 }
 
-// Logic for each route
+// ✅ Load JS logic for a given route
 function loadPageLogic(page) {
   switch (page) {
     case "dashboard":
@@ -78,7 +88,7 @@ function loadPageLogic(page) {
       break;
     case "login":
       initLogin();
-      initLogout(); // ✅ Make sure logout logic is bound
+      initLogout(); // ✅ Bind logout logic to button
       break;
     case "signup":
       initSignup();
@@ -88,7 +98,7 @@ function loadPageLogic(page) {
   }
 }
 
-// React to hash changes like #/dashboard
+// ✅ React to hash changes like #/dashboard
 function handleRouteChange() {
   const hash = window.location.hash.replace("#/", "");
   const page = routes.includes(hash) ? hash : "dashboard";
@@ -96,10 +106,10 @@ function handleRouteChange() {
   showPage(page);
   loadPageLogic(page);
 
-  updateNavbar();
+  updateNavbar(); // ✅ Keep nav state accurate
 }
 
-// Init SPA routing
+// ✅ Init SPA routing
 export function routerInit() {
   window.addEventListener("hashchange", handleRouteChange);
   handleRouteChange();

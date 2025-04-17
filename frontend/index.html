@@ -14,8 +14,9 @@
   <!-- ------------------------------------------------------- -->
 
   <!-- NAVBAR (Wrapped for auth control) -->
-  <div id="navbarWrapper">
-    <nav class="w-full bg-primary-light/80 px-6 py-4 flex justify-between items-center shadow-md z-50">
+  <div id="navbarWrapper" class="relative z-50">
+    <nav class="w-full bg-primary-light/80 px-6 py-4 flex justify-between items-center shadow-md relative">
+      <!-- Left side brand -->
       <div class="text-2xl font-bold text-white">
         <a href="#/dashboard" class="hover:text-accent">MindMend</a>
       </div>
@@ -35,15 +36,43 @@
         <a href="#/signup" class="spa-public-nav hover:text-accent">Sign Up</a>
       </div>
 
-
-      <!-- Mobile menu -->
-      <button id="burgerBtn" class="md:hidden text-white">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <!-- Mobile menu button -->
+      <button id="burgerBtn" class="md:hidden text-white z-50 relative">
+        <!-- Hamburger Icon (default) -->
+        <svg id="burgerIcon" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+
+        <!-- Close Icon (hidden by default) -->
+        <svg id="closeIcon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
     </nav>
+
+    <!-- Mobile dropdown -->
+    <div
+      id="mobileMenu"
+      class="md:hidden hidden absolute top-full left-0 w-full bg-primary-light/90 shadow-lg z-40"
+    >
+      <div class="flex flex-col items-center space-y-3 p-4 text-white text-center">
+        <a href="#/dashboard" class="spa-protected-nav hover:text-accent hidden">Dashboard</a>
+        <a href="#/exercises" class="spa-protected-nav hover:text-accent hidden">Exercises</a>
+        <a href="#/tetris" class="spa-protected-nav hover:text-accent hidden">Tetris</a>
+        <a href="#/chat" class="spa-protected-nav hover:text-accent hidden">Chat</a>
+        <a href="#/info" class="spa-protected-nav hover:text-accent hidden">Info</a>
+        <a href="#/settings" class="spa-protected-nav hover:text-accent hidden">Settings</a>
+        <a href="#/login" id="logoutButtonMobile" class="spa-protected-nav hover:text-accent hidden">Logout</a>
+
+        <!-- Public-only links -->
+        <a href="#/login" class="spa-public-nav hover:text-accent">Login</a>
+        <a href="#/signup" class="spa-public-nav hover:text-accent">Sign Up</a>
+      </div>
+    </div>
   </div>
+
+
+
 
 
   <!-- ------------------------------------------------------- -->
@@ -164,6 +193,17 @@
           </div>
         </section>
 
+        <!-- Export Data -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="settings" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold">Export Data For Therapist</h2>
+          </div>
+          <div class="p-4 flex flex-col items-center space-y-4">
+            <button class="btn btn-primary">Export Data</button>
+          </div>
+        </section>
+
       </main>
     </section>
 
@@ -215,31 +255,77 @@
 
 
 
-    <!-- EXERCISES -->
+    <!-- EXERCISES page -->
+
+
+    <!-- Exercises Section -->
     <section id="page-exercises" class="spa-page hidden">
       <main class="max-w-5xl mx-auto p-6 space-y-6 flex-1 w-full">
 
-        <!-- Mindfulness Exercises -->
+        <!-- Live HRV Info -->
         <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
           <div class="bg-primary px-4 py-3 flex items-center gap-4">
-            <i data-lucide="mountain" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold">Mindfulness Exercises</h2>
+            <i data-lucide="bar-chart-3" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold">Metrics</h2>
           </div>
-          <div class="p-4 space-y-4" id="mindfulnessList">
-            <!-- JS will populate -->
+          <div id="hrvStatus" class="p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+              <i data-lucide="heart-pulse" class="w-6 h-6 text-accent"></i>
+              <div>
+                <p class="text-sm text-gray-400">Current Pulse</p>
+                <p id="pulseValue" class="text-xl font-semibold text-white">--</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="activity" class="w-6 h-6 text-accent"></i>
+              <div>
+                <p class="text-sm text-gray-400">Current RMSSD</p>
+                <p id="rmssdValue" class="text-xl font-semibold text-white">--</p>
+              </div>
+            </div>
           </div>
         </section>
 
-        <!-- Breathing Exercises -->
-        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-          <div class="bg-primary px-4 py-3 flex items-center gap-4">
-            <i data-lucide="wind" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold">Breathing Exercises</h2>
-          </div>
-          <div class="p-4 space-y-4" id="breathingList">
-            <!-- JS will populate -->
+        <!-- Mindfulness Accordion -->
+        <section class="card border border-primary-light/80 rounded-lg overflow-hidden">
+          <button
+            class="w-full flex items-center justify-between bg-primary px-4 py-3 text-left accordion-btn"
+            data-target="mindfulnessAccordion"
+          >
+            <div class="flex items-center gap-4">
+              <i data-lucide="mountain" class="w-6 h-6 text-accent"></i>
+              <h2 class="text-lg font-semibold">Mindfulness Exercises</h2>
+            </div>
+            <span class="accordion-icon">▲</span> <!-- default is open -->
+          </button>
+          <div
+            id="mindfulnessAccordion"
+            class="accordion-panel p-4 space-y-4"
+          >
+            <div id="mindfulnessList"><!-- JS will populate --></div>
           </div>
         </section>
+
+        <!-- Breathing Accordion -->
+        <section class="card border border-primary-light/80 rounded-lg overflow-hidden">
+          <button
+            class="w-full flex items-center justify-between bg-primary px-4 py-3 text-left accordion-btn"
+            data-target="breathingAccordion"
+          >
+            <div class="flex items-center gap-4">
+              <i data-lucide="wind" class="w-6 h-6 text-accent"></i>
+              <h2 class="text-lg font-semibold">Breathing Exercises</h2>
+            </div>
+            <span class="accordion-icon">▲</span> <!-- default is open -->
+          </button>
+          <div
+            id="breathingAccordion"
+            class="accordion-panel p-4 space-y-4"
+          >
+            <div id="breathingList"><!-- JS will populate --></div>
+          </div>
+        </section>
+
 
       </main>
     </section>
@@ -319,35 +405,33 @@
     <section id="page-info" class="spa-page hidden">
       <main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-4">
 
-        <!-- Intro Card (above accordion dropdowns)-->
-          <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-            <div class="bg-primary px-4 py-3 flex items-center gap-4">
-              <i data-lucide="sparkles" class="w-6 h-6 text-accent"></i>
-              <h2 class="text-lg font-semibold">MindMend</h2>
-            </div>
-            <div class="p-4 text-gray-200">
-              MindMend is designed to support mental wellness and PTSD management by leveraging
-              Heart Rate Variability (HRV) data and evidence-based techniques. Compatible with
-              devices such as Oura Ring, Polar H10, and other HRV-enabled sensors, it offers
-              actionable insights, guided exercises, and interactive tools like Tetris therapy.
-            </div>
-          </section>
+        <!-- Intro Card -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="sparkles" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold">MindMend</h2>
+          </div>
+          <div class="p-4 text-gray-200">
+            MindMend is designed to support mental wellness and PTSD management by leveraging
+            Heart Rate Variability (HRV) data and evidence-based techniques. Compatible with
+            devices such as Oura Ring, Polar H10, and other HRV-enabled sensors, it offers
+            actionable insights, guided exercises, and interactive tools like Tetris therapy.
+          </div>
+        </section>
 
-        <!-- Accordion items (dropdown info boxes contents) -->
+        <!-- Accordion Items -->
         <section class="space-y-2">
-          <!-- 1) WHAT IS HRV? -->
+
+          <!-- 1) What is HRV? -->
           <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
-            <button
-              class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-t"
-              data-target="hrvPanel"
-            >
+            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-t" data-target="hrvPanel">
               <div class="flex items-center space-x-2">
                 <i data-lucide="heart-pulse" class="w-5 h-5 text-accent"></i>
                 <span class="font-semibold">What is HRV?</span>
               </div>
-              <span class="accordion-icon">▼</span>
+              <span class="accordion-icon">▲</span>
             </button>
-            <div id="hrvPanel" class="accordion-panel hidden p-4 text-gray-300">
+            <div id="hrvPanel" class="accordion-panel closed p-4 text-gray-300">
               Heart Rate Variability (HRV) measures the variation in time between heartbeats.
               It's an important indicator of autonomic nervous system health, reflecting stress
               resilience and emotional regulation.
@@ -356,81 +440,71 @@
 
           <!-- 2) PTSD and HRV -->
           <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
-            <button
-              class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left"
-              data-target="ptsdPanel"
-            >
+            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left" data-target="ptsdPanel">
               <div class="flex items-center space-x-2">
                 <i data-lucide="brain" class="w-5 h-5 text-accent"></i>
                 <span class="font-semibold">PTSD and HRV</span>
               </div>
-              <span class="accordion-icon">▼</span>
+              <span class="accordion-icon">▲</span>
             </button>
-            <div id="ptsdPanel" class="accordion-panel hidden p-4 text-gray-300">
+            <div id="ptsdPanel" class="accordion-panel closed p-4 text-gray-300">
               PTSD can significantly impact HRV. Individuals with PTSD often show lower HRV,
               indicating chronic stress and reduced ability to adapt to emotional challenges.
               Monitoring HRV can help track recovery and stress management.
             </div>
           </div>
 
-          <!-- 3) HOW THIS APP HELPS -->
+          <!-- 3) How This App Helps -->
           <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
-            <button
-              class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left"
-              data-target="appHelpsPanel"
-            >
+            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left" data-target="appHelpsPanel">
               <div class="flex items-center space-x-2">
                 <i data-lucide="info" class="w-5 h-5 text-accent"></i>
                 <span class="font-semibold">How This App Helps</span>
               </div>
-              <span class="accordion-icon">▼</span>
+              <span class="accordion-icon">▲</span>
             </button>
-            <div id="appHelpsPanel" class="accordion-panel hidden p-4 text-gray-300">
+            <div id="appHelpsPanel" class="accordion-panel closed p-4 text-gray-300">
               Our app provides real-time HRV tracking, personalized interventions like mindfulness
               exercises, and data insights. By monitoring HRV patterns, users can better understand
               their stress responses and develop coping strategies.
             </div>
           </div>
 
-          <!-- 4) TETRIS, REALLY? -->
+          <!-- 4) Tetris, really? -->
           <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
-            <button
-              class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left"
-              data-target="tetrisPanel"
-            >
+            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left" data-target="tetrisPanel">
               <div class="flex items-center space-x-2">
                 <i data-lucide="gamepad-2" class="w-5 h-5 text-accent"></i>
                 <span class="font-semibold">Tetris, really?</span>
               </div>
-              <span class="accordion-icon">▼</span>
+              <span class="accordion-icon">▲</span>
             </button>
-            <div id="tetrisPanel" class="accordion-panel hidden p-4 text-gray-300">
+            <div id="tetrisPanel" class="accordion-panel closed p-4 text-gray-300">
               Research shows Tetris can interrupt traumatic memory formation. Cognitive interference
               prevents vivid memory consolidation, helping reduce intrusive memories and PTSD
               symptom intensity. It's a non-invasive, engaging mental health intervention.
             </div>
           </div>
 
-          <!-- 5) export data  -->
+          <!-- 5) How to export data -->
           <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
-            <button
-              class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-b"
-              data-target="therapyPanel"
-            >
+            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-b" data-target="therapyPanel">
               <div class="flex items-center space-x-2">
                 <i data-lucide="brain" class="w-5 h-5 text-accent"></i>
                 <span class="font-semibold">How do I export data?</span>
               </div>
-              <span class="accordion-icon">▼</span>
+              <span class="accordion-icon">▲</span>
             </button>
-            <div id="therapyPanel" class="accordion-panel hidden p-4 text-gray-300">
+            <div id="therapyPanel" class="accordion-panel closed p-4 text-gray-300">
               You can safely export your data by clicking the "Export data" button, found in the analytics section,
               or in the settings section. Download your data, and show it to your therapist!
             </div>
           </div>
+
         </section>
       </main>
     </section>
+
 
 
 
@@ -444,33 +518,24 @@
     <section id="page-settings" class="spa-page hidden">
       <main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-8">
 
-        <!-- Device Integration -->
+        <!-- Connect to Polar H10 (Settings version, same as Dashboard) -->
         <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
           <div class="bg-primary px-4 py-3 flex items-center gap-4">
             <i data-lucide="bluetooth" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold">Device Integration</h2>
+            <h2 class="text-lg font-semibold" id="polarConnectionStatusSettings">
+              Connect to Polar H10
+            </h2>
           </div>
-          <div class="p-4 space-y-4">
-            <div class="flex justify-between items-center">
-              <div class="flex items-center space-x-2">
-                <span class="text-gray-200">&#128142;</span>
-                <span>Oura Ring</span>
-              </div>
-              <span class="text-green-400">Connected</span>
-            </div>
-            <hr class="border-gray-600" />
-            <div class="flex justify-between items-center">
-              <div class="flex items-center space-x-2">
-                <span class="text-gray-200">&#128241;</span>
-                <span>Polar H10</span>
-              </div>
-              <span class="text-red-400">Disconnected</span>
-              <button id="polarConnectBtn1" class="btn btn-primary ml-4">Connect</button>
-            </div>
+          <div class="p-4 flex flex-col items-center gap-2">
+            <button id="polarConnectBtn1" class="btn btn-primary">
+              Connect
+            </button>
+            <p id="batteryLevelSettings" class="text-sm text-gray-400 hidden"></p>
           </div>
         </section>
 
-        <!-- Export & Logout -->
+
+        <!-- App controlls -->
         <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
           <div class="bg-primary px-4 py-3 flex items-center gap-4">
             <i data-lucide="settings" class="w-6 h-6 text-accent"></i>

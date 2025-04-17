@@ -7,69 +7,59 @@ let rrBuffer = [];
 let rrLive = [];
 let latestRMSSD = null;
 let autoSaveInterval = null;
-let heartRateChar = null;
+let isPolarConnected = false;
 
-// DOM references
-const statusEl = document.getElementById("polarConnectionStatus");
-const connectBtn = document.getElementById("polarConnectBtn");
-const batteryEl = document.getElementById("batteryLevel");
+// === Utility: Sync buttons, status, and battery
+function updatePolarUI({ text, isConnected, batteryLevel = null }) {
+  const btns = [
+    document.getElementById("polarConnectBtn"),
+    document.getElementById("polarConnectBtn1"),
+  ];
+  const statuses = [
+    document.getElementById("polarConnectionStatus"),
+    document.getElementById("polarConnectionStatusSettings"),
+  ];
+  const batteryEls = [
+    document.getElementById("batteryLevel"),
+    document.getElementById("batteryLevelSettings"),
+  ];
 
-// === Artifact correction
-function correctRRIntervalsThreshold(rrArray, windowSize = 5, thresholdMs = 150) {
-  if (rrArray.length < 2) return rrArray.slice();
-  const corrected = rrArray.slice();
-  for (let i = 0; i < corrected.length; i++) {
-    const start = Math.max(0, i - windowSize);
-    const end = Math.min(corrected.length - 1, i + windowSize);
-    const localSeg = corrected.slice(start, end + 1).sort((a, b) => a - b);
-    const mid = Math.floor(localSeg.length / 2);
-    const localMedian = localSeg.length % 2 !== 0
-      ? localSeg[mid]
-      : (localSeg[mid - 1] + localSeg[mid]) / 2;
-
-    const diff = Math.abs(corrected[i] - localMedian);
-    if (diff > thresholdMs) {
-      corrected[i] = localMedian;
+  btns.forEach((btn) => {
+    if (!btn) return;
+    btn.textContent = text;
+    btn.classList.remove("btn-primary", "bg-red-600", "hover:bg-red-700", "text-white");
+    if (isConnected) {
+      btn.classList.add("bg-red-600", "hover:bg-red-700", "text-white");
+    } else {
+      btn.classList.add("btn-primary");
     }
-  }
-  return corrected;
+  });
+
+  statuses.forEach((el) => {
+    if (el) el.textContent = isConnected ? "Connected to Polar H10" : "Connect to Polar H10";
+  });
+
+  batteryEls.forEach((el) => {
+    if (!el) return;
+    if (batteryLevel !== null) {
+      el.textContent = `🔋 Battery: ${batteryLevel}%`;
+      el.classList.remove("hidden");
+    } else {
+      el.textContent = "";
+      el.classList.add("hidden");
+    }
+  });
 }
 
-function calculateRMSSD(rrArray) {
-  if (rrArray.length < 2) return null;
-  let sumOfSquares = 0;
-  for (let i = 1; i < rrArray.length; i++) {
-    const diff = rrArray[i] - rrArray[i - 1];
-    sumOfSquares += diff * diff;
-  }
-  return Math.sqrt(sumOfSquares / (rrArray.length - 1));
-}
-
-// === UI Helpers
-function updateStatus(text, color = "text-white") {
-  if (statusEl) {
-    statusEl.textContent = text;
-    statusEl.className = `text-lg font-semibold ${color}`;
-  }
-}
-
-function showBatteryLevel(level) {
-  if (batteryEl) {
-    batteryEl.textContent = `🔋 Battery: ${level}%`;
-    batteryEl.classList.remove("hidden");
-  }
-}
-
-// === Connect/Disconnect
+// === Connect/Disconnect Toggle
 export async function connectPolarH10() {
-  if (polarDevice && polarDevice.gatt.connected) {
+  if (isPolarConnected) {
     await disconnectPolarH10();
     return;
   }
 
   try {
-    updateStatus("Connecting…", "text-yellow-400");
-    connectBtn.textContent = "Connecting…";
+    updatePolarUI({ text: "Connecting…", isConnected: false });
 
     const device = await navigator.bluetooth.requestDevice({
       filters: [{ namePrefix: "Polar" }],
@@ -77,65 +67,57 @@ export async function connectPolarH10() {
     });
 
     polarDevice = await device.gatt.connect();
+    isPolarConnected = true;
 
-    // Get battery
+    // Fetch battery level
     try {
       const batteryService = await polarDevice.getPrimaryService("battery_service");
       const batteryChar = await batteryService.getCharacteristic("battery_level");
       const batteryValue = await batteryChar.readValue();
       const batteryPercent = batteryValue.getUint8(0);
-      showBatteryLevel(batteryPercent);
-    } catch (batteryError) {
-      console.warn("Battery level unavailable:", batteryError);
+      updatePolarUI({ text: "Disconnect", isConnected: true, batteryLevel: batteryPercent });
+    } catch (err) {
+      console.warn("Battery level unavailable:", err);
+      updatePolarUI({ text: "Disconnect", isConnected: true });
     }
 
     const service = await polarDevice.getPrimaryService("heart_rate");
-    heartRateChar = await service.getCharacteristic("00002a37-0000-1000-8000-00805f9b34fb");
+    const heartRateChar = await service.getCharacteristic("00002a37-0000-1000-8000-00805f9b34fb");
 
     await heartRateChar.startNotifications();
     heartRateChar.addEventListener("characteristicvaluechanged", handleHRNotification);
 
-    updateStatus("Connected to Polar H10", "text-green-400");
-    connectBtn.textContent = "Disconnect";
-    connectBtn.classList.remove("btn-primary");
-    connectBtn.classList.add("bg-red-600", "hover:bg-red-700", "text-white");
-
     startAutoRMSSDSave();
   } catch (error) {
     console.error("❌ Bluetooth connection failed:", error);
-    updateStatus("❌ Connection failed", "text-red-400");
-    connectBtn.textContent = "Connect";
+    updatePolarUI({ text: "Connect", isConnected: false });
   }
 }
 
 export async function disconnectPolarH10() {
-  updateStatus("Disconnecting…", "text-yellow-400");
-  connectBtn.textContent = "Disconnecting…";
+  updatePolarUI({ text: "Disconnecting…", isConnected: true });
 
   stopAutoRMSSDSave();
-  await uploadRMSSD(); // Save last reading
+  await uploadRMSSD();
 
   if (polarDevice && polarDevice.gatt.connected) {
     polarDevice.gatt.disconnect();
   }
 
+  isPolarConnected = false;
   rrBuffer = [];
   rrLive = [];
   latestRMSSD = null;
-  batteryEl.classList.add("hidden");
 
-  updateStatus("Connect to Polar H10");
-  connectBtn.textContent = "Connect";
-  connectBtn.classList.remove("bg-red-600", "hover:bg-red-700", "text-white");
-  connectBtn.classList.add("btn-primary");
+  updatePolarUI({ text: "Connect", isConnected: false });
 }
 
-// === Heart rate handler
+// === Handle Pulse + RR updates
 function handleHRNotification(event) {
   const value = event.target.value;
-
-  let is16bit = (value.getUint8(0) & 0x01) !== 0;
+  const is16bit = (value.getUint8(0) & 0x01) !== 0;
   let offset = 1;
+
   pulse = is16bit ? value.getUint16(offset, true) : value.getUint8(offset);
 
   const newRRs = [];
@@ -155,7 +137,7 @@ function handleHRNotification(event) {
   latestRMSSD = calculateRMSSD(corrected);
 }
 
-// === Save RMSSD manually
+// === RMSSD upload
 async function uploadRMSSD() {
   console.log("⏱️ Uploading 5-minute RMSSD...");
   if (rrBuffer.length < 10) {
@@ -196,7 +178,7 @@ async function uploadRMSSD() {
   }
 }
 
-// === Start/Stop auto-save externally
+// === RMSSD Interval
 export function startAutoRMSSDSave() {
   if (autoSaveInterval !== null) return;
   console.log("📡 Started auto-saving RMSSD every 3 mins");
@@ -217,19 +199,44 @@ export function stopAutoRMSSDSave() {
   }
 }
 
-// === Exported live getters
+// === Calculation Utilities
+function correctRRIntervalsThreshold(rrArray, windowSize = 5, thresholdMs = 150) {
+  if (rrArray.length < 2) return rrArray.slice();
+  const corrected = rrArray.slice();
+  for (let i = 0; i < corrected.length; i++) {
+    const start = Math.max(0, i - windowSize);
+    const end = Math.min(corrected.length - 1, i + windowSize);
+    const localSeg = corrected.slice(start, end + 1).sort((a, b) => a - b);
+    const mid = Math.floor(localSeg.length / 2);
+    const localMedian = localSeg.length % 2 !== 0
+      ? localSeg[mid]
+      : (localSeg[mid - 1] + localSeg[mid]) / 2;
+    const diff = Math.abs(corrected[i] - localMedian);
+    if (diff > thresholdMs) corrected[i] = localMedian;
+  }
+  return corrected;
+}
+
+function calculateRMSSD(rrArray) {
+  if (rrArray.length < 2) return null;
+  let sumOfSquares = 0;
+  for (let i = 1; i < rrArray.length; i++) {
+    const diff = rrArray[i] - rrArray[i - 1];
+    sumOfSquares += diff * diff;
+  }
+  return Math.sqrt(sumOfSquares / (rrArray.length - 1));
+}
+
+// === Public Accessors
 export function getCurrentPulse() {
   return pulse || 0;
 }
-
 export function getCurrentRMSSD() {
   return latestRMSSD;
 }
-
 export function getRRData() {
   return rrLive;
 }
-
 export function saveRMSSDtoDB() {
   return uploadRMSSD();
 }

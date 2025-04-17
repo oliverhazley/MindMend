@@ -1,5 +1,3 @@
-// src/scripts/info.js
-
 import { requireAuth } from "./utils.js";
 
 export function initInfo() {
@@ -12,19 +10,31 @@ export function initInfo() {
     lucide.createIcons();
   }
 
-  // Accordion toggle logic
-  document.querySelectorAll('.accordion-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const panelId = btn.getAttribute('data-target');
-      const panel = document.getElementById(panelId);
-      if (!panel) return;
+  // Accordion toggle logic (safe binding + sync initial icon)
+  document.querySelectorAll(".accordion-btn").forEach((btn) => {
+    if (btn.dataset.bound === "true") return;
+    btn.dataset.bound = "true";
 
-      panel.classList.toggle('hidden');
+    const panelId = btn.getAttribute("data-target");
+    const panel = document.getElementById(panelId);
+    const icon = btn.querySelector(".accordion-icon");
 
-      // Toggle arrow icon
-      const icon = btn.querySelector('.accordion-icon');
-      if (icon) {
-        icon.textContent = panel.classList.contains('hidden') ? '▼' : '▲';
+    // 🧠 Sync icon with initial state
+    if (panel && icon) {
+      const isClosed = panel.classList.contains("closed");
+      icon.textContent = isClosed ? "▼" : "▲";
+    }
+
+    btn.addEventListener("click", () => {
+      if (!panel || !icon) return;
+
+      const isOpen = !panel.classList.contains("closed");
+      if (isOpen) {
+        panel.classList.add("closed");
+        icon.textContent = "▼";
+      } else {
+        panel.classList.remove("closed");
+        icon.textContent = "▲";
       }
     });
   });

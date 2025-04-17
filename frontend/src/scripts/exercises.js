@@ -1,6 +1,14 @@
-// src/scripts/exercises.js
-
 import { requireAuth } from "./utils.js";
+import { getCurrentPulse, getCurrentRMSSD } from "./polarConnect.js";
+
+const audioPlayers = []; // ✅ Track all manually created audio players
+
+export function stopAllExerciseAudio() {
+  audioPlayers.forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+}
 
 export function initExercises() {
   if (!requireAuth()) return;
@@ -11,16 +19,53 @@ export function initExercises() {
   const mindfulnessList = document.getElementById("mindfulnessList");
   const breathingList = document.getElementById("breathingList");
 
-  // Clear previous if re-rendered
   if (mindfulnessList) mindfulnessList.innerHTML = "";
   if (breathingList) breathingList.innerHTML = "";
 
-  // === MINDFULNESS ITEMS (audio based) ===
+  const pulseValueEl = document.getElementById("pulseValue");
+  const rmssdValueEl = document.getElementById("rmssdValue");
+
+  setInterval(() => {
+    if (pulseValueEl) {
+      const pulse = getCurrentPulse();
+      pulseValueEl.textContent = pulse ? `${pulse} bpm` : "--";
+    }
+    if (rmssdValueEl) {
+      const rmssd = getCurrentRMSSD();
+      rmssdValueEl.textContent = rmssd ? `${rmssd.toFixed(2)} ms` : "--";
+    }
+  }, 1000);
+
+  //  ACCORDION TOGGLE (prevent double-binding)
+  document.querySelectorAll(".accordion-btn").forEach((btn) => {
+    if (btn.dataset.bound === "true") return;
+    btn.dataset.bound = "true";
+
+    btn.addEventListener("click", () => {
+      const panelId = btn.getAttribute("data-target");
+      const panel = document.getElementById(panelId);
+      if (!panel) return;
+
+      const icon = btn.querySelector(".accordion-icon");
+
+      const isOpen = !panel.classList.contains("closed");
+      if (isOpen) {
+        panel.classList.add("closed");
+        icon.textContent = "▼";
+      } else {
+        panel.classList.remove("closed");
+        icon.textContent = "▲";
+      }
+    });
+  });
+
+
+  // === MINDFULNESS AUDIO ITEMS ===
   const mindfulnessItems = [
     {
       id: "nature",
       title: "Forest Stream",
-      description: "Relax with the calming sound of water and birds chirping",
+      description: "Relaxing sounds of water and birds chirping",
       icon: "tree-pine",
       audioUrl: "/sounds/stream.mp3",
     },
@@ -78,6 +123,8 @@ export function initExercises() {
     progressWrapper.appendChild(progressBar);
 
     const audio = new Audio(item.audioUrl);
+    audioPlayers.push(audio);
+
     let isPlaying = false;
     let intervalId = null;
 
@@ -113,7 +160,7 @@ export function initExercises() {
 
     function startInterval() {
       clearInterval(intervalId);
-      intervalId = setInterval(() => updateProgress(), 200);
+      intervalId = setInterval(updateProgress, 200);
     }
 
     playPauseBtn.addEventListener("click", async () => {
@@ -152,7 +199,7 @@ export function initExercises() {
     mindfulnessList.appendChild(progressWrapper);
   });
 
-  // === BREATHING (fake timer) ===
+  // === BREATHING ===
   const breathingItems = [
     {
       id: "box",
@@ -205,9 +252,12 @@ export function initExercises() {
     progressBar.className = "bg-blue-500 h-full w-0 transition-all";
     progressWrapper.appendChild(progressBar);
 
+    const audio = new Audio("/sounds/breath.mp3"); // optional file
+    audioPlayers.push(audio);
+
     let isPlaying = false;
-    let progress = 0;
     let intervalId = null;
+    let progress = 0;
     const totalTime = 10000;
 
     function switchToPause() {

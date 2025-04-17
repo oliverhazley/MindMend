@@ -16,19 +16,35 @@ export function updateNavbar() {
 export function initNavbar() {
   const burgerBtn = document.getElementById("burgerBtn");
   const mobileMenu = document.getElementById("mobileMenu");
+  const burgerIcon = document.getElementById("burgerIcon");
+  const closeIcon = document.getElementById("closeIcon");
 
   if (!burgerBtn || !mobileMenu) return;
 
   burgerBtn.addEventListener("click", () => {
+    const isOpen = !mobileMenu.classList.contains("hidden");
     mobileMenu.classList.toggle("hidden");
+
+    if (isOpen) {
+      // Going to closed
+      burgerIcon.classList.remove("hidden");
+      closeIcon.classList.add("hidden");
+    } else {
+      // Going to open
+      burgerIcon.classList.add("hidden");
+      closeIcon.classList.remove("hidden");
+    }
   });
 
   mobileMenu.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       mobileMenu.classList.add("hidden");
+      burgerIcon.classList.remove("hidden");
+      closeIcon.classList.add("hidden");
     });
   });
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   initNavbar();

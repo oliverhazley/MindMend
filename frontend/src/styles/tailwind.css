@@ -58,6 +58,24 @@ body {
   animation: pulse-icon 1.5s ease-in-out infinite;
 }
 
+/* smooth animation for accordion toggles (info + exercsies) */
+.accordion-panel {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.4s ease;
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.accordion-panel.closed {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
 
 /* Buttons with consistent look */
 .btn {
