@@ -1,8 +1,13 @@
+// src/scripts/chat.js
+
 import { API_BASE_URL } from "./config.js";
+import { requireAuth } from "./utils.js";
 
+export function initChat() {
+  console.log("Chat page loaded");
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("chat.js loaded: setting up chat window.");
+  // Require auth before loading chat page
+  if (!requireAuth()) return;
 
   const chatWindow = document.getElementById("chatWindow");
   const chatForm = document.getElementById("chatForm");
@@ -19,15 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
       userBubble.className = "p-2 bg-accent text-white rounded-md self-end max-w-sm ml-auto";
       userBubble.innerText = userMsg;
       chatWindow.appendChild(userBubble);
-
       chatInput.value = "";
 
-      // call API
+      // Call chatbot API
       try {
-        // fetch from chatbot backend
         const response = await fetch(`${API_BASE_URL}/chat`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
+          },
           body: JSON.stringify({ message: userMsg }),
         });
 
@@ -43,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
         botBubble.className = "p-2 bg-gray-700 text-gray-200 rounded-md self-start max-w-sm mr-auto";
         botBubble.innerText = botReply;
         chatWindow.appendChild(botBubble);
-
       } catch (error) {
         console.error("Error in chat:", error);
       }
@@ -52,4 +57,4 @@ document.addEventListener("DOMContentLoaded", () => {
       chatWindow.scrollTop = chatWindow.scrollHeight;
     });
   }
-});
+}

@@ -1,23 +1,31 @@
-/*
-  info.js
-  - Loaded by "info.html".
- */
+// src/scripts/info.js
 
-document.addEventListener('DOMContentLoaded', () => {
+import { requireAuth } from "./utils.js";
+
+export function initInfo() {
+  if (!requireAuth()) return;
+
+  console.log("📘 Loading info page");
+
   // Initialize Lucide icons
   if (window.lucide) {
     lucide.createIcons();
   }
 
-  // Accordion toggles
+  // Accordion toggle logic
   document.querySelectorAll('.accordion-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const panelId = btn.getAttribute('data-target');
       const panel = document.getElementById(panelId);
+      if (!panel) return;
+
       panel.classList.toggle('hidden');
-      // Toggle arrow
+
+      // Toggle arrow icon
       const icon = btn.querySelector('.accordion-icon');
-      icon.textContent = panel.classList.contains('hidden') ? '▼' : '▲';
+      if (icon) {
+        icon.textContent = panel.classList.contains('hidden') ? '▼' : '▲';
+      }
     });
   });
-});
+}

@@ -1,25 +1,27 @@
-// Function to handle user logout
-function logout() {
-  try {
-    // Clear authentication token from local storage
-    localStorage.removeItem('token');
+// src/scripts/logout.js
+import { showPage } from "./router.js";
+import { stopAutoRMSSDSave } from "./polarConnect.js"; // ✅ Stop RMSSD saving
 
-    // Clear any user-related session data
-    sessionStorage.clear();
+export function initLogout() {
+  const logoutBtn = document.getElementById("logoutButton");
 
-    // Redirect to login page
-    window.location.href = './login.html';
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      try {
+        // ✅ Stop saving before wiping session
+        stopAutoRMSSDSave();
 
-    console.log('Logout successful');
-  } catch (error) {
-    console.error('Error during logout:', error);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
+        sessionStorage.clear();
+
+        console.log("✅ Logout successful");
+
+        window.location.hash = "#/login";
+        showPage("login");
+      } catch (error) {
+        console.error("❌ Error during logout:", error);
+      }
+    });
   }
 }
-
-// Add event listener to logout button
-document.addEventListener('DOMContentLoaded', function () {
-  const logoutButton = document.getElementById('logoutButton');
-  if (logoutButton) {
-    logoutButton.addEventListener('click', logout);
-  }
-});
