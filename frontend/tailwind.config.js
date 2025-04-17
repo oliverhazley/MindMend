@@ -46,11 +46,11 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          light: "#2A2F3D",
-          DEFAULT: "#1D202B",
+          light: "#1d293d",
+          DEFAULT: "#0f172b",
         },
         card: {
-          DEFAULT: "#252A37",
+          DEFAULT: "#1d293d"
         },
         accent: {
           DEFAULT: "#1E90FF", // bright accent

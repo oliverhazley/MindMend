@@ -27,7 +27,7 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "tailwindcss -i ./src/styles/tailwind.css -o ./dist/tailwind.css",
+    "build:css": "npx tailwindcss -i ./src/styles/tailwind.css -o ./dist/tailwind.css --minify",
     "dev": "npm run build:css && vite",
     "build": "npm run build:css && vite build",
     "preview": "vite preview"

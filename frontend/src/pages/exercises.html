@@ -3,41 +3,97 @@
 <head>
   <meta charset="UTF-8"/>
   <title>MindMend - Exercises</title>
-  <!-- Adjust path to your compiled Tailwind CSS if needed -->
+  <!-- Tells mobile browsers how to scale -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- compiled Tailwind CSS  -->
   <link rel="stylesheet" href="../../dist/tailwind.css" />
 </head>
 <body class="bg-gradient-to-b from-primary to-[#151721] text-white min-h-screen flex flex-col">
-  <!-- Nav bar -->
-  <nav class="bg-gray-800 p-4 flex items-center justify-between">
-    <div class="text-2xl font-bold"><a href="../../index.html" class="hover:text-accent">MindMend</a></div>
-    <a href="./dashboard.html" class="hover:text-accent transition">Dashboard</a>
-  </nav>
 
-  <main class="max-w-5xl mx-auto p-6 space-y-6 flex-1 w-full">
-    <!-- Mindfulness Card -->
-    <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
-      <h2 class="text-xl font-bold mb-4">Mindfulness Exercises</h2>
-      <div id="mindfulnessList" class="space-y-4">
-        <!-- Will be populated by JS -->
-      </div>
+<!-- NAVBAR -->
+<nav class="w-full bg-primary-light/80 px-6 py-4 flex justify-between items-center shadow-md relative z-50">
+  <div class="text-2xl font-bold text-white">
+    <a href="../../index.html" class="hover:text-accent">MindMend</a>
+  </div>
+
+  <!-- Desktop Links -->
+  <div class="hidden md:flex space-x-6 text-white">
+    <a href="./dashboard.html" class="hover:text-accent">Dashboard</a>
+    <a href="./exercises.html" class="hover:text-accent">Exercises</a>
+    <a href="./tetris.html" class="hover:text-accent">Tetris</a>
+    <a href="./chat.html" class="hover:text-accent">Chat</a>
+    <a href="./info.html" class="hover:text-accent">Info</a>
+    <a href="./settings.html" class="hover:text-accent">Settings</a>
+    <a href="./login.html" id="logoutButton" class="hover:text-accent">Logout</a>
+  </div>
+
+  <!-- Hamburger Icon (mobile) -->
+  <button id="burgerBtn" class="md:hidden text-white focus:outline-none z-50">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <!-- Mobile Dropdown -->
+  <div
+    id="mobileMenu"
+    class="hidden absolute top-full left-0 w-full bg-primary-light/80 text-white py-6 space-y-4 text-center shadow-xl md:hidden"
+  >
+    <a href="./dashboard.html" class="block hover:text-accent">Dashboard</a>
+    <a href="./exercises.html" class="block hover:text-accent">Exercises</a>
+    <a href="./tetris.html" class="block hover:text-accent">Tetris</a>
+    <a href="./chat.html" class="block hover:text-accent">Chat</a>
+    <a href="./info.html" class="block hover:text-accent">Info</a>
+    <a href="./settings.html" class="block hover:text-accent">Settings</a>
+    <a href="./login.html" class="block hover:text-accent">Log Out</a>
+  </div>
+</nav>
+
+
+
+<main class="max-w-5xl mx-auto p-6 space-y-6 flex-1 w-full">
+
+  <!-- Mindfulness Exercises -->
+  <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+    <div class="bg-primary px-4 py-3 flex items-center gap-4">
+      <i data-lucide="mountain" class="w-6 h-6 text-accent"></i>
+      <h2 class="text-lg font-semibold">Mindfulness Exercises</h2>
     </div>
-
-    <!-- Breathing Card -->
-    <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
-      <h2 class="text-xl font-bold mb-4">Breathing Exercises</h2>
-      <div id="breathingList" class="space-y-4">
-        <!-- Will be populated by JS -->
-      </div>
+    <div class="p-4 space-y-4" id="mindfulnessList">
+      <!-- JS will populate -->
     </div>
-  </main>
+  </section>
 
-  <footer class="bg-gray-800 text-center text-gray-400 p-4">
-    <p class="text-sm">© 2025 MindMend. All rights reserved.</p>
-  </footer>
+  <!-- Breathing Exercises -->
+  <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+    <div class="bg-primary px-4 py-3 flex items-center gap-4">
+      <i data-lucide="wind" class="w-6 h-6 text-accent"></i>
+      <h2 class="text-lg font-semibold">Breathing Exercises</h2>
+    </div>
+    <div class="p-4 space-y-4" id="breathingList">
+      <!-- JS will populate -->
+    </div>
+  </section>
 
-  <!-- Lucide icons from CDN -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <!-- Our separate JS file -->
-  <script type="module" src="../scripts/exercises.js"></script>
+</main>
+
+
+<footer class="bg-primary-light/80 text-center text-gray-400 p-4">
+  <p class="text-sm">© 2025 MindMend. All rights reserved.</p>
+</footer>
+
+
+<!-- Scripts -->
+<script type="module" src="../scripts/exercises.js"></script>
+<script type="module" src="../scripts/navbar.js"></script>
+<script type="module" src="../scripts/logout.js"></script>
+<!-- Lucide icons from CDN - just got to hope the CDN isnt down on presentation day :o -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script>
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+</script>
 </body>
 </html>
