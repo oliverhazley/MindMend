@@ -235,7 +235,7 @@
             <h2 class="text-lg font-semibold">Export Data For Therapist</h2>
           </div>
           <div class="p-4 flex flex-col items-center space-y-4">
-            <button class="btn btn-primary">Export Data</button>
+            <button id="exportPDFBtnDashboard" class="btn btn-primary">Export Data to PDF</button>
           </div>
         </section>
 
@@ -531,7 +531,7 @@
               <span class="accordion-icon">▲</span>
             </button>
             <div id="therapyPanel" class="accordion-panel closed p-4 text-gray-300">
-              You can safely export your data by clicking the "Export data" button, found in the analytics section,
+              You can safely export your data by clicking the "Export data" button, found in the dashboard section,
               or in the settings section. Download your data, and show it to your therapist!
             </div>
           </div>
@@ -577,7 +577,7 @@
             <h2 class="text-lg font-semibold">App Controls</h2>
           </div>
           <div class="p-4 flex flex-col items-center space-y-4">
-            <button class="btn btn-primary">Export Data</button>
+            <button id="exportPDFBtnSettings" class="btn btn-primary">Export Data to PDF</button>
           </div>
         </section>
       </main>
@@ -707,6 +707,8 @@
   <script type="module" src="./src/scripts/main.js"></script>
   <script type="module" src="./src/scripts/navbar.js"></script>
   <script type="module" src="./src/scripts/router.js"></script>
+  <script type="module" src="./src/scripts/ExportData.js"></script>
+
   <script>
     if (window.lucide) lucide.createIcons();
   </script>

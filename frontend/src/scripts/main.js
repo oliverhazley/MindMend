@@ -3,11 +3,17 @@
 import "../styles/tailwind.css";
 import { routerInit } from "./router.js";
 import { updateNavbar } from "./navbar.js";
-import { stopAutoRMSSDSave } from "./polarConnect.js"; // ✅ cleanup on tab close
+import { stopAutoRMSSDSave } from "./polarConnect.js"; //  cleanup on tab close
+import { exportHRVPDF } from "./ExportData.js";
 
-// ✅ Initial logic once when DOM is ready
+//  Initial logic once when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   console.log("main.js loaded ✅");
+
+  // PDF export from either location
+  document.getElementById("exportPDFBtnDashboard")?.addEventListener("click", exportHRVPDF);
+  document.getElementById("exportPDFBtnSettings")?.addEventListener("click", exportHRVPDF);
+
 
   // Init SPA routing logic
   routerInit();
@@ -26,7 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ✅ Stop RMSSD autosave on tab close or refresh
+// Stop RMSSD autosave on tab close or refresh
 window.addEventListener("beforeunload", () => {
   stopAutoRMSSDSave();
 });
+
+
+
+
