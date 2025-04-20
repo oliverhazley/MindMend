@@ -42,7 +42,7 @@ export function initLogin() {
         if (data.token) {
           localStorage.setItem("token", data.token);
 
-          // ✅ Safely extract user ID from nested response
+          //  Safely extract user ID from nested response
           const userId = data.user?.userId;
           if (userId !== undefined && userId !== null) {
             localStorage.setItem("user_id", userId);
@@ -52,7 +52,7 @@ export function initLogin() {
             localStorage.removeItem("user_id");
           }
 
-          // ✅ Navigate to dashboard
+          //  Navigate to dashboard
           window.location.hash = "#/dashboard";
         } else {
           alert("Login failed. Missing token.");

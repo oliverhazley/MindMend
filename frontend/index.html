@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MindMend SPA</title>
+  <title>MindMend</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./dist/tailwind.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -165,33 +165,68 @@
           </div>
         </section>
 
-        <!-- HRV Progress -->
-        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+      <!-- Global HRV Filter for both charts -->
+      <div class="w-full flex justify-center mb-4">
+        <select id="globalHRVFilter" class="bg-primary-light text-white text-sm rounded px-3 py-2 focus:outline-none border border-primary">
+          <option value="day" >Day</option>
+          <option value="week" selected>Week</option>
+          <option value="month">Month</option>
+          <option value="year">Year</option>
+        </select>
+      </div>
+
+      <!-- HRV Progress -->
+      <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+        <div class="bg-primary px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-4">
             <i data-lucide="trending-up" class="w-6 h-6 text-green-400"></i>
             <h2 class="text-lg font-semibold">HRV Progress</h2>
           </div>
-          <div class="p-4 relative w-full h-64">
-            <canvas id="hrvBarChart" class="max-w-full h-full"></canvas>
-            <p class="text-gray-200 text-center mt-2">
-              Your HRV is showing an upward trend...
-            </p>
+          <div class="relative group">
+            <button class="info-icon focus:outline-none">
+              <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+            </button>
+            <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64">
+              HRV Progress shows how your average heart rate variability changes over time. Higher values usually reflect better recovery or stress resilience.
+            </div>
           </div>
-        </section>
+        </div>
+        <div class="p-4 relative w-full h-64">
+          <canvas id="hrvBarChart" class="max-w-full h-full"></canvas>
+          <p id="hrvChartMsg" class="text-sm text-gray-400 text-center mt-2">
+            Loading HRV trend data...
+          </p>
+        </div>
+      </section>
 
-        <!-- HRV Distribution -->
-        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+      <!-- HRV Distribution -->
+      <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg mt-6">
+        <div class="bg-primary px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-4">
             <i data-lucide="pie-chart" class="w-6 h-6 text-purple-400"></i>
             <h2 class="text-lg font-semibold">HRV Distribution</h2>
           </div>
-          <div class="p-4 relative w-full h-64">
-            <canvas id="hrvDonutChart" class="max-w-full h-full"></canvas>
-            <p class="text-gray-200 text-center mt-2">
-              Your stress distribution is well-balanced...
-            </p>
+          <div class="relative group">
+            <button class="info-icon focus:outline-none">
+              <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+            </button>
+            <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64">
+              HRV Distribution shows how your readings are spread across different ranges — helping identify consistency or stress fluctuations.
+            </div>
           </div>
-        </section>
+        </div>
+        <div class="p-4 relative w-full h-64">
+          <canvas id="hrvDonutChart" class="max-w-full h-full"></canvas>
+          <p id="hrvDonutMsg" class="text-sm text-gray-400 text-center mt-2">
+            Loading HRV distribution...
+          </p>
+        </div>
+      </section>
+
+
+
+
+
 
         <!-- Export Data -->
         <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
