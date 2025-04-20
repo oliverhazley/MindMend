@@ -36,3 +36,26 @@ export async function addHRVReading(req, res) {
     });
   }
 }
+
+export async function getHRVReadings(req, res) {
+  try {
+    const { user_id } = req.query;
+
+    if (!user_id) {
+      return res.status(400).json({ message: "Missing user_id in query" });
+    }
+
+    const [rows] = await promisePool.query(
+      `SELECT reading_time, hrv_value
+       FROM hrv_readings
+       WHERE user_id = ?
+       ORDER BY reading_time DESC`,
+      [user_id]
+    );
+
+    res.json(rows);
+  } catch (err) {
+    console.error("getHRVReadings error:", err);
+    res.status(500).json({ message: "Server error fetching HRV readings" });
+  }
+}
