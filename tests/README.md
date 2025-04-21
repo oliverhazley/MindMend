@@ -158,5 +158,6 @@ Tarkista, että Robot Framework Browser -kirjasto on asennettu oikein
 
 Huomioitavaa
 
-![alt text](pass.PNG)
-![alt text](fail.PNG)
+![pass](https://github.com/user-attachments/assets/c0ec699a-5007-4f45-9051-68aa20162ed5)
+
+![fail](https://github.com/user-attachments/assets/a0f52140-bfa1-4c72-b82a-5bdfe87bfdea)
