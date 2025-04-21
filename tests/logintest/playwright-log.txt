@@ -1,0 +1,74 @@
+{"level":30,"time":"2025-04-21T14:40:57.286Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Listening on 60307"}
+(node:10468) DeprecationWarning: Calling start() is no longer necessary. It can be safely omitted.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"level":30,"time":"2025-04-21T14:40:57.735Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method newBrowser"}
+{"level":30,"time":"2025-04-21T14:40:57.974Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Adding browser to stack: chromium, version: 134.0.6998.35"}
+{"level":30,"time":"2025-04-21T14:40:57.975Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method newBrowser"}
+{"level":30,"time":"2025-04-21T14:40:57.974Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Adding 0 contexts to browser"}
+{"level":30,"time":"2025-04-21T14:40:57.991Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method newContext"}
+{"level":30,"time":"2025-04-21T14:40:57.992Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Creating new context with options: {\"acceptDownloads\":true,\"bypassCSP\":false,\"forcedColors\":\"none\",\"ignoreHTTPSErrors\":false,\"javaScriptEnabled\":true,\"offline\":false,\"reducedMotion\":\"no-preference\",\"serviceWorkers\":\"allow\",\"viewport\":{\"width\":1280,\"height\":720}}"}
+{"level":30,"time":"2025-04-21T14:40:57.992Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"currentBrowser: [object Object]"}
+{"level":30,"time":"2025-04-21T14:40:57.992Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Trace file: "}
+{"level":30,"time":"2025-04-21T14:40:58.019Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Changed active context"}
+{"level":30,"time":"2025-04-21T14:40:58.020Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method newContext"}
+{"level":30,"time":"2025-04-21T14:40:58.030Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method newPage"}
+{"level":30,"time":"2025-04-21T14:40:58.031Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"currentBrowser: [object Object]"}
+{"level":30,"time":"2025-04-21T14:40:58.263Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Video path: undefined"}
+{"level":30,"time":"2025-04-21T14:40:58.263Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Changed active page"}
+{"level":30,"time":"2025-04-21T14:40:58.292Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method newPage"}
+{"level":30,"time":"2025-04-21T14:40:58.305Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-04-21T14:40:58.332Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-04-21T14:40:58.349Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-04-21T14:41:00.221Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method goTo"}
+{"level":30,"time":"2025-04-21T14:41:00.226Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-04-21T14:41:00.226Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Strict mode is enabled, find Locator with h2:text(\"Log In\") in page."}
+{"level":30,"time":"2025-04-21T14:41:00.253Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-04-21T14:41:00.258Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-04-21T14:41:00.258Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Strict mode is enabled, find Locator with input[name=\"email\"] in page."}
+{"level":30,"time":"2025-04-21T14:41:00.264Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-04-21T14:41:00.270Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-04-21T14:41:00.270Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Strict mode is enabled, find Locator with input[name=\"password\"] in page."}
+{"level":30,"time":"2025-04-21T14:41:00.276Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-04-21T14:41:00.283Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-04-21T14:41:00.283Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Strict mode is enabled, find Locator with button[type=\"submit\"] in page."}
+{"level":30,"time":"2025-04-21T14:41:00.294Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-04-21T14:41:00.303Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-04-21T14:41:00.306Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-04-21T14:41:00.314Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-04-21T14:41:00.317Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-04-21T14:41:00.323Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-04-21T14:41:00.423Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method goTo"}
+{"level":30,"time":"2025-04-21T14:41:00.429Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-04-21T14:41:00.429Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Strict mode is enabled, find Locator with h2:text(\"Log In\") in page."}
+{"level":30,"time":"2025-04-21T14:41:00.444Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-04-21T14:41:00.448Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-04-21T14:41:00.448Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Strict mode is enabled, find Locator with input[name=\"email\"] in page."}
+{"level":30,"time":"2025-04-21T14:41:00.460Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method fillText"}
+{"level":30,"time":"2025-04-21T14:41:00.464Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-04-21T14:41:00.464Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Strict mode is enabled, find Locator with input[name=\"password\"] in page."}
+{"level":30,"time":"2025-04-21T14:41:00.480Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method fillText"}
+{"level":30,"time":"2025-04-21T14:41:00.486Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method click"}
+{"level":30,"time":"2025-04-21T14:41:00.486Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Strict mode is enabled, find Locator with button[type=\"submit\"] in page."}
+{"level":30,"time":"2025-04-21T14:41:00.530Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method click"}
+{"level":30,"time":"2025-04-21T14:41:02.541Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-04-21T14:41:02.544Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-04-21T14:41:02.549Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method closeBrowser"}
+{"level":30,"time":"2025-04-21T14:41:02.560Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Removed page=f1aa369a-c2cc-41ac-ad66-ae3725b50f63 from context=29cf6888-1611-4f0f-8525-3afa7b75d472 page stack"}
+{"level":30,"time":"2025-04-21T14:41:02.947Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method closeBrowser"}
+================= Original suppressed error =================
+Error: Browser has been closed.
+    at PlaywrightState.getActiveBrowser (C:\Users\omistaja\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js:12223:15)
+    at PlaywrightServer.getActiveBrowser (C:\Users\omistaja\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js:13119:59)
+    at PlaywrightServer.setTimeout (C:\Users\omistaja\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js:13367:57)
+    at Object.onReceiveHalfClose (C:\Users\omistaja\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\node_modules\@grpc\grpc-js\build\src\server.js:1461:25)
+    at BaseServerInterceptingCall.maybePushNextMessage (C:\Users\omistaja\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\node_modules\@grpc\grpc-js\build\src\server-interceptors.js:575:31)
+    at BaseServerInterceptingCall.handleEndEvent (C:\Users\omistaja\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\node_modules\@grpc\grpc-js\build\src\server-interceptors.js:615:14)
+    at ServerHttp2Stream.<anonymous> (C:\Users\omistaja\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\node_modules\@grpc\grpc-js\build\src\server-interceptors.js:382:18)
+    at ServerHttp2Stream.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+=============================================================
+{"level":30,"time":"2025-04-21T14:41:02.974Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-04-21T14:41:02.974Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-04-21T14:41:03.021Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"Start of node method closeAllBrowsers"}
+{"level":30,"time":"2025-04-21T14:41:03.022Z","pid":10468,"hostname":"DESKTOP-VDV08LR","msg":"End of node method closeAllBrowsers"}

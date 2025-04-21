@@ -63,3 +63,101 @@ CryptoLibrary: 0.4.2
 ```
 
 Note: Version numbers may vary.
+
+
+MindMend Kirjautumistesti
+
+
+MindMend/
+├── backend/                           # Backend-palvelin
+├── frontend/                          # Frontend-sovellus
+└── tests/                             # Testit
+    ├── login_test.robot               # Kirjautumistesti
+    ├── installTest.py     
+    └── requirements.txt               # Testien riippuvuudet
+Vaatimukset
+
+Python 3.7+
+Node.js ja npm
+Robot Framework
+Robot Framework Browser -kirjasto
+
+Asennus
+
+Kloonaa projekti:
+
+git clone <repository-url>
+cd MindMend
+
+Asenna backend-riippuvuudet:
+
+cd backend
+npm install
+
+Asenna frontend-riippuvuudet:
+
+cd ../frontend
+npm install
+
+Asenna testaukseen tarvittavat riippuvuudet:
+
+cd ../tests
+pip install -r requirements.txt
+
+Alusta Robot Framework Browser -kirjasto:
+
+rfbrowser init
+Käynnistäminen
+
+Käynnistä backend-palvelin:
+
+cd backend
+npm run dev
+
+Käynnistä frontend-sovellus toisessa terminaalissa:
+
+cd frontend
+npm run dev
+Testien suorittaminen
+Käynnistä testit kolmannessa terminaalissa:
+cd tests
+robot login_test.robot
+Kirjautumistestin kuvaus
+Kirjautumistesti (login_test.robot) testaa seuraavat toiminnot:
+
+Kirjautumissivulle pääsy
+
+Tarkistaa, että kirjautumissivu latautuu
+Tarkistaa, että lomake sisältää tarvittavat kentät
+
+
+Kirjautumislomakkeen lähettäminen
+
+Täyttää sähköpostikentän ja salasanakentän
+Lähettää lomakkeen
+Tarkistaa, että lomake on lähetetty onnistuneesti
+
+
+
+Testin rakenne
+Testi käyttää seuraavia avainsanoja:
+
+Setup Browser: Avaa selaimen ja asettaa ikkunan koon
+Go To Login Page: Siirtyy kirjautumissivulle
+Page Should Contain Login Form: Tarkistaa, että lomake sisältää tarvittavat kentät
+Fill Login Form: Täyttää sähköposti- ja salasanakentät
+Submit Login Form: Klikkaa kirjautumispainiketta
+
+Ongelmanratkaisu
+Jos kohtaat ongelmia testien suorittamisessa, tarkista seuraavat asiat:
+
+Varmista, että backend ja frontend ovat käynnissä
+Tarkista, että kirjautumistunnukset ovat oikein
+Tarkista, että kaikki URL-polut ovat oikein testissä
+Tarkista, että Robot Framework Browser -kirjasto on asennettu oikein
+
+Huomioitavaa
+
+![pass](https://github.com/user-attachments/assets/c0ec699a-5007-4f45-9051-68aa20162ed5)
+
+![fail](https://github.com/user-attachments/assets/a0f52140-bfa1-4c72-b82a-5bdfe87bfdea)
