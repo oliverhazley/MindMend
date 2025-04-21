@@ -69,12 +69,12 @@ MindMend Kirjautumistesti
 
 
 MindMend/
-├── backend/               # Backend-palvelin
-├── frontend/              # Frontend-sovellus
-└── tests/                 # Testit
-    ├── login_test.robot   # Kirjautumistesti
+├── backend/                           # Backend-palvelin
+├── frontend/                          # Frontend-sovellus
+└── tests/                             # Testit
+    ├── login_test.robot               # Kirjautumistesti
     ├── installTest.py     
-    └── requirements.txt   # Testien riippuvuudet
+    └── requirements.txt               # Testien riippuvuudet
 Vaatimukset
 
 Python 3.7+
