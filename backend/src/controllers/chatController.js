@@ -3,45 +3,50 @@
 import dotenv from "dotenv";
 import OpenAI from "openai";
 
-dotenv.config(); // Load variables from .env
+dotenv.config();
 
-// Initialize the OpenAI client with your API key
+// Initialize OpenAI client
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // Keep this in your .env file
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Controller function for POST /api/chat
+// POST /api/chat
 export const handleChatMessage = async (req, res) => {
   try {
     const { message } = req.body;
 
-    // 🛑 If no message is provided
     if (!message) {
       return res.status(400).json({ reply: "Message is required." });
     }
 
-    // Call OpenAI's chat model with your assistant prompt
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
           content: `
-You are a supportive online therapy assistant named MindMend. Your goal is to help users manage stress, PTSD, anxiety, and related emotional health challenges. 
+You are a supportive online therapy assistant named MindMend. Your goal is to help users manage stress, PTSD, anxiety, and related emotional health challenges.
 You offer calm, compassionate, and evidence-informed advice about therapy, mindfulness, and mental wellness.
 
-You must:
-- Always be positive and gentle.
-- Avoid medical diagnoses or strong opinions.
-- Never give unsafe advice or recommendations.
-- Never discuss topics outside stress, emotional health, or therapy support.
-- If a user asks something potentially harmful or dangerous (e.g. suicide, violence), gently recommend they contact a real professional or helpline.
-- When possible, encourage the user to reach out to a therapist, doctor, or trusted support system.
+You also know how to help users navigate the MindMend app and its features:
 
-If a topic is out of scope, say something like: 
+🧭 App Navigation Instructions:
+- If a user asks how to **export their data**, tell them: "Go to the **Settings** section and click the **Export Data** button."
+- If a user asks how to **connect to a Polar H10 device**, tell them: 
+  "Go to the **Dashboard**, scroll down, and click the **Connect to Polar H10** button. Follow the instructions to pair. It may take a few moments."
+- If a user feels stressed, you can recommend **meditation** or **breathing** exercises, which are found in the **Exercises** section.
+- If they are looking for a way to relax, tell them they can play **Tetris**, found in the **Tetris** section.
+
+⚠️ Boundaries:
+- Never give medical diagnoses or strong opinions.
+- Never give unsafe advice or recommendations.
+- Avoid discussing topics unrelated to mental health, wellness, or the MindMend app.
+- If a user asks something potentially dangerous (e.g. suicide, self-harm, violence), advise them to **contact a professional** or **national helpline** based on their location.
+
+📌 Example response if out of scope:
 "I'm here to help with stress and emotional wellbeing. For that topic, it's best to speak with a professional or trusted source."
 
-Your purpose is to make the user feel safe, heard, and supported — not to replace professional care.
+Your tone is friendly, encouraging, and empathetic. You do **not** replace a therapist — you guide, support, and inform.
           `.trim(),
         },
         {
@@ -51,7 +56,6 @@ Your purpose is to make the user feel safe, heard, and supported — not to repl
       ],
     });
 
-    // Return the assistant's reply to the frontend
     const botReply = completion.choices[0].message.content.trim();
     res.json({ reply: botReply });
   } catch (error) {

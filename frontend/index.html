@@ -1,45 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <title>MindMend - Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="./dist/tailwind.css"/>
-  </head>
-  <body class="min-h-screen flex flex-col">
-    
-    <!-- NAVBAR -->
-    <nav class="w-full bg-primary-light/80 p-4 flex justify-between items-center">
-      <div class="text-2xl font-bold">
-        <a href="./index.html" class="hover:text-accent">MindMend</a>
+<head>
+  <meta charset="UTF-8" />
+  <title>MindMend</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./dist/tailwind.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="min-h-screen flex flex-col bg-gradient-to-b from-primary to-[#151721] text-white">
+
+  <!-- ------------------------------------------------------- -->
+
+  <!-- NAVBAR (Wrapped for auth control) -->
+  <div id="navbarWrapper" class="relative z-50">
+    <nav class="w-full bg-primary-light/80 px-6 py-4 flex justify-between items-center shadow-md relative">
+      <!-- Left side brand -->
+      <div class="text-2xl font-bold text-white">
+        <a href="#/dashboard" class="hover:text-accent">MindMend</a>
       </div>
-      <div class="space-x-4">
-        <a href="src/pages/login.html" class="hover:text-accent">Log In</a>
-        <a href="src/pages/signup.html" class="hover:text-accent">Sign Up</a>
-        <a href="src/pages/dashboard.html" class="hover:text-accent">Dashboard</a> <!--PLACEHOLDER TILL LOGIN WORKS -->
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex space-x-6 text-white">
+        <a href="#/dashboard" class="spa-protected-nav hover:text-accent hidden">Dashboard</a>
+        <a href="#/exercises" class="spa-protected-nav hover:text-accent hidden">Exercises</a>
+        <a href="#/tetris" class="spa-protected-nav hover:text-accent hidden">Tetris</a>
+        <a href="#/chat" class="spa-protected-nav hover:text-accent hidden">Chat</a>
+        <a href="#/info" class="spa-protected-nav hover:text-accent hidden">Info</a>
+        <a href="#/settings" class="spa-protected-nav hover:text-accent hidden">Settings</a>
+        <a href="#/login" id="logoutButton" class="spa-protected-nav hover:text-accent hidden">Logout</a>
+
+        <!-- Public-only links -->
+        <a href="#/login" class="spa-public-nav hover:text-accent">Login</a>
+        <a href="#/signup" class="spa-public-nav hover:text-accent">Sign Up</a>
       </div>
+
+      <!-- Mobile menu button -->
+      <button id="burgerBtn" class="md:hidden text-white z-50 relative">
+        <!-- Hamburger Icon (default) -->
+        <svg id="burgerIcon" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+
+        <!-- Close Icon (hidden by default) -->
+        <svg id="closeIcon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
     </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 flex flex-col items-center justify-center text-center p-8">
-      <h1 class="text-5xl font-extrabold mb-4">Welcome to MindMend</h1>
-      <p class="text-gray-300 mb-6 max-w-2xl">
-        Your all-in-one platform for real-time HRV analysis, PTSD therapy support,
-        mindfulness exercises, Tetris for relaxation, and more!
-      </p>
-      <!-- CTA Buttons -->
-      <div class="flex space-x-4">
-        <a href="src/pages/login.html" class="btn btn-primary">Log in</a>
-        <a href="src/pages/signup.html" class="btn btn-primary">Sign up</a>
+    <!-- Mobile dropdown -->
+    <div
+      id="mobileMenu"
+      class="md:hidden hidden absolute top-full left-0 w-full bg-primary-light/90 shadow-lg z-40"
+    >
+      <div class="flex flex-col items-center space-y-3 p-4 text-white text-center">
+        <a href="#/dashboard" class="spa-protected-nav hover:text-accent hidden">Dashboard</a>
+        <a href="#/exercises" class="spa-protected-nav hover:text-accent hidden">Exercises</a>
+        <a href="#/tetris" class="spa-protected-nav hover:text-accent hidden">Tetris</a>
+        <a href="#/chat" class="spa-protected-nav hover:text-accent hidden">Chat</a>
+        <a href="#/info" class="spa-protected-nav hover:text-accent hidden">Info</a>
+        <a href="#/settings" class="spa-protected-nav hover:text-accent hidden">Settings</a>
+        <a href="#/login" id="logoutButtonMobile" class="spa-protected-nav hover:text-accent hidden">Logout</a>
+
+        <!-- Public-only links -->
+        <a href="#/login" class="spa-public-nav hover:text-accent">Login</a>
+        <a href="#/signup" class="spa-public-nav hover:text-accent">Sign Up</a>
       </div>
-    </main>
+    </div>
+  </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-primary-light/80 p-4 text-center">
-      <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
-    </footer>
 
-    <!-- MAIN JS (imports Tailwind, plus any global logic) -->
-    <script type="module" src="src/scripts/main.js"></script>
-  </body>
+
+
+
+  <!-- ------------------------------------------------------- -->
+
+
+  <!-- PAGES -->
+  <main class="flex-1 p-4 md:p-8 max-w-5xl mx-auto w-full space-y-8">
+
+     <!-- LANDING / HOMEPAGE -->
+    <section id="page-home" class="spa-page hidden">
+      <main class="flex flex-col items-center justify-center flex-1 p-6 text-center">
+        <h1 class="text-4xl font-bold text-white mb-4">Welcome to MindMend</h1>
+        <p class="text-lg text-gray-300 mb-6">Your personal tool for HRV monitoring, relaxation, and PTSD support.</p>
+        <div class="space-x-4">
+          <a href="#/login" class="btn btn-primary">Log In</a>
+          <a href="#/signup" class="btn btn-secondary">Sign Up</a>
+        </div>
+      </main>
+    </section>
+
+
+
+    <!-- ------------------------------------------------------- -->
+
+
+
+    <!-- DASHBOARD -->
+    <section id="page-dashboard" class="spa-page hidden">
+      <main class="flex-1 p-4 md:p-8 space-y-8 max-w-5xl mx-auto w-full">
+
+        <!-- Connect to Polar H10 -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="bluetooth" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold" id="polarConnectionStatus">
+              Connect to Polar H10
+            </h2>
+          </div>
+          <div class="p-4 flex flex-col items-center gap-2">
+            <button id="polarConnectBtn" class="btn btn-primary">
+              Connect
+            </button>
+            <p id="batteryLevel" class="text-sm text-gray-400 hidden"></p>
+          </div>
+        </section>
+
+
+        <!-- Current Pulse Card -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="heart-pulse" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold">Current Pulse</h2>
+          </div>
+          <div class="p-4 flex flex-col items-center justify-center text-center">
+            <div id="currentHRVValue" class="text-6xl font-bold my-2">78</div>
+            <div class="mb-4">
+              <i data-lucide="heart-pulse" class="w-12 h-12 text-red-500 pulse"></i>
+            </div>
+            <p id="currentHRVText" class="text-gray-200">
+              Your pulse is in a healthy range.
+            </p>
+          </div>
+        </section>
+
+        <!-- RR Intervals: Line Chart -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="activity" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold">RR Intervals</h2>
+          </div>
+          <div class="p-4 relative w-full h-64">
+            <canvas id="rrLineChart" class="max-w-full h-full"></canvas>
+          </div>
+        </section>
+
+        <!-- Calculated RMSSD -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="hand-heart" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold">Calculated RMSSD</h2>
+          </div>
+          <div class="p-4 flex flex-col items-center justify-center text-center">
+            <div id="RMSSDval" class="text-6xl font-bold my-2">32</div>
+            <div class="mb-4">
+              <i data-lucide="hand-heart" class="w-12 h-12 text-red-500 pulse"></i>
+            </div>
+            <p id="RMSSDvaltext" class="text-gray-200">
+              Your HRV is moderate, suggesting balanced recovery and stress levels.
+            </p>
+          </div>
+        </section>
+
+      <!-- Global HRV Filter for both charts -->
+      <div class="w-full flex justify-center mb-4">
+        <select id="globalHRVFilter" class="bg-primary-light text-white text-sm rounded px-3 py-2 focus:outline-none border border-primary">
+          <option value="day" >Day</option>
+          <option value="week" selected>Week</option>
+          <option value="month">Month</option>
+          <option value="year">Year</option>
+        </select>
+      </div>
+
+      <!-- HRV Progress -->
+      <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+        <div class="bg-primary px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <i data-lucide="trending-up" class="w-6 h-6 text-green-400"></i>
+            <h2 class="text-lg font-semibold">HRV Progress</h2>
+          </div>
+          <div class="relative group">
+            <button class="info-icon focus:outline-none">
+              <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+            </button>
+            <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64">
+              HRV Progress shows how your average heart rate variability changes over time. Higher values usually reflect better recovery or stress resilience.
+            </div>
+          </div>
+        </div>
+        <div class="p-4 relative w-full h-64">
+          <canvas id="hrvBarChart" class="max-w-full h-full"></canvas>
+          <p id="hrvChartMsg" class="text-sm text-gray-400 text-center mt-2">
+            Loading HRV trend data...
+          </p>
+        </div>
+      </section>
+
+      <!-- HRV Distribution -->
+      <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg mt-6">
+        <div class="bg-primary px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <i data-lucide="pie-chart" class="w-6 h-6 text-purple-400"></i>
+            <h2 class="text-lg font-semibold">HRV Distribution</h2>
+          </div>
+          <div class="relative group">
+            <button class="info-icon focus:outline-none">
+              <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+            </button>
+            <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64">
+              HRV Distribution shows how your readings are spread across different ranges — helping identify consistency or stress fluctuations.
+            </div>
+          </div>
+        </div>
+        <div class="p-4 relative w-full h-64">
+          <canvas id="hrvDonutChart" class="max-w-full h-full"></canvas>
+          <p id="hrvDonutMsg" class="text-sm text-gray-400 text-center mt-2">
+            Loading HRV distribution...
+          </p>
+        </div>
+      </section>
+
+
+
+
+
+
+        <!-- Export Data -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="settings" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold">Export Data For Therapist</h2>
+          </div>
+          <div class="p-4 flex flex-col items-center space-y-4">
+            <button class="btn btn-primary">Export Data</button>
+          </div>
+        </section>
+
+      </main>
+    </section>
+
+
+
+      <!-- ------------------------------------------------------- -->
+
+
+
+    <!-- CHAT -->
+    <section id="page-chat" class="spa-page hidden">
+      <!-- MAIN CHAT CARD -->
+      <main class="flex-1 p-4 md:p-8 flex flex-col items-center justify-center w-full max-w-5xl mx-auto">
+        <section class="infocard w-full max-w-xl p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <!-- Header + icon -->
+          <div class="bg-primary px-4 py-3 flex items-center gap-3">
+            <i data-lucide="message-circle-heart" class="w-7 h-7 text-accent"></i>
+            <h2 class="text-lg font-semibold">Support Chat</h2>
+          </div>
+
+
+          <!-- Chat messages area -->
+          <div id="chatWindow" class="flex flex-col space-y-2 p-4 bg-card rounded-none mb-4 h-64 overflow-y-auto">
+            <div class="bg-gray-700 p-2 rounded text-gray-200">
+              Hello, I'm here to help you manage stress...
+            </div>
+          </div>
+
+          <!-- Chat input -->
+          <form id="chatForm" class="flex px-4 pb-4 ">
+            <input
+              id="chatInput"
+              type="text"
+              class="flex-1 px-3 py-2 bg-gray-700 rounded-l focus:ring-2 focus:ring-accent"
+              placeholder="Type your message..."
+              required
+            />
+            <button type="submit" class="btn btn-primary rounded-none rounded-r">
+              Send
+            </button>
+          </form>
+        </section>
+      </main>
+    </section>
+
+
+
+      <!-- ------------------------------------------------------- -->
+
+
+
+    <!-- EXERCISES page -->
+
+
+    <!-- Exercises Section -->
+    <section id="page-exercises" class="spa-page hidden">
+      <main class="max-w-5xl mx-auto p-6 space-y-6 flex-1 w-full">
+
+        <!-- Live HRV Info -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="bar-chart-3" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold">Metrics</h2>
+          </div>
+          <div id="hrvStatus" class="p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+              <i data-lucide="heart-pulse" class="w-6 h-6 text-accent"></i>
+              <div>
+                <p class="text-sm text-gray-400">Current Pulse</p>
+                <p id="pulseValue" class="text-xl font-semibold text-white">--</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="activity" class="w-6 h-6 text-accent"></i>
+              <div>
+                <p class="text-sm text-gray-400">Current RMSSD</p>
+                <p id="rmssdValue" class="text-xl font-semibold text-white">--</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mindfulness Accordion -->
+        <section class="card border border-primary-light/80 rounded-lg overflow-hidden">
+          <button
+            class="w-full flex items-center justify-between bg-primary px-4 py-3 text-left accordion-btn"
+            data-target="mindfulnessAccordion"
+          >
+            <div class="flex items-center gap-4">
+              <i data-lucide="mountain" class="w-6 h-6 text-accent"></i>
+              <h2 class="text-lg font-semibold">Mindfulness Exercises</h2>
+            </div>
+            <span class="accordion-icon">▲</span> <!-- default is open -->
+          </button>
+          <div
+            id="mindfulnessAccordion"
+            class="accordion-panel p-4 space-y-4"
+          >
+            <div id="mindfulnessList"><!-- JS will populate --></div>
+          </div>
+        </section>
+
+        <!-- Breathing Accordion -->
+        <section class="card border border-primary-light/80 rounded-lg overflow-hidden">
+          <button
+            class="w-full flex items-center justify-between bg-primary px-4 py-3 text-left accordion-btn"
+            data-target="breathingAccordion"
+          >
+            <div class="flex items-center gap-4">
+              <i data-lucide="wind" class="w-6 h-6 text-accent"></i>
+              <h2 class="text-lg font-semibold">Breathing Exercises</h2>
+            </div>
+            <span class="accordion-icon">▲</span> <!-- default is open -->
+          </button>
+          <div
+            id="breathingAccordion"
+            class="accordion-panel p-4 space-y-4"
+          >
+            <div id="breathingList"><!-- JS will populate --></div>
+          </div>
+        </section>
+
+
+      </main>
+    </section>
+
+
+
+
+      <!-- ------------------------------------------------------- -->
+
+
+
+
+    <!-- TETRIS -->
+    <section id="page-tetris" class="spa-page hidden">
+      <main class="flex-1 p-4 md:p-8 max-w-3xl mx-auto w-full">
+        <!-- Title & instructions -->
+        <div class="text-center mb-6">
+          <p class="text-sm text-gray-400">Use arrow keys (← ↑ → ↓) or swipe. ↓ = instant drop</p>
+        </div>
+
+        <!-- 2-col on desktop, stacked on mobile, horizontally centered on desktop -->
+        <div class="card p-4 flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:justify-center w-full">
+          <!-- LEFT: Tetris Board (smaller) -->
+          <div class="touch-none w-full max-w-[220px] mx-auto lg:mx-0">
+            <!-- 160 wide x 320 tall => 10 cols x 20 rows, 16px each -->
+            <canvas
+              id="tetrisBoard"
+              width="160"
+              height="320"
+              class="bg-primary rounded shadow-md w-full h-auto"
+            ></canvas>
+          </div>
+
+          <!-- RIGHT: Score + Next + Buttons -->
+          <div class="w-full lg:w-auto flex flex-col items-center lg:items-start space-y-4">
+            <!-- Score & Next piece -->
+            <div class="space-y-2 text-center lg:text-left">
+              <p class="text-xl font-semibold">
+                Score: <span id="score">0</span>
+              </p>
+              <div>
+                <p class="text-sm text-gray-400 mb-1">Next Piece:</p>
+                <canvas
+                  id="nextPiece"
+                  width="80"
+                  height="80"
+                  class="bg-primary rounded"
+                ></canvas>
+              </div>
+            </div>
+            <!-- Buttons row: Start is visible initially, Pause & Restart are hidden at first. -->
+            <div class="flex gap-2">
+              <button id="startTetrisBtn" class="btn btn-primary px-4 py-2">
+                Start
+              </button>
+              <button id="pauseResumeBtn" class="btn btn-secondary px-4 py-2 hidden">
+                Pause
+              </button>
+              <button id="restartTetrisBtn" class="btn btn-danger px-4 py-2 hidden">
+                Restart
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+
+
+
+
+      <!-- ------------------------------------------------------- -->
+
+
+
+
+    <!-- INFO -->
+    <section id="page-info" class="spa-page hidden">
+      <main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-4">
+
+        <!-- Intro Card -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="sparkles" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold">MindMend</h2>
+          </div>
+          <div class="p-4 text-gray-200">
+            MindMend is designed to support mental wellness and PTSD management by leveraging
+            Heart Rate Variability (HRV) data and evidence-based techniques. Compatible with
+            devices such as Oura Ring, Polar H10, and other HRV-enabled sensors, it offers
+            actionable insights, guided exercises, and interactive tools like Tetris therapy.
+          </div>
+        </section>
+
+        <!-- Accordion Items -->
+        <section class="space-y-2">
+
+          <!-- 1) What is HRV? -->
+          <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
+            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-t" data-target="hrvPanel">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="heart-pulse" class="w-5 h-5 text-accent"></i>
+                <span class="font-semibold">What is HRV?</span>
+              </div>
+              <span class="accordion-icon">▲</span>
+            </button>
+            <div id="hrvPanel" class="accordion-panel closed p-4 text-gray-300">
+              Heart Rate Variability (HRV) measures the variation in time between heartbeats.
+              It's an important indicator of autonomic nervous system health, reflecting stress
+              resilience and emotional regulation.
+            </div>
+          </div>
+
+          <!-- 2) PTSD and HRV -->
+          <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
+            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left" data-target="ptsdPanel">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="brain" class="w-5 h-5 text-accent"></i>
+                <span class="font-semibold">PTSD and HRV</span>
+              </div>
+              <span class="accordion-icon">▲</span>
+            </button>
+            <div id="ptsdPanel" class="accordion-panel closed p-4 text-gray-300">
+              PTSD can significantly impact HRV. Individuals with PTSD often show lower HRV,
+              indicating chronic stress and reduced ability to adapt to emotional challenges.
+              Monitoring HRV can help track recovery and stress management.
+            </div>
+          </div>
+
+          <!-- 3) How This App Helps -->
+          <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
+            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left" data-target="appHelpsPanel">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="info" class="w-5 h-5 text-accent"></i>
+                <span class="font-semibold">How This App Helps</span>
+              </div>
+              <span class="accordion-icon">▲</span>
+            </button>
+            <div id="appHelpsPanel" class="accordion-panel closed p-4 text-gray-300">
+              Our app provides real-time HRV tracking, personalized interventions like mindfulness
+              exercises, and data insights. By monitoring HRV patterns, users can better understand
+              their stress responses and develop coping strategies.
+            </div>
+          </div>
+
+          <!-- 4) Tetris, really? -->
+          <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
+            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left" data-target="tetrisPanel">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="gamepad-2" class="w-5 h-5 text-accent"></i>
+                <span class="font-semibold">Tetris, really?</span>
+              </div>
+              <span class="accordion-icon">▲</span>
+            </button>
+            <div id="tetrisPanel" class="accordion-panel closed p-4 text-gray-300">
+              Research shows Tetris can interrupt traumatic memory formation. Cognitive interference
+              prevents vivid memory consolidation, helping reduce intrusive memories and PTSD
+              symptom intensity. It's a non-invasive, engaging mental health intervention.
+            </div>
+          </div>
+
+          <!-- 5) How to export data -->
+          <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
+            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-b" data-target="therapyPanel">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="brain" class="w-5 h-5 text-accent"></i>
+                <span class="font-semibold">How do I export data?</span>
+              </div>
+              <span class="accordion-icon">▲</span>
+            </button>
+            <div id="therapyPanel" class="accordion-panel closed p-4 text-gray-300">
+              You can safely export your data by clicking the "Export data" button, found in the analytics section,
+              or in the settings section. Download your data, and show it to your therapist!
+            </div>
+          </div>
+
+        </section>
+      </main>
+    </section>
+
+
+
+
+
+      <!-- ------------------------------------------------------- -->
+
+
+
+
+    <!-- SETTINGS -->
+    <section id="page-settings" class="spa-page hidden">
+      <main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-8">
+
+        <!-- Connect to Polar H10 (Settings version, same as Dashboard) -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="bluetooth" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold" id="polarConnectionStatusSettings">
+              Connect to Polar H10
+            </h2>
+          </div>
+          <div class="p-4 flex flex-col items-center gap-2">
+            <button id="polarConnectBtn1" class="btn btn-primary">
+              Connect
+            </button>
+            <p id="batteryLevelSettings" class="text-sm text-gray-400 hidden"></p>
+          </div>
+        </section>
+
+
+        <!-- App controlls -->
+        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+            <i data-lucide="settings" class="w-6 h-6 text-accent"></i>
+            <h2 class="text-lg font-semibold">App Controls</h2>
+          </div>
+          <div class="p-4 flex flex-col items-center space-y-4">
+            <button class="btn btn-primary">Export Data</button>
+          </div>
+        </section>
+      </main>
+    </section>
+
+
+
+      <!-- ------------------------------------------------------- -->
+
+
+
+    <!-- LOGIN  -->
+    <section id="page-login" class="spa-page hidden">
+      <!-- Main content: a simple login form -->
+      <main class="flex flex-col items-center justify-center flex-1 p-6">
+        <!-- Using "max-w-sm" for a fixed form width, plus "bg-primary-light" for a distinct box -->
+        <div class="bg-primary-light p-6 rounded shadow max-w-sm w-full">
+          <h2 class="text-2xl font-semibold mb-4 text-center">Log In</h2>
+          <form id="loginForm" class="flex flex-col space-y-4">
+            <!-- Email field -->
+            <label class="block">
+              <span class="block text-sm text-secondary mb-1">Email</span>
+              <input
+                type="email"
+                name="email"
+                class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
+                required
+              />
+            </label>
+            <!-- Password field -->
+            <label class="block">
+              <span class="block text-sm text-secondary mb-1">Password</span>
+              <input
+                type="password"
+                name="password"
+                class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
+                required
+              />
+            </label>
+            <!-- Submit button triggers logic in login.js -->
+            <button
+              type="submit"
+              class="bg-accent rounded px-4 py-2 font-semibold hover:bg-teal-600 transition"
+            >
+              Log In
+            </button>
+          </form>
+        </div>
+      </main>
+    </section>
+
+
+
+      <!-- ------------------------------------------------------- -->
+
+
+
+
+    <!-- SIGNUP -->
+
+    <section id="page-signup" class="spa-page hidden">
+      <!-- Main content: signup form -->
+      <main class="flex flex-col items-center justify-center flex-1 p-6">
+        <div class="bg-primary-light p-6 rounded shadow max-w-sm w-full">
+          <h2 class="text-2xl font-semibold mb-4 text-center">Create an Account</h2>
+          <form id="signupForm" class="flex flex-col space-y-4">
+            <!-- Name field -->
+            <label class="block">
+              <span class="block text-sm text-secondary mb-1">Name</span>
+              <input
+               type="text"
+               name="name"
+               class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
+               required />
+            </label>
+            <!-- Email field -->
+            <label class="block">
+              <span class="block text-sm text-secondary mb-1">Email</span>
+              <input
+                type="email"
+                name="email"
+                class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
+                required
+              />
+            </label>
+            <!-- Password field -->
+            <label class="block">
+              <span class="block text-sm text-secondary mb-1">Password</span>
+              <input
+                type="password"
+                name="password"
+                class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
+                required
+              />
+            </label>
+            <!-- Submit button triggers logic in signup.js -->
+            <button
+              type="submit"
+              class="bg-accent rounded px-4 py-2 font-semibold hover:bg-teal-600 transition"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
+      </main>
+    </section>
+
+  </main>
+
+
+  <!-- ------------------------------------------------------- -->
+
+
+  <!-- FOOTER -->
+  <footer class="bg-primary-light/80 p-4 text-center">
+    <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
+  </footer>
+
+
+
+  <!-- ------------------------------------------------------- -->
+
+
+
+
+  <!-- Scripts -->
+  <script type="module" src="./src/scripts/main.js"></script>
+  <script type="module" src="./src/scripts/navbar.js"></script>
+  <script type="module" src="./src/scripts/router.js"></script>
+  <script>
+    if (window.lucide) lucide.createIcons();
+  </script>
+</body>
 </html>
