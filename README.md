@@ -4,7 +4,8 @@
 
 1.  check versions, needs Node version of at least 18
 
-    node --version v22.13.0
+    node --version
+
     npm --version
 
 2.  Install node modules for front- and backend

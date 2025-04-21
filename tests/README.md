@@ -64,99 +64,72 @@ CryptoLibrary: 0.4.2
 
 Note: Version numbers may vary.
 
+## MindMend Login Test Documentation
 
-MindMend Kirjautumistesti
+This document describes the automated login tests for the MindMend application using Robot Framework.
 
+### Overview
 
-MindMend/
-├── backend/                           # Backend-palvelin
-├── frontend/                          # Frontend-sovellus
-└── tests/                             # Testit
-    ├── login_test.robot               # Kirjautumistesti
-    ├── installTest.py     
-    └── requirements.txt               # Testien riippuvuudet
-Vaatimukset
+The test suite (`login_test.robot`) verifies the basic login functionality of the MindMend application, including:
 
-Python 3.7+
-Node.js ja npm
-Robot Framework
-Robot Framework Browser -kirjasto
+- Accessing the login page
+- Verifying the login form elements exist
+- Submitting login credentials
 
-Asennus
+### Prerequisites
 
-Kloonaa projekti:
+- Python 3.7+
+- Robot Framework installed
+- Robot Framework Browser library installed
+- MindMend frontend running at http://localhost:5173
+- MindMend backend service running
 
-git clone <repository-url>
-cd MindMend
+### Setup
 
-Asenna backend-riippuvuudet:
+1. Install dependencies:
 
-cd backend
-npm install
-
-Asenna frontend-riippuvuudet:
-
-cd ../frontend
-npm install
-
-Asenna testaukseen tarvittavat riippuvuudet:
-
-cd ../tests
+```bash
 pip install -r requirements.txt
-
-Alusta Robot Framework Browser -kirjasto:
-
 rfbrowser init
-Käynnistäminen
+```
 
-Käynnistä backend-palvelin:
+2. Ensure the MindMend application is running:
+   - Start backend: `cd backend && npm run dev`
+   - Start frontend: `cd frontend && npm run dev`
 
-cd backend
-npm run dev
+### Running the Tests
 
-Käynnistä frontend-sovellus toisessa terminaalissa:
+From the tests directory:
 
-cd frontend
-npm run dev
-Testien suorittaminen
-Käynnistä testit kolmannessa terminaalissa:
-cd tests
+```bash
+cd tests/logintest
 robot login_test.robot
-Kirjautumistestin kuvaus
-Kirjautumistesti (login_test.robot) testaa seuraavat toiminnot:
+```
 
-Kirjautumissivulle pääsy
+### Test Cases
 
-Tarkistaa, että kirjautumissivu latautuu
-Tarkistaa, että lomake sisältää tarvittavat kentät
+#### User Can Access Login Page
 
+Verifies that the login page loads properly and contains the expected login form elements.
 
-Kirjautumislomakkeen lähettäminen
+#### User Can Submit Login Form
 
-Täyttää sähköpostikentän ja salasanakentän
-Lähettää lomakkeen
-Tarkistaa, että lomake on lähetetty onnistuneesti
+Verifies that a user can fill in and submit the login form.
 
+### Test Results
 
+After running the tests, you can view the generated reports:
 
-Testin rakenne
-Testi käyttää seuraavia avainsanoja:
+- log.html - Detailed test execution log
+- report.html - Test result summary
 
-Setup Browser: Avaa selaimen ja asettaa ikkunan koon
-Go To Login Page: Siirtyy kirjautumissivulle
-Page Should Contain Login Form: Tarkistaa, että lomake sisältää tarvittavat kentät
-Fill Login Form: Täyttää sähköposti- ja salasanakentät
-Submit Login Form: Klikkaa kirjautumispainiketta
+### Configuration
 
-Ongelmanratkaisu
-Jos kohtaat ongelmia testien suorittamisessa, tarkista seuraavat asiat:
+The test uses the following variables that can be modified if needed:
 
-Varmista, että backend ja frontend ovat käynnissä
-Tarkista, että kirjautumistunnukset ovat oikein
-Tarkista, että kaikki URL-polut ovat oikein testissä
-Tarkista, että Robot Framework Browser -kirjasto on asennettu oikein
-
-Huomioitavaa
+- `${BASE_URL}` - Base URL of the application
+- `${LOGIN_URL}` - URL of the login page
+- `${EMAIL}` and `${PASSWORD}` - Test credentials
 
 ![pass](https://github.com/user-attachments/assets/c0ec699a-5007-4f45-9051-68aa20162ed5)
 
