@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.1 on win32)" generated="2025-04-23T01:27:40.152675" rpa="false" schemaversion="5">
+<suite id="s1" name="backendTest" source="C:\Users\miska\MindMend\tests\backendTest\backendTest.robot">
+<kw name="Setup Test Suite" type="SETUP">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.592705" level="INFO">${RANDOM_INT} = 3748</msg>
+<var>${RANDOM_INT}</var>
+<arg>random.randint(1, 10000)</arg>
+<arg>random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.592705" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.593204" level="INFO">${user_email} = testi-3748.user@example.com</msg>
+<var>${user_email}</var>
+<arg>testi-${RANDOM_INT}.user@example.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.593204" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.593204" level="INFO">${user_name} = Test User 3748</msg>
+<var>${user_name}</var>
+<arg>Test User ${RANDOM_INT}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.593204" elapsed="0.000000"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.593705" level="INFO">${USER_EMAIL} = testi-3748.user@example.com</msg>
+<arg>${USER_EMAIL}</arg>
+<arg>${user_email}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.593204" elapsed="0.000501"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.593705" level="INFO">${USER_NAME} = Test User 3748</msg>
+<arg>${USER_NAME}</arg>
+<arg>${user_name}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.593705" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.594207" level="INFO">Generated User Email: testi-3748.user@example.com</msg>
+<arg>Generated User Email: ${USER_EMAIL}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.593705" elapsed="0.000502"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.594207" level="INFO">Generated User Name: Test User 3748</msg>
+<arg>Generated User Name: ${USER_NAME}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.594207" elapsed="0.000000"/>
+</kw>
+<kw name="Login as regular existing user">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.594706" level="INFO">${body} = {'email': 'testi@gmail.com', 'password': 'testi123'}</msg>
+<var>${body}</var>
+<arg>email=${LOGIN_EMAIL}</arg>
+<arg>password=${LOGIN_PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.594706" elapsed="0.000000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.668306" level="INFO">POST Request : url=http://localhost:3000/api/users/auth/login 
+ path_url=/api/users/auth/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '52', 'Content-Type': 'application/json'} 
+ body=b'{"email": "testi@gmail.com", "password": "testi123"}' 
+ </msg>
+<msg time="2025-04-23T01:27:40.668306" level="INFO">POST Response : url=http://localhost:3000/api/users/auth/login 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '265', 'ETag': 'W/"109-sp2wNXQEag71NqsWB4c90ZIr47E"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU","user":{"userId":2,"name":"testi","email":"testi@gmail.com"}} 
+ </msg>
+<msg time="2025-04-23T01:27:40.668306" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/users/auth/login</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.594706" elapsed="0.073600"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.669309" level="INFO">{'message': 'Login successful', 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU', 'user': {'userId': 2, 'name': 'testi', 'email': 'testi@gmail.com'}}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.668306" elapsed="0.001003"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.669309" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.669309" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.669812" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU</msg>
+<var>${token}</var>
+<arg>${response.json()}[token]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.669812" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.670316" level="INFO">${user_id} = 2</msg>
+<var>${user_id}</var>
+<arg>${response.json()}[user][userId]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.669812" elapsed="0.000504"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.670819" level="INFO">Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU</msg>
+<arg>Token: ${token}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.670819" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.670819" level="INFO">User ID: 2</msg>
+<arg>User ID: ${user_id}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.670819" elapsed="0.000000"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.671814" level="INFO">${AUTH_TOKEN} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU</msg>
+<arg>${AUTH_TOKEN}</arg>
+<arg>Bearer ${token}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.670819" elapsed="0.000995"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.671814" level="INFO">${USER_ID} = 2</msg>
+<arg>${USER_ID}</arg>
+<arg>${user_id}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.671814" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.672313" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU'}</msg>
+<var>${headers}</var>
+<arg>Authorization=${AUTH_TOKEN}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.671814" elapsed="0.000499"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.672813" level="INFO">${AUTH_HEADERS} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU'}</msg>
+<arg>${AUTH_HEADERS}</arg>
+<arg>${headers}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.672313" elapsed="0.000500"/>
+</kw>
+<doc>Login as a regular user to get the token and user ID for authentication.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.594207" elapsed="0.078606"/>
+</kw>
+<doc>Generates dynamic data and logs in a user for the suite.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.592206" elapsed="0.080607"/>
+</kw>
+<test id="s1-t1" name="Register New User Successfully" line="44">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.673314" level="INFO">${body} = {'name': 'Test User 3748', 'email': 'testi-3748.user@example.com', 'password': 'testi123'}</msg>
+<var>${body}</var>
+<arg>name=${USER_NAME}</arg>
+<arg>email=${USER_EMAIL}</arg>
+<arg>password=${USER_PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.673314" elapsed="0.000000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.747934" level="INFO">POST Request : url=http://localhost:3000/api/users/auth/register 
+ path_url=/api/users/auth/register 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '90', 'Content-Type': 'application/json'} 
+ body=b'{"name": "Test User 3748", "email": "testi-3748.user@example.com", "password": "testi123"}' 
+ </msg>
+<msg time="2025-04-23T01:27:40.748941" level="INFO">POST Response : url=http://localhost:3000/api/users/auth/register 
+ status=201, reason=Created 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '125', 'ETag': 'W/"7d-9XL5tNsUdwyQl/18T+RZFQ2Fewc"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"User registered successfully","user":{"userId":15,"name":"Test User 3748","email":"testi-3748.user@example.com"}} 
+ </msg>
+<msg time="2025-04-23T01:27:40.748941" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/users/auth/register</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.673314" elapsed="0.075627"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.749448" level="INFO">${json} = {'message': 'User registered successfully', 'user': {'userId': 15, 'name': 'Test User 3748', 'email': 'testi-3748.user@example.com'}}</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.748941" elapsed="0.000507"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.749946" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}[user]</arg>
+<arg>userId</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.749946" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${json}[message]</arg>
+<arg>User registered successfully</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.750446" elapsed="0.000000"/>
+</kw>
+<doc>Test registering a new user.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.672813" elapsed="0.077633"/>
+</test>
+<test id="s1-t2" name="Register User With Existing Email" line="53">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.751448" level="INFO">${body} = {'name': 'Duplicate User', 'email': 'testi@gmail.com', 'password': 'anotherpass'}</msg>
+<var>${body}</var>
+<arg>name=Duplicate User</arg>
+<arg>email=${LOGIN_EMAIL}</arg>
+<arg>password=anotherpass</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.751448" elapsed="0.000000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.755448" level="INFO">POST Request : url=http://localhost:3000/api/users/auth/register 
+ path_url=/api/users/auth/register 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '81', 'Content-Type': 'application/json'} 
+ body=b'{"name": "Duplicate User", "email": "testi@gmail.com", "password": "anotherpass"}' 
+ </msg>
+<msg time="2025-04-23T01:27:40.755448" level="INFO">POST Response : url=http://localhost:3000/api/users/auth/register 
+ status=400, reason=Bad Request 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '49', 'ETag': 'W/"31-kAANIpXFuQ6I53ZbDDsMLt8aPOU"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"User with this email already exists"} 
+ </msg>
+<msg time="2025-04-23T01:27:40.755448" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/users/auth/register</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.751448" elapsed="0.004000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.756447" level="INFO">${json} = {'message': 'User with this email already exists'}</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.755946" elapsed="0.000501"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.756447" elapsed="0.000500"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${json}[message]</arg>
+<arg>User with this email already exists</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.756947" elapsed="0.000000"/>
+</kw>
+<doc>Test registering a user with an email that already exists.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.750950" elapsed="0.006498"/>
+</test>
+<test id="s1-t3" name="Login User Successfully" line="61">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.757948" level="INFO">${body} = {'email': 'testi@gmail.com', 'password': 'testi123'}</msg>
+<var>${body}</var>
+<arg>email=${LOGIN_EMAIL}</arg>
+<arg>password=${LOGIN_PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.757948" elapsed="0.000000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.833075" level="INFO">POST Request : url=http://localhost:3000/api/users/auth/login 
+ path_url=/api/users/auth/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '52', 'Content-Type': 'application/json'} 
+ body=b'{"email": "testi@gmail.com", "password": "testi123"}' 
+ </msg>
+<msg time="2025-04-23T01:27:40.833075" level="INFO">POST Response : url=http://localhost:3000/api/users/auth/login 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '265', 'ETag': 'W/"109-sp2wNXQEag71NqsWB4c90ZIr47E"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU","user":{"userId":2,"name":"testi","email":"testi@gmail.com"}} 
+ </msg>
+<msg time="2025-04-23T01:27:40.833574" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/users/auth/login</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.757948" elapsed="0.075626"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.833574" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.834075" level="INFO">${json} = {'message': 'Login successful', 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKm...</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.834075" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>token</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.834573" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.835076" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>user</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.835076" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}[user]</arg>
+<arg>userId</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.835576" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}[user]</arg>
+<arg>name</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.835576" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}[user]</arg>
+<arg>email</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.835576" elapsed="0.000500"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${json}[message]</arg>
+<arg>Login successful</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.836076" elapsed="0.000000"/>
+</kw>
+<doc>Test logging in with correct credentials.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.757448" elapsed="0.078628"/>
+</test>
+<test id="s1-t4" name="Login User With Incorrect Password" line="75">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.837577" level="INFO">${body} = {'email': 'testi@gmail.com', 'password': 'wrongpassword'}</msg>
+<var>${body}</var>
+<arg>email=${LOGIN_EMAIL}</arg>
+<arg>password=wrongpassword</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.837077" elapsed="0.000500"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.905658" level="INFO">POST Request : url=http://localhost:3000/api/users/auth/login 
+ path_url=/api/users/auth/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '57', 'Content-Type': 'application/json'} 
+ body=b'{"email": "testi@gmail.com", "password": "wrongpassword"}' 
+ </msg>
+<msg time="2025-04-23T01:27:40.905658" level="INFO">POST Response : url=http://localhost:3000/api/users/auth/login 
+ status=401, reason=Unauthorized 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '39', 'ETag': 'W/"27-Mm37A2ls1bgL0/D8e3MSpDLbow8"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Invalid email or password"} 
+ </msg>
+<msg time="2025-04-23T01:27:40.905658" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/users/auth/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=401</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.837577" elapsed="0.068081"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.906659" level="INFO">${json} = {'message': 'Invalid email or password'}</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.906159" elapsed="0.000500"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.907159" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${json}[message]</arg>
+<arg>Invalid email or password</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.907159" elapsed="0.000000"/>
+</kw>
+<doc>Test logging in with incorrect password.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.837077" elapsed="0.070581"/>
+</test>
+<test id="s1-t5" name="Get All Users" line="83">
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.911176" level="INFO">GET Request : url=http://localhost:3000/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU'} 
+ body=None 
+ </msg>
+<msg time="2025-04-23T01:27:40.911176" level="INFO">GET Response : url=http://localhost:3000/api/users 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '2207', 'ETag': 'W/"89f-mIr2LRgbBqzfRmj4qw4xZ7JWmtk"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body=[{"user_id":1,"name":"testi1","password":"$2b$10$r/f1avpaKpTb20PPup6mKOQa84jbGgCauHfJP0NJK9WHev5oOQNJu","email":"testi1@gmail.com"},{"user_id":2,"name":"testi","password":"$2b$10$wFDTsuruTm9SilwGdWUgoO1ZP5ReMBQWJl7hrIPXHcNgllqOeBUvO","email":"testi@gmail.com"},{"user_id":3,"name":"Test User ","password":"$2b$10$zJR3rPjLkpHU9uAqZeiLfeGYvununyXsSQci73ZmLRcNpEaQbQuCC","email":"testi-.user@example.com"},{"user_id":4,"name":"Test User 3921","password":"$2b$10$kNcdsZHRIsft0GxYzXkzoeOn/6mLbltQhBlmAmB4Fy/FWsb4djBLy","email":"testi-3921.user@example.com"},{"user_id":5,"name":"Test User 2641","password":"$2b$10$zPHgGMPbXe0iwf/OiBUjSO2g7c0PUaWaBSMsBq2oSz5fwwYpzGtfO","email":"testi-2641.user@example.com"},{"user_id":6,"name":"Test User 4797","password":"$2b$10$RxNizHCYsutlTKm224fEHeIJ//CVg/whDn9L1BZE3RR9CJqcrutQG","email":"testi-4797.user@example.com"},{"user_id":7,"name":"Test User 2469","password":"$2b$10$R793d2T1rv2S46ad9Z0aSO/jFLarHg8/wSno92r.96Gak7ItKuE/u","email":"testi-2469.user@example.com"},{"user_id":8,"name":"Test User 9814","password":"$2b$10$6D43DOxra2VUXwLtnPO5CerAqFQWLzpmZezfz5MM2LmgINVoWj0zW","email":"testi-9814.user@example.com"},{"user_id":9,"name":"Test User 7814","password":"$2b$10$WxdBuWsWX5OULV261NPA2.MuUc5GlSiaKVvNgKKyoQIhGoA8Ro62K","email":"testi-7814.user@example.com"},{"user_id":10,"name":"Test User 605","password":"$2b$10$w2SJjcCedoE65Fa179XKu.15sMDf0vFTGX7RYYgwj4yBgwNHUI.rC","email":"testi-605.user@example.com"},{"user_id":11,"name":"Test User 5645","password":"$2b$10$9eeW91t.NAoB1X2HhNvNe.T5GoLZsNBo8CS18hCb4BmcNoNxSHw92","email":"testi-5645.user@example.com"},{"user_id":12,"name":"Test User 3533","password":"$2b$10$THanfyI/P0JQDxSUDMiw5euQk52IuCDnb2NskngFsy7EkaikSfYIe","email":"testi-3533.user@example.com"},{"user_id":13,"name":"Test User 1321","password":"$2b$10$Sh3iJUKf2WdZbTcXDwEj6uJI3yWImFZYRAwW9iUMaJwmPgwAzd4o.","email":"testi-1321.user@example.com"},{"user_id":14,"name":"Test User 7057","password":"$2b$10$DTSIlA9K4y8gBlhHzDk1r.wbf6/K4fuaiCY9GwAx1fKHfdUxrRpCa","email":"testi-7057.user@example.com"},{"user_id":15,"name":"Test User 3748","password":"$2b$10$.PsYiyQi/VS4IrV24lqep.6Fg79hsY6dkUOrTQ0bph30D/4Zk4kmm","email":"testi-3748.user@example.com"}] 
+ </msg>
+<msg time="2025-04-23T01:27:40.911176" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/users</arg>
+<arg>headers=${AUTH_HEADERS}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.908160" elapsed="0.003016"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.911675" elapsed="0.000000"/>
+</kw>
+<kw name="Log List" owner="Collections">
+<msg time="2025-04-23T01:27:40.912173" level="INFO">List length is 15 and it contains following items:
+0: {'user_id': 1, 'name': 'testi1', 'password': '$2b$10$r/f1avpaKpTb20PPup6mKOQa84jbGgCauHfJP0NJK9WHev5oOQNJu', 'email': 'testi1@gmail.com'}
+1: {'user_id': 2, 'name': 'testi', 'password': '$2b$10$wFDTsuruTm9SilwGdWUgoO1ZP5ReMBQWJl7hrIPXHcNgllqOeBUvO', 'email': 'testi@gmail.com'}
+2: {'user_id': 3, 'name': 'Test User ', 'password': '$2b$10$zJR3rPjLkpHU9uAqZeiLfeGYvununyXsSQci73ZmLRcNpEaQbQuCC', 'email': 'testi-.user@example.com'}
+3: {'user_id': 4, 'name': 'Test User 3921', 'password': '$2b$10$kNcdsZHRIsft0GxYzXkzoeOn/6mLbltQhBlmAmB4Fy/FWsb4djBLy', 'email': 'testi-3921.user@example.com'}
+4: {'user_id': 5, 'name': 'Test User 2641', 'password': '$2b$10$zPHgGMPbXe0iwf/OiBUjSO2g7c0PUaWaBSMsBq2oSz5fwwYpzGtfO', 'email': 'testi-2641.user@example.com'}
+5: {'user_id': 6, 'name': 'Test User 4797', 'password': '$2b$10$RxNizHCYsutlTKm224fEHeIJ//CVg/whDn9L1BZE3RR9CJqcrutQG', 'email': 'testi-4797.user@example.com'}
+6: {'user_id': 7, 'name': 'Test User 2469', 'password': '$2b$10$R793d2T1rv2S46ad9Z0aSO/jFLarHg8/wSno92r.96Gak7ItKuE/u', 'email': 'testi-2469.user@example.com'}
+7: {'user_id': 8, 'name': 'Test User 9814', 'password': '$2b$10$6D43DOxra2VUXwLtnPO5CerAqFQWLzpmZezfz5MM2LmgINVoWj0zW', 'email': 'testi-9814.user@example.com'}
+8: {'user_id': 9, 'name': 'Test User 7814', 'password': '$2b$10$WxdBuWsWX5OULV261NPA2.MuUc5GlSiaKVvNgKKyoQIhGoA8Ro62K', 'email': 'testi-7814.user@example.com'}
+9: {'user_id': 10, 'name': 'Test User 605', 'password': '$2b$10$w2SJjcCedoE65Fa179XKu.15sMDf0vFTGX7RYYgwj4yBgwNHUI.rC', 'email': 'testi-605.user@example.com'}
+10: {'user_id': 11, 'name': 'Test User 5645', 'password': '$2b$10$9eeW91t.NAoB1X2HhNvNe.T5GoLZsNBo8CS18hCb4BmcNoNxSHw92', 'email': 'testi-5645.user@example.com'}
+11: {'user_id': 12, 'name': 'Test User 3533', 'password': '$2b$10$THanfyI/P0JQDxSUDMiw5euQk52IuCDnb2NskngFsy7EkaikSfYIe', 'email': 'testi-3533.user@example.com'}
+12: {'user_id': 13, 'name': 'Test User 1321', 'password': '$2b$10$Sh3iJUKf2WdZbTcXDwEj6uJI3yWImFZYRAwW9iUMaJwmPgwAzd4o.', 'email': 'testi-1321.user@example.com'}
+13: {'user_id': 14, 'name': 'Test User 7057', 'password': '$2b$10$DTSIlA9K4y8gBlhHzDk1r.wbf6/K4fuaiCY9GwAx1fKHfdUxrRpCa', 'email': 'testi-7057.user@example.com'}
+14: {'user_id': 15, 'name': 'Test User 3748', 'password': '$2b$10$.PsYiyQi/VS4IrV24lqep.6Fg79hsY6dkUOrTQ0bph30D/4Zk4kmm', 'email': 'testi-3748.user@example.com'}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the length and contents of the ``list`` using given ``level``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.911675" elapsed="0.000498"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.912675" level="INFO">${users} = [{'user_id': 1, 'name': 'testi1', 'password': '$2b$10$r/f1avpaKpTb20PPup6mKOQa84jbGgCauHfJP0NJK9WHev5oOQNJu', 'email': 'testi1@gmail.com'}, {'user_id': 2, 'name': 'testi', 'password': '$2b$10$wFDTsuru...</msg>
+<var>${users}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.912173" elapsed="0.000502"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>len(${users}) &gt; 0</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.912675" elapsed="0.002500"/>
+</kw>
+<doc>Test case to get all users (requires auth).</doc>
+<status status="PASS" start="2025-04-23T01:27:40.907658" elapsed="0.008015"/>
+</test>
+<test id="s1-t6" name="Add HRV Reading Successfully" line="91">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.916677" level="INFO">${hrv_value} = 31.239402572967986</msg>
+<var>${hrv_value}</var>
+<arg>random.uniform(30.0, 90.0)</arg>
+<arg>random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.916177" elapsed="0.000500"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.916677" level="INFO">${body} = {'user_id': 2, 'hrv_value': 31.239402572967986}</msg>
+<var>${body}</var>
+<arg>user_id=${USER_ID}</arg>
+<arg>hrv_value=${hrv_value}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.916677" elapsed="0.000000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.921191" level="INFO">POST Request : url=http://localhost:3000/api/hrv 
+ path_url=/api/hrv 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU', 'Content-Length': '47', 'Content-Type': 'application/json'} 
+ body=b'{"user_id": 2, "hrv_value": 31.239402572967986}' 
+ </msg>
+<msg time="2025-04-23T01:27:40.921191" level="INFO">POST Response : url=http://localhost:3000/api/hrv 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '44', 'ETag': 'W/"2c-SOmXe3FBv5Pt4lWXb8wPyNRaO7A"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"HRV reading stored","hrv_id":22} 
+ </msg>
+<msg time="2025-04-23T01:27:40.921691" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/hrv</arg>
+<arg>json=${body}</arg>
+<arg>headers=${AUTH_HEADERS}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.917175" elapsed="0.004516"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.921691" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.923191" level="INFO">${json} = {'message': 'HRV reading stored', 'hrv_id': 22}</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.922191" elapsed="0.001000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.923191" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>hrv_id</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.923191" elapsed="0.000500"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${json}[message]</arg>
+<arg>HRV reading stored</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.923691" elapsed="0.000000"/>
+</kw>
+<doc>Test adding a valid HRV reading for the logged-in user.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.916177" elapsed="0.007514"/>
+</test>
+<test id="s1-t7" name="Add HRV Reading With Invalid Data" line="102">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.924689" level="INFO">${body} = {'user_id': 2, 'hrv_value': 'invalid_value'}</msg>
+<var>${body}</var>
+<arg>user_id=${USER_ID}</arg>
+<arg>hrv_value=invalid_value</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.924689" elapsed="0.000000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.927191" level="INFO">POST Request : url=http://localhost:3000/api/hrv 
+ path_url=/api/hrv 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU', 'Content-Length': '44', 'Content-Type': 'application/json'} 
+ body=b'{"user_id": 2, "hrv_value": "invalid_value"}' 
+ </msg>
+<msg time="2025-04-23T01:27:40.927191" level="INFO">POST Response : url=http://localhost:3000/api/hrv 
+ status=400, reason=Bad Request 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '59', 'ETag': 'W/"3b-2jH/MHoa3JpO9I8jYQEdyAtROiQ"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Invalid input: user_id and hrv_value required"} 
+ </msg>
+<msg time="2025-04-23T01:27:40.927191" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/hrv</arg>
+<arg>json=${body}</arg>
+<arg>headers=${AUTH_HEADERS}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.924689" elapsed="0.002502"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.927191" level="INFO">${json} = {'message': 'Invalid input: user_id and hrv_value required'}</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.927191" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.928195" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${json}[message]</arg>
+<arg>Invalid input: user_id and hrv_value required</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.928195" elapsed="0.000000"/>
+</kw>
+<doc>Test adding an HRV reading with invalid data.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.924189" elapsed="0.004006"/>
+</test>
+<test id="s1-t8" name="Get HRV Readings For User" line="110">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.929225" level="INFO">${hrv_value} = 58.938807508393154</msg>
+<var>${hrv_value}</var>
+<arg>random.uniform(30.0, 90.0)</arg>
+<arg>random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.929225" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.929730" level="INFO">${body} = {'user_id': 2, 'hrv_value': 58.938807508393154}</msg>
+<var>${body}</var>
+<arg>user_id=${USER_ID}</arg>
+<arg>hrv_value=${hrv_value}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.929730" elapsed="0.000000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.933915" level="INFO">POST Request : url=http://localhost:3000/api/hrv 
+ path_url=/api/hrv 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU', 'Content-Length': '47', 'Content-Type': 'application/json'} 
+ body=b'{"user_id": 2, "hrv_value": 58.938807508393154}' 
+ </msg>
+<msg time="2025-04-23T01:27:40.933915" level="INFO">POST Response : url=http://localhost:3000/api/hrv 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '44', 'ETag': 'W/"2c-4bDte6bO+wl0MRjl9Bzs7S9/Ar8"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"HRV reading stored","hrv_id":23} 
+ </msg>
+<arg>url=${BASE_URL}/hrv</arg>
+<arg>json=${body}</arg>
+<arg>headers=${AUTH_HEADERS}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.929730" elapsed="0.004185"/>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.937915" level="INFO">GET Request : url=http://localhost:3000/api/hrv?user_id=2 
+ path_url=/api/hrv?user_id=2 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU'} 
+ body=None 
+ </msg>
+<msg time="2025-04-23T01:27:40.937915" level="INFO">GET Response : url=http://localhost:3000/api/hrv?user_id=2 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '1466', 'ETag': 'W/"5ba-lWaugbrF4FYgtWk/TLMx36o+NuA"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body=[{"reading_time":"2025-04-22T22:27:40.000Z","hrv_value":58.9388},{"reading_time":"2025-04-22T22:27:40.000Z","hrv_value":31.2394},{"reading_time":"2025-04-22T22:27:15.000Z","hrv_value":58.7059},{"reading_time":"2025-04-22T22:27:15.000Z","hrv_value":77.2553},{"reading_time":"2025-04-22T22:26:31.000Z","hrv_value":33.178},{"reading_time":"2025-04-22T22:26:31.000Z","hrv_value":51.416},{"reading_time":"2025-04-22T22:19:23.000Z","hrv_value":38.0082},{"reading_time":"2025-04-22T22:18:32.000Z","hrv_value":56.8373},{"reading_time":"2025-04-22T22:15:06.000Z","hrv_value":81.6214},{"reading_time":"2025-04-22T22:14:46.000Z","hrv_value":82.639},{"reading_time":"2025-04-22T22:12:41.000Z","hrv_value":32.0243},{"reading_time":"2025-04-22T22:11:40.000Z","hrv_value":77.0291},{"reading_time":"2025-04-22T22:11:03.000Z","hrv_value":49.768},{"reading_time":"2025-04-22T22:10:29.000Z","hrv_value":39.4515},{"reading_time":"2025-04-22T22:09:10.000Z","hrv_value":36.9944},{"reading_time":"2025-04-22T22:03:07.000Z","hrv_value":36.0049},{"reading_time":"2025-04-22T22:00:45.000Z","hrv_value":43.2358},{"reading_time":"2025-04-22T21:56:27.000Z","hrv_value":30.5929},{"reading_time":"2025-04-22T21:52:37.000Z","hrv_value":39.96},{"reading_time":"2025-04-22T21:52:03.000Z","hrv_value":39.9995},{"reading_time":"2025-04-22T21:51:12.000Z","hrv_value":30.4051},{"reading_time":"2025-04-22T21:50:18.000Z","hrv_value":32.7157},{"reading_time":"2025-04-22T21:49:04.000Z","hrv_value":32.679}] 
+ </msg>
+<msg time="2025-04-23T01:27:40.937915" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/hrv?user_id=${USER_ID}</arg>
+<arg>headers=${AUTH_HEADERS}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.934413" elapsed="0.003502"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.938922" elapsed="0.000000"/>
+</kw>
+<kw name="Log List" owner="Collections">
+<msg time="2025-04-23T01:27:40.939431" level="INFO">List length is 23 and it contains following items:
+0: {'reading_time': '2025-04-22T22:27:40.000Z', 'hrv_value': 58.9388}
+1: {'reading_time': '2025-04-22T22:27:40.000Z', 'hrv_value': 31.2394}
+2: {'reading_time': '2025-04-22T22:27:15.000Z', 'hrv_value': 58.7059}
+3: {'reading_time': '2025-04-22T22:27:15.000Z', 'hrv_value': 77.2553}
+4: {'reading_time': '2025-04-22T22:26:31.000Z', 'hrv_value': 33.178}
+5: {'reading_time': '2025-04-22T22:26:31.000Z', 'hrv_value': 51.416}
+6: {'reading_time': '2025-04-22T22:19:23.000Z', 'hrv_value': 38.0082}
+7: {'reading_time': '2025-04-22T22:18:32.000Z', 'hrv_value': 56.8373}
+8: {'reading_time': '2025-04-22T22:15:06.000Z', 'hrv_value': 81.6214}
+9: {'reading_time': '2025-04-22T22:14:46.000Z', 'hrv_value': 82.639}
+10: {'reading_time': '2025-04-22T22:12:41.000Z', 'hrv_value': 32.0243}
+11: {'reading_time': '2025-04-22T22:11:40.000Z', 'hrv_value': 77.0291}
+12: {'reading_time': '2025-04-22T22:11:03.000Z', 'hrv_value': 49.768}
+13: {'reading_time': '2025-04-22T22:10:29.000Z', 'hrv_value': 39.4515}
+14: {'reading_time': '2025-04-22T22:09:10.000Z', 'hrv_value': 36.9944}
+15: {'reading_time': '2025-04-22T22:03:07.000Z', 'hrv_value': 36.0049}
+16: {'reading_time': '2025-04-22T22:00:45.000Z', 'hrv_value': 43.2358}
+17: {'reading_time': '2025-04-22T21:56:27.000Z', 'hrv_value': 30.5929}
+18: {'reading_time': '2025-04-22T21:52:37.000Z', 'hrv_value': 39.96}
+19: {'reading_time': '2025-04-22T21:52:03.000Z', 'hrv_value': 39.9995}
+20: {'reading_time': '2025-04-22T21:51:12.000Z', 'hrv_value': 30.4051}
+21: {'reading_time': '2025-04-22T21:50:18.000Z', 'hrv_value': 32.7157}
+22: {'reading_time': '2025-04-22T21:49:04.000Z', 'hrv_value': 32.679}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the length and contents of the ``list`` using given ``level``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.938922" elapsed="0.000509"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.939930" level="INFO">${readings} = [{'reading_time': '2025-04-22T22:27:40.000Z', 'hrv_value': 58.9388}, {'reading_time': '2025-04-22T22:27:40.000Z', 'hrv_value': 31.2394}, {'reading_time': '2025-04-22T22:27:15.000Z', 'hrv_value': 58.70...</msg>
+<var>${readings}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.939431" elapsed="0.000499"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>len(${readings}) &gt;= 1</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.940430" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="len(${readings}) &gt; 0">
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${readings[0]}</arg>
+<arg>reading_time</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.940930" elapsed="0.000499"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${readings[0]}</arg>
+<arg>hrv_value</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.941931" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2025-04-23T01:27:40.940930" elapsed="0.001001"/>
+</branch>
+<status status="PASS" start="2025-04-23T01:27:40.940930" elapsed="0.001001"/>
+</if>
+<doc>Test retrieving HRV readings for the logged-in user.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.928195" elapsed="0.014235"/>
+</test>
+<test id="s1-t9" name="Get HRV Readings Without User ID" line="129">
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-04-23T01:27:40.945429" level="INFO">GET Request : url=http://localhost:3000/api/hrv 
+ path_url=/api/hrv 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM2MDg2MCwiZXhwIjoxNzQ1NDQ3MjYwfQ.Iaqjgsstpg-hnMRyHEHl9Xo6TUxXRpyhHPZIKmrFXcU'} 
+ body=None 
+ </msg>
+<msg time="2025-04-23T01:27:40.945429" level="INFO">GET Response : url=http://localhost:3000/api/hrv 
+ status=400, reason=Bad Request 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '38', 'ETag': 'W/"26-Cgz94rxv6W4wobaHuHThL8vQBn4"', 'Date': 'Tue, 22 Apr 2025 22:27:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Missing user_id in query"} 
+ </msg>
+<msg time="2025-04-23T01:27:40.945429" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/hrv</arg>
+<arg>headers=${AUTH_HEADERS}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.943428" elapsed="0.002001"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-23T01:27:40.945930" level="INFO">${json} = {'message': 'Missing user_id in query'}</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.945930" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.946428" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${json}[message]</arg>
+<arg>Missing user_id in query</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.946428" elapsed="0.000000"/>
+</kw>
+<doc>Test retrieving HRV readings without providing a user_id.</doc>
+<status status="PASS" start="2025-04-23T01:27:40.942929" elapsed="0.004000"/>
+</test>
+<status status="PASS" start="2025-04-23T01:27:40.153675" elapsed="0.793254"/>
+</suite>
+<statistics>
+<total>
+<stat pass="9" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="backendTest" id="s1" pass="9" fail="0" skip="0">backendTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
