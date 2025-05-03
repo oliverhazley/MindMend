@@ -1,4 +1,8 @@
 // src/scripts/logout.js
+// THIS IS THE LOGOUT FUNCTIONALITY.
+// IT HANDLES THE LOGOUT PROCESS, INCLUDING CLEARING LOCAL STORAGE AND REDIRECTING TO THE LANDING PAGE.
+// IT ALSO HANDLES THE NAVIGATION BAR UPDATES.
+// -----------------------------------------------------------------------------
 
 import { showPage } from "./router.js";
 import { stopAutoRMSSDSave } from "./polarConnect.js"; //  Stop RMSSD saving

@@ -1,5 +1,13 @@
 // src/scripts/main.js
 
+// THIS IS A MIX OF STUFF THAT ISN'T SPECIFIC TO ANY ONE PAGE,
+// BUT IS STILL IMPORTANT FOR THE APP TO WORK PROPERLY.
+// IT HANDLES THE THEME TOGGLE, AND LANGUAGE SWITCHING
+// WE ALSO HAVE SOME PDF EXPORT LOGIC HERE.
+// IT'S A BIT OF A MESS, BUT IT WORKS FOR NOW.
+// WE CAN REFACTOR LATER IF WE NEED TO.
+// -----------------------------------------------------------------------------
+
 import "../styles/tailwind.css";
 import { routerInit } from "./router.js";
 import { updateNavbar } from "./navbar.js";
@@ -36,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("beforeunload", () => {
   stopAutoRMSSDSave();
 });
+
 
 
 // Theme toggle logic (once DOM is ready)

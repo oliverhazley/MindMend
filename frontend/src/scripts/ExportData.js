@@ -1,15 +1,13 @@
-// -----------------------------------------------------------------------------
-//  exportHRV.js — ultra‑lean PDF export for MindMend (no charts, light spacing)
-// -----------------------------------------------------------------------------
-//  Sections / page order
-//      1. Cover page                    – title + export date
-//      2. Stress‑zone distribution      – whole dataset         (page 1)
-//      3. Past 12 months summary        – newest → oldest       (page 1, after #2)
-//      4. Past 31 days summary          – newest → oldest       (page 2)
-// -----------------------------------------------------------------------------
-//  Deps:  jspdf   jspdf-autotable
-//         npm i jspdf jspdf-autotable
-// -----------------------------------------------------------------------------
+// ExportData.js
+// this file is responsible for exporting the HRV data to a PDF file
+// it uses the jsPDF library to create the PDF and the jspdf-autotable plugin to create tables
+// it also includes functions to bucket the data by day and month, and to calculate stress zones
+// The format of the pdf is as follows:
+// 1. Cover page with title and export date
+// 2. Stress zone distribution table
+// 3. Past 12 months summary table
+// 4. Past 31 days summary table
+// ----------------------------------------------------------------------
 
 import jsPDF     from "jspdf";
 import autoTable from "jspdf-autotable";

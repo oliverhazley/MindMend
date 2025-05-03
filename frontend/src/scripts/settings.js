@@ -1,4 +1,10 @@
 // src/scripts/settings.js
+// THIS IS THE SETTINGS PAGE.
+// IT HANDLES THE SETTINGS FUNCTIONALITY.
+// IT ALLOWS USERS TO CONNECT THEIR POLAR H10 HEART RATE MONITOR.
+// COPY OF THE DASHBOARD PAGE BUTTON, BUT WITHOUT THE DASHBOARD SPECIFIC LOGIC.
+// -----------------------------------------------------------------------------
+
 import { connectPolarH10 } from "./polarConnect.js";
 
 // This function gets called when the settings page is loaded

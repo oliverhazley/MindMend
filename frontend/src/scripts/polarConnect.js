@@ -1,3 +1,20 @@
+// polarConnect.js
+// this file handles the connection to the Polar H10 heart rate monitor.
+// it is responsible for connecting to the device, handling notifications, and uploading RMSSD data to the backend.
+// it uses the Web Bluetooth API to connect to the device and fetch heart rate and RR interval data.
+// it also includes functions to calculate RMSSD and correct RR intervals.
+// it is used in the dashboard and settings pages to display heart rate and RMSSD data.
+// it is responsible for managing the connection state, including connecting and disconnecting from the device.
+// it also includes functions to start and stop auto-saving RMSSD data to the backend.
+// without a connection, the user cannot access the heart rate and RMSSD data.
+// it is important to note that the Polar H10 device must be in range and powered on for the connection to work.
+// the connection process is initiated by the user clicking a button in the UI.
+// unfortunately, the web bluetooth api is not supported by apple devices,
+// so the connection process will not work on iOS devices.
+// this is because the webkit bluetooth api is not implemented in the webkit engine used by safari.
+// even if the user uses chrome, it defaults to the webkit engine via safari.
+// the connection process will work on android devices and most modern browsers.
+
 import { API_BASE_URL } from "./config.js";
 
 // Internal state

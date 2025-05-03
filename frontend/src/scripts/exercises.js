@@ -1,3 +1,12 @@
+// exercises.js
+// this is the main file for the exercises page
+// it contains the logic for the mindfulness and breathing exercises
+// it uses the lucide icon library for icons
+// it also contains the logic for the audio players and progress bars
+// it is responsible for displaying the mindfulness and breathing exercises
+// and handling the play/pause/reset functionality for the audio players
+// -------------------------------------------------------
+
 import { requireAuth } from "./router.js";
 import { getCurrentPulse, getCurrentRMSSD } from "./polarConnect.js";
 

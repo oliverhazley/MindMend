@@ -1,3 +1,10 @@
+// info.js
+// this file handles the info page, including the accordion functionality.
+// it is responsible for displaying information about the app, including the privacy policy and terms of service.
+// it uses the lucide library for icons and requires authentication to access.
+// it also includes functions to initialize the page and handle the accordion toggle logic.
+// ----------------------------------------------------------------------
+
 import { requireAuth } from "./router.js";
 
 export function initInfo() {
