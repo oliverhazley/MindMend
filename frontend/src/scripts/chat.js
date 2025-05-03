@@ -1,5 +1,10 @@
 // src/scripts/chat.js
 
+// THIS IS THE CHAT PAGE. IT HANDLES THE CHAT FUNCTIONALITY.
+// IT ALLOWS USERS TO SEND MESSAGES TO THE CHATBOT AND RECEIVE RESPONSES.
+// IT ALSO HANDLES THE UI FOR THE CHAT WINDOW AND MESSAGE BUBBLES.
+// -----------------------------------------------------------------------------
+
 import { API_BASE_URL } from "./config.js";
 import { requireAuth } from "./router.js";
 
@@ -21,7 +26,7 @@ export function initChat() {
 
       // Display user message
       const userBubble = document.createElement("div");
-      userBubble.className = "p-2 bg-accent text-white rounded-md self-end max-w-sm ml-auto";
+      userBubble.className = "user-bubble p-2 bg-accent text-white rounded-md self-end max-w-sm ml-auto";
       userBubble.innerText = userMsg;
       chatWindow.appendChild(userBubble);
       chatInput.value = "";

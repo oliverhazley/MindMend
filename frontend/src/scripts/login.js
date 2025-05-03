@@ -1,5 +1,10 @@
 // src/scripts/login.js
 
+// THIS IS THE LOGIN PAGE. IT HANDLES THE LOGIN FUNCTIONALITY.
+// IT ALLOWS USERS TO ENTER THEIR CREDENTIALS AND LOG IN TO THE APP.
+// IT ALSO HANDLES THE UI FOR THE LOGIN FORM.
+// -----------------------------------------------------------------------------
+
 import { API_BASE_URL } from "./config.js";
 
 let isLoginInitialized = false; // Guard to prevent multiple initializations

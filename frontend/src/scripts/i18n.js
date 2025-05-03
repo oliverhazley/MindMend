@@ -1,4 +1,8 @@
 // src/scripts/i18n.js
+// i18n stands for internationalization, which is the process of designing a software application
+// so that it can be adapted to various languages and regions without requiring engineering changes.
+// this file handles the loading of language files, switching between languages, and updating the UI accordingly.
+// -----------------------------------------------------------------------------
 
 const STORAGE_KEY = 'lang';
 let currentLang = localStorage.getItem(STORAGE_KEY) || 'en';

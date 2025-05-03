@@ -1,4 +1,11 @@
 // src/scripts/signup.js
+// THIS IS THE SIGNUP PAGE.
+// IT HANDLES THE SIGNUP FUNCTIONALITY.
+// IT ALLOWS USERS TO ENTER THEIR CREDENTIALS AND SIGN UP FOR AN ACCOUNT.
+// IT ALSO HANDLES THE UI FOR THE SIGNUP FORM.
+// WE CHECK FOR ERRORS AND ALERT THE USER IF SOMETHING GOES WRONG.
+// WE CHECK IF EMAIL IS ALREADY REGISTERED.
+// -----------------------------------------------------------------------------
 
 import { API_BASE_URL } from "./config.js";
 

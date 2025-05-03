@@ -1,3 +1,12 @@
+// dashboard.js
+// This file contains the logic for the dashboard page of the MindMend app.
+// It includes functions to fetch and display HRV data, connect to the Polar H10 device,
+// and render various charts to visualize the data.
+// it is responsible for displaying the user's heart rate variability (HRV) data,
+// including live updates from the Polar H10 device.
+// It uses Chart.js to create visualizations and fetches data from the backend API.
+// ----------------------------------------------------------------------
+
 import {
   getCurrentPulse,
   getCurrentRMSSD,

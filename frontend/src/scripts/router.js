@@ -1,6 +1,12 @@
 // src/scripts/router.js
-// THIS IS THE HEART AND SOUL OF OUR SPA (SINGLE PAGE APPLICATION). WITHOUT THIS
-// OUR APP WOULD NOT WORK. WE WOULD LOSE BLUETOOTH CONNECTION ON REFRESH.
+// THIS IS THE ROUTER FOR OUR SINGLE PAGE APPLICATION (SPA).
+// IT HANDLES THE NAVIGATION BETWEEN DIFFERENT PAGES OF THE APP.
+// IT ALSO HANDLES THE INITIALIZATION OF DIFFERENT SECTIONS OF THE APP.
+// WITHOUT THIS, WE WOULD HAVE TO RELOAD THE PAGE EVERY TIME WE NAVIGATE.
+// AND WE WOULD LOSE OUR BLUETOOTH CONNECTION.
+// RENDERING OUR APP USELESS FOR ITS INTEDED USE.
+// THIS IS THE HEART AND SOUL OF OUR SPA.
+// -----------------------------------------------------------------------------
 
 //  Section initializers
 import { initDashboard } from "./dashboard.js";
@@ -29,6 +35,7 @@ const routes = [
   "signup",
 ];
 
+initLogout();
 
 // If no JWT is present, redirect to #/login and return false.
 export function requireAuth() {
