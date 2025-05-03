@@ -1,0 +1,108 @@
+{
+  "page.title": "MindMend",
+
+  "nav.brand": "MindMend",
+  "nav.dashboard": "Dashboard",
+  "nav.exercises": "Exercises",
+  "nav.tetris": "Tetris",
+  "nav.chat": "Chat",
+  "nav.info": "Info",
+  "nav.settings": "Settings",
+  "nav.logout": "Logout",
+  "nav.login": "Login",
+  "nav.signup": "Sign Up",
+
+  "home.welcome": "Welcome to MindMend",
+  "home.subtitle": "Your personal tool for HRV monitoring, relaxation, and PTSD support.",
+  "home.login": "Log In",
+  "home.signup": "Sign Up",
+
+  "chat.title": "Support Chat",
+  "chat.greeting": "Hello, I'm here to help you manage stress...",
+  "chat.placeholder": "Type your message...",
+  "chat.sendBtn": "Send",
+
+  "exercises.metricsTitle": "Metrics",
+  "exercises.pulseLabel": "Current Pulse",
+  "exercises.rmssdLabel": "Current RMSSD",
+  "exercises.mindfulnessTitle": "Mindfulness Exercises",
+  "exercises.breathingTitle": "Breathing Exercises",
+
+  "tetris.instructions": "Use arrow keys (← ↑ → ↓) or swipe. ↓ = instant drop",
+  "tetris.score": "Score",
+  "tetris.nextLabel": "Next Piece:",
+  "tetris.startBtn": "Start",
+  "tetris.pauseBtn": "Pause",
+  "tetris.restartBtn": "Restart",
+
+  "info.title": "MindMend Overview",
+  "info.intro": "MindMend is designed to support mental wellness and PTSD management by leveraging Heart Rate Variability (HRV) data and evidence-based techniques. Compatible with devices such as Oura Ring, Polar H10, and other HRV-enabled sensors, it offers actionable insights, guided exercises, and interactive tools like Tetris therapy.",
+
+  "info.hrvQuestion": "What is HRV?",
+  "info.hrvAnswer": "Heart Rate Variability (HRV) measures the variation in time between heartbeats. It's an important indicator of autonomic nervous system health, reflecting stress resilience and emotional regulation.",
+
+  "info.ptsdQuestion": "PTSD and HRV",
+  "info.ptsdAnswer": "PTSD can significantly impact HRV. Individuals with PTSD often show lower HRV, indicating chronic stress and reduced ability to adapt to emotional challenges. Monitoring HRV can help track recovery and stress management.",
+
+  "info.howAppHelpsQuestion": "How This App Helps",
+  "info.howAppHelpsAnswer": "Our app provides real-time HRV tracking, personalized interventions like mindfulness exercises, and data insights. By monitoring HRV patterns, users can better understand their stress responses and develop coping strategies.",
+
+  "info.tetrisQuestion": "Tetris, really?",
+  "info.tetrisAnswer": "Research shows Tetris can interrupt traumatic memory formation. Cognitive interference prevents vivid memory consolidation, helping reduce intrusive memories and PTSD symptom intensity. It's a non-invasive, engaging mental health intervention.",
+
+  "info.exportQuestion": "How do I export data?",
+  "info.exportAnswer": "Click the “Export Data to PDF” button on your Dashboard or Settings page. Download your report and share it with your therapist for deeper insights.",
+
+  "settings.connectTitle": "Connect to Polar H10",
+  "settings.connectBtn": "Connect",
+  "settings.controlsTitle": "App Controls",
+  "settings.exportBtn": "Export Data to PDF",
+
+  "login.title": "Log In",
+  "login.emailLabel": "Email",
+  "login.passwordLabel": "Password",
+  "login.submit": "Log In",
+
+  "signup.title": "Create an Account",
+  "signup.nameLabel": "Name",
+  "signup.emailLabel": "Email",
+  "signup.passwordLabel": "Password",
+  "signup.confirmLabel": "Confirm Password",
+  "signup.submit": "Sign Up",
+
+  "footer.copyright": "© 2025 MindMend. All rights reserved.",
+
+  "dashboard.connectTitle": "Connect to Polar H10",
+  "tooltip.connectInfo": "Click “Connect”, select your device, press “Pair” and wait while it connects.",
+  "dashboard.connectBtn": "Connect",
+  "dashboard.batteryText": "Battery: --",
+
+  "dashboard.pulseTitle": "Current Pulse",
+  "tooltip.pulseInfo": "Your heart’s beats per minute. Higher means faster heartbeat.",
+  "dashboard.pulseRangeLow": "Your pulse is in a healthy range.",
+
+  "dashboard.rrTitle": "RR Intervals",
+  "tooltip.rrInfo": "Time between heartbeats, in milliseconds. Shows variability.",
+
+  "dashboard.rmssdTitle": "Calculated RMSSD",
+  "tooltip.rmssdInfo": "A measure of heart rate variability. Higher is generally better.",
+  "dashboard.rmssdRangeModerate": "Your HRV is moderate, suggesting balanced recovery and stress levels.",
+
+  "filter.select": "Select",
+  "filter.day": "Day",
+  "filter.week": "Week",
+  "filter.month": "Month",
+  "filter.year": "Year",
+
+  "dashboard.progressTitle": "HRV Progress",
+  "tooltip.progressInfo": "HRV Progress shows how your average heart rate variability changes over time. Higher values usually reflect better recovery or stress resilience.",
+  "dashboard.progressLoading": "Loading HRV trend data...",
+
+  "dashboard.distributionTitle": "HRV Distribution",
+  "tooltip.distributionInfo": "HRV Distribution shows how your readings are spread across different ranges — helping identify consistency or stress fluctuations.",
+  "dashboard.distributionLoading": "Loading HRV distribution...",
+
+  "dashboard.exportTitle": "Export Data For Therapist",
+  "tooltip.exportInfo": "Click the “Export Data to PDF” button on your Dashboard or Settings page. Download your report and share it with your therapist for deeper insights.",
+  "dashboard.exportBtn": "Export Data to PDF"
+}

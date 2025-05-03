@@ -1,4 +1,4 @@
-import { requireAuth } from "./utils.js";
+import { requireAuth } from "./router.js";
 
 export function initInfo() {
   if (!requireAuth()) return;

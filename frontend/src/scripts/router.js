@@ -1,4 +1,8 @@
-// ✅ Section initializers
+// src/scripts/router.js
+// THIS IS THE HEART AND SOUL OF OUR SPA (SINGLE PAGE APPLICATION). WITHOUT THIS
+// OUR APP WOULD NOT WORK. WE WOULD LOSE BLUETOOTH CONNECTION ON REFRESH.
+
+//  Section initializers
 import { initDashboard } from "./dashboard.js";
 import { initChat } from "./chat.js";
 import { initExercises, stopAllExerciseAudio } from "./exercises.js";
@@ -7,14 +11,14 @@ import { initInfo } from "./info.js";
 import { initSettings } from "./settings.js";
 import { initLogin } from "./login.js";
 import { initSignup } from "./signup.js";
-
-// ✅ Global utilities
-import { requireAuth } from "./utils.js";
-import { updateNavbar } from "./navbar.js";
 import { initLogout } from "./logout.js";
 
-// ✅ List of valid route names
+//  Global utilities
+import { updateNavbar } from "./navbar.js";
+
+//  List of valid route names
 const routes = [
+  "home",
   "dashboard",
   "chat",
   "exercises",
@@ -25,21 +29,31 @@ const routes = [
   "signup",
 ];
 
-// ✅ Stop all audio playback when navigating
+
+// If no JWT is present, redirect to #/login and return false.
+export function requireAuth() {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.hash = "#/home";
+    return false;
+  }
+  return true;
+}
+
+//  Stop all audio playback when navigating
 function stopAllAudio() {
   document.querySelectorAll("audio").forEach(audio => {
     audio.pause();
     audio.currentTime = 0;
   });
-
-  stopAllExerciseAudio(); // ✅ Also stop manually created audio players
+  stopAllExerciseAudio();
 }
 
-// ✅ Show one SPA page and hide the rest
+// Show one page on our SPA and hide the rest
 export function showPage(page) {
-  stopAllAudio(); // ✅ Stop sound before switching page
+  stopAllAudio();
 
-  document.querySelectorAll(".spa-page").forEach((section) => {
+  document.querySelectorAll(".spa-page").forEach(section => {
     section.classList.add("hidden");
   });
 
@@ -47,27 +61,28 @@ export function showPage(page) {
   if (target) {
     target.classList.remove("hidden");
     window.scrollTo({ top: 0 });
-  } else {
-    showPage("dashboard"); // fallback
   }
 
-  // ✅ Toggle nav visibility
+  // Toggle nav visibility
   const token = localStorage.getItem("token");
-  const fullNav = document.querySelectorAll(".spa-protected-nav");
+  const fullNav   = document.querySelectorAll(".spa-protected-nav");
   const publicNav = document.querySelectorAll(".spa-public-nav");
 
   if (token) {
-    fullNav.forEach((el) => el.classList.remove("hidden"));
-    publicNav.forEach((el) => el.classList.add("hidden"));
+    fullNav.forEach(el => el.classList.remove("hidden"));
+    publicNav.forEach(el => el.classList.add("hidden"));
   } else {
-    fullNav.forEach((el) => el.classList.add("hidden"));
-    publicNav.forEach((el) => el.classList.remove("hidden"));
+    fullNav.forEach(el => el.classList.add("hidden"));
+    publicNav.forEach(el => el.classList.remove("hidden"));
   }
 }
 
-// ✅ Load JS logic for a given route
+//  Load JS logic for the routes
 function loadPageLogic(page) {
   switch (page) {
+    case "home":
+      // nothing special to initialize
+      break;
     case "dashboard":
       if (requireAuth()) initDashboard();
       break;
@@ -88,28 +103,39 @@ function loadPageLogic(page) {
       break;
     case "login":
       initLogin();
-      initLogout(); // ✅ Bind logout logic to button
+      initLogout();
       break;
     case "signup":
       initSignup();
       break;
     default:
-      if (requireAuth()) initDashboard();
+      // fallback to dashboard if authenticated, else home
+      if (requireAuth()) {
+        initDashboard();
+      }
   }
 }
 
-// ✅ React to hash changes like #/dashboard
+// React to hash changes like #/dashboard or #/exercises
 function handleRouteChange() {
   const hash = window.location.hash.replace("#/", "");
-  const page = routes.includes(hash) ? hash : "dashboard";
+  let page;
+
+  if (hash === "" || hash === "home") {
+    page = "home";
+  } else if (routes.includes(hash)) {
+    page = hash;
+  } else {
+    // unknown route: go to dashboard if logged in, else home
+    page = localStorage.getItem("token") ? "dashboard" : "home";
+  }
 
   showPage(page);
   loadPageLogic(page);
-
-  updateNavbar(); // ✅ Keep nav state accurate
+  updateNavbar();
 }
 
-// ✅ Init SPA routing
+// Init SPA routing
 export function routerInit() {
   window.addEventListener("hashchange", handleRouteChange);
   handleRouteChange();

@@ -1,4 +1,4 @@
-import { requireAuth } from "./utils.js";
+import { requireAuth } from "./router.js";
 import { getCurrentPulse, getCurrentRMSSD } from "./polarConnect.js";
 
 const audioPlayers = []; // ✅ Track all manually created audio players
