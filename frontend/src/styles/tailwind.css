@@ -13,10 +13,12 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+
 .card {
   /* A card container with our theme background */
   @apply bg-primary-light/80 rounded-md pb-8 shadow-md;
 }
+
 
 .excard {
    /* card container for exercises, no padding with our theme background */
@@ -75,6 +77,17 @@ body {
   margin-bottom: 0 !important;
 }
 
+/* Theme toggle button */
+.theme-toggle-btn {
+  background-color: #1E90FF; /* Accent color */
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-toggle-btn:hover {
+  background-color: #3b82f6; /* Lighter accent */
+}
+
 
 
 /* Buttons with consistent look */
@@ -93,4 +106,216 @@ body {
 }
 .btn-success {
   @apply bg-success text-white hover:bg-green-500;
+}
+
+
+
+
+
+
+
+/* --------------------------------------------------
+   Light-mode overrides
+-------------------------------------------------- */
+body.light-mode {
+  background: #f9f9f9;
+  color: #333333;
+}
+
+/* cards and info-cards */
+body.light-mode .card,
+body.light-mode .excard,
+body.light-mode .infocard {
+  background-color: #e0e0e0;  /* lightmode.card */
+  border-color:     #d6d6d6;  /* lightmode.border */
+}
+
+/* headings inside cards & info-cards */
+body.light-mode h2,
+body.light-mode .text-lg.font-semibold {
+  color: #333333;
+}
+
+/* override all white text */
+body.light-mode .text-white {
+  color: #333333 !important;
+}
+
+/* softer grays on light */
+body.light-mode .text-gray-200 { color: #666666 !important; }
+body.light-mode .text-gray-300,
+body.light-mode .text-gray-400 { color: #777777 !important; }
+
+/* nav link hover accent */
+body.light-mode .hover\:text-accent:hover {
+  color: #007bff !important;  /* lightmode.accent */
+}
+/* -------------------------
+   Light-mode header backgrounds
+------------------------- */
+body.light-mode .bg-primary {
+  /* card & section headers */
+  background-color: #d6d6d6 !important;
+}
+
+/* -------------------------
+   Light-mode chat window
+------------------------- */
+body.light-mode .bg-card,
+body.light-mode #chatWindow {
+  background-color: #e0e0e0 !important;
+}
+/* ----------------------------------------------
+   Light-mode overrides: chat & filter & forms
+---------------------------------------------- */
+
+/*  Chat bubbles (user & bot) */
+body.light-mode #chatWindow .bg-gray-700 {
+  background-color: #d6d6d6 !important;  /* lightmode.card */
+  color: #333333 !important;              /* lightmode.text */
+}
+
+/*  Chat input field */
+body.light-mode #chatInput {
+  background-color: #e0e0e0 !important;  /* lightmode.card */
+  color: #333333 !important;             /* lightmode.text */
+}
+
+/*  Send button in chat */
+body.light-mode #chatForm .btn-primary {
+  background-color: #007bff !important;  /* lightmode.accent */
+  color: #ffffff !important;
+}
+
+/*  Global HRV filter dropdown */
+body.light-mode #globalHRVFilter {
+  background-color: #ffffff !important;   /* lightmode.DEFAULT */
+  color: #333333 !important;              /* lightmode.text */
+  border-color: #d6d6d6 !important;       /* lightmode.border */
+}
+
+/*  Login & Signup cards */
+body.light-mode #page-login .bg-primary-light,
+body.light-mode #page-signup .bg-primary-light {
+  background-color: #ffffff !important;   /* lightmode.DEFAULT */
+}
+
+body.light-mode #page-login input,
+body.light-mode #page-signup input {
+  background-color: #e0e0e0 !important;   /* lightmode.card */
+  color: #333333 !important;              /* lightmode.text */
+}
+
+/* muted label text in forms */
+body.light-mode #page-login .text-secondary,
+body.light-mode #page-signup .text-secondary {
+  color: #555555 !important;
+}
+
+/* buttons */
+body.light-mode #page-login .btn-primary,
+body.light-mode #page-signup .btn-primary,
+body.light-mode #page-dashboard .btn-primary,
+body.light-mode #page-settings .btn-primary,
+body.light-mode #page-tetris .btn-primary{
+  background-color: #007bff !important;   /* lightmode.accent */
+  color: #ffffff !important;
+}
+
+/* --------------------------------------
+   Light-mode overrides: navbar + mobile
+-------------------------------------- */
+
+/*  Desktop navbar bar */
+body.light-mode nav {
+  background-color: #ffffff !important;  /* white header */
+  color: #333333 !important;            /* darker text */
+}
+
+/* swap out any semi-transparent primary overlays */
+body.light-mode nav.bg-primary-light\/80 {
+  background-color: rgba(255,255,255,0.9) !important;
+}
+
+/* nav links */
+body.light-mode nav a,
+body.light-mode nav .theme-toggle-btn {
+  color: #333333 !important;
+}
+
+/* ensure hover accent still works */
+body.light-mode nav .hover\:text-accent:hover {
+  color: #007bff !important;
+}
+
+/* Mobile menu button bar */
+body.light-mode .theme-toggle-btn {
+  background-color: #e0e0e0 !important;
+}
+
+/* Mobile slide-down menu */
+body.light-mode #mobileMenu {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+}
+
+/* mobile links */
+body.light-mode #mobileMenu a {
+  color: #333333 !important;
+}
+
+/* mobile close icon */
+body.light-mode #closeIcon,
+body.light-mode #burgerIcon {
+  stroke: #333333 !important;
+}
+
+/* ---------------------------------------
+   Light-mode: info tooltip styling
+--------------------------------------- */
+body.light-mode .info-icon + div {
+  background-color: #f0f0f0 !important;
+  color: #333333 !important;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ----------------------------------
+   Light-mode: recolor exercise reset button
+---------------------------------- */
+
+body.light-mode .resetBtn {
+  color: #ffffff !important;
+}
+
+body.light-mode .resetBtn:hover {
+  background-color: #ef4444 !important; /* Tailwind red-500 */
+}
+
+/* ------------------------------------------
+   Light-mode: force white icon in play button
+------------------------------------------ */
+body.light-mode .playPauseBtn svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* ---------------------------------------
+   Light-mode: Tetris control button text
+--------------------------------------- */
+body.light-mode #startBtn,
+body.light-mode #pauseResumeBtn,
+body.light-mode #restartTetrisBtn {
+  color: #ffffff !important;
+}
+
+/* --------------------------------
+   Light-mode: footer adjustments
+-------------------------------- */
+body.light-mode footer {
+  background-color: #f0f0f0 !important;
+}
+
+body.light-mode footer p {
+  color: #555555 !important;
 }

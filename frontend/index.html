@@ -16,39 +16,53 @@
   <!-- NAVBAR (Wrapped for auth control) -->
   <div id="navbarWrapper" class="relative z-50">
     <nav class="w-full bg-primary-light/80 px-6 py-4 flex justify-between items-center shadow-md relative">
-      <!-- Left side brand -->
+      <!-- Brand on the left -->
       <div class="text-2xl font-bold text-white">
         <a href="#/dashboard" class="hover:text-accent">MindMend</a>
       </div>
 
-      <!-- Desktop links -->
-      <div class="hidden md:flex space-x-6 text-white">
-        <a href="#/dashboard" class="spa-protected-nav hover:text-accent hidden">Dashboard</a>
-        <a href="#/exercises" class="spa-protected-nav hover:text-accent hidden">Exercises</a>
-        <a href="#/tetris" class="spa-protected-nav hover:text-accent hidden">Tetris</a>
-        <a href="#/chat" class="spa-protected-nav hover:text-accent hidden">Chat</a>
-        <a href="#/info" class="spa-protected-nav hover:text-accent hidden">Info</a>
-        <a href="#/settings" class="spa-protected-nav hover:text-accent hidden">Settings</a>
+      <!-- Desktop links + desktop theme toggle -->
+      <div class="hidden md:flex items-center space-x-6 text-white">
+        <a href="#/dashboard"      class="spa-protected-nav hover:text-accent hidden">Dashboard</a>
+        <a href="#/exercises"      class="spa-protected-nav hover:text-accent hidden">Exercises</a>
+        <a href="#/tetris"         class="spa-protected-nav hover:text-accent hidden">Tetris</a>
+        <a href="#/chat"           class="spa-protected-nav hover:text-accent hidden">Chat</a>
+        <a href="#/info"           class="spa-protected-nav hover:text-accent hidden">Info</a>
+        <a href="#/settings"       class="spa-protected-nav hover:text-accent hidden">Settings</a>
         <a href="#/login" id="logoutButton" class="spa-protected-nav hover:text-accent hidden">Logout</a>
 
-        <!-- Public-only links -->
-        <a href="#/login" class="spa-public-nav hover:text-accent">Login</a>
+        <!-- public-only links -->
+        <a href="#/login"  class="spa-public-nav hover:text-accent">Login</a>
         <a href="#/signup" class="spa-public-nav hover:text-accent">Sign Up</a>
+
+        <!-- THEME-TOGGLE for desktop -->
+        <button id="themeToggleDesktop"
+                class="theme-toggle-btn flex items-center justify-center w-10 h-10 rounded-md">
+          <i data-lucide="sun" class="theme-icon w-6 h-6"></i>
+        </button>
       </div>
 
-      <!-- Mobile menu button -->
-      <button id="burgerBtn" class="md:hidden text-white z-50 relative">
-        <!-- Hamburger Icon (default) -->
-        <svg id="burgerIcon" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-
-        <!-- Close Icon (hidden by default) -->
-        <svg id="closeIcon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+      <!-- Mobile controls wrapper (theme-toggle + burger) -->
+      <div class="flex items-center md:hidden space-x-2">
+        <button id="themeToggleMobile"
+                class="theme-toggle-btn flex items-center justify-center w-10 h-10 rounded-md">
+          <i data-lucide="sun" class="theme-icon w-6 h-6"></i>
+        </button>
+        <button id="burgerBtn" class="text-white z-50 relative">
+          <!-- Hamburger Icon -->
+          <svg id="burgerIcon" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!-- Close Icon -->
+          <svg id="closeIcon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
     </nav>
+
 
     <!-- Mobile dropdown -->
     <div
