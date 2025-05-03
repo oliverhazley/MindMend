@@ -4,4 +4,4 @@ const IS_DEV = window.location.hostname === "localhost";
 
 export const API_BASE_URL = IS_DEV
   ? "http://localhost:3000/api" // Dev backend
-  : "https://mind-mend.netlify.app/api"; // Production backend ???? placeholder
+  : "https://mind-mend.azurewebsites.net/api"; // Production backend
