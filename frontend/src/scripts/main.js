@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (token) {
       window.location.hash = "#/dashboard";
     } else {
-      window.location.hash = "#/login";
+      window.location.hash = "#/"; // landing page
     }
   }
 });

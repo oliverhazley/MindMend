@@ -1,7 +1,7 @@
 // src/scripts/chat.js
 
 import { API_BASE_URL } from "./config.js";
-import { requireAuth } from "./utils.js";
+import { requireAuth } from "./router.js";
 
 export function initChat() {
   console.log("Chat page loaded");

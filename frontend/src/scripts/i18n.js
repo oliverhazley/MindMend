@@ -22,16 +22,25 @@ async function initI18n() {
   document.querySelectorAll('[data-i18n-key]').forEach(el => {
     const key = el.dataset.i18nKey;
     const txt = bundle[key];
-    if (!txt) {
-      console.warn('No translation for key:', key);
-      return;
-    }
-    if ((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') && el.placeholder !== undefined) {
-      el.placeholder = txt;
-    } else {
-      el.textContent = txt;
+    if (!txt) return;
+
+    switch (el.tagName) {
+      case 'INPUT':
+      case 'TEXTAREA':
+        el.placeholder = txt;
+        break;
+      case 'OPTION':
+        // translate just the option text
+        el.textContent = txt;
+        break;
+      case 'SELECT':
+        // skip—otherwise you wipe out all your <option>s
+        break;
+      default:
+        el.textContent = txt;
     }
   });
+
 
   // update the little label in the toggle buttons
   const nextLang = currentLang === 'fi' ? 'EN' : 'FI';

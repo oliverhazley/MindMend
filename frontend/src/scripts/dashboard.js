@@ -4,7 +4,7 @@ import {
   getRRData,
   connectPolarH10,
 } from "./polarConnect.js";
-import { requireAuth } from "./utils.js";
+import { requireAuth } from "./router.js";
 import { API_BASE_URL } from "./config.js";
 
 const API_URL = `${API_BASE_URL}/hrv`;
