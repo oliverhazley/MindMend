@@ -2,59 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MindMend</title>
+  <!-- The page title, marked for translation -->
+  <title data-i18n-key="page.title">MindMend</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind CSS for styling -->
   <link rel="stylesheet" href="./dist/tailwind.css" />
+  <!-- Chart.js library for graphs -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Lucide icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="min-h-screen flex flex-col bg-gradient-to-b from-primary to-[#151721] text-white">
 
   <!-- ------------------------------------------------------- -->
-
-  <!-- NAVBAR (Wrapped for auth control) -->
+  <!-- NAVBAR (auth-aware)                                    -->
+  <!-- - Brand, protected/public links, theme & lang toggles  -->
+  <!-- - data-i18n-key on all static text for translation     -->
+  <!-- ------------------------------------------------------- -->
   <div id="navbarWrapper" class="relative z-50">
-    <nav class="w-full bg-primary-light/80 px-6 py-4 flex justify-between items-center shadow-md relative">
-      <!-- Brand on the left -->
+    <nav class="w-full bg-primary-light/80 px-6 py-4 flex justify-between items-center shadow-md">
+
+      <!-- Brand/logo on the left -->
       <div class="text-2xl font-bold text-white">
-        <a href="#/dashboard" class="hover:text-accent">MindMend</a>
+        <a href="#/dashboard"
+           class="hover:text-accent"
+           data-i18n-key="nav.brand">
+          MindMend
+        </a>
       </div>
 
-      <!-- Desktop links + desktop theme toggle -->
+      <!-- Desktop nav links + toggles -->
       <div class="hidden md:flex items-center space-x-6 text-white">
-        <a href="#/dashboard"      class="spa-protected-nav hover:text-accent hidden">Dashboard</a>
-        <a href="#/exercises"      class="spa-protected-nav hover:text-accent hidden">Exercises</a>
-        <a href="#/tetris"         class="spa-protected-nav hover:text-accent hidden">Tetris</a>
-        <a href="#/chat"           class="spa-protected-nav hover:text-accent hidden">Chat</a>
-        <a href="#/info"           class="spa-protected-nav hover:text-accent hidden">Info</a>
-        <a href="#/settings"       class="spa-protected-nav hover:text-accent hidden">Settings</a>
-        <a href="#/login" id="logoutButton" class="spa-protected-nav hover:text-accent hidden">Logout</a>
+        <!-- Authenticated-only links (shown/hidden via JS) -->
+        <a href="#/dashboard"
+           class="spa-protected-nav hover:text-accent hidden"
+           data-i18n-key="nav.dashboard">Dashboard</a>
+        <a href="#/exercises"
+           class="spa-protected-nav hover:text-accent hidden"
+           data-i18n-key="nav.exercises">Exercises</a>
+        <a href="#/tetris"
+           class="spa-protected-nav hover:text-accent hidden"
+           data-i18n-key="nav.tetris">Tetris</a>
+        <a href="#/chat"
+           class="spa-protected-nav hover:text-accent hidden"
+           data-i18n-key="nav.chat">Chat</a>
+        <a href="#/info"
+           class="spa-protected-nav hover:text-accent hidden"
+           data-i18n-key="nav.info">Info</a>
+        <a href="#/settings"
+           class="spa-protected-nav hover:text-accent hidden"
+           data-i18n-key="nav.settings">Settings</a>
+        <a href="#/login" id="logoutButton"
+           class="spa-protected-nav hover:text-accent hidden"
+           data-i18n-key="nav.logout">Logout</a>
 
-        <!-- public-only links -->
-        <a href="#/login"  class="spa-public-nav hover:text-accent">Login</a>
-        <a href="#/signup" class="spa-public-nav hover:text-accent">Sign Up</a>
+        <!-- Public-only links -->
+        <a href="#/login"
+           class="spa-public-nav hover:text-accent"
+           data-i18n-key="nav.login">Login</a>
+        <a href="#/signup"
+           class="spa-public-nav hover:text-accent"
+           data-i18n-key="nav.signup">Sign Up</a>
 
-        <!-- THEME-TOGGLE for desktop -->
-        <button id="themeToggleDesktop"
-                class="theme-toggle-btn flex items-center justify-center w-10 h-10 rounded-md">
+        <!-- Theme toggle (desktop) -->
+        <button
+          id="themeToggleDesktop"
+          class="theme-toggle-btn flex items-center justify-center w-10 h-10 rounded-md"
+          title="Toggle light/dark mode"
+        >
           <i data-lucide="sun" class="theme-icon w-6 h-6"></i>
+        </button>
+
+        <!-- Language toggle (desktop) -->
+        <button
+          id="langToggleDesktop"
+          class="lang-toggle-btn flex items-center justify-center w-10 h-10 rounded-md"
+          title="Toggle language EN / FI"
+        >
+          <span id="langIconDesktop" class="text-base font-medium">FI</span>
         </button>
       </div>
 
-      <!-- Mobile controls wrapper (theme-toggle + burger) -->
+      <!-- Mobile controls: theme & language toggles + burger menu -->
       <div class="flex items-center md:hidden space-x-2">
-        <button id="themeToggleMobile"
-                class="theme-toggle-btn flex items-center justify-center w-10 h-10 rounded-md">
+        <!-- Mobile theme toggle -->
+        <button
+          id="themeToggleMobile"
+          class="theme-toggle-btn flex items-center justify-center w-10 h-10 rounded-md"
+          title="Toggle light/dark mode"
+        >
           <i data-lucide="sun" class="theme-icon w-6 h-6"></i>
         </button>
-        <button id="burgerBtn" class="text-white z-50 relative">
+
+        <!-- Mobile language toggle -->
+        <button
+          id="langToggleMobile"
+          class="lang-toggle-btn flex items-center justify-center w-10 h-10 rounded-md"
+          title="Toggle language EN / FI"
+        >
+          <span id="langIconMobile" class="text-base font-medium">FI</span>
+        </button>
+
+        <!-- Burger menu toggle -->
+        <button id="burgerBtn"
+                class="text-white z-50 relative"
+                aria-label="Open menu">
           <!-- Hamburger Icon -->
           <svg id="burgerIcon" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2"
                viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <!-- Close Icon -->
+          <!-- Close Icon (hidden by default) -->
           <svg id="closeIcon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" stroke-width="2"
                viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -63,24 +123,22 @@
       </div>
     </nav>
 
-
-    <!-- Mobile dropdown -->
-    <div
-      id="mobileMenu"
-      class="md:hidden hidden absolute top-full left-0 w-full bg-primary-light/90 shadow-lg z-40"
-    >
+    <!-- Mobile dropdown menu -->
+    <div id="mobileMenu"
+         class="md:hidden hidden absolute top-full left-0 w-full bg-primary-light/90 shadow-lg z-40">
       <div class="flex flex-col items-center space-y-3 p-4 text-white text-center">
-        <a href="#/dashboard" class="spa-protected-nav hover:text-accent hidden">Dashboard</a>
-        <a href="#/exercises" class="spa-protected-nav hover:text-accent hidden">Exercises</a>
-        <a href="#/tetris" class="spa-protected-nav hover:text-accent hidden">Tetris</a>
-        <a href="#/chat" class="spa-protected-nav hover:text-accent hidden">Chat</a>
-        <a href="#/info" class="spa-protected-nav hover:text-accent hidden">Info</a>
-        <a href="#/settings" class="spa-protected-nav hover:text-accent hidden">Settings</a>
-        <a href="#/login" id="logoutButtonMobile" class="spa-protected-nav hover:text-accent hidden">Logout</a>
+        <!-- Auth-protected mobile links -->
+        <a href="#/dashboard" class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.dashboard">Dashboard</a>
+        <a href="#/exercises" class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.exercises">Exercises</a>
+        <a href="#/tetris"    class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.tetris">Tetris</a>
+        <a href="#/chat"      class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.chat">Chat</a>
+        <a href="#/info"      class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.info">Info</a>
+        <a href="#/settings"  class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.settings">Settings</a>
+        <a href="#/login"     id="logoutButtonMobile" class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.logout">Logout</a>
 
-        <!-- Public-only links -->
-        <a href="#/login" class="spa-public-nav hover:text-accent">Login</a>
-        <a href="#/signup" class="spa-public-nav hover:text-accent">Sign Up</a>
+        <!-- Public-only mobile links -->
+        <a href="#/login"  class="spa-public-nav hover:text-accent" data-i18n-key="nav.login">Login</a>
+        <a href="#/signup" class="spa-public-nav hover:text-accent" data-i18n-key="nav.signup">Sign Up</a>
       </div>
     </div>
   </div>
@@ -88,24 +146,34 @@
 
 
 
-
+  <!-- ------------------------------------------------------- -->
+  <!-- MAIN CONTENT WRAPPER                                   -->
   <!-- ------------------------------------------------------- -->
 
-
-  <!-- PAGES -->
   <main class="flex-1 p-4 md:p-8 max-w-5xl mx-auto w-full space-y-8">
+
 
      <!-- LANDING / HOMEPAGE -->
     <section id="page-home" class="spa-page hidden">
       <main class="flex flex-col items-center justify-center flex-1 p-6 text-center">
-        <h1 class="text-4xl font-bold text-white mb-4">Welcome to MindMend</h1>
-        <p class="text-lg text-gray-300 mb-6">Your personal tool for HRV monitoring, relaxation, and PTSD support.</p>
+        <!-- Welcome heading -->
+        <h1 class="text-4xl font-bold text-white mb-4"
+            data-i18n-key="home.welcome">
+          Welcome to MindMend
+        </h1>
+        <!-- Subheading / subtitle -->
+        <p class="text-lg text-gray-300 mb-6"
+           data-i18n-key="home.subtitle">
+          Your personal tool for HRV monitoring, relaxation, and PTSD support.
+        </p>
+        <!-- Call-to-action buttons -->
         <div class="space-x-4">
-          <a href="#/login" class="btn btn-primary">Log In</a>
-          <a href="#/signup" class="btn btn-secondary">Sign Up</a>
+          <a href="#/login"  class="btn btn-primary"  data-i18n-key="home.login">Log In</a>
+          <a href="#/signup" class="btn btn-secondary" data-i18n-key="home.signup">Sign Up</a>
         </div>
       </main>
     </section>
+
 
 
 
@@ -113,148 +181,259 @@
 
 
 
-    <!-- DASHBOARD -->
-    <section id="page-dashboard" class="spa-page hidden">
-      <main class="flex-1 p-4 md:p-8 space-y-8 max-w-5xl mx-auto w-full">
 
-        <!-- Connect to Polar H10 -->
-        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-          <div class="bg-primary px-4 py-3 flex items-center gap-4">
-            <i data-lucide="bluetooth" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold" id="polarConnectionStatus">
-              Connect to Polar H10
-            </h2>
-          </div>
-          <div class="p-4 flex flex-col items-center gap-2">
-            <button id="polarConnectBtn" class="btn btn-primary">
-              Connect
-            </button>
-            <p id="batteryLevel" class="text-sm text-gray-400 hidden"></p>
-          </div>
-        </section>
+<!-- ============================================= -->
+<!-- DASHBOARD SECTION                            -->
+<!-- - Contains real-time HRV cards                -->
+<!-- - Each card header has an info-icon tooltip  -->
+<!-- - Tooltips only appear when hovering the icon -->
+<!-- - All static text tagged with data-i18n-key   -->
+<!-- ============================================= -->
+<section id="page-dashboard" class="spa-page hidden">
+  <main class="flex-1 p-4 md:p-8 space-y-8 max-w-5xl mx-auto w-full">
 
-
-        <!-- Current Pulse Card -->
-        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-          <div class="bg-primary px-4 py-3 flex items-center gap-4">
-            <i data-lucide="heart-pulse" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold">Current Pulse</h2>
+    <!-- -------- Connect to Polar H10 Card -------- -->
+    <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+      <!-- Header: left icon+title, right info-icon -->
+      <div class="bg-primary px-4 py-3 flex items-center justify-between">
+        <!-- LEFT: icon + title -->
+        <div class="flex items-center gap-4">
+          <i data-lucide="bluetooth" class="w-6 h-6 text-accent"></i>
+          <h2 class="text-lg font-semibold" data-i18n-key="dashboard.connectTitle">
+            Connect to Polar H10
+          </h2>
+        </div>
+        <!-- RIGHT: tooltip wrapper -->
+        <div class="relative group">
+          <button class="info-icon focus:outline-none" aria-label="Info">
+            <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+          </button>
+          <div
+            class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64"
+            data-i18n-key="tooltip.connectInfo">
+            Click “Connect”, select your device, press “Pair” and wait while it connects.
           </div>
-          <div class="p-4 flex flex-col items-center justify-center text-center">
-            <div id="currentHRVValue" class="text-6xl font-bold my-2">78</div>
-            <div class="mb-4">
-              <i data-lucide="heart-pulse" class="w-12 h-12 text-red-500 pulse"></i>
-            </div>
-            <p id="currentHRVText" class="text-gray-200">
-              Your pulse is in a healthy range.
-            </p>
-          </div>
-        </section>
-
-        <!-- RR Intervals: Line Chart -->
-        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-          <div class="bg-primary px-4 py-3 flex items-center gap-4">
-            <i data-lucide="activity" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold">RR Intervals</h2>
-          </div>
-          <div class="p-4 relative w-full h-64">
-            <canvas id="rrLineChart" class="max-w-full h-full"></canvas>
-          </div>
-        </section>
-
-        <!-- Calculated RMSSD -->
-        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-          <div class="bg-primary px-4 py-3 flex items-center gap-4">
-            <i data-lucide="hand-heart" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold">Calculated RMSSD</h2>
-          </div>
-          <div class="p-4 flex flex-col items-center justify-center text-center">
-            <div id="RMSSDval" class="text-6xl font-bold my-2">32</div>
-            <div class="mb-4">
-              <i data-lucide="hand-heart" class="w-12 h-12 text-red-500 pulse"></i>
-            </div>
-            <p id="RMSSDvaltext" class="text-gray-200">
-              Your HRV is moderate, suggesting balanced recovery and stress levels.
-            </p>
-          </div>
-        </section>
-
-      <!-- Global HRV Filter for both charts -->
-      <div class="w-full flex justify-center mb-4">
-        <select id="globalHRVFilter" class="bg-primary-light text-white text-sm rounded px-3 py-2 focus:outline-none border border-primary">
-          <option value="day" >Day</option>
-          <option value="week" selected>Week</option>
-          <option value="month">Month</option>
-          <option value="year">Year</option>
-        </select>
+        </div>
       </div>
-
-      <!-- HRV Progress -->
-      <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-        <div class="bg-primary px-4 py-3 flex items-center justify-between">
-          <div class="flex items-center gap-4">
-            <i data-lucide="trending-up" class="w-6 h-6 text-green-400"></i>
-            <h2 class="text-lg font-semibold">HRV Progress</h2>
-          </div>
-          <div class="relative group">
-            <button class="info-icon focus:outline-none">
-              <i data-lucide="info" class="w-4 h-4 text-accent"></i>
-            </button>
-            <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64">
-              HRV Progress shows how your average heart rate variability changes over time. Higher values usually reflect better recovery or stress resilience.
-            </div>
-          </div>
-        </div>
-        <div class="p-4 relative w-full h-64">
-          <canvas id="hrvBarChart" class="max-w-full h-full"></canvas>
-          <p id="hrvChartMsg" class="text-sm text-gray-400 text-center mt-2">
-            Loading HRV trend data...
-          </p>
-        </div>
-      </section>
-
-      <!-- HRV Distribution -->
-      <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg mt-6">
-        <div class="bg-primary px-4 py-3 flex items-center justify-between">
-          <div class="flex items-center gap-4">
-            <i data-lucide="pie-chart" class="w-6 h-6 text-purple-400"></i>
-            <h2 class="text-lg font-semibold">HRV Distribution</h2>
-          </div>
-          <div class="relative group">
-            <button class="info-icon focus:outline-none">
-              <i data-lucide="info" class="w-4 h-4 text-accent"></i>
-            </button>
-            <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64">
-              HRV Distribution shows how your readings are spread across different ranges — helping identify consistency or stress fluctuations.
-            </div>
-          </div>
-        </div>
-        <div class="p-4 relative w-full h-64">
-          <canvas id="hrvDonutChart" class="max-w-full h-full"></canvas>
-          <p id="hrvDonutMsg" class="text-sm text-gray-400 text-center mt-2">
-            Loading HRV distribution...
-          </p>
-        </div>
-      </section>
-
-
-
-
-
-
-        <!-- Export Data -->
-        <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-          <div class="bg-primary px-4 py-3 flex items-center gap-4">
-            <i data-lucide="settings" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold">Export Data For Therapist</h2>
-          </div>
-          <div class="p-4 flex flex-col items-center space-y-4">
-            <button id="exportPDFBtnDashboard" class="btn btn-primary">Export Data to PDF</button>
-          </div>
-        </section>
-
-      </main>
+      <!-- Body: Connect button + battery level -->
+      <div class="p-4 flex flex-col items-center gap-2">
+        <button id="polarConnectBtn" class="btn btn-primary" data-i18n-key="dashboard.connectBtn">
+          Connect
+        </button>
+        <p id="batteryLevel" class="text-sm text-gray-400 hidden" data-i18n-key="dashboard.batteryText">
+          Battery: --
+        </p>
+      </div>
     </section>
+
+    <!-- -------- Current Pulse Card -------- -->
+    <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+      <!-- Header: left icon+title, right info-icon -->
+      <div class="bg-primary px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <i data-lucide="heart-pulse" class="w-6 h-6 text-accent"></i>
+          <h2 class="text-lg font-semibold" data-i18n-key="dashboard.pulseTitle">
+            Current Pulse
+          </h2>
+        </div>
+        <div class="relative group">
+          <button class="info-icon focus:outline-none" aria-label="Info">
+            <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+          </button>
+          <div
+            class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64"
+            data-i18n-key="tooltip.pulseInfo">
+            Your heart’s beats per minute. Higher means faster heartbeat.
+          </div>
+        </div>
+      </div>
+      <!-- Body: pulse value + icon + description -->
+      <div class="p-4 flex flex-col items-center justify-center text-center">
+        <div id="currentHRVValue" class="text-6xl font-bold my-2">78</div>
+        <div class="mb-4">
+          <i data-lucide="heart-pulse" class="w-12 h-12 text-red-500 pulse"></i>
+        </div>
+        <p id="currentHRVText" class="text-gray-200" data-i18n-key="dashboard.pulseRangeLow">
+          Your pulse is in a healthy range.
+        </p>
+      </div>
+    </section>
+
+    <!-- -------- RR Intervals Card -------- -->
+    <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+      <!-- Header: left icon+title, right info-icon -->
+      <div class="bg-primary px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <i data-lucide="activity" class="w-6 h-6 text-accent"></i>
+          <h2 class="text-lg font-semibold" data-i18n-key="dashboard.rrTitle">
+            RR Intervals
+          </h2>
+        </div>
+        <div class="relative group">
+          <button class="info-icon focus:outline-none" aria-label="Info">
+            <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+          </button>
+          <div
+            class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64"
+            data-i18n-key="tooltip.rrInfo">
+            Time between heartbeats, in milliseconds. Shows variability.
+          </div>
+        </div>
+      </div>
+      <!-- Body: RR line chart -->
+      <div class="p-4 relative w-full h-64">
+        <canvas id="rrLineChart" class="max-w-full h-full"></canvas>
+      </div>
+    </section>
+
+    <!-- -------- Calculated RMSSD Card -------- -->
+    <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+      <!-- Header: left icon+title, right info-icon -->
+      <div class="bg-primary px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <i data-lucide="hand-heart" class="w-6 h-6 text-accent"></i>
+          <h2 class="text-lg font-semibold" data-i18n-key="dashboard.rmssdTitle">
+            Calculated RMSSD
+          </h2>
+        </div>
+        <div class="relative group">
+          <button class="info-icon focus:outline-none" aria-label="Info">
+            <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+          </button>
+          <div
+            class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64"
+            data-i18n-key="tooltip.rmssdInfo">
+            A measure of heart rate variability. Higher is generally better.
+          </div>
+        </div>
+      </div>
+      <!-- Body: RMSSD value + icon + description -->
+      <div class="p-4 flex flex-col items-center justify-center text-center">
+        <div id="RMSSDval" class="text-6xl font-bold my-2">32</div>
+        <div class="mb-4">
+          <i data-lucide="hand-heart" class="w-12 h-12 text-red-500 pulse"></i>
+        </div>
+        <p id="RMSSDvaltext" class="text-gray-200" data-i18n-key="dashboard.rmssdRangeModerate">
+          Your HRV is moderate, suggesting balanced recovery and stress levels.
+        </p>
+      </div>
+    </section>
+
+    <!-- -------- Global HRV Filter -------- -->
+    <div class="w-full flex justify-center mb-4">
+      <select
+        id="globalHRVFilter"
+        class="bg-primary-light text-white text-sm rounded px-3 py-2 focus:outline-none border border-primary"
+        data-i18n-key="filter.select"
+      >
+        <option value="day" data-i18n-key="filter.day">Day</option>
+        <option value="week" selected data-i18n-key="filter.week">Week</option>
+        <option value="month" data-i18n-key="filter.month">Month</option>
+        <option value="year" data-i18n-key="filter.year">Year</option>
+      </select>
+    </div>
+
+    <!-- -------- HRV Progress Card -------- -->
+    <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+      <!-- Header: left icon+title, right info-icon -->
+      <div class="bg-primary px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <i data-lucide="trending-up" class="w-6 h-6 text-green-400"></i>
+          <h2 class="text-lg font-semibold" data-i18n-key="dashboard.progressTitle">
+            HRV Progress
+          </h2>
+        </div>
+        <div class="relative group">
+          <button class="info-icon focus:outline-none" aria-label="Info">
+            <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+          </button>
+          <div
+            class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64"
+            data-i18n-key="tooltip.progressInfo">
+            HRV Progress shows how your average heart rate variability changes over time. Higher values usually reflect better recovery or stress resilience.
+          </div>
+        </div>
+      </div>
+      <!-- Body: bar chart + loading text -->
+      <div class="p-4 relative w-full h-64">
+        <canvas id="hrvBarChart" class="max-w-full h-full"></canvas>
+        <p
+          id="hrvChartMsg"
+          class="text-sm text-gray-400 text-center mt-2"
+          data-i18n-key="dashboard.progressLoading"
+        >
+          Loading HRV trend data...
+        </p>
+      </div>
+    </section>
+
+    <!-- -------- HRV Distribution Card -------- -->
+    <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg mt-6">
+      <!-- Header: left icon+title, right info-icon -->
+      <div class="bg-primary px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <i data-lucide="pie-chart" class="w-6 h-6 text-purple-400"></i>
+          <h2 class="text-lg font-semibold" data-i18n-key="dashboard.distributionTitle">
+            HRV Distribution
+          </h2>
+        </div>
+        <div class="relative group">
+          <button class="info-icon focus:outline-none" aria-label="Info">
+            <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+          </button>
+          <div
+            class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64"
+            data-i18n-key="tooltip.distributionInfo">
+            HRV Distribution shows how your readings are spread across different ranges — helping identify consistency or stress fluctuations.
+          </div>
+        </div>
+      </div>
+      <!-- Body: donut chart + loading text -->
+      <div class="p-4 relative w-full h-64">
+        <canvas id="hrvDonutChart" class="max-w-full h-full"></canvas>
+        <p
+          id="hrvDonutMsg"
+          class="text-sm text-gray-400 text-center mt-2"
+          data-i18n-key="dashboard.distributionLoading"
+        >
+          Loading HRV distribution...
+        </p>
+      </div>
+    </section>
+
+    <!-- -------- Export Data Card -------- -->
+    <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
+      <!-- Header: left icon+title, right info-icon -->
+      <div class="bg-primary px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <i data-lucide="settings" class="w-6 h-6 text-accent"></i>
+          <h2 class="text-lg font-semibold" data-i18n-key="dashboard.exportTitle">
+            Export Data For Therapist
+          </h2>
+        </div>
+        <div class="relative group">
+          <button class="info-icon focus:outline-none" aria-label="Info">
+            <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+          </button>
+          <div
+            class="hidden group-hover:block absolute right-0 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64"
+            data-i18n-key="tooltip.exportInfo">
+            Click “Export Data to PDF” to download your session report for your therapist.
+          </div>
+        </div>
+      </div>
+      <!-- Body: export button -->
+      <div class="p-4 flex flex-col items-center space-y-4">
+        <button id="exportPDFBtnDashboard" class="btn btn-primary" data-i18n-key="dashboard.exportBtn">
+          Export Data to PDF
+        </button>
+      </div>
+    </section>
+
+  </main>
+</section>
+
+
 
 
 
@@ -262,35 +441,48 @@
 
 
 
-    <!-- CHAT -->
+    <!-- ============================================= -->
+    <!-- CHAT PAGE                                    -->
+    <!-- - Support chat interface with messages area -->
+    <!-- - Static text tagged for translation (i18n)  -->
+    <!-- ============================================= -->
     <section id="page-chat" class="spa-page hidden">
-      <!-- MAIN CHAT CARD -->
+      <!-- CHAT CARD CONTAINER -->
       <main class="flex-1 p-4 md:p-8 flex flex-col items-center justify-center w-full max-w-5xl mx-auto">
         <section class="infocard w-full max-w-xl p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-          <!-- Header + icon -->
+          <!-- Header with icon and title -->
           <div class="bg-primary px-4 py-3 flex items-center gap-3">
             <i data-lucide="message-circle-heart" class="w-7 h-7 text-accent"></i>
-            <h2 class="text-lg font-semibold">Support Chat</h2>
+            <!-- Title (i18n key) -->
+            <h2 class="text-lg font-semibold" data-i18n-key="chat.title">
+              Support Chat
+            </h2>
           </div>
 
-
-          <!-- Chat messages area -->
-          <div id="chatWindow" class="flex flex-col space-y-2 p-4 bg-card rounded-none mb-4 h-64 overflow-y-auto">
-            <div class="bg-gray-700 p-2 rounded text-gray-200">
+          <!-- Chat messages display area -->
+          <div id="chatWindow"
+               class="flex flex-col space-y-2 p-4 bg-card rounded-none mb-4 h-64 overflow-y-auto">
+            <!-- Initial greeting message (i18n key) -->
+            <div class="bg-gray-700 p-2 rounded text-gray-200" data-i18n-key="chat.greeting">
               Hello, I'm here to help you manage stress...
             </div>
           </div>
 
-          <!-- Chat input -->
-          <form id="chatForm" class="flex px-4 pb-4 ">
+          <!-- Chat input form -->
+          <form id="chatForm" class="flex px-4 pb-4">
+            <!-- Text input (i18n key on placeholder) -->
             <input
               id="chatInput"
               type="text"
               class="flex-1 px-3 py-2 bg-gray-700 rounded-l focus:ring-2 focus:ring-accent"
-              placeholder="Type your message..."
+              placeholder=""
+              data-i18n-key="chat.placeholder"
               required
             />
-            <button type="submit" class="btn btn-primary rounded-none rounded-r">
+            <!-- Submit button (i18n key) -->
+            <button type="submit"
+                    class="btn btn-primary rounded-none rounded-r"
+                    data-i18n-key="chat.sendBtn">
               Send
             </button>
           </form>
@@ -304,38 +496,44 @@
 
 
 
-    <!-- EXERCISES page -->
-
-
-    <!-- Exercises Section -->
+    <!-- ============================================= -->
+    <!-- EXERCISES PAGE                                -->
+    <!-- - Live HRV metrics and exercise accordions     -->
+    <!-- - All static text tagged for translation      -->
+    <!-- ============================================= -->
     <section id="page-exercises" class="spa-page hidden">
       <main class="max-w-5xl mx-auto p-6 space-y-6 flex-1 w-full">
 
-        <!-- Live HRV Info -->
+        <!-- -------- Live HRV Metrics Card -------- -->
         <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
           <div class="bg-primary px-4 py-3 flex items-center gap-4">
             <i data-lucide="bar-chart-3" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold">Metrics</h2>
+            <!-- Title for metrics card -->
+            <h2 class="text-lg font-semibold" data-i18n-key="exercises.metricsTitle">
+              Metrics
+            </h2>
           </div>
           <div id="hrvStatus" class="p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <!-- Pulse metric -->
             <div class="flex items-center gap-3">
               <i data-lucide="heart-pulse" class="w-6 h-6 text-accent"></i>
               <div>
-                <p class="text-sm text-gray-400">Current Pulse</p>
+                <p class="text-sm text-gray-400" data-i18n-key="exercises.pulseLabel">Current Pulse</p>
                 <p id="pulseValue" class="text-xl font-semibold text-white">--</p>
               </div>
             </div>
+            <!-- RMSSD metric -->
             <div class="flex items-center gap-3">
               <i data-lucide="activity" class="w-6 h-6 text-accent"></i>
               <div>
-                <p class="text-sm text-gray-400">Current RMSSD</p>
+                <p class="text-sm text-gray-400" data-i18n-key="exercises.rmssdLabel">Current RMSSD</p>
                 <p id="rmssdValue" class="text-xl font-semibold text-white">--</p>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Mindfulness Accordion -->
+        <!-- -------- Mindfulness Exercises Accordion -------- -->
         <section class="card border border-primary-light/80 rounded-lg overflow-hidden">
           <button
             class="w-full flex items-center justify-between bg-primary px-4 py-3 text-left accordion-btn"
@@ -343,19 +541,23 @@
           >
             <div class="flex items-center gap-4">
               <i data-lucide="mountain" class="w-6 h-6 text-accent"></i>
-              <h2 class="text-lg font-semibold">Mindfulness Exercises</h2>
+              <!-- Accordion title -->
+              <h2 class="text-lg font-semibold" data-i18n-key="exercises.mindfulnessTitle">
+                Mindfulness Exercises
+              </h2>
             </div>
-            <span class="accordion-icon">▲</span> <!-- default is open -->
+            <span class="accordion-icon">▲</span>
           </button>
           <div
             id="mindfulnessAccordion"
             class="accordion-panel p-4 space-y-4"
           >
+            <!-- List populated by JS -->
             <div id="mindfulnessList"><!-- JS will populate --></div>
           </div>
         </section>
 
-        <!-- Breathing Accordion -->
+        <!-- -------- Breathing Exercises Accordion -------- -->
         <section class="card border border-primary-light/80 rounded-lg overflow-hidden">
           <button
             class="w-full flex items-center justify-between bg-primary px-4 py-3 text-left accordion-btn"
@@ -363,23 +565,24 @@
           >
             <div class="flex items-center gap-4">
               <i data-lucide="wind" class="w-6 h-6 text-accent"></i>
-              <h2 class="text-lg font-semibold">Breathing Exercises</h2>
+              <!-- Accordion title -->
+              <h2 class="text-lg font-semibold" data-i18n-key="exercises.breathingTitle">
+                Breathing Exercises
+              </h2>
             </div>
-            <span class="accordion-icon">▲</span> <!-- default is open -->
+            <span class="accordion-icon">▲</span>
           </button>
           <div
             id="breathingAccordion"
             class="accordion-panel p-4 space-y-4"
           >
+            <!-- List populated by JS -->
             <div id="breathingList"><!-- JS will populate --></div>
           </div>
         </section>
 
-
       </main>
     </section>
-
-
 
 
       <!-- ------------------------------------------------------- -->
@@ -387,19 +590,26 @@
 
 
 
-    <!-- TETRIS -->
+    <!-- ============================================= -->
+    <!-- TETRIS PAGE                                  -->
+    <!-- - Embedded Tetris game for therapy           -->
+    <!-- - All static text tagged for translation     -->
+    <!-- ============================================= -->
     <section id="page-tetris" class="spa-page hidden">
       <main class="flex-1 p-4 md:p-8 max-w-3xl mx-auto w-full">
-        <!-- Title & instructions -->
+        <!-- Instructions above the game board -->
         <div class="text-center mb-6">
-          <p class="text-sm text-gray-400">Use arrow keys (← ↑ → ↓) or swipe. ↓ = instant drop</p>
+          <!-- Instruction text (i18n key) -->
+          <p class="text-sm text-gray-400" data-i18n-key="tetris.instructions">
+            Use arrow keys (← ↑ → ↓) or swipe. ↓ = instant drop
+          </p>
         </div>
 
-        <!-- 2-col on desktop, stacked on mobile, horizontally centered on desktop -->
+        <!-- Game container: two-column on desktop, stacked on mobile -->
         <div class="card p-4 flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:justify-center w-full">
-          <!-- LEFT: Tetris Board (smaller) -->
+          <!-- LEFT: Tetris Board canvas -->
           <div class="touch-none w-full max-w-[220px] mx-auto lg:mx-0">
-            <!-- 160 wide x 320 tall => 10 cols x 20 rows, 16px each -->
+            <!-- Canvas size: 160×320 for 10×20 grid -->
             <canvas
               id="tetrisBoard"
               width="160"
@@ -408,15 +618,17 @@
             ></canvas>
           </div>
 
-          <!-- RIGHT: Score + Next + Buttons -->
+          <!-- RIGHT: Score, next-piece preview, and control buttons -->
           <div class="w-full lg:w-auto flex flex-col items-center lg:items-start space-y-4">
-            <!-- Score & Next piece -->
+            <!-- Score & Next Piece display -->
             <div class="space-y-2 text-center lg:text-left">
-              <p class="text-xl font-semibold">
+              <!-- Score label (i18n key) -->
+              <p class="text-xl font-semibold" data-i18n-key="tetris.score">
                 Score: <span id="score">0</span>
               </p>
               <div>
-                <p class="text-sm text-gray-400 mb-1">Next Piece:</p>
+                <!-- Next Piece label (i18n key) -->
+                <p class="text-sm text-gray-400 mb-1" data-i18n-key="tetris.nextLabel">Next Piece:</p>
                 <canvas
                   id="nextPiece"
                   width="80"
@@ -425,15 +637,18 @@
                 ></canvas>
               </div>
             </div>
-            <!-- Buttons row: Start is visible initially, Pause & Restart are hidden at first. -->
+            <!-- Control buttons row -->
             <div class="flex gap-2">
-              <button id="startTetrisBtn" class="btn btn-primary px-4 py-2">
+              <!-- Start button (i18n key) -->
+              <button id="startTetrisBtn" class="btn btn-primary px-4 py-2" data-i18n-key="tetris.startBtn">
                 Start
               </button>
-              <button id="pauseResumeBtn" class="btn btn-secondary px-4 py-2 hidden">
+              <!-- Pause/Resume button (i18n key), hidden initially -->
+              <button id="pauseResumeBtn" class="btn btn-secondary px-4 py-2 hidden" data-i18n-key="tetris.pauseBtn">
                 Pause
               </button>
-              <button id="restartTetrisBtn" class="btn btn-danger px-4 py-2 hidden">
+              <!-- Restart button (i18n key), hidden initially -->
+              <button id="restartTetrisBtn" class="btn btn-danger px-4 py-2 hidden" data-i18n-key="tetris.restartBtn">
                 Restart
               </button>
             </div>
@@ -444,23 +659,30 @@
 
 
 
-
       <!-- ------------------------------------------------------- -->
 
 
 
 
-    <!-- INFO -->
+    <!-- ============================================= -->
+    <!-- INFO PAGE                                    -->
+    <!-- - App overview and FAQs in accordions         -->
+    <!-- - All static text tagged with data-i18n-key   -->
+    <!-- ============================================= -->
     <section id="page-info" class="spa-page hidden">
       <main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-4">
 
-        <!-- Intro Card -->
+        <!-- -------- Overview Intro Card -------- -->
         <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
           <div class="bg-primary px-4 py-3 flex items-center gap-4">
             <i data-lucide="sparkles" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold">MindMend</h2>
+            <!-- Overview title (i18n key) -->
+            <h2 class="text-lg font-semibold" data-i18n-key="info.title">
+              MindMend Overview
+            </h2>
           </div>
-          <div class="p-4 text-gray-200">
+          <!-- Introductory paragraph (i18n key) -->
+          <div class="p-4 text-gray-200" data-i18n-key="info.intro">
             MindMend is designed to support mental wellness and PTSD management by leveraging
             Heart Rate Variability (HRV) data and evidence-based techniques. Compatible with
             devices such as Oura Ring, Polar H10, and other HRV-enabled sensors, it offers
@@ -468,19 +690,24 @@
           </div>
         </section>
 
-        <!-- Accordion Items -->
+        <!-- -------- FAQ Accordions -------- -->
         <section class="space-y-2">
 
           <!-- 1) What is HRV? -->
           <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
-            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-t" data-target="hrvPanel">
+            <button
+              class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-t"
+              data-target="hrvPanel"
+            >
               <div class="flex items-center space-x-2">
                 <i data-lucide="heart-pulse" class="w-5 h-5 text-accent"></i>
-                <span class="font-semibold">What is HRV?</span>
+                <!-- Question (i18n key) -->
+                <span class="font-semibold" data-i18n-key="info.hrvQuestion">What is HRV?</span>
               </div>
               <span class="accordion-icon">▲</span>
             </button>
-            <div id="hrvPanel" class="accordion-panel closed p-4 text-gray-300">
+            <!-- Answer (i18n key) -->
+            <div id="hrvPanel" class="accordion-panel closed p-4 text-gray-300" data-i18n-key="info.hrvAnswer">
               Heart Rate Variability (HRV) measures the variation in time between heartbeats.
               It's an important indicator of autonomic nervous system health, reflecting stress
               resilience and emotional regulation.
@@ -489,14 +716,19 @@
 
           <!-- 2) PTSD and HRV -->
           <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
-            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left" data-target="ptsdPanel">
+            <button
+              class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left"
+              data-target="ptsdPanel"
+            >
               <div class="flex items-center space-x-2">
                 <i data-lucide="brain" class="w-5 h-5 text-accent"></i>
-                <span class="font-semibold">PTSD and HRV</span>
+                <!-- Question (i18n key) -->
+                <span class="font-semibold" data-i18n-key="info.ptsdQuestion">PTSD and HRV</span>
               </div>
               <span class="accordion-icon">▲</span>
             </button>
-            <div id="ptsdPanel" class="accordion-panel closed p-4 text-gray-300">
+            <!-- Answer (i18n key) -->
+            <div id="ptsdPanel" class="accordion-panel closed p-4 text-gray-300" data-i18n-key="info.ptsdAnswer">
               PTSD can significantly impact HRV. Individuals with PTSD often show lower HRV,
               indicating chronic stress and reduced ability to adapt to emotional challenges.
               Monitoring HRV can help track recovery and stress management.
@@ -505,14 +737,19 @@
 
           <!-- 3) How This App Helps -->
           <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
-            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left" data-target="appHelpsPanel">
+            <button
+              class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left"
+              data-target="appHelpsPanel"
+            >
               <div class="flex items-center space-x-2">
                 <i data-lucide="info" class="w-5 h-5 text-accent"></i>
-                <span class="font-semibold">How This App Helps</span>
+                <!-- Question (i18n key) -->
+                <span class="font-semibold" data-i18n-key="info.howAppHelpsQuestion">How This App Helps</span>
               </div>
               <span class="accordion-icon">▲</span>
             </button>
-            <div id="appHelpsPanel" class="accordion-panel closed p-4 text-gray-300">
+            <!-- Answer (i18n key) -->
+            <div id="appHelpsPanel" class="accordion-panel closed p-4 text-gray-300" data-i18n-key="info.howAppHelpsAnswer">
               Our app provides real-time HRV tracking, personalized interventions like mindfulness
               exercises, and data insights. By monitoring HRV patterns, users can better understand
               their stress responses and develop coping strategies.
@@ -521,14 +758,19 @@
 
           <!-- 4) Tetris, really? -->
           <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
-            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left" data-target="tetrisPanel">
+            <button
+              class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left"
+              data-target="tetrisPanel"
+            >
               <div class="flex items-center space-x-2">
                 <i data-lucide="gamepad-2" class="w-5 h-5 text-accent"></i>
-                <span class="font-semibold">Tetris, really?</span>
+                <!-- Question (i18n key) -->
+                <span class="font-semibold" data-i18n-key="info.tetrisQuestion">Tetris, really?</span>
               </div>
               <span class="accordion-icon">▲</span>
             </button>
-            <div id="tetrisPanel" class="accordion-panel closed p-4 text-gray-300">
+            <!-- Answer (i18n key) -->
+            <div id="tetrisPanel" class="accordion-panel closed p-4 text-gray-300" data-i18n-key="info.tetrisAnswer">
               Research shows Tetris can interrupt traumatic memory formation. Cognitive interference
               prevents vivid memory consolidation, helping reduce intrusive memories and PTSD
               symptom intensity. It's a non-invasive, engaging mental health intervention.
@@ -537,16 +779,21 @@
 
           <!-- 5) How to export data -->
           <div class="infocard p-0 overflow-hidden bg-primary-light/80 border border-primary-light/80 rounded-lg">
-            <button class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-b" data-target="therapyPanel">
+            <button
+              class="accordion-btn w-full flex items-center justify-between bg-primary px-4 py-3 text-left rounded-b"
+              data-target="exportPanel"
+            >
               <div class="flex items-center space-x-2">
-                <i data-lucide="brain" class="w-5 h-5 text-accent"></i>
-                <span class="font-semibold">How do I export data?</span>
+                <i data-lucide="download" class="w-5 h-5 text-accent"></i>
+                <!-- Question (i18n key) -->
+                <span class="font-semibold" data-i18n-key="info.exportQuestion">How do I export data?</span>
               </div>
               <span class="accordion-icon">▲</span>
             </button>
-            <div id="therapyPanel" class="accordion-panel closed p-4 text-gray-300">
-              You can safely export your data by clicking the "Export data" button, found in the dashboard section,
-              or in the settings section. Download your data, and show it to your therapist!
+            <!-- Answer (i18n key) -->
+            <div id="exportPanel" class="accordion-panel closed p-4 text-gray-300" data-i18n-key="info.exportAnswer">
+              Click the “Export Data to PDF” button on your Dashboard or Settings page. Download
+              your report and share it with your therapist for deeper insights.
             </div>
           </div>
 
@@ -560,60 +807,83 @@
 
       <!-- ------------------------------------------------------- -->
 
-
-
-
-    <!-- SETTINGS -->
+    <!-- ============================================= -->
+    <!-- SETTINGS PAGE                                -->
+    <!-- - Manage device connections & exports         -->
+    <!-- - Static text tagged for translation          -->
+    <!-- ============================================= -->
     <section id="page-settings" class="spa-page hidden">
       <main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-8">
 
-        <!-- Connect to Polar H10 (Settings version, same as Dashboard) -->
+        <!-- -------- Connect to Polar H10 (Settings) -------- -->
         <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
-          <div class="bg-primary px-4 py-3 flex items-center gap-4">
+          <div class="bg-primary px-4 py-3 flex items-center gap-4 relative group">
             <i data-lucide="bluetooth" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold" id="polarConnectionStatusSettings">
+            <!-- Title (i18n key) -->
+            <h2 class="text-lg font-semibold" data-i18n-key="settings.connectTitle">
               Connect to Polar H10
             </h2>
+            <!-- Info tooltip icon -->
+            <button class="info-icon absolute right-4 top-3 focus:outline-none" aria-label="Info">
+              <i data-lucide="info" class="w-4 h-4 text-accent"></i>
+            </button>
+            <!-- Tooltip text (i18n key) -->
+            <div
+              class="hidden group-hover:block absolute right-4 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64"
+              data-i18n-key="tooltip.connectInfo">
+              Click “Connect”, select your device, press “Pair” and wait while it connects.
+            </div>
           </div>
           <div class="p-4 flex flex-col items-center gap-2">
-            <button id="polarConnectBtn1" class="btn btn-primary">
+            <!-- Connect button (i18n key) -->
+            <button id="polarConnectBtn1" class="btn btn-primary" data-i18n-key="settings.connectBtn">
               Connect
             </button>
-            <p id="batteryLevelSettings" class="text-sm text-gray-400 hidden"></p>
+            <!-- Battery status (i18n key) -->
+            <p id="batteryLevelSettings" class="text-sm text-gray-400 hidden" data-i18n-key="dashboard.batteryText">
+              Battery: --
+            </p>
           </div>
         </section>
 
-
-        <!-- App controlls -->
+        <!-- -------- App Controls Card -------- -->
         <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
           <div class="bg-primary px-4 py-3 flex items-center gap-4">
             <i data-lucide="settings" class="w-6 h-6 text-accent"></i>
-            <h2 class="text-lg font-semibold">App Controls</h2>
+            <!-- Title (i18n key) -->
+            <h2 class="text-lg font-semibold" data-i18n-key="settings.controlsTitle">
+              App Controls
+            </h2>
           </div>
           <div class="p-4 flex flex-col items-center space-y-4">
-            <button id="exportPDFBtnSettings" class="btn btn-primary">Export Data to PDF</button>
+            <!-- Export PDF button (i18n key) -->
+            <button id="exportPDFBtnSettings" class="btn btn-primary" data-i18n-key="settings.exportBtn">
+              Export Data to PDF
+            </button>
           </div>
         </section>
+
       </main>
     </section>
 
-
-
-      <!-- ------------------------------------------------------- -->
-
-
-
-    <!-- LOGIN  -->
+    <!-- ============================================= -->
+    <!-- LOGIN PAGE                                   -->
+    <!-- - Simple login form                           -->
+    <!-- - All labels and buttons tagged for translation -->
+    <!-- ============================================= -->
     <section id="page-login" class="spa-page hidden">
-      <!-- Main content: a simple login form -->
       <main class="flex flex-col items-center justify-center flex-1 p-6">
-        <!-- Using "max-w-sm" for a fixed form width, plus "bg-primary-light" for a distinct box -->
         <div class="bg-primary-light p-6 rounded shadow max-w-sm w-full">
-          <h2 class="text-2xl font-semibold mb-4 text-center">Log In</h2>
+          <!-- Heading (i18n key) -->
+          <h2 class="text-2xl font-semibold mb-4 text-center" data-i18n-key="login.title">
+            Log In
+          </h2>
           <form id="loginForm" class="flex flex-col space-y-4">
-            <!-- Email field -->
+            <!-- Email label & input -->
             <label class="block">
-              <span class="block text-sm text-secondary mb-1">Email</span>
+              <span class="block text-sm text-secondary mb-1" data-i18n-key="login.emailLabel">
+                Email
+              </span>
               <input
                 type="email"
                 name="email"
@@ -621,9 +891,11 @@
                 required
               />
             </label>
-            <!-- Password field -->
+            <!-- Password label & input -->
             <label class="block">
-              <span class="block text-sm text-secondary mb-1">Password</span>
+              <span class="block text-sm text-secondary mb-1" data-i18n-key="login.passwordLabel">
+                Password
+              </span>
               <input
                 type="password"
                 name="password"
@@ -631,10 +903,11 @@
                 required
               />
             </label>
-            <!-- Submit button triggers logic in login.js -->
+            <!-- Submit button (i18n key) -->
             <button
               type="submit"
               class="bg-accent rounded px-4 py-2 font-semibold hover:bg-teal-600 transition"
+              data-i18n-key="login.submit"
             >
               Log In
             </button>
@@ -643,33 +916,35 @@
       </main>
     </section>
 
-
-
-      <!-- ------------------------------------------------------- -->
-
-
-
-
-    <!-- SIGNUP -->
-
+    <!-- ============================================= -->
+    <!-- SIGNUP PAGE                                  -->
+    <!-- - Registration form with full translations    -->
+    <!-- ============================================= -->
     <section id="page-signup" class="spa-page hidden">
-      <!-- Main content: signup form -->
       <main class="flex flex-col items-center justify-center flex-1 p-6">
         <div class="bg-primary-light p-6 rounded shadow max-w-sm w-full">
-          <h2 class="text-2xl font-semibold mb-4 text-center">Create an Account</h2>
+          <!-- Heading (i18n key) -->
+          <h2 class="text-2xl font-semibold mb-4 text-center" data-i18n-key="signup.title">
+            Create an Account
+          </h2>
           <form id="signupForm" class="flex flex-col space-y-4">
-            <!-- Name field -->
+            <!-- Name label & input -->
             <label class="block">
-              <span class="block text-sm text-secondary mb-1">Name</span>
+              <span class="block text-sm text-secondary mb-1" data-i18n-key="signup.nameLabel">
+                Name
+              </span>
               <input
-               type="text"
-               name="name"
-               class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
-               required />
+                type="text"
+                name="name"
+                class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
+                required
+              />
             </label>
-            <!-- Email field -->
+            <!-- Email label & input -->
             <label class="block">
-              <span class="block text-sm text-secondary mb-1">Email</span>
+              <span class="block text-sm text-secondary mb-1" data-i18n-key="signup.emailLabel">
+                Email
+              </span>
               <input
                 type="email"
                 name="email"
@@ -677,9 +952,11 @@
                 required
               />
             </label>
-            <!-- Password field -->
+            <!-- Password label & input -->
             <label class="block">
-              <span class="block text-sm text-secondary mb-1">Password</span>
+              <span class="block text-sm text-secondary mb-1" data-i18n-key="signup.passwordLabel">
+                Password
+              </span>
               <input
                 type="password"
                 name="password"
@@ -687,10 +964,23 @@
                 required
               />
             </label>
-            <!-- Submit button triggers logic in signup.js -->
+            <!-- Confirm Password label & input -->
+            <label class="block">
+              <span class="block text-sm text-secondary mb-1" data-i18n-key="signup.confirmLabel">
+                Confirm Password
+              </span>
+              <input
+                type="password"
+                name="confirm"
+                class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
+                required
+              />
+            </label>
+            <!-- Submit button (i18n key) -->
             <button
               type="submit"
               class="bg-accent rounded px-4 py-2 font-semibold hover:bg-teal-600 transition"
+              data-i18n-key="signup.submit"
             >
               Sign Up
             </button>
@@ -701,30 +991,28 @@
 
   </main>
 
-
-  <!-- ------------------------------------------------------- -->
-
-
-  <!-- FOOTER -->
+  <!-- ============================================= -->
+  <!-- FOOTER                                        -->
+  <!-- - Copyright notice                            -->
+  <!-- ============================================= -->
   <footer class="bg-primary-light/80 p-4 text-center">
-    <p class="text-sm text-gray-400">&copy; 2025 MindMend. All rights reserved.</p>
+    <!-- Footer text (i18n key) -->
+    <p class="text-sm text-gray-400" data-i18n-key="footer.copyright">
+      &copy; 2025 MindMend. All rights reserved.
+    </p>
   </footer>
 
-
-
-  <!-- ------------------------------------------------------- -->
-
-
-
-
-  <!-- Scripts -->
+  <!-- ============================================= -->
+  <!-- SCRIPTS: main, navbar, router, ExportData      -->
+  <!-- ============================================= -->
   <script type="module" src="./src/scripts/main.js"></script>
   <script type="module" src="./src/scripts/navbar.js"></script>
   <script type="module" src="./src/scripts/router.js"></script>
   <script type="module" src="./src/scripts/ExportData.js"></script>
-
+  <script type="module" src="./src/scripts/i18n.js"></script>
   <script>
     if (window.lucide) lucide.createIcons();
   </script>
 </body>
 </html>
+

@@ -1,0 +1,108 @@
+{
+  "page.title": "MindMend",
+
+  "nav.brand": "MindMend",
+  "nav.dashboard": "Kojelauta",
+  "nav.exercises": "Harjoitukset",
+  "nav.tetris": "Tetris",
+  "nav.chat": "Chat",
+  "nav.info": "Tietoa",
+  "nav.settings": "Asetukset",
+  "nav.logout": "Kirjaudu ulos",
+  "nav.login": "Kirjaudu sisään",
+  "nav.signup": "Rekisteröidy",
+
+  "home.welcome": "Tervetuloa MindMendiin",
+  "home.subtitle": "Henkilökohtainen työkalusi HRV-seurantaan, rentoutumiseen ja PTSD-tukeen.",
+  "home.login": "Kirjaudu sisään",
+  "home.signup": "Rekisteröidy",
+
+  "chat.title": "Tukikeskustelu",
+  "chat.greeting": "Hei, olen täällä auttamassa sinua stressinhallinnassa…",
+  "chat.placeholder": "Kirjoita viestisi…",
+  "chat.sendBtn": "Lähetä",
+
+  "exercises.metricsTitle": "Mittarit",
+  "exercises.pulseLabel": "Nykyinen syke",
+  "exercises.rmssdLabel": "Nykyinen RMSSD",
+  "exercises.mindfulnessTitle": "Mindfulness-harjoitukset",
+  "exercises.breathingTitle": "Hengitysharjoitukset",
+
+  "tetris.instructions": "Käytä nuolinäppäimiä (← ↑ → ↓) tai pyyhkäisyä. ↓ = välitön pudotus",
+  "tetris.score": "Pisteet",
+  "tetris.nextLabel": "Seuraava palikka:",
+  "tetris.startBtn": "Aloita",
+  "tetris.pauseBtn": "Tauko",
+  "tetris.restartBtn": "Uudelleen",
+
+  "info.title": "MindMendin yleiskatsaus",
+  "info.intro": "MindMend on suunniteltu tukemaan mielenterveyttä ja PTSD:n hallintaa hyödyntämällä sykevälivaihtelua (HRV) koskevia tietoja ja näyttöön perustuvia tekniikoita. Yhteensopiva laitteiden, kuten Oura-sormuksen, Polar H10:n ja muiden HRV-anturien, kanssa, se tarjoaa käyttökelpoisia oivalluksia, ohjattuja harjoituksia ja interaktiivisia työkaluja, kuten Tetris-terapiaa.",
+
+  "info.hrvQuestion": "Mikä on HRV?",
+  "info.hrvAnswer": "Sykevälivaihtelu (HRV) mittaa sykkeiden välisen ajan vaihtelua. Se on tärkeä autonomisen hermoston terveyden indikaattori, heijastaen stressinsietokykyä ja tunteiden säätelyä.",
+
+  "info.ptsdQuestion": "PTSD ja HRV",
+  "info.ptsdAnswer": "PTSD voi vaikuttaa merkittävästi HRV-arvoihin. PTSD:tä sairastavilla on usein matalampi HRV, mikä viittaa krooniseen stressiin ja heikentyneeseen sopeutumiskykyyn. HRV:n seuranta voi auttaa toipumisen ja stressinhallinnan seuraamisessa.",
+
+  "info.howAppHelpsQuestion": "Miten tämä sovellus auttaa?",
+  "info.howAppHelpsAnswer": "Sovellus tarjoaa reaaliaikaista HRV-seurantaa, henkilökohtaisia harjoituksia, kuten mindfulness-harjoituksia, ja tietoanalyysiä. Seuraamalla HRV-malleja käyttäjät voivat ymmärtää stressivasteitaan ja kehittää selviytymisstrategioita.",
+
+  "info.tetrisQuestion": "Tetris, oikeasti?",
+  "info.tetrisAnswer": "Tutkimukset osoittavat, että Tetris voi häiritä traumaattisten muistojen muodostumista. Kognitiivinen interferenssi estää elävien muistojen konsolidointia, mikä vähentää intrusiivisia muistikuvia ja PTSD-oireita. Se on ei-invasiivinen ja mukaansatempaava mielenterveyden interventio.",
+
+  "info.exportQuestion": "Miten vien tiedot?",
+  "info.exportAnswer": "Napsauta ”Vie tiedot PDF:ksi” -painiketta Kojelaudassa tai Asetuksissa. Lataa raportti ja jaa se terapeutillesi saadaksesi syvällisempiä oivalluksia.",
+
+  "settings.connectTitle": "Yhdistä Polar H10",
+  "settings.connectBtn": "Yhdistä",
+  "settings.controlsTitle": "Sovellusasetukset",
+  "settings.exportBtn": "Vie tiedot PDF:ksi",
+
+  "login.title": "Kirjaudu sisään",
+  "login.emailLabel": "Sähköposti",
+  "login.passwordLabel": "Salasana",
+  "login.submit": "Kirjaudu sisään",
+
+  "signup.title": "Luo tili",
+  "signup.nameLabel": "Nimi",
+  "signup.emailLabel": "Sähköposti",
+  "signup.passwordLabel": "Salasana",
+  "signup.confirmLabel": "Vahvista salasana",
+  "signup.submit": "Rekisteröidy",
+
+  "footer.copyright": "© 2025 MindMend. Kaikki oikeudet pidätetään.",
+
+  "dashboard.connectTitle": "Yhdistä Polar H10",
+  "tooltip.connectInfo": "Klikkaa ”Yhdistä”, valitse laite, paina ”Pariliitä” ja odota, että yhteys muodostuu.",
+  "dashboard.connectBtn": "Yhdistä",
+  "dashboard.batteryText": "Paristo: --",
+
+  "dashboard.pulseTitle": "Nykyinen syke",
+  "tooltip.pulseInfo": "Sydämesi lyönnit minuutissa. Suurempi tarkoittaa nopeampaa sykettä.",
+  "dashboard.pulseRangeLow": "Syke on terveellä tasolla.",
+
+  "dashboard.rrTitle": "RR-intervalit",
+  "tooltip.rrInfo": "Aika sydämenlyöntien välillä millisekunneissa. Näyttää vaihtelun.",
+
+  "dashboard.rmssdTitle": "Laskettu RMSSD",
+  "tooltip.rmssdInfo": "HRV-mittari. Suurempi on yleensä parempi.",
+  "dashboard.rmssdRangeModerate": "HRV on kohtalainen, mikä viittaa tasapainoiseen palautumiseen ja stressitasoihin.",
+
+  "filter.select": "Valitse",
+  "filter.day": "Päivä",
+  "filter.week": "Viikko",
+  "filter.month": "Kuukausi",
+  "filter.year": "Vuosi",
+
+  "dashboard.progressTitle": "HRV-kehitys",
+  "tooltip.progressInfo": "Kehitys näyttää, miten keskimääräinen HRV muuttuu ajan myötä. Suuremmat arvot viittaavat parempaan palautumiseen tai stressinsietokykyyn.",
+  "dashboard.progressLoading": "Ladataan HRV-kehityksen tietoja…",
+
+  "dashboard.distributionTitle": "HRV-jakauma",
+  "tooltip.distributionInfo": "Jakauma näyttää, miten mittaukset jakautuvat eri tasoille – auttaa tunnistamaan johdonmukaisuutta tai stressiheilahteluja.",
+  "dashboard.distributionLoading": "Ladataan HRV-jakaumaa…",
+
+  "dashboard.exportTitle": "Vie tiedot terapeutille",
+  "tooltip.exportInfo": "Klikkaa ”Vie tiedot PDF:ksi” ladataksesi istuntaraporttisi terapeutillesi.",
+  "dashboard.exportBtn": "Vie tiedot PDF:ksi"
+}

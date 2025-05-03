@@ -89,6 +89,16 @@ body {
 }
 
 
+/* lang toggle button */
+.lang-toggle-btn {
+  background-color: #1E90FF; /* Accent color */
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.lang-toggle-btn:hover {
+  background-color: #3b82f6; /* Lighter accent */
+}
 
 /* Buttons with consistent look */
 .btn {
