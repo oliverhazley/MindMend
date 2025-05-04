@@ -29,7 +29,7 @@
   "exercises.breathingTitle": "Breathing Exercises",
 
   "tetris.instructions": "Use arrow keys (← ↑ → ↓) or swipe. ↓ = instant drop",
-  "tetris.score": "Score",
+  "tetris.scoreLabel": "Score:",
   "tetris.nextLabel": "Next Piece:",
   "tetris.startBtn": "Start",
   "tetris.pauseBtn": "Pause",

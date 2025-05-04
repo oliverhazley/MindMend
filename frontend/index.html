@@ -630,7 +630,8 @@
             <div class="space-y-2 text-center lg:text-left">
               <!-- Score label (i18n key) -->
               <p class="text-xl font-semibold" data-i18n-key="tetris.score">
-                Score: <span id="score">0</span>
+                <span data-i18n-key="tetris.scoreLabel">Score:</span>
+                <span id="score">0</span>
               </p>
               <div>
                 <!-- Next Piece label (i18n key) -->
@@ -1013,8 +1014,6 @@
   <!-- SCRIPTS: main, navbar, router, ExportData      -->
   <!-- ============================================= -->
   <script type="module" src="./src/scripts/main.js"></script>
-  <script type="module" src="./src/scripts/navbar.js"></script>
-  <script type="module" src="./src/scripts/router.js"></script>
   <script type="module" src="./src/scripts/ExportData.js"></script>
   <script type="module" src="./src/scripts/i18n.js"></script>
   <script>

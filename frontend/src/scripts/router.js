@@ -35,7 +35,8 @@ const routes = [
   "signup",
 ];
 
-initLogout();
+
+initLogout(); //  Attach logout behavior to both desktop & mobile buttons
 
 // If no JWT is present, redirect to #/login and return false.
 export function requireAuth() {
@@ -110,7 +111,6 @@ function loadPageLogic(page) {
       break;
     case "login":
       initLogin();
-      initLogout();
       break;
     case "signup":
       initSignup();
@@ -119,6 +119,7 @@ function loadPageLogic(page) {
       // fallback to dashboard if authenticated, else home
       if (requireAuth()) {
         initDashboard();
+        initLogout();
       }
   }
 }
