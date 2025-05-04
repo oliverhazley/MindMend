@@ -13,6 +13,20 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const getUserProfile = async (req, res, next) => {
+  try {
+    const userId = req.user?.userId || req.params.userId;
+    if (!userId) return res.status(400).json({message: 'Missing user ID'});
+
+    const user = await userModel.getUserById(userId);
+    if (!user) return res.status(404).json({message: 'User not found'});
+
+    return res.json(user);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const registerUser = async (req, res) => {
   const {name, email, password} = req.body;
 
@@ -94,6 +108,24 @@ const loginUser = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  try {
+    const {userId, currentPassword, newPassword} = req.body;
+    if (!userId || !currentPassword || !newPassword)
+      return res.status(400).json({message: 'Missing fields'});
+
+    const user = await userModel.getUserById(userId);
+    const match = await bcrypt.compare(currentPassword, user.password);
+    if (!match) return res.status(401).json({message: 'Wrong password'});
+
+    await userModel.updatePassword(userId, newPassword);
+    res.json({message: 'Password updated'});
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({message: 'Internal error'});
+  }
+};
+
 const deleteUser = async (req, res) => {
   const {userId} = req.params;
 
@@ -112,6 +144,11 @@ const deleteUser = async (req, res) => {
   }
 };
 
-// TODO: getUserProfile?
-
-export {getAllUsers, registerUser, loginUser, deleteUser};
+export {
+  getAllUsers,
+  getUserProfile,
+  registerUser,
+  loginUser,
+  changePassword,
+  deleteUser,
+};
