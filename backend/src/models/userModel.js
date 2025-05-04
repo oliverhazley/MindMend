@@ -13,9 +13,10 @@ const getAllUsers = async () => {
 
 const getUserById = async (userId) => {
   try {
-    const [rows] = await promisePool.query('SELECT * FROM users WHERE id = ?', [
-      userId,
-    ]);
+    const [rows] = await promisePool.query(
+      'SELECT * FROM users WHERE user_id = ?',
+      [userId],
+    );
     return rows[0];
   } catch (error) {
     console.error('Error fetching user by ID:', error);
@@ -40,7 +41,7 @@ const updateUser = async (userId, user) => {
   try {
     const {name, email} = user;
     await promisePool.query(
-      'UPDATE users SET name = ?, email = ? WHERE id = ?',
+      'UPDATE users SET name = ?, email = ? WHERE user_id = ?',
       [name, email, userId],
     );
   } catch (error) {
@@ -49,11 +50,21 @@ const updateUser = async (userId, user) => {
   }
 };
 
+const updatePassword = async (userId, plainPassword) => {
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(plainPassword, salt);
+  await promisePool.query('UPDATE users SET password = ? WHERE user_id = ?', [
+    hash,
+    userId,
+  ]);
+};
+
 const deleteUser = async (userId) => {
   try {
-    const [rows] = await promisePool.query('DELETE FROM users WHERE id = ?', [
-      userId,
-    ]);
+    const [rows] = await promisePool.query(
+      'DELETE FROM users WHERE user_id = ?',
+      [userId],
+    );
     return rows.affectedRows > 0;
   } catch (error) {
     console.error('Error deleting user:', error);
@@ -88,6 +99,7 @@ export {
   getUserById,
   getUserByEmail,
   updateUser,
+  updatePassword,
   deleteUser,
   createUser,
 };
