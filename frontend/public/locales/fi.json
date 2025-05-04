@@ -29,7 +29,7 @@
   "exercises.breathingTitle": "Hengitysharjoitukset",
 
   "tetris.instructions": "Käytä nuolinäppäimiä (← ↑ → ↓) tai pyyhkäisyä. ↓ = välitön pudotus",
-  "tetris.score": "Pisteet",
+  "tetris.scoreLabel": "Pisteet:",
   "tetris.nextLabel": "Seuraava palikka:",
   "tetris.startBtn": "Aloita",
   "tetris.pauseBtn": "Tauko",

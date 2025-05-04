@@ -14,6 +14,8 @@ import { updateNavbar } from "./navbar.js";
 import { stopAutoRMSSDSave } from "./polarConnect.js"; //  cleanup on tab close
 import { exportHRVPDF } from "./ExportData.js";
 
+
+
 //  Initial logic once when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   console.log("main.js loaded ✅");
@@ -28,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Show correct nav based on login status
   updateNavbar();
+
+
 
   // Handle default route based on login status
   const token = localStorage.getItem("token");
