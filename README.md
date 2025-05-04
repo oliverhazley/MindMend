@@ -1,5 +1,7 @@
 # MindMend
 
+![MindMend Logo](frontend/public/images/mmlogo.webp)
+
 MindMend is a mental wellness and PTSD management application that leverages Heart Rate Variability (HRV) data and evidence-based techniques. The project has been designed with simplicity and functionality in mind, offering users tools for relaxation, mindfulness, and improved mental health.
 
 ---
