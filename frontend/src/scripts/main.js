@@ -16,7 +16,7 @@ import {exportHRVPDF} from './ExportData.js';
 
 //  Initial logic once when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('main.js loaded ✅');
+  console.log('main.js loaded');
 
   // PDF export from either location
   document

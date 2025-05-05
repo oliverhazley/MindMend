@@ -42,7 +42,7 @@
             data-i18n-key="nav.dashboard">Dashboard</a>
           <a href="#/exercises"
             class="spa-protected-nav hover:text-accent hidden"
-            data-i18n-key="nav.exercises">Exercises</a>
+            data-i18n-key="nav.exercises">Meditation</a>
           <a href="#/tetris"
             class="spa-protected-nav hover:text-accent hidden"
             data-i18n-key="nav.tetris">Tetris</a>
@@ -121,7 +121,7 @@
         <div class="flex flex-col items-center space-y-3 p-4 text-white text-center">
           <!-- Auth-protected mobile links -->
           <a href="#/dashboard" class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.dashboard">Dashboard</a>
-          <a href="#/exercises" class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.exercises">Exercises</a>
+          <a href="#/meditation" class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.meditation">Meditation</a>
           <a href="#/tetris"    class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.tetris">Tetris</a>
           <a href="#/chat"      class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.chat">Chat</a>
           <a href="#/info"      class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.info">Info</a>
@@ -738,7 +738,7 @@
       <section id="page-profile" class="spa-page hidden">
         <main class="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full space-y-8">
 
-          <!-- Basic User Info Card -->
+          <!------------- Basic User Info ------------->
           <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
             <div class="bg-primary px-4 py-3 flex items-center gap-4">
               <i data-lucide="user" class="w-6 h-6 text-accent"></i>
@@ -747,12 +747,18 @@
               </h2>
             </div>
             <div class="p-4 space-y-2">
-              <p data-i18n-key="profile.nameLabel">Name: <span id="profileName"></span></p>
-              <p data-i18n-key="profile.emailLabel">Email: <span id="profileEmail"></span></p>
+              <p>
+                <span data-i18n-key="profile.nameLabel">Name:</span>
+                <span id="profileName"></span>
+              </p>
+              <p>
+                <span data-i18n-key="profile.emailLabel">Email:</span>
+                <span id="profileEmail"></span>
+              </p>
             </div>
           </section>
 
-          <!-- Change Password Card -->
+          <!------------- Change Password ------------->
           <section class="card border border-primary-light/80 rounded-lg overflow-hidden">
             <div class="bg-primary px-4 py-3 flex items-center gap-4">
               <i data-lucide="lock" class="w-6 h-6 text-accent"></i>
@@ -762,24 +768,31 @@
             </div>
             <div class="p-4 space-y-4">
               <label class="block">
-                <span class="block text-sm text-secondary mb-1" data-i18n-key="profile.currentPasswordLabel">Current Password</span>
-                <input type="password" id="currentPassword" class="w-full px-3 py-2 rounded bg-primary text-white" />
+                <span class="block text-sm text-secondary mb-1"
+                      data-i18n-key="profile.currentPasswordLabel">Current Password</span>
+                <input type="password" id="currentPassword"
+                       class="w-full px-3 py-2 rounded bg-primary text-white" />
               </label>
               <label class="block">
-                <span class="block text-sm text-secondary mb-1" data-i18n-key="profile.newPasswordLabel">New Password</span>
-                <input type="password" id="newPassword" class="w-full px-3 py-2 rounded bg-primary text-white" />
+                <span class="block text-sm text-secondary mb-1"
+                      data-i18n-key="profile.newPasswordLabel">New Password</span>
+                <input type="password" id="newPassword"
+                       class="w-full px-3 py-2 rounded bg-primary text-white" />
               </label>
               <label class="block">
-                <span class="block text-sm text-secondary mb-1" data-i18n-key="profile.confirmNewPasswordLabel">Confirm New Password</span>
-                <input type="password" id="confirmNewPassword" class="w-full px-3 py-2 rounded bg-primary text-white" />
+                <span class="block text-sm text-secondary mb-1"
+                      data-i18n-key="profile.confirmNewPasswordLabel">Confirm New Password</span>
+                <input type="password" id="confirmNewPassword"
+                       class="w-full px-3 py-2 rounded bg-primary text-white" />
               </label>
-              <button id="changePasswordBtn" class="btn btn-primary" data-i18n-key="profile.changePasswordBtn">
+              <button id="changePasswordBtn" class="btn btn-primary"
+                      data-i18n-key="profile.changePasswordBtn">
                 Change Password
               </button>
             </div>
           </section>
 
-          <!-- Delete Account Card -->
+          <!------------- Delete Account ------------->
           <section class="card border border-primary-light/80 rounded-lg overflow-hidden">
             <div class="bg-primary px-4 py-3 flex items-center gap-4">
               <i data-lucide="trash-2" class="w-6 h-6 text-danger"></i>
@@ -788,55 +801,53 @@
               </h2>
             </div>
             <div class="p-4 flex justify-center">
-              <button id="deleteAccountBtn" class="btn btn-danger" data-i18n-key="profile.deleteAccountBtn">
+              <button id="deleteAccountBtn" class="btn btn-danger"
+                      data-i18n-key="profile.deleteAccountBtn">
                 Delete Account
               </button>
             </div>
           </section>
 
-          <!--  Connect to Polar H10 -->
+          <!------------- Connect to Polar H10 -------------->
           <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
             <div class="bg-primary px-4 py-3 flex items-center gap-4 relative group">
               <i data-lucide="bluetooth" class="w-6 h-6 text-accent"></i>
-              <!-- Title (i18n key) -->
-              <h2 class="text-lg font-semibold" data-i18n-key="settings.connectTitle">
-                Connect to Polar H10
-              </h2>
-              <!-- Info tooltip icon -->
+              <h2 class="text-lg font-semibold"
+                  data-i18n-key="settings.connectTitle">Connect to Polar H10</h2>
+
+              <!-- Info tooltip -->
               <button class="info-icon absolute right-4 top-3 focus:outline-none" aria-label="Info">
                 <i data-lucide="info" class="w-4 h-4 text-accent"></i>
               </button>
-              <!-- Tooltip text (i18n key) -->
-              <div
-                class="hidden group-hover:block absolute right-4 top-full mt-2 bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64"
-                data-i18n-key="tooltip.connectInfo">
+              <div class="hidden group-hover:block absolute right-4 top-full mt-2
+                          bg-gray-800 text-white text-xs p-2 rounded shadow z-50 w-64"
+                   data-i18n-key="tooltip.connectInfo">
                 Click “Connect”, select your device, press “Pair” and wait while it connects.
               </div>
             </div>
             <div class="p-4 flex flex-col items-center gap-2">
-              <!-- Connect button (i18n key) -->
-              <button id="polarConnectBtn1" class="btn btn-primary" data-i18n-key="settings.connectBtn">
+              <button id="polarConnectBtn1" class="btn btn-primary"
+                      data-i18n-key="settings.connectBtn">
                 Connect
               </button>
-              <!-- Battery status (i18n key) -->
-              <p id="batteryLevelSettings" class="text-sm text-gray-400 hidden" data-i18n-key="dashboard.batteryText">
+              <p id="batteryLevelSettings" class="text-sm text-gray-400 hidden"
+                 data-i18n-key="dashboard.batteryText">
                 Battery: --
               </p>
             </div>
           </section>
 
-          <!-- App Controls Card -->
+          <!------------- App Controls ------------->
           <section class="card p-0 overflow-hidden border border-primary-light/80 rounded-lg">
             <div class="bg-primary px-4 py-3 flex items-center gap-4">
               <i data-lucide="settings" class="w-6 h-6 text-accent"></i>
-              <!-- Title (i18n key) -->
               <h2 class="text-lg font-semibold" data-i18n-key="settings.controlsTitle">
                 App Controls
               </h2>
             </div>
             <div class="p-4 flex flex-col items-center space-y-4">
-              <!-- Export PDF button (i18n key) -->
-              <button id="exportPDFBtnSettings" class="btn btn-primary" data-i18n-key="settings.exportBtn">
+              <button id="exportPDFBtnSettings" class="btn btn-primary"
+                      data-i18n-key="settings.exportBtn">
                 Export Data to PDF
               </button>
             </div>

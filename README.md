@@ -3,7 +3,9 @@
    <img src="frontend/public/images/mmlogo.webp" alt="MindMend Logo" width="400"/>
 </div>
 
-MindMend is a mental wellness and PTSD management application that leverages Heart Rate Variability (HRV) data and evidence-based techniques. The project has been designed with simplicity and functionality in mind, offering users tools for relaxation, mindfulness, and improved mental health.
+MindMend is a mental wellness and PTSD management application that leverages Heart Rate Variability (HRV) data and evidence-based techniques. For full functionality, the user needs a "Polar H-10" device. The project has been designed with simplicity and functionality in mind, offering users tools for relaxation, mindfulness, and improved mental health.
+
+This is a project at Metropolia UAS (2025) - Created by Oliver Hazley, Miska Nurminen, Safwat Salah & Sofia Taskinen.
 
 ---
 
@@ -119,28 +121,12 @@ The database structure of MindMend is intentionally simple, adhering to the "kee
 
 ## Project initiation instructions
 
-1.  check versions, needs Node version of at least 18
+1.  Please follow the frontend initiation instructions in the [Frontend README](frontend/README.md) to set up the frontend.
 
-    node --version
-
-    npm --version
-
-2.  Install node modules for front- and backend
-
-    for frontend:
-
-        cd frontend
-        npm install
-
-    for backend:
-
-        cd backend
-        npm install
-
+2.  Please follow the backend initiation instructions in the [Backend README](backend/README.md) to set up the backend.
 
 
 ---
-
 
 ## Testing
 
