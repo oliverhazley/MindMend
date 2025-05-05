@@ -32,31 +32,65 @@ export function initNavbar() {
 
   if (!burgerBtn || !mobileMenu) return;
 
+  let outsideClickListener;
+
   burgerBtn.addEventListener("click", () => {
     const isOpen = !mobileMenu.classList.contains("hidden");
-    mobileMenu.classList.toggle("hidden");
 
     if (isOpen) {
-      // Going to closed
+      // Closing menu
+      mobileMenu.classList.add("scale-95", "opacity-0");
+      mobileMenu.classList.remove("scale-100", "opacity-100");
+
+      setTimeout(() => {
+        mobileMenu.classList.add("hidden");
+      }, 150);
+
       burgerIcon.classList.remove("hidden");
       closeIcon.classList.add("hidden");
+
+      // Remove outside click listener when closing
+      document.removeEventListener("click", outsideClickListener);
     } else {
-      // Going to open
+      // Opening menu
+      mobileMenu.classList.remove("hidden");
+
+      setTimeout(() => {
+        mobileMenu.classList.remove("scale-95", "opacity-0");
+        mobileMenu.classList.add("scale-100", "opacity-100");
+
+        // ✅ Render Lucide icons inside visible menu
+        if (window.lucide) window.lucide.createIcons();
+      }, 10);
+
       burgerIcon.classList.add("hidden");
       closeIcon.classList.remove("hidden");
+
+      // ✅ Add outside click listener to close menu
+      outsideClickListener = (e) => {
+        if (!mobileMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
+          mobileMenu.classList.add("hidden");
+          burgerIcon.classList.remove("hidden");
+          closeIcon.classList.add("hidden");
+          document.removeEventListener("click", outsideClickListener);
+        }
+      };
+      document.addEventListener("click", outsideClickListener);
     }
   });
 
-  mobileMenu.querySelectorAll("a").forEach(link => {
+  // Auto-close mobile menu when a nav link is clicked
+  mobileMenu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       mobileMenu.classList.add("hidden");
       burgerIcon.classList.remove("hidden");
       closeIcon.classList.add("hidden");
+      document.removeEventListener("click", outsideClickListener);
     });
   });
 }
 
-
+// Run navbar logic on page load
 document.addEventListener("DOMContentLoaded", () => {
   initNavbar();
   updateNavbar();

@@ -17,7 +17,8 @@ Welcome to the **Frontend** documentation of **MindMend**, a mental wellness and
 5. [Libraries and Tools](#libraries-and-tools)
 6. [Known Issues](#known-issues)
 7. [References](#references)
-8. [Setup Instructions](#setup-instructions)
+8. [Lighthouse](#lighthouse)
+9. [Setup Instructions](#setup-instructions)
 
 ---
 
@@ -41,7 +42,7 @@ MindMend's frontend serves as the user interface for the application. It is desi
 ### 1. **Landing page**
 
    A stylish landing page with a background (SVG converted to webp) and a brief description of the app. We have buttons to log in or sign up. Since its a SPA (Single page application), We hide our protected routes with a simple if statement in the main.js file. The landing page is also responsive and works on mobile devices.
-   
+
 ![Landing](../readmeIMG/landing.webp)
 
 ---
@@ -175,50 +176,61 @@ The user can export their HRV data to a PDF file. The PDF contains a summary of 
 
 ## Project Structure
 
+We use a modular approach to our frontend code. The main logic is divided into separate JavaScript files, each handling a specific functionality. This makes the codebase easier to maintain and extend.
+
+The frontend is built using Vite, a fast build tool that provides a modern development experience. We use Tailwind CSS for styling, which allows us to create responsive and visually appealing designs with minimal effort. We built with a mobile-first approach in mind, ensuring that the application works seamlessly on mobile devices.
+We also use PostCSS for processing CSS, and we have a configuration file for Tailwind CSS to customize the design system.
+
+The frontend is structured as a Single Page Application (SPA) using JavaScript for dynamic content loading and routing. The main entry point is `index.html`, which loads the necessary JavaScript and CSS files.
+We had to create a SPA so that we would not lose bluetooth connection when navigating between pages. This was a big issue during our user testing, and we had to find a solution. We used the `router.js` file to handle the routing logic. The router.js file is responsible for loading the correct JavaScript files based on the current URL hash.
+
 The frontend is organized as follows:
 
 
     frontend/
-    ├── index.html
-    ├── .env
-    ├── README.md
-    ├── package.json
-    ├── package-lock.json
-    ├── vite.config.js
-    ├── tailwind.config.js
-    ├── postcss.config.js
-    ├── src/
-    │   ├── scripts/
-    │   │   ├── chat.js
-    │   │   ├── config.js
-    │   │   ├── dashboard.js
-    │   │   ├── exercises.js
-    │   │   ├── ExportData.js
-    │   │   ├── i18n.js
-    │   │   ├── info.js
-    │   │   ├── login.js
-    │   │   ├── logout.js
-    │   │   ├── main.js
-    │   │   ├── navbar.js
-    │   │   ├── polarConnect.js
-    │   │   ├── router.js
-    │   │   ├── settings.js
-    │   │   ├── signup.js
-    │   │   └── tetris.js
-    │   └── styles/
-    │       └── tailwind.css
-    └── public/
-        ├── images/
-        │   ├── bg1.webp
-        │   ├── bgLight.webp
-        │   └── mmlogo.webp
+    ├── index.html            // Main HTML file (Heart and Soul)
+    ├── .env                  // Environment variables
+    ├── README.md             // This file
+    ├── package.json          // Node.js dependencies
+    ├── package-lock.json     // Node.js dependencies
+    ├── vite.config.js        // Vite configuration
+    ├── tailwind.config.js    // Tailwind CSS
+    ├── postcss.config.js     // PostCSS
+    ├── robots.txt            // SEO
+    ├── sitemap.xml           // SEO   
+    ├── manifest.json         // SEO
+    ├── src/                        
+    │   ├── scripts/                    // JavaScript files
+    │   │   ├── chat.js                 // Chatbot logic
+    │   │   ├── config.js               // Configuration file for API
+    │   │   ├── dashboard.js            // Dashboard logic
+    │   │   ├── exercises.js            // Meditation exercises logic
+    │   │   ├── ExportData.js           // Export data logic
+    │   │   ├── i18n.js                 // Localization
+    │   │   ├── info.js                 // Info section logic
+    │   │   ├── login.js                // Login logic
+    │   │   ├── logout.js               // Logout logic
+    │   │   ├── main.js                 // Miscellaneous logic - initialization for important things
+    │   │   ├── navbar.js               // Navbar logic
+    │   │   ├── polarConnect.js         // Polar H10 connection logic
+    │   │   ├── router.js               // Router logic - Very important for our SPA
+    │   │   ├── settings.js             // Settings logic
+    │   │   ├── signup.js               // Signup logic
+    │   │   └── tetris.js               // Tetris game logic
+    │   └── styles/                 
+    │       └── tailwind.css            // Tailwind CSS file
+    └── public/                    
+        ├── images/                     
+        │   ├── bg1.webp                // Default background (darkmode)
+        │   ├── bgLight.webp            // Light mode background
+        │   └── mmlogo.webp             // MindMend logo
         ├── locales/
-        │   ├── en.json
-        │   └── fi.json
+        │   ├── en.json                 // English translations
+        │   └── fi.json                 // Finnish translations
         └── sounds/
-            ├── fire.mp3
-            ├── rain.mp3
-            └── stream.mp3
+            ├── fire.mp3                // Fire sound for meditation
+            ├── rain.mp3                // Rain sound for meditation
+            └── stream.mp3              // Stream sound for meditation
 
 
 ---
@@ -265,6 +277,16 @@ The frontend is organized as follows:
 - ChatGPT for bug fixing, and help with various issues
 - Claude for bug fixing, and help with various issues
 ---
+
+
+## Lighthouse
+
+We are very happy with this lighthouse score. We have a 100% SEO score, 100% best practices, 95% accessability, and 88% on Performance. 
+Our performance is slightly lacking due to Text compression, which we didnt have time to setup. This is not something we were taught to do, so it didnt feel too important.
+
+For SEO we are using a robots.txt file, a sitemap.xml file, and a manifest.json file. We also have a favicon and a logo. We are using the Open Graph protocol for social media sharing. We are using the Twitter Card protocol for Twitter sharing. We are using the Schema.org protocol for structured data.
+
+![Lighthouse](../readmeIMG/lighthouse.webp)
 
 
 ## Setup Instructions
