@@ -51,7 +51,7 @@ MindMend's frontend serves as the user interface for the application. It is desi
     
     body.light-mode .id
 
-![theme](../readmeIMG/Landingtheme.webp)
+![theme](../readmeIMG/landingtheme.webp)
 
 ---
 
