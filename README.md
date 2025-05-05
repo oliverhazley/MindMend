@@ -16,6 +16,7 @@ This is a project at Metropolia UAS (2025) - Created by Oliver Hazley, Miska Nur
 - **API Documentation**: [API Documentation](#)
 - **Frontend README**: [Frontend-specific Documentation](frontend/README.md)
 - **Backend README**: [Backend-specific Documentation](backend/README.md)
+- **Testing README**: [Testing-specific Documentation](tests/README.md)
 
 ---
 
