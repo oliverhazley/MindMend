@@ -42,6 +42,7 @@ MindMend's frontend serves as the user interface for the application. It is desi
 ### 1. **Landing page**
 
    A stylish landing page with a background (SVG converted to webp) and a brief description of the app. We have buttons to log in or sign up. Since its a SPA (Single page application), We hide our protected routes with a simple if statement in the main.js file. The landing page is also responsive and works on mobile devices.
+
 ![Landing](../readmeIMG/landing.webp)
 
 ---
@@ -70,6 +71,7 @@ The user can log in via email and password. The user can register via email, pas
 
 
 ![reg](../readmeIMG/signup.webp)
+
 ![log](../readmeIMG/Login.webp)
 
 --- 
