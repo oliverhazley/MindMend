@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Sitemap: https://oliverhazley.github.io/MindMend/sitemap.xml
+
+# Prevent crawling of non-content resources
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Crawl delay to prevent overloading your server
+Crawl-delay: 10

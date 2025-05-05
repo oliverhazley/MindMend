@@ -6,13 +6,13 @@
     <title data-i18n-key="page.title">MindMend - PTSD Support & HRV Monitoring</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="MindMend - Comprehensive PTSD support and stress management app using Polar H10 HRV monitoring, mindfulness exercises, and evidence-based techniques including Tetris therapy" />
-    <meta name="author" content="Oliver Hazley, Miska Nurminen, Safwat Salah, Sofia Taskinen" />
+    <meta name="author" content="Oliver Hazley" />
     <meta name="keywords" content="PTSD support, HRV monitoring, Polar H10, heart rate variability, stress management, mental health, meditation, Tetris therapy, mindfulness, anxiety relief, trauma therapy, RMSSD, biofeedback, mental wellness, stress resilience" />
 
     <!-- Favicon and App Icons -->
-    <link rel="icon" href="/images/mmlogo.webp" type="image/webp" />
-    <link rel="apple-touch-icon" href="/images/mmlogo.webp" />
-    <link rel="shortcut icon" href="/images/mmlogo.webp" type="image/webp" />
+    <link rel="icon" href="./images/mmlogo.webp" type="image/webp" />
+    <link rel="apple-touch-icon" href="./images/mmlogo.webp" />
+    <link rel="shortcut icon" href="./images/mmlogo.webp" type="image/webp" />
 
     <!-- Mobile Web App Meta Tags -->
     <meta name="theme-color" content="#1A202C" />
@@ -30,6 +30,10 @@
     <meta property="og:description" content="Your personal tool for Polar H10 HRV monitoring, stress management, and PTSD support with evidence-based techniques including mindfulness exercises and Tetris therapy." />
     <meta property="og:image" content="https://oliverhazley.github.io/MindMend/images/mmlogo.webp" />
     <meta property="og:site_name" content="MindMend" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MindMend Logo - PTSD Support & HRV Monitoring App" />
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -37,16 +41,20 @@
     <meta name="twitter:title" content="MindMend - PTSD Support & HRV Monitoring" />
     <meta name="twitter:description" content="Your personal tool for Polar H10 HRV monitoring, stress management, and PTSD support with evidence-based techniques including mindfulness exercises and Tetris therapy." />
     <meta name="twitter:image" content="https://oliverhazley.github.io/MindMend/images/mmlogo.webp" />
-    <meta name="twitter:label1" value="PTSD Support" />
-    <meta name="twitter:data1" value="HRV Monitoring & Stress Management" />
+    <meta name="twitter:label1" content="PTSD Support" />
+    <meta name="twitter:data1" content="HRV Monitoring & Stress Management" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://oliverhazley.github.io/MindMend/" />
 
+    <!-- Robots Directives -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
     <!-- Additional Meta Tags -->
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <meta name="language" content="English" />
-    <meta name="revisit-after" content="3 days" />
+    <meta name="revisit-after" content="7 days" />
     <meta name="generator" content="MindMend" />
 
     <!-- Additional Health Application Tags -->
@@ -56,14 +64,18 @@
     <meta name="coverage" content="Worldwide" />
     <meta name="rating" content="General" />
     <meta name="msapplication-TileColor" content="#1A202C" />
-    <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="./manifest.json" />
 
     <!-- Preconnect to External Resources -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    <link rel="preload" href="/images/mmlogo.webp" as="image" type="image/webp" />
 
-    <!-- Last Modified Date -->
-    <meta http-equiv="last-modified" content="2025-05-05 00:49:02" />
+    <!-- Date Information -->
+    <meta http-equiv="last-modified" content="2025-05-05T01:04:08Z" />
+    <meta name="date" content="2025-05-05T01:04:08Z" />
 
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
@@ -97,8 +109,9 @@
           "keywords": "HRV monitoring, PTSD support, Polar H10, biofeedback, stress management, meditation, mindfulness"
         },
         "specialty": ["Mental Health", "PTSD Treatment", "Stress Management"],
-        "lastReviewed": "2025-05-05",
-        "datePublished": "2025-05-05",
+        "lastReviewed": "2025-05-05T01:04:08Z",
+        "datePublished": "2025-05-05T01:04:08Z",
+        "dateModified": "2025-05-05T01:04:08Z",
         "author": {
           "@type": "Person",
           "name": "Oliver Hazley"
@@ -124,6 +137,21 @@
           "ratingCount": "120"
         },
         "description": "MindMend provides HRV monitoring for PTSD support and stress management using Polar H10 and evidence-based techniques."
+      }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "MindMend",
+        "url": "https://oliverhazley.github.io/MindMend/",
+        "logo": "https://oliverhazley.github.io/MindMend/images/mmlogo.webp",
+        "founder": {
+          "@type": "Person",
+          "name": "Oliver Hazley"
+        }
       }
     </script>
 
