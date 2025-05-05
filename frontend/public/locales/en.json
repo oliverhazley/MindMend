@@ -1,3 +1,4 @@
+
 {
   "page.title": "MindMend",
 
@@ -29,16 +30,16 @@
   "exercises.breathingTitle": "Breathing Exercises",
 
   "exercises.mindfulness.nature.title":       "Forest Stream",
-  "exercises.mindfulness.nature.description": "Relaxing sounds of water and birds chirping",
+  "exercises.mindfulness.nature.description": "Relaxing sounds of a stream",
   "exercises.mindfulness.waves.title":        "Rainstorm",
-  "exercises.mindfulness.waves.description":  "Relaxing sounds of a rainstorm",
+  "exercises.mindfulness.waves.description":  "Focused sounds of a rainstorm",
   "exercises.mindfulness.morning.title":      "Campfire",
   "exercises.mindfulness.morning.description":"Gentle sounds of a campfire",
 
   "exercises.breathing.box.title":            "Box Breathing",
-  "exercises.breathing.box.description":      "4-4-4-4 breathing technique",
+  "exercises.breathing.box.description":      "Turn sound on for instructions",
   "exercises.breathing.478.title":            "4-7-8 Breathing",
-  "exercises.breathing.478.description":      "Relaxation breathing method",
+  "exercises.breathing.478.description":      "Turn sound on for instructions",
 
   "tetris.instructions": "Use arrow keys (← ↑ → ↓) or swipe. ↓ = instant drop",
   "tetris.scoreLabel": "Score:",
