@@ -1,13 +1,12 @@
 // src/scripts/i18n.js
-// i18n stands for internationalization, which is the process of designing a software application
-// so that it can be adapted to various languages and regions without requiring engineering changes.
-// this file handles the loading of language files, switching between languages, and updating the UI accordingly.
+// -----------------------------------------------------------------------------
+// Handles loading language files, switching between languages, and updating the UI.
 // -----------------------------------------------------------------------------
 
 const STORAGE_KEY = 'lang';
 let currentLang = localStorage.getItem(STORAGE_KEY) || 'en';
 
-// grab our two icon‐containers
+// grab our two icon-containers
 const desktopLangIcon = document.getElementById('langIconDesktop');
 const mobileLangIcon  = document.getElementById('langIconMobile');
 
@@ -34,7 +33,6 @@ async function initI18n() {
         el.placeholder = txt;
         break;
       case 'OPTION':
-        // translate just the option text
         el.textContent = txt;
         break;
       case 'SELECT':
@@ -44,7 +42,6 @@ async function initI18n() {
         el.textContent = txt;
     }
   });
-
 
   // update the little label in the toggle buttons
   const nextLang = currentLang === 'fi' ? 'EN' : 'FI';
@@ -59,7 +56,7 @@ function toggleLanguage() {
   initI18n();
 }
 
-// wire up our new buttons
+// wire up our toggle buttons
 document
   .querySelectorAll('#langToggleDesktop, #langToggleMobile')
   .forEach(btn => btn.addEventListener('click', toggleLanguage));
@@ -70,3 +67,6 @@ if (document.readyState === 'loading') {
 } else {
   initI18n();
 }
+
+// —— EXPORT SO OTHER MODULES CAN RE-TRIGGER TRANSLATION ——
+export { initI18n };
