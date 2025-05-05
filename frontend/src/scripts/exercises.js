@@ -10,7 +10,7 @@
 import {requireAuth} from './router.js';
 import {getCurrentPulse, getCurrentRMSSD} from './polarConnect.js';
 
-const audioPlayers = []; // ✅ Track all manually created audio players
+const audioPlayers = []; // Track all manually created audio players
 
 export function stopAllExerciseAudio() {
   audioPlayers.forEach((audio) => {
@@ -22,7 +22,7 @@ export function stopAllExerciseAudio() {
 export function initExercises() {
   if (!requireAuth()) return;
 
-  console.log('🧘‍♀️ Loading exercises page');
+  console.log('Loading exercises page');
   lucide.createIcons();
 
   const mindfulnessList = document.getElementById('mindfulnessList');

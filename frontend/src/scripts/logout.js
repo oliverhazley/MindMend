@@ -37,7 +37,7 @@ export function initLogout() {
       //  In case we ever use sessionStorage for UI state
       sessionStorage.clear();
 
-      console.log('✅ Logout successful');
+      console.log('Logout successful');
 
       //  Immediately update navbar to hide protected links
       updateNavbar();
@@ -47,7 +47,7 @@ export function initLogout() {
       window.location.hash = '#/';
       showPage('home'); // immediately show home section
     } catch (error) {
-      console.error('❌ Error during logout:', error);
+      console.error('Error during logout:', error);
     }
   };
 
