@@ -18,6 +18,11 @@ body {
   @apply bg-primary-light/80 rounded-md pb-8 shadow-md;
 }
 
+/* hide lines in mobile when if spa hidden or spa public open*/
+.spa-protected-nav.hidden + hr,
+.spa-public-nav.hidden + hr {
+  display: none;
+}
 
 .excard {
    /* card container for exercises, no padding with our theme background */

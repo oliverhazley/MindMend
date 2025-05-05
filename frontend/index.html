@@ -72,6 +72,8 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://unpkg.com" crossorigin />
     <link rel="preload" href="/images/mmlogo.webp" as="image" type="image/webp" />
+    <link rel="preload" href="/images/bg1.webp" as="image" type="image/webp" />
+
 
     <!-- Date Information -->
     <meta http-equiv="last-modified" content="2025-05-05T01:04:08Z" />
@@ -161,6 +163,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Lucide icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
   </head>
 
 
@@ -190,8 +193,11 @@
         </a>
       </div>
 
+        <!-- ------------------------------------------------------- -->
         <!-- Desktop nav links + toggles -->
-        <div class="hidden md:flex items-center space-x-6 text-white">
+        <!-- ------------------------------------------------------- -->
+
+        <div class="hidden lg:flex items-center space-x-6 text-white">
           <!-- Authenticated-only links (shown/hidden via JS) -->
           <a href="#/dashboard"
             class="spa-protected-nav hover:text-accent hidden"
@@ -237,8 +243,11 @@
           </button>
         </div>
 
+        <!-- ------------------------------------------------------- -->
         <!-- Mobile controls: theme & language toggles + burger menu -->
-        <div class="flex items-center md:hidden space-x-2">
+        <!-- ------------------------------------------------------- -->
+
+        <div class="flex items-center lg:hidden space-x-2">
           <!-- Mobile theme toggle -->
           <button
             id="themeToggleMobile"
@@ -272,22 +281,107 @@
       </nav>
 
       <!-- Mobile dropdown menu -->
-      <div id="mobileMenu"
-          class="md:hidden hidden absolute top-full left-0 w-full bg-primary-light/90 shadow-lg z-40">
-        <div class="flex flex-col items-center space-y-3 p-4 text-white text-center">
-          <!-- Auth-protected mobile links -->
-          <a href="#/dashboard" class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.dashboard">Dashboard</a>
-          <a href="#/meditation" class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.meditation">Meditation</a>
-          <a href="#/tetris"    class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.tetris">Tetris</a>
-          <a href="#/chat"      class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.chat">Chat</a>
-          <a href="#/info"      class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.info">Info</a>
-          <a href="#/profile"  class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.profile">Profile</a>
-          <a href="#/login"     id="logoutButtonMobile" class="spa-protected-nav hover:text-accent hidden" data-i18n-key="nav.logout">Logout</a>
-          <!-- Public-only mobile links -->
-          <a href="#/login"  class="spa-public-nav hover:text-accent" data-i18n-key="nav.login">Login</a>
-          <a href="#/signup" class="spa-public-nav hover:text-accent" data-i18n-key="nav.signup">Sign Up</a>
-        </div>
+      <div
+        id="mobileMenu"
+        class="lg:hidden hidden absolute top-full right-0 mt-1 bg-primary-light/80 rounded-r-none border border-gray-600 rounded-xl shadow-2xl backdrop-blur z-50 transform transition duration-300 scale-95 opacity-0 w-fit min-w-[11rem] px-2 py-2"
+      >
+        <ul class="flex flex-col text-white">
+          <!-- Authenticated links -->
+          <li>
+            <a
+              href="#/dashboard"
+              class="spa-protected-nav flex items-center gap-2 px-3 py-2 hover:bg-accent/20 rounded-lg transition-all hidden"
+            >
+              <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+              <span data-i18n-key="nav.dashboard">Dashboard</span>
+            </a>
+            <hr class="border-gray-600 my-1" />
+          </li>
+          <li>
+            <a
+              href="#/exercises"
+              class="spa-protected-nav flex items-center gap-2 px-3 py-2 hover:bg-accent/20 rounded-lg transition-all hidden"
+            >
+              <i data-lucide="mountain" class="w-5 h-5"></i>
+              <span data-i18n-key="nav.exercises">Meditation</span>
+            </a>
+            <hr class="border-gray-600 my-1" />
+          </li>
+          <li>
+            <a
+              href="#/tetris"
+              class="spa-protected-nav flex items-center gap-2 px-3 py-2 hover:bg-accent/20 rounded-lg transition-all hidden"
+            >
+              <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+              <span data-i18n-key="nav.tetris">Tetris</span>
+            </a>
+            <hr class="border-gray-600 my-1" />
+          </li>
+          <li>
+            <a
+              href="#/chat"
+              class="spa-protected-nav flex items-center gap-2 px-3 py-2 hover:bg-accent/20 rounded-lg transition-all hidden"
+            >
+              <i data-lucide="message-circle-heart" class="w-5 h-5"></i>
+              <span data-i18n-key="nav.chat">Chat</span>
+            </a>
+            <hr class="border-gray-600 my-1" />
+          </li>
+          <li>
+            <a
+              href="#/info"
+              class="spa-protected-nav flex items-center gap-2 px-3 py-2 hover:bg-accent/20 rounded-lg transition-all hidden"
+            >
+              <i data-lucide="info" class="w-5 h-5"></i>
+              <span data-i18n-key="nav.info">Info</span>
+            </a>
+            <hr class="border-gray-600 my-1" />
+          </li>
+          <li>
+            <a
+              href="#/profile"
+              class="spa-protected-nav flex items-center gap-2 px-3 py-2 hover:bg-accent/20 rounded-lg transition-all hidden"
+            >
+              <i data-lucide="user" class="w-5 h-5"></i>
+              <span data-i18n-key="nav.profile">Profile</span>
+            </a>
+            <hr class="border-gray-600 my-1" />
+          </li>
+          <li>
+            <a
+              href="#/login"
+              id="logoutButtonMobile"
+              class="spa-protected-nav flex items-center gap-2 px-3 py-2 hover:bg-accent/20 rounded-lg transition-all hidden"
+            >
+              <i data-lucide="log-out" class="w-5 h-5"></i>
+              <span data-i18n-key="nav.logout">Logout</span>
+            </a>
+            <hr class="border-gray-600 my-1" />
+          </li>
+
+          <!-- Public links -->
+          <li>
+            <a
+              href="#/login"
+              class="spa-public-nav flex items-center gap-2 px-3 py-2 hover:bg-accent/20 rounded-lg transition-all"
+            >
+              <i data-lucide="log-in" class="w-5 h-5"></i>
+              <span data-i18n-key="nav.login">Login</span>
+            </a>
+            <hr class="border-gray-600 my-1" />
+          </li>
+          <li>
+            <a
+              href="#/signup"
+              class="spa-public-nav flex items-center gap-2 px-3 py-2 hover:bg-accent/20 rounded-lg transition-all"
+            >
+              <i data-lucide="user-plus" class="w-5 h-5"></i>
+              <span data-i18n-key="nav.signup">Sign Up</span>
+            </a>
+          </li>
+        </ul>
       </div>
+
     </div>
 
     <!-- ------------------------------------------------------- -->
@@ -1139,7 +1233,7 @@
     </footer>
 
     <!-- ===================================================================== -->
-    <!-- SCRIPTS: main, navbar, router, ExportData, profile, localization      -->
+    <!-- SCRIPTS: main, ExportData, profile, localization      -->
     <!-- ===================================================================== -->
     <script type="module" src="./src/scripts/main.js"></script>
     <script type="module" src="./src/scripts/ExportData.js"></script>
