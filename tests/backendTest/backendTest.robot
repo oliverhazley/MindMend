@@ -6,9 +6,8 @@ Suite Setup    Setup Test Suite
 
 *** Variables ***
 ${BASE_URL}    http://localhost:3000/api
-${USER_PASSWORD}    testi123
-${LOGIN_EMAIL}   testi@gmail.com    # Existing user for login/setup
-${LOGIN_PASSWORD}    testi123
+${PASSWORD}    test123
+${EXISTING_EMAIL}   test123@gmail.com
 
 *** Keywords ***
 Setup Test Suite
@@ -17,8 +16,8 @@ Setup Test Suite
     ${RANDOM_INT}    Evaluate    random.randint(1, 10000)    random
     ${user_email}    Set Variable    testi-${RANDOM_INT}.user@example.com
     ${user_name}     Set Variable    Test User ${RANDOM_INT}
-    Set Suite Variable    ${USER_EMAIL}    ${user_email}
-    Set Suite Variable    ${USER_NAME}     ${user_name}
+    Set Suite Variable    ${NEW_USER_EMAIL}    ${user_email}
+    Set Suite Variable    ${NEW_USER_NAME}     ${user_name}
     Log    Generated User Email: ${USER_EMAIL}
     Log    Generated User Name: ${USER_NAME}
 
@@ -27,7 +26,7 @@ Setup Test Suite
 
 Login as regular existing user
     [Documentation]    Login as a regular user to get the token and user ID for authentication.
-    ${body}    Create Dictionary    email=${LOGIN_EMAIL}    password=${LOGIN_PASSWORD}
+    ${body}    Create Dictionary    email=${EXISTING_EMAIL}    password=${PASSWORD}
     ${response}    POST    url=${BASE_URL}/users/auth/login    json=${body}
     Log    ${response.json()}
     Should Be Equal As Strings    ${response.status_code}    200
@@ -43,7 +42,7 @@ Login as regular existing user
 *** Test Cases ***
 Register New User Successfully
     [Documentation]    Test registering a new user.
-    ${body}    Create Dictionary    name=${USER_NAME}    email=${USER_EMAIL}    password=${USER_PASSWORD}
+    ${body}    Create Dictionary    name=${NEW_USER_NAME}    email=${NEW_USER_EMAIL}    password=${PASSWORD}
     ${response}    POST    url=${BASE_URL}/users/auth/register    json=${body}
     ${json}    Set Variable    ${response.json()}
     Dictionary Should Contain Key    ${json}    message
@@ -52,7 +51,7 @@ Register New User Successfully
 
 Register User With Existing Email
     [Documentation]    Test registering a user with an email that already exists.
-    ${body}    Create Dictionary    name=Duplicate User    email=${LOGIN_EMAIL}    password=anotherpass
+    ${body}    Create Dictionary    name=Duplicate User    email=${EXISTING_EMAIL}    password=anotherpass
     ${response}    POST    url=${BASE_URL}/users/auth/register    json=${body}    expected_status=400
     ${json}    Set Variable    ${response.json()}
     Dictionary Should Contain Key    ${json}    message
@@ -60,7 +59,7 @@ Register User With Existing Email
 
 Login User Successfully
     [Documentation]    Test logging in with correct credentials.
-    ${body}    Create Dictionary    email=${LOGIN_EMAIL}    password=${LOGIN_PASSWORD}
+    ${body}    Create Dictionary    email=${EXISTING_EMAIL}    password=${PASSWORD}
     ${response}    POST    url=${BASE_URL}/users/auth/login    json=${body}
     Status Should Be    200
     ${json}    Set Variable    ${response.json()}
@@ -74,7 +73,7 @@ Login User Successfully
 
 Login User With Incorrect Password
     [Documentation]    Test logging in with incorrect password.
-    ${body}    Create Dictionary    email=${LOGIN_EMAIL}    password=wrongpassword
+    ${body}    Create Dictionary    email=${EXISTING_EMAIL}    password=wrongpassword
     ${response}    POST    url=${BASE_URL}/users/auth/login    json=${body}    expected_status=401
     ${json}    Set Variable    ${response.json()}
     Dictionary Should Contain Key    ${json}    message
@@ -133,10 +132,38 @@ Get HRV Readings Without User ID
     Dictionary Should Contain Key    ${json}    message
     Should Be Equal As Strings    ${json}[message]    Missing user_id in query
 
-# TODO: Delete User Test Case - Requires careful setup/teardown or dedicated test user
-# Delete Logged In User
-#     [Documentation]    Test deleting the currently logged-in user.
-#     # This test might fail subsequent tests if run in the same suite without re-login
-#     ${response}    DELETE    url=${BASE_URL}/users    headers=${AUTH_HEADERS} # Assumes DELETE /users deletes the authenticated user
-#     Status Should Be    200 # Or 204 No Content
-#     # Optionally verify the response message if applicable
+Delete User Successfully
+    [Documentation]    Register a fresh user, log in as them, then delete and verify.
+    # generate a unique user for this test
+    ${randInt}    Evaluate    random.randint(10001,20000)    random
+    ${del_email}    Set Variable    delete-${randInt}.user@example.com
+    ${del_name}     Set Variable    Delete User ${randInt}
+
+    # register that user
+    ${body}    Create Dictionary    name=${del_name}    email=${del_email}    password=${PASSWORD}
+    ${reg_resp}    POST    url=${BASE_URL}/users/auth/register    json=${body}
+    Status Should Be    201
+    ${new_id}    Set Variable    ${reg_resp.json()}[user][userId]
+
+    # login
+    ${login_body}    Create Dictionary    email=${del_email}    password=${PASSWORD}
+    ${login_resp}    POST    url=${BASE_URL}/users/auth/login    json=${login_body}
+    Status Should Be    200
+    ${new_token}    Set Variable    Bearer ${login_resp.json()}[token]
+    ${new_headers}    Create Dictionary    Authorization=${new_token}
+
+    # delete
+    ${del_resp}    DELETE    url=${BASE_URL}/users/auth/delete/${new_id}    headers=${new_headers}
+    Status Should Be    200
+    ${del_json}    Set Variable    ${del_resp.json()}
+    Dictionary Should Contain Key    ${del_json}    message
+    Should Be Equal As Strings    ${del_json}[message]    User deleted successfully
+
+Send Chat Message Successfully
+    [Documentation]    Send a chat message and verify the API acknowledges it.
+    ${text}    Set Variable    Hello, Im feeling anxious today.
+    ${chat_body}    Create Dictionary    user_id=${USER_ID}    message=${text}
+    ${chat_resp}    POST    url=${BASE_URL}/chat    json=${chat_body}    headers=${AUTH_HEADERS}
+    Status Should Be    200
+    ${chat_json}    Set Variable    ${chat_resp.json()}
+    Dictionary Should Contain Key    ${chat_json}    reply
