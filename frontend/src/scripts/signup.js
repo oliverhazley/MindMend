@@ -8,6 +8,7 @@
 // -----------------------------------------------------------------------------
 
 import {API_BASE_URL} from './config.js';
+import {getText} from './i18n.js';
 
 export function initSignup() {
   console.log('signup.js: initializing signup view');
@@ -53,7 +54,12 @@ export function initSignup() {
 
     // Simple client-side check
     if (password !== confirmPassword) {
-      showError("Passwords don't match. Please re-enter them.");
+      showError(
+        getText(
+          'signup.error.passwordsDontMatch',
+          "Passwords don't match. Please re-enter them.",
+        ),
+      );
       return;
     }
 
@@ -75,16 +81,21 @@ export function initSignup() {
 
         console.error('Sign-up error payload:', errorPayload);
 
-        // Specific check for "email already exists"
         const msg = errorPayload?.message?.toLowerCase() || '';
         if (msg.includes('already exists') || msg.includes('in use')) {
           showError(
-            'That email address is already registered. Please log in instead.',
+            getText(
+              'signup.error.emailExists',
+              'That email address is already registered. Please log in instead.',
+            ),
           );
         } else {
           showError(
-            errorPayload?.message ||
-              'Sign-up failed. Please check your inputs or try again.',
+            errorPayload?.message || // Keep server message if it exists
+              getText(
+                'signup.error.apiDefault',
+                'Sign-up failed. Please check your inputs or try again.',
+              ),
           );
         }
         return;
@@ -100,7 +111,10 @@ export function initSignup() {
     } catch (err) {
       console.error('Error during sign-up:', err);
       showError(
-        'Something went wrong while creating your account. Please try again later.',
+        getText(
+          'signup.error.unexpected',
+          'Something went wrong while creating your account. Please try again later.',
+        ),
       );
     }
   });

@@ -5,26 +5,27 @@
 
 const STORAGE_KEY = 'lang';
 let currentLang = localStorage.getItem(STORAGE_KEY) || 'en';
+let currentTranslations = {};
 
 // grab our two icon-containers
 const desktopLangIcon = document.getElementById('langIconDesktop');
-const mobileLangIcon  = document.getElementById('langIconMobile');
+const mobileLangIcon = document.getElementById('langIconMobile');
 
 async function initI18n() {
   // load the proper JSON file
-  let bundle;
   try {
     const res = await fetch(`./locales/${currentLang}.json`);
-    bundle = await res.json();
+    currentTranslations = await res.json();
   } catch (err) {
     console.error('Could not load', currentLang, 'bundle:', err);
+    currentTranslations = {};
     return;
   }
 
   // translate every element with data-i18n-key
-  document.querySelectorAll('[data-i18n-key]').forEach(el => {
+  document.querySelectorAll('[data-i18n-key]').forEach((el) => {
     const key = el.dataset.i18nKey;
-    const txt = bundle[key];
+    const txt = currentTranslations[key];
     if (!txt) return;
 
     switch (el.tagName) {
@@ -45,8 +46,21 @@ async function initI18n() {
 
   // update the little label in the toggle buttons
   const nextLang = currentLang === 'fi' ? 'EN' : 'FI';
-  desktopLangIcon.textContent = nextLang;
-  mobileLangIcon.textContent  = nextLang;
+  if (desktopLangIcon) desktopLangIcon.textContent = nextLang;
+  if (mobileLangIcon) mobileLangIcon.textContent = nextLang;
+}
+
+function getText(key, fallbackText = '') {
+  const translated = currentTranslations[key];
+  if (translated) {
+    return translated;
+  }
+  if (fallbackText) {
+    console.warn(`Translation missing for key: "${key}". Using fallback text.`);
+    return fallbackText;
+  }
+  console.warn(`Translation missing for key: "${key}". Returning key.`);
+  return key;
 }
 
 // switch between 'fi' and 'en'
@@ -59,7 +73,7 @@ function toggleLanguage() {
 // wire up our toggle buttons
 document
   .querySelectorAll('#langToggleDesktop, #langToggleMobile')
-  .forEach(btn => btn.addEventListener('click', toggleLanguage));
+  .forEach((btn) => btn.addEventListener('click', toggleLanguage));
 
 // run on DOM ready
 if (document.readyState === 'loading') {
@@ -69,4 +83,4 @@ if (document.readyState === 'loading') {
 }
 
 // —— EXPORT SO OTHER MODULES CAN RE-TRIGGER TRANSLATION ——
-export { initI18n };
+export {initI18n, getText};

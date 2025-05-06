@@ -6,6 +6,7 @@
 // -----------------------------------------------------------------------------
 
 import {API_BASE_URL} from './config.js';
+import {getText} from './i18n.js';
 
 let isLoginInitialized = false; // Guard to prevent multiple initializations
 
@@ -59,7 +60,12 @@ export function initLogin() {
         });
 
         if (!response.ok) {
-          showError('Login failed. Please check your credentials.');
+          showError(
+            getText(
+              'login.error.credentials',
+              'Login failed. Please check your email and password.',
+            ),
+          );
           return;
         }
 
@@ -88,7 +94,10 @@ export function initLogin() {
       } catch (error) {
         console.error('Error during login:', error);
         showError(
-          'Something went wrong while logging in. Please try again later.',
+          getText(
+            'login.error.unexpected',
+            'Something went wrong while logging you in. Please try again later.',
+          ),
         );
       }
     });
