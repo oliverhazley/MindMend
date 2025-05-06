@@ -1,60 +1,98 @@
-# Testing documentation
+<div align="center">
+   <h1>MindMend - Test Documentation</h1>
+   <img src="../frontend/public/images/mmlogo.webp" alt="MindMend Logo" width="400"/>
+</div>
 
-## Test enviroment initialization
+Welcome to the **Testing** documentation of **MindMend**, a mental wellness and PTSD management application designed to help users manage stress and improve mental health through cutting-edge features like HRV monitoring and guided relaxation exercises.
 
-Change directory to tests/
+---
+
+## Table of Contents
+
+1.  [Quick Links](#quick-links)
+2.  [Test Environment Setup](#test-environment-setup)
+    - [1. Change Directory](#1-change-directory)
+    - [2. Virtual Environment](#2-virtual-environment)
+    - [3. Install Requirements](#3-install-requirements)
+    - [4. Test Installation](#4-test-installation)
+3.  [Running Tests](#running-tests)
+    - [Frontend Tests](#frontend-tests)
+    - [Backend API Tests](#backend-api-tests)
+4.  [Understanding Test Results](#understanding-test-results)
+5.  [Configuration Notes](#configuration-notes)
+
+---
+
+## Quick Links
+
+- **Root README**: [MindMend Project README](../README.md)
+- **Frontend Documentation**: [Frontend README](../frontend/README.md)
+- **Backend Documentation**: [Backend README](../backend/README.md)
+
+---
+
+## Test Environment Setup
+
+Follow these steps to prepare your local environment for running the automated tests.
+
+### 1. Change Directory
+
+Navigate to the `tests` directory from the project root:
 
 ```bash
 cd tests
 ```
 
-### 1. Virtual enviroment
+### 2. Virtual Environment
 
-Create .venv folder
+It's recommended to use a virtual environment to manage dependencies.
+
+**Create the virtual environment (if you haven't already):**
 
 ```bash
 python -m venv .venv
 ```
 
-Activate the virtual enviroment
+**Activate the virtual environment:**
 
-- Windows
+- **Windows:**
+  ```bash
+  .venv\Scripts\activate
+  ```
+- **macOS/Linux:**
+  ```bash
+  source .venv/bin/activate
+  ```
 
-```bash
-.venv\Scripts\activate
-```
+_(Remember to add `.venv` to your `.gitignore` file if it's not already there.)_
 
-- macOS
+### 3. Install Requirements
 
-```bash
-source .venv/bin/activate
-```
+Install the necessary Python packages using pip:
 
-Add .venv folder to .gitignore.
-
-### 2. Install the requirements and test the installation
-
-Just in case, upgrade pip to the newest version
+**Upgrade pip (optional, but recommended):**
 
 ```bash
 python -m pip install --upgrade pip
 ```
 
-Then install the requirements
+**Install test dependencies:**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-After that you should test the installation from your terminal
+### 4. Test Installation
+
+Verify that Robot Framework and its key libraries are correctly installed:
 
 ```bash
 python installTest.py
 ```
 
-Its should print the following:
+You should see output similar to this (versions may vary):
 
-```bash
+```
 Python: 3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]
 Robot Framework: 7.2.2
 Browser: 19.4.0
@@ -62,121 +100,115 @@ requests: 2.32.3
 CryptoLibrary: 0.4.2
 ```
 
-Note: Version numbers may vary.
+---
 
-## MindMend Login Test Documentation
+## Running Tests
 
-This document describes the automated login tests for the MindMend application using Robot Framework.
+The MindMend application has two main suites of automated tests: Frontend and Backend.
 
-### Overview
+### Frontend Tests
 
-The test suite (`login_test.robot`) verifies the basic login functionality of the MindMend application, including:
+These tests verify the user interface and user interaction flows of the MindMend frontend. They are implemented using Robot Framework with the Browser library.
 
-- Accessing the login page
-- Verifying the login form elements exist
-- Submitting login credentials
+**Purpose:**
 
-### Prerequisites
+- Ensure key user interface elements are present and functional.
+- Validate navigation and user workflows (e.g., login, accessing features).
+- Check responsiveness and behavior of interactive components.
 
-- Python 3.7+
-- Robot Framework installed
-- Robot Framework Browser library installed
-- MindMend frontend running at http://localhost:5173
-- MindMend backend service running
+**Location:** [`tests/frontendTest/`](./frontendTest/)
 
-### Setup
+**How to Run:**
 
-Ensure the MindMend application is running:
+1.  Ensure the MindMend frontend application is running (typically at `http://localhost:5173`).
+2.  Ensure the MindMend backend application is running (typically at `http://localhost:3000/api`).
+3.  Navigate to the frontend test directory and execute the tests:
 
-- Start backend: `cd backend && npm run dev`
-- Start frontend: `cd frontend && npm run dev`
+    ```bash
+    cd frontendTest
+    robot frontendTest.robot
+    ```
 
-### Running the Tests
+**Key Areas Covered:**
 
-From the tests directory:
+- User login and registration.
+- Interaction with HRV monitoring features.
+- Chatbot interaction.
+- Tetris game functionality.
+- Mindfulness and breathing exercises.
 
-```bash
-cd tests/logintest
-robot login_test.robot
-```
+**Test Results:**
 
-### Test Cases
+- **Detailed Log:** [Frontend Test Log](frontendTest/log.html)
+- **Summary Report:** [Frontend Test Report](frontendTest/report.html)
+- **Raw XML Output:** [Frontend Test Raw XML Output](frontendTest/output.xml)
 
-#### User Can Access Login Page
+### Backend API Tests
 
-Verifies that the login page loads properly and contains the expected login form elements.
+These tests verify the core functionalities of the MindMend backend API, ensuring data integrity and correct endpoint behavior. They are implemented using Robot Framework with the RequestsLibrary.
 
-#### User Can Submit Login Form
+**Purpose:**
 
-Verifies that a user can fill in and submit the login form.
+- Validate API endpoints for user authentication (registration, login).
+- Test user data retrieval and management.
+- Verify HRV data submission and retrieval logic.
 
-### Test Results
+**Location:** [`tests/backendTest/`](./backendTest/)
 
-After running the tests, you can view the generated reports:
+**Prerequisites:**
 
-- log.html - Detailed test execution log
-- report.html - Test result summary
+1.  **Running Backend Server**: The backend server must be running and accessible at the `BASE_URL` specified in [`backendTest.robot`](backendTest/backendTest.robot) (default: `http://localhost:3000/api`).
+2.  **Initial User Account**: Some tests rely on an existing user account for setup (e.g., to obtain an initial authentication token). (`${EXISTING_EMAIL}` and `${PASSWORD}` in `backendTest.robot`) corresponds to a existing valid user in the database.
 
-### Configuration
+**How to Run:**
 
-The test uses the following variables that can be modified if needed:
+1.  Ensure the MindMend backend application is running.
+2.  Navigate to the backend test directory and execute the tests:
 
-- `${BASE_URL}` - Base URL of the application
-- `${LOGIN_URL}` - URL of the login page
-- `${EMAIL}` and `${PASSWORD}` - Test credentials
+    ```bash
+    cd backendTest
+    robot backendTest.robot
+    ```
 
-![pass](https://github.com/user-attachments/assets/c0ec699a-5007-4f45-9051-68aa20162ed5)
+**Test Cases Overview:**
 
-![fail](https://github.com/user-attachments/assets/a0f52140-bfa1-4c72-b82a-5bdfe87bfdea)
+- **Setup:**
+  - `Setup Test Suite`: Logs in an existing user to obtain an authentication token and user ID for subsequent authenticated tests. Generates dynamic data for new user registration.
+- **User Authentication:**
+  - `Register New User Successfully`: Tests successful creation of a new user.
+  - `Register User With Existing Email`: Ensures registration fails if the email already exists.
+  - `Login User Successfully`: Tests successful login with valid credentials.
+  - `Login User With Incorrect Password`: Ensures login fails with an incorrect password.
+- **User Management:**
+  - `Get All Users`: Tests retrieving the list of all users (requires authentication).
+  - `Delete User Successfully`: Register and login as a new user that is to be deleted.
+- **HRV Data:**
+  - `Add HRV Reading Successfully`: Tests adding a valid HRV reading.
+  - `Add HRV Reading With Invalid Data`: Ensures adding an HRV reading fails with incorrect data.
+  - `Get HRV Readings For User`: Tests retrieving HRV readings for a user.
+  - `Get HRV Readings Without User ID`: Ensures retrieving HRV readings fails if `user_id` is missing.
+- **Chatbot:**
+  - `Send Chat Message Successfully`: Sends a message to the chatbot (does not wait for a possible reply).
 
-## Backend API Tests (Robot Framework)
+**Test Results:**
 
-This directory contains automated tests for the MindMend backend API, written using Robot Framework.
+- **Detailed Log:** [Backend Test Log](backendTest/log.html)
+- **Summary Report:** [Backend Test Report](backendTest/report.html)
+- **Raw XML Output:** [Backend Test Raw XML output](backendTest/output.xml)
 
-[Test report](../tests/backendTest/report.html)
+---
 
-### Purpose
+## Understanding Test Results
 
-These tests verify the core functionalities of the backend API, including user authentication (registration, login), user data retrieval, and HRV data management (adding, retrieving).
+After running any test suite, Robot Framework generates the following files in the respective test directory (e.g., `frontendTest/` or `backendTest/`):
 
-### Prerequisites
+- **`log.html`**: A detailed HTML log file showing the execution steps of each test case, keyword statuses, and any messages or errors. This is crucial for debugging failed tests.
+- **`report.html`**: An HTML summary report providing an overview of test execution, including pass/fail statistics, execution time, and a summary of test suites and test cases.
+- **`output.xml`**: An XML file containing the complete test results in a machine-readable format. This can be used for further processing or integration with CI/CD systems.
 
-1.  **Running Backend Server**: Ensure the backend server is running and accessible at the `BASE_URL` specified in the `backendTest.robot` file (default: `http://localhost:3000/api`).
-2.  **Initial User**: The tests assume an existing user account specified by `${LOGIN_EMAIL}` and `${LOGIN_PASSWORD}` in the `*** Variables ***` section of `backendTest.robot` exists in the database for setup purposes (obtaining an initial auth token).
+---
 
-### Running the Tests
+## Configuration Notes
 
-Navigate to the `tests/backendTest` directory in your terminal and run the tests using the `robot` command:
-
-```bash
-cd path/to/MindMend/tests/backendTest
-robot backendTest.robot
-```
-
-Test results (log.html, report.html, output.xml) will be generated in the same directory. Link to report.html is at the top.
-
-### Test Cases Overview
-
-#### Setup
-
-- `Setup Test Suite`: Logs in an existing user (`${LOGIN_EMAIL}`) to obtain an authentication token (`${AUTH_TOKEN}`) and user ID (`${USER_ID}`) used by subsequent authenticated tests. Generates random data for new user registration.
-
-#### User Authentication
-
-- `Register New User Successfully`: Tests successful creation of a new user account using dynamically generated data.
-- `Register User With Existing Email`: Tests that registration fails if the email already exists.
-- `Login User Successfully`: Tests successful login using the predefined `${LOGIN_EMAIL}` and `${LOGIN_PASSWORD}`.
-- `Login User With Incorrect Password`: Tests that login fails with an incorrect password.
-
-#### User Management
-
-- `Get All Users`: Tests retrieving the list of all users (requires authentication).
-
-#### HRV Data
-
-- `Add HRV Reading Successfully`: Tests adding a valid HRV reading for the logged-in user (requires authentication).
-- `Add HRV Reading With Invalid Data`: Tests that adding an HRV reading fails if the data format is incorrect (requires authentication).
-- `Get HRV Readings For User`: Tests retrieving all HRV readings for the logged-in user (requires authentication).
-- `Get HRV Readings Without User ID`: Tests that retrieving HRV readings fails if the `user_id` query parameter is missing (requires authentication).
-
-_(Note: A test case for deleting a user is commented out as it requires careful handling to avoid disrupting other tests.)_
+- The Robot Framework test files (`.robot`) may contain variables (e.g., `${URL}`, `${BASE_URL}`, `${VALID_EMAIL}`, `${VALID_PASSWORD}`) that define test parameters like application URLs or test data.
+- If your local development environment differs from the defaults (e.g., your application runs on different ports), you may need to adjust these variables within the respective `.robot` files.
