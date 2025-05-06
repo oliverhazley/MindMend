@@ -6,6 +6,7 @@
 // -----------------------------------------------------------------------------
 
 import {API_BASE_URL} from './config.js';
+import {getText} from './i18n.js';
 
 let isLoginInitialized = false; // Guard to prevent multiple initializations
 
@@ -21,6 +22,27 @@ export function initLogin() {
   const loginForm = document.getElementById('loginForm');
 
   if (loginForm) {
+    // Find or create error container
+    let errorContainer = document.getElementById('login-error-container');
+    if (!errorContainer) {
+      errorContainer = document.createElement('div');
+      errorContainer.id = 'login-error-container';
+      errorContainer.className =
+        'hidden p-3 mb-4 text-sm rounded border border-red-600 bg-red-100/10 text-red-500';
+      loginForm.insertBefore(errorContainer, loginForm.firstChild);
+    }
+
+    // Clear errors when user starts typing
+    const emailInput = document.getElementById('login-email');
+    const passwordInput = document.getElementById('login-password');
+    [emailInput, passwordInput].forEach((input) => {
+      if (input) {
+        input.addEventListener('input', () => {
+          hideError();
+        });
+      }
+    });
+
     loginForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -38,7 +60,12 @@ export function initLogin() {
         });
 
         if (!response.ok) {
-          alert('Login failed. Please check your credentials.');
+          showError(
+            getText(
+              'login.error.credentials',
+              'Login failed. Please check your email and password.',
+            ),
+          );
           return;
         }
 
@@ -62,12 +89,27 @@ export function initLogin() {
           //  Navigate to dashboard
           window.location.hash = '#/dashboard';
         } else {
-          alert('Login failed. Missing token.');
+          showError('Login failed. Missing authentication token.');
         }
       } catch (error) {
         console.error('Error during login:', error);
-        alert('Something went wrong while logging in.');
+        showError(
+          getText(
+            'login.error.unexpected',
+            'Something went wrong while logging you in. Please try again later.',
+          ),
+        );
       }
     });
+
+    // Helper functions for showing/hiding errors
+    function showError(message) {
+      errorContainer.textContent = message;
+      errorContainer.classList.remove('hidden');
+    }
+
+    function hideError() {
+      errorContainer.classList.add('hidden');
+    }
   }
 }

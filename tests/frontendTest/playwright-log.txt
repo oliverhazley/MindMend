@@ -1,0 +1,369 @@
+{"level":30,"time":"2025-05-06T13:55:37.052Z","pid":27872,"hostname":"Nebonen","msg":"Listening on 49409"}
+(node:27872) DeprecationWarning: Calling start() is no longer necessary. It can be safely omitted.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"level":30,"time":"2025-05-06T13:55:37.518Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method newPage"}
+{"level":30,"time":"2025-05-06T13:55:37.519Z","pid":27872,"hostname":"Nebonen","msg":"currentBrowser: undefined"}
+{"level":30,"time":"2025-05-06T13:55:37.600Z","pid":27872,"hostname":"Nebonen","msg":"Changed active context"}
+{"level":30,"time":"2025-05-06T13:55:37.649Z","pid":27872,"hostname":"Nebonen","msg":"Video path: undefined"}
+{"level":30,"time":"2025-05-06T13:55:37.649Z","pid":27872,"hostname":"Nebonen","msg":"Changed active page"}
+{"level":30,"time":"2025-05-06T13:55:38.008Z","pid":27872,"hostname":"Nebonen","msg":"End of node method newPage"}
+{"level":30,"time":"2025-05-06T13:55:38.012Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method setViewportSize"}
+{"level":30,"time":"2025-05-06T13:55:38.015Z","pid":27872,"hostname":"Nebonen","msg":"End of node method setViewportSize"}
+{"level":30,"time":"2025-05-06T13:55:38.019Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.019Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with body in page."}
+{"level":30,"time":"2025-05-06T13:55:38.045Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.051Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.054Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.057Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.058Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=navbarlogin in page."}
+{"level":30,"time":"2025-05-06T13:55:38.078Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.082Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.082Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=loginForm in page."}
+{"level":30,"time":"2025-05-06T13:55:38.086Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.090Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.090Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=login-email in page."}
+{"level":30,"time":"2025-05-06T13:55:38.101Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.104Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.104Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=login-password in page."}
+{"level":30,"time":"2025-05-06T13:55:38.110Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.113Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.113Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with xpath=//form[@id='loginForm']//button[@type='submit'] in page."}
+{"level":30,"time":"2025-05-06T13:55:38.156Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.160Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.160Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=page-dashboard in page."}
+{"level":30,"time":"2025-05-06T13:55:38.284Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.286Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.286Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:38.306Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.310Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.310Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:38.312Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.314Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.315Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:38.358Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.361Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.361Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=page-home in page."}
+{"level":30,"time":"2025-05-06T13:55:38.363Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.366Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.366Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with body in page."}
+{"level":30,"time":"2025-05-06T13:55:38.370Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.375Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.376Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.378Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.379Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.382Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.382Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=navbarlogin in page."}
+{"level":30,"time":"2025-05-06T13:55:38.423Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.426Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.426Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=loginForm in page."}
+{"level":30,"time":"2025-05-06T13:55:38.429Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.431Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.431Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=login-email in page."}
+{"level":30,"time":"2025-05-06T13:55:38.438Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.441Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.441Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=login-password in page."}
+{"level":30,"time":"2025-05-06T13:55:38.446Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.448Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.448Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with xpath=//form[@id='loginForm']//button[@type='submit'] in page."}
+{"level":30,"time":"2025-05-06T13:55:38.489Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.493Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.493Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=loginForm in page."}
+{"level":30,"time":"2025-05-06T13:55:38.496Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.498Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.498Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with body:has-text(\"Log In\") in page."}
+{"level":30,"time":"2025-05-06T13:55:38.506Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.508Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:38.570Z","pid":27872,"hostname":"Nebonen","msg":"End of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:38.576Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.578Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.580Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.581Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.584Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.584Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=navbarsignup in page."}
+{"level":30,"time":"2025-05-06T13:55:38.624Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.627Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.627Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=signupForm in page."}
+{"level":30,"time":"2025-05-06T13:55:38.630Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.633Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.633Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=signup-name in page."}
+{"level":30,"time":"2025-05-06T13:55:38.638Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.641Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.641Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=signup-email in page."}
+{"level":30,"time":"2025-05-06T13:55:38.647Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.649Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.649Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=signup-password in page."}
+{"level":30,"time":"2025-05-06T13:55:38.654Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.656Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.656Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=signup-confirm in page."}
+{"level":30,"time":"2025-05-06T13:55:38.661Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.663Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.663Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with xpath=//form[@id='signupForm']//button[@type='submit'] in page."}
+{"level":30,"time":"2025-05-06T13:55:38.689Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.693Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.693Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with body in page."}
+{"level":30,"time":"2025-05-06T13:55:38.695Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.697Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:38.752Z","pid":27872,"hostname":"Nebonen","msg":"End of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:38.757Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.759Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.761Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.762Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.765Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.765Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=navbarsignup in page."}
+{"level":30,"time":"2025-05-06T13:55:38.806Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.810Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.810Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=signupForm in page."}
+{"level":30,"time":"2025-05-06T13:55:38.812Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.816Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.816Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=signup-name in page."}
+{"level":30,"time":"2025-05-06T13:55:38.820Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.823Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.823Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=signup-email in page."}
+{"level":30,"time":"2025-05-06T13:55:38.829Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.832Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.832Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=signup-password in page."}
+{"level":30,"time":"2025-05-06T13:55:38.837Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.840Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.840Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=signup-confirm in page."}
+{"level":30,"time":"2025-05-06T13:55:38.845Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:38.847Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.847Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with xpath=//form[@id='signupForm']//button[@type='submit'] in page."}
+{"level":30,"time":"2025-05-06T13:55:38.889Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:38.892Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.892Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with body:has-text(\"That email address is already registered. Please log in instead.\") in page."}
+{"level":30,"time":"2025-05-06T13:55:38.897Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.900Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:38.949Z","pid":27872,"hostname":"Nebonen","msg":"End of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:38.953Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.957Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.959Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.961Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:38.963Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:38.963Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:39.971Z","pid":27872,"hostname":"Nebonen","msg":"Error of node method  waitForElementState"}
+================= Original suppressed error =================
+locator.waitFor: Timeout 1000ms exceeded.
+Call log:
+[2m  - waiting for locator('id=logoutButton') to be visible[22m
+[2m    7 × locator resolved to hidden <a href="#/login" id="logoutButton" data-i18n-key="nav.logout" class="spa-protected-nav hover:text-accent hidden">Logout</a>[22m
+
+    at waitForElementState (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js:11283:19)
+    at async PlaywrightServer.waitForElementsState (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js:13132:28) {
+  name: 'TimeoutError'
+}
+=============================================================
+{"level":30,"time":"2025-05-06T13:55:39.992Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method takeScreenshot"}
+{"level":30,"time":"2025-05-06T13:55:39.992Z","pid":27872,"hostname":"Nebonen","Take screenshot with options: ":{"path":"C:\\Users\\miska\\MindMend\\tests\\frontendTest\\browser\\screenshot\\fail-screenshot-1.png","fileType":"png","fullPage":false,"timeout":10000,"omitBackground":false}}
+{"level":30,"time":"2025-05-06T13:55:40.112Z","pid":27872,"hostname":"Nebonen","msg":"End of node method takeScreenshot"}
+{"level":30,"time":"2025-05-06T13:55:40.130Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:40.130Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=navbarlogin in page."}
+{"level":30,"time":"2025-05-06T13:55:40.172Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:40.175Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.175Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=loginForm in page."}
+{"level":30,"time":"2025-05-06T13:55:40.177Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.180Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:40.180Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=login-email in page."}
+{"level":30,"time":"2025-05-06T13:55:40.185Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:40.187Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:40.187Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=login-password in page."}
+{"level":30,"time":"2025-05-06T13:55:40.193Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:40.195Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:40.195Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with xpath=//form[@id='loginForm']//button[@type='submit'] in page."}
+{"level":30,"time":"2025-05-06T13:55:40.222Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:40.224Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.224Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=page-dashboard in page."}
+{"level":30,"time":"2025-05-06T13:55:40.315Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.318Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.318Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:40.320Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.324Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:40.326Z","pid":27872,"hostname":"Nebonen","msg":"End of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:40.328Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.328Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=page-dashboard in page."}
+{"level":30,"time":"2025-05-06T13:55:40.331Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.334Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.334Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:40.337Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.339Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:40.340Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:40.373Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:40.376Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.376Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=page-home in page."}
+{"level":30,"time":"2025-05-06T13:55:40.378Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.380Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.380Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with body in page."}
+{"level":30,"time":"2025-05-06T13:55:40.382Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.386Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:40.388Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:40.390Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:40.391Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:40.395Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:40.395Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:41.410Z","pid":27872,"hostname":"Nebonen","msg":"Error of node method  waitForElementState"}
+================= Original suppressed error =================
+locator.waitFor: Timeout 1000ms exceeded.
+Call log:
+[2m  - waiting for locator('id=logoutButton') to be visible[22m
+[2m    7 × locator resolved to hidden <a href="#/login" id="logoutButton" data-i18n-key="nav.logout" class="spa-protected-nav hover:text-accent hidden">Logout</a>[22m
+
+    at waitForElementState (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js:11283:19)
+    at async PlaywrightServer.waitForElementsState (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js:13132:28) {
+  name: 'TimeoutError'
+}
+=============================================================
+{"level":30,"time":"2025-05-06T13:55:41.430Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method takeScreenshot"}
+{"level":30,"time":"2025-05-06T13:55:41.430Z","pid":27872,"hostname":"Nebonen","Take screenshot with options: ":{"path":"C:\\Users\\miska\\MindMend\\tests\\frontendTest\\browser\\screenshot\\fail-screenshot-2.png","fileType":"png","fullPage":false,"timeout":10000,"omitBackground":false}}
+{"level":30,"time":"2025-05-06T13:55:41.545Z","pid":27872,"hostname":"Nebonen","msg":"End of node method takeScreenshot"}
+{"level":30,"time":"2025-05-06T13:55:41.549Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:41.549Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=navbarlogin in page."}
+{"level":30,"time":"2025-05-06T13:55:41.571Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:41.575Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:41.575Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=loginForm in page."}
+{"level":30,"time":"2025-05-06T13:55:41.577Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:41.580Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:41.580Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=login-email in page."}
+{"level":30,"time":"2025-05-06T13:55:41.584Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:41.587Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:41.587Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=login-password in page."}
+{"level":30,"time":"2025-05-06T13:55:41.592Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:41.594Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:41.594Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with xpath=//form[@id='loginForm']//button[@type='submit'] in page."}
+{"level":30,"time":"2025-05-06T13:55:41.621Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:41.625Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:41.625Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=page-dashboard in page."}
+{"level":30,"time":"2025-05-06T13:55:41.722Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:41.724Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:41.725Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:41.727Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:41.730Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:41.732Z","pid":27872,"hostname":"Nebonen","msg":"End of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:41.736Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:41.736Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=page-exercises in page."}
+{"level":30,"time":"2025-05-06T13:55:41.752Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:41.756Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:41.756Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=playPauseBtn-nature in page."}
+{"level":30,"time":"2025-05-06T13:55:41.823Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:42.827Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:42.827Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=playPauseBtn-nature in page."}
+{"level":30,"time":"2025-05-06T13:55:42.857Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:43.861Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:43.861Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=resetBtn-nature in page."}
+{"level":30,"time":"2025-05-06T13:55:43.871Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:43.876Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:43.877Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:43.879Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:43.880Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:43.883Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:43.883Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:43.885Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:43.890Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:43.892Z","pid":27872,"hostname":"Nebonen","msg":"End of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:43.895Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:43.895Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=breathingList in page."}
+{"level":30,"time":"2025-05-06T13:55:43.898Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:43.901Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:43.901Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=playPauseBtn-box in page."}
+{"level":30,"time":"2025-05-06T13:55:43.941Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:44.945Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:44.945Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=playPauseBtn-box in page."}
+{"level":30,"time":"2025-05-06T13:55:44.973Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:45.978Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:45.978Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=resetBtn-box in page."}
+{"level":30,"time":"2025-05-06T13:55:45.988Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:45.993Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:45.995Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:45.998Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:46.000Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:46.003Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:46.003Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:46.006Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:46.011Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:46.013Z","pid":27872,"hostname":"Nebonen","msg":"End of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:46.016Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:46.016Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=tetrisBoard in page."}
+{"level":30,"time":"2025-05-06T13:55:46.019Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:46.023Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:46.023Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=startTetrisBtn in page."}
+{"level":30,"time":"2025-05-06T13:55:46.055Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:46.057Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:46.057Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=pauseResumeBtn in page."}
+{"level":30,"time":"2025-05-06T13:55:46.060Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:46.063Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:46.063Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=pauseResumeBtn in page."}
+{"level":30,"time":"2025-05-06T13:55:46.105Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:47.110Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:47.110Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=restartTetrisBtn in page."}
+{"level":30,"time":"2025-05-06T13:55:47.121Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:47.124Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:47.124Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=startTetrisBtn in page."}
+{"level":30,"time":"2025-05-06T13:55:47.127Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:47.131Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:47.132Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:47.134Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:47.136Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:47.140Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:47.140Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:47.143Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:47.147Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:47.150Z","pid":27872,"hostname":"Nebonen","msg":"End of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:47.154Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:47.154Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=exportPDFBtnDashboard in page."}
+{"level":30,"time":"2025-05-06T13:55:47.159Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:47.163Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:47.163Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=exportPDFBtnDashboard in page."}
+{"level":30,"time":"2025-05-06T13:55:47.209Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:48.214Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:48.215Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:48.217Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:48.218Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:48.222Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:48.222Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:48.224Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:48.229Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:48.231Z","pid":27872,"hostname":"Nebonen","msg":"End of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:48.234Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:48.234Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=polarConnectBtn in page."}
+{"level":30,"time":"2025-05-06T13:55:48.236Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:48.239Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:48.239Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=polarConnectBtn in page."}
+{"level":30,"time":"2025-05-06T13:55:48.273Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:49.278Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:49.280Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:49.283Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:49.285Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:49.288Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:49.289Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=logoutButton in page."}
+{"level":30,"time":"2025-05-06T13:55:49.292Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:49.297Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:49.299Z","pid":27872,"hostname":"Nebonen","msg":"End of node method goTo"}
+{"level":30,"time":"2025-05-06T13:55:49.302Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:49.302Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=chatWindow in page."}
+{"level":30,"time":"2025-05-06T13:55:49.306Z","pid":27872,"hostname":"Nebonen","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-05-06T13:55:49.311Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:49.311Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with id=chatInput in page."}
+{"level":30,"time":"2025-05-06T13:55:49.317Z","pid":27872,"hostname":"Nebonen","msg":"End of node method fillText"}
+{"level":30,"time":"2025-05-06T13:55:49.321Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method click"}
+{"level":30,"time":"2025-05-06T13:55:49.321Z","pid":27872,"hostname":"Nebonen","msg":"Strict mode is enabled, find Locator with xpath=//form[@id='chatForm']//button[@type='submit'] in page."}
+{"level":30,"time":"2025-05-06T13:55:49.356Z","pid":27872,"hostname":"Nebonen","msg":"End of node method click"}
+{"level":30,"time":"2025-05-06T13:55:49.361Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:49.362Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:49.366Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method closeBrowser"}
+{"level":30,"time":"2025-05-06T13:55:49.371Z","pid":27872,"hostname":"Nebonen","msg":"Removed page=7e111234-0cb8-4599-9f9c-44915420628a from context=c9e56ab0-ddcc-44a8-ab9b-e32f839666c6 page stack"}
+{"level":30,"time":"2025-05-06T13:55:49.466Z","pid":27872,"hostname":"Nebonen","msg":"End of node method closeBrowser"}
+================= Original suppressed error =================
+Error: Browser has been closed.
+    at PlaywrightState.getActiveBrowser (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js:12223:15)
+    at PlaywrightServer.getActiveBrowser (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js:13119:59)
+    at PlaywrightServer.setTimeout (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js:13367:57)
+    at Object.onReceiveHalfClose (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\node_modules\@grpc\grpc-js\build\src\server.js:1461:25)
+    at BaseServerInterceptingCall.maybePushNextMessage (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\node_modules\@grpc\grpc-js\build\src\server-interceptors.js:575:31)
+    at BaseServerInterceptingCall.handleEndEvent (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\node_modules\@grpc\grpc-js\build\src\server-interceptors.js:615:14)
+    at ServerHttp2Stream.<anonymous> (C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\node_modules\@grpc\grpc-js\build\src\server-interceptors.js:382:18)
+    at ServerHttp2Stream.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+=============================================================
+{"level":30,"time":"2025-05-06T13:55:49.490Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:49.490Z","pid":27872,"hostname":"Nebonen","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-05-06T13:55:49.547Z","pid":27872,"hostname":"Nebonen","msg":"Start of node method closeAllBrowsers"}
+{"level":30,"time":"2025-05-06T13:55:49.547Z","pid":27872,"hostname":"Nebonen","msg":"End of node method closeAllBrowsers"}

@@ -1,0 +1,1482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.1 on win32)" generated="2025-05-06T16:55:36.209569" rpa="false" schemaversion="5">
+<suite id="s1" name="frontendTest" source="C:\Users\miska\MindMend\tests\frontendTest\frontendTest.robot">
+<kw name="Setup Test Suite" type="SETUP">
+<kw name="New Page" owner="Browser">
+<msg time="2025-05-06T16:55:36.423869" level="INFO">Starting Browser process C:\Users\miska\MindMend\tests\.venv\Lib\site-packages\Browser\wrapper\index.js using port 49409</msg>
+<msg time="2025-05-06T16:55:36.423869" level="INFO">Node startup parameters: ['node', 'C:\\Users\\miska\\MindMend\\tests\\.venv\\Lib\\site-packages\\Browser\\wrapper\\index.js', '49409']</msg>
+<msg time="2025-05-06T16:55:38.009691" level="INFO">Successfully initialized new page object and opened url: http://localhost:5173</msg>
+<msg time="2025-05-06T16:55:38.009691" level="INFO">No browser and context was open. New browser and context was automatically opened when page is created.</msg>
+<arg>${URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2025-05-06T16:55:36.389820" elapsed="1.619871"/>
+</kw>
+<kw name="Set Viewport Size" owner="Browser">
+<msg time="2025-05-06T16:55:38.016689" level="INFO">Set viewport size to: [object Object]</msg>
+<arg>1920</arg>
+<arg>1080</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Sets current Pages viewport size to specified dimensions.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.009691" elapsed="0.006998"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.046225" level="INFO">Waited for Element with selector body at state visible</msg>
+<arg>body</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.017190" elapsed="0.029035"/>
+</kw>
+<msg time="2025-05-06T16:55:38.046225" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait For Elements State</arg>
+<arg>body</arg>
+<arg>visible</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.016689" elapsed="0.029536"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${status}">
+<kw name="Fail" owner="BuiltIn">
+<arg>Homepage did not load properly</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" start="2025-05-06T16:55:38.046723" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:38.046225" elapsed="0.000999"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:38.046225" elapsed="0.000999"/>
+</if>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-05-06T16:55:38.047224" level="INFO">${RANDOM_INT} = 8531</msg>
+<var>${RANDOM_INT}</var>
+<arg>random.randint(1, 10000)</arg>
+<arg>random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.047224" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-05-06T16:55:38.047722" level="INFO">${user_email} = robotTester-8531@test.com</msg>
+<var>${user_email}</var>
+<arg>robotTester-${RANDOM_INT}@test.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.047722" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-05-06T16:55:38.048222" level="INFO">${user_name} = Robot Tester 8531</msg>
+<var>${user_name}</var>
+<arg>Robot Tester ${RANDOM_INT}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.047722" elapsed="0.000500"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-05-06T16:55:38.048222" level="INFO">${NEW_USER_EMAIL} = robotTester-8531@test.com</msg>
+<arg>${NEW_USER_EMAIL}</arg>
+<arg>${user_email}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.048222" elapsed="0.000000"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-05-06T16:55:38.049728" level="INFO">${NEW_USER_NAME} = Robot Tester 8531</msg>
+<arg>${NEW_USER_NAME}</arg>
+<arg>${user_name}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.048222" elapsed="0.001506"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-06T16:55:38.049728" level="INFO">Generated User Email: robotTester-8531@test.com</msg>
+<arg>Generated User Email: ${NEW_USER_EMAIL}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.049728" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-06T16:55:38.050231" level="INFO">Generated User Name: Robot Tester 8531</msg>
+<arg>Generated User Name: ${NEW_USER_NAME}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.050231" elapsed="0.000000"/>
+</kw>
+<doc>Opens browser and generates dynamic data for the test suite</doc>
+<status status="PASS" start="2025-05-06T16:55:36.388812" elapsed="1.661419"/>
+</kw>
+<test id="s1-t1" name="Login With Valid Credentials" line="153">
+<kw name="Go To Login Page">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:38.056729" level="INFO">Clicks the element 'id=navbarlogin'.</msg>
+<arg>id=navbarlogin</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.056729" elapsed="0.023052"/>
+</kw>
+<msg time="2025-05-06T16:55:38.080283" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Click</arg>
+<arg>id=navbarlogin</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.056230" elapsed="0.024053"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${status}">
+<kw name="Click" owner="Browser">
+<arg>id=herologin</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="NOT RUN" start="2025-05-06T16:55:38.080789" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:38.080283" elapsed="0.000506"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:38.080283" elapsed="0.000506"/>
+</if>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.087790" level="INFO">Waited for Element with selector id=loginForm at state visible</msg>
+<arg>id=loginForm</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.080789" elapsed="0.007001"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:38.055728" elapsed="0.032062"/>
+</kw>
+<kw name="Attempt Login">
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.089303" level="INFO">Fills the text 'test123@gmail.com' in the given field.</msg>
+<arg>id=login-email</arg>
+<arg>${email}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.089303" elapsed="0.013019"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.103323" level="INFO">Fills the text 'test123' in the given field.</msg>
+<arg>id=login-password</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.102322" elapsed="0.010018"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:38.112837" level="INFO">Clicks the element 'xpath=//form[@id='loginForm']//button[@type='submit']'.</msg>
+<arg>xpath=//form[@id='loginForm']//button[@type='submit']</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.112340" elapsed="0.045567"/>
+</kw>
+<arg>${VALID_EMAIL}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<status status="PASS" start="2025-05-06T16:55:38.088796" elapsed="0.069111"/>
+</kw>
+<kw name="Verify Login Success">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.285091" level="INFO">Waited for Element with selector id=page-dashboard at state visible</msg>
+<arg>id=page-dashboard</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.158913" elapsed="0.126178"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.307125" level="INFO">Waited for Element with selector id=logoutButton at state visible</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.285591" elapsed="0.022033"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:38.157907" elapsed="0.149717"/>
+</kw>
+<kw name="Logout User">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.313642" level="INFO">Waited for Element with selector id=logoutButton at state visible</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.308124" elapsed="0.005518"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:38.314141" level="INFO">Clicks the element 'id=logoutButton'.</msg>
+<arg>id=logoutButton</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.313642" elapsed="0.045827"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:38.307624" elapsed="0.051845"/>
+</kw>
+<kw name="Verify Logout Success">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.363976" level="INFO">Waited for Element with selector id=page-home at state visible</msg>
+<arg>id=page-home</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.359968" elapsed="0.004008"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.371990" level="INFO">Waited for Element with selector body at state visible</msg>
+<arg>body</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.364476" elapsed="0.008015"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:38.359469" elapsed="0.013022"/>
+</kw>
+<msg time="2025-05-06T16:55:38.374985" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:38.050231" elapsed="0.322260"/>
+</test>
+<test id="s1-t2" name="Login With Invalid Credentials" line="160">
+<kw name="Go To Login Page">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:38.381494" level="INFO">Clicks the element 'id=navbarlogin'.</msg>
+<arg>id=navbarlogin</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.380996" elapsed="0.043574"/>
+</kw>
+<msg time="2025-05-06T16:55:38.425069" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Click</arg>
+<arg>id=navbarlogin</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.380996" elapsed="0.044073"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${status}">
+<kw name="Click" owner="Browser">
+<arg>id=herologin</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="NOT RUN" start="2025-05-06T16:55:38.425069" elapsed="0.000500"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:38.425069" elapsed="0.000500"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:38.425069" elapsed="0.000500"/>
+</if>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.429582" level="INFO">Waited for Element with selector id=loginForm at state visible</msg>
+<arg>id=loginForm</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.425569" elapsed="0.004512"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:38.380496" elapsed="0.049585"/>
+</kw>
+<kw name="Attempt Login">
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.431081" level="INFO">Fills the text 'invalid@gmail.com' in the given field.</msg>
+<arg>id=login-email</arg>
+<arg>${email}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.430581" elapsed="0.009012"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.440591" level="INFO">Fills the text 'invalid123' in the given field.</msg>
+<arg>id=login-password</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.440092" elapsed="0.007000"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:38.447591" level="INFO">Clicks the element 'xpath=//form[@id='loginForm']//button[@type='submit']'.</msg>
+<arg>xpath=//form[@id='loginForm']//button[@type='submit']</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.447092" elapsed="0.044071"/>
+</kw>
+<arg>${INVALID_EMAIL}</arg>
+<arg>${INVALID_PASSWORD}</arg>
+<status status="PASS" start="2025-05-06T16:55:38.430081" elapsed="0.061082"/>
+</kw>
+<kw name="Verify Login Failure">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.496664" level="INFO">Waited for Element with selector id=loginForm at state visible</msg>
+<arg>id=loginForm</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.491663" elapsed="0.005502"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.506676" level="INFO">Waited for Element with selector body:has-text("Log In") at state visible</msg>
+<arg>body:has-text("Log In")</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.497165" elapsed="0.010011"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:38.491163" elapsed="0.016013"/>
+</kw>
+<kw name="Go To" owner="Browser">
+<msg time="2025-05-06T16:55:38.571767" level="INFO">Successfully opened URL http://localhost:5173</msg>
+<arg>${URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.507176" elapsed="0.065088"/>
+</kw>
+<msg time="2025-05-06T16:55:38.575266" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:38.377485" elapsed="0.195280"/>
+</test>
+<test id="s1-t3" name="Sign Up With Valid Credentials" line="166">
+<kw name="Go To Signup Page">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:38.583771" level="INFO">Clicks the element 'id=navbarsignup'.</msg>
+<arg>id=navbarsignup</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.583271" elapsed="0.042030"/>
+</kw>
+<msg time="2025-05-06T16:55:38.625301" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Click</arg>
+<arg>id=navbarsignup</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.583271" elapsed="0.042030"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${status}">
+<kw name="Click" owner="Browser">
+<arg>id=herosignup</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="NOT RUN" start="2025-05-06T16:55:38.625801" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:38.625301" elapsed="0.000500"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:38.625301" elapsed="0.000500"/>
+</if>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.630815" level="INFO">Waited for Element with selector id=signupForm at state visible</msg>
+<arg>id=signupForm</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.625801" elapsed="0.005520"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:38.582771" elapsed="0.048550"/>
+</kw>
+<kw name="Attempt Signup">
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.632318" level="INFO">Fills the text 'Robot Tester 8531' in the given field.</msg>
+<arg>id=signup-name</arg>
+<arg>${name}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.631818" elapsed="0.008012"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.640332" level="INFO">Fills the text 'robotTester-8531@test.com' in the given field.</msg>
+<arg>id=signup-email</arg>
+<arg>${email}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.639830" elapsed="0.008002"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.647832" level="INFO">Fills the text 'RobotTester123' in the given field.</msg>
+<arg>id=signup-password</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.647832" elapsed="0.007010"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.655842" level="INFO">Fills the text 'RobotTester123' in the given field.</msg>
+<arg>id=signup-confirm</arg>
+<arg>${confirm_password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.655342" elapsed="0.006512"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:38.662353" level="INFO">Clicks the element 'xpath=//form[@id='signupForm']//button[@type='submit']'.</msg>
+<arg>xpath=//form[@id='signupForm']//button[@type='submit']</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.661854" elapsed="0.028544"/>
+</kw>
+<arg>${NEW_USER_NAME}</arg>
+<arg>${NEW_USER_EMAIL}</arg>
+<arg>${NEW_USER_PASSWORD}</arg>
+<arg>${NEW_USER_PASSWORD}</arg>
+<status status="PASS" start="2025-05-06T16:55:38.631321" elapsed="0.059077"/>
+</kw>
+<kw name="Verify Signup Success">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.695896" level="INFO">Waited for Element with selector body at state visible</msg>
+<arg>body</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.691397" elapsed="0.004499"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:38.690897" elapsed="0.004999"/>
+</kw>
+<kw name="Go To" owner="Browser">
+<msg time="2025-05-06T16:55:38.753477" level="INFO">Successfully opened URL http://localhost:5173</msg>
+<arg>${URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.696397" elapsed="0.057080"/>
+</kw>
+<msg time="2025-05-06T16:55:38.756476" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:38.579267" elapsed="0.174708"/>
+</test>
+<test id="s1-t4" name="Sign Up With Existing Email" line="172">
+<kw name="Go To Signup Page">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:38.764996" level="INFO">Clicks the element 'id=navbarsignup'.</msg>
+<arg>id=navbarsignup</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.764497" elapsed="0.043071"/>
+</kw>
+<msg time="2025-05-06T16:55:38.807568" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Click</arg>
+<arg>id=navbarsignup</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.764497" elapsed="0.043071"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${status}">
+<kw name="Click" owner="Browser">
+<arg>id=herosignup</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="NOT RUN" start="2025-05-06T16:55:38.808068" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:38.807568" elapsed="0.000500"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:38.807568" elapsed="0.000500"/>
+</if>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.813587" level="INFO">Waited for Element with selector id=signupForm at state visible</msg>
+<arg>id=signupForm</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.808068" elapsed="0.005519"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:38.763996" elapsed="0.050093"/>
+</kw>
+<kw name="Attempt Signup">
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.814587" level="INFO">Fills the text 'Robot Tester 8531' in the given field.</msg>
+<arg>id=signup-name</arg>
+<arg>${name}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.814587" elapsed="0.007030"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.822615" level="INFO">Fills the text 'test123@gmail.com' in the given field.</msg>
+<arg>id=signup-email</arg>
+<arg>${email}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.822115" elapsed="0.008010"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.831126" level="INFO">Fills the text 'TestPass123' in the given field.</msg>
+<arg>id=signup-password</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.830627" elapsed="0.007498"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:38.839131" level="INFO">Fills the text 'TestPass123' in the given field.</msg>
+<arg>id=signup-confirm</arg>
+<arg>${confirm_password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.838125" elapsed="0.007512"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:38.846639" level="INFO">Clicks the element 'xpath=//form[@id='signupForm']//button[@type='submit']'.</msg>
+<arg>xpath=//form[@id='signupForm']//button[@type='submit']</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.846137" elapsed="0.044020"/>
+</kw>
+<arg>${NEW_USER_NAME}</arg>
+<arg>${VALID_EMAIL}</arg>
+<arg>${USER_PASSWORD}</arg>
+<arg>${USER_PASSWORD}</arg>
+<status status="PASS" start="2025-05-06T16:55:38.814089" elapsed="0.076068"/>
+</kw>
+<kw name="Verify Signup Failure Existing Email">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:38.898161" level="INFO">Waited for Element with selector body:has-text("That email address is already registered. Please log in instead.") at state visible</msg>
+<arg>body:has-text("That email address is already registered. Please log in instead.")</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.891161" elapsed="0.007000"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:38.890663" elapsed="0.007498"/>
+</kw>
+<kw name="Go To" owner="Browser">
+<msg time="2025-05-06T16:55:38.950257" level="INFO">Successfully opened URL http://localhost:5173</msg>
+<arg>${URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.898161" elapsed="0.052601"/>
+</kw>
+<msg time="2025-05-06T16:55:38.952762" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:38.760488" elapsed="0.190274"/>
+</test>
+<test id="s1-t5" name="Logout From Dashboard" line="178">
+<kw name="Login If Necessary">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:40.113295" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/fail-screenshot-1.png" target="_blank"&gt;&lt;img src="browser/screenshot/fail-screenshot-1.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<msg time="2025-05-06T16:55:40.113295" level="INFO">See also file:///C:/Users/miska/MindMend/tests/frontendTest/playwright-log.txt for additional details.</msg>
+<msg time="2025-05-06T16:55:40.113792" level="FAIL">TimeoutError: locator.waitFor: Timeout 1000ms exceeded.
+Call log:
+  - waiting for locator('id=logoutButton') to be visible
+    7 × locator resolved to hidden &lt;a href="#/login" id="logoutButton" data-i18n-key="nav.logout" class="spa-protected-nav hover:text-accent hidden"&gt;Logout&lt;/a&gt;
+</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="FAIL" start="2025-05-06T16:55:38.962776" elapsed="1.153516">TimeoutError: locator.waitFor: Timeout 1000ms exceeded.
+Call log:
+  - waiting for locator('id=logoutButton') to be visible
+    7 × locator resolved to hidden &lt;a href="#/login" id="logoutButton" data-i18n-key="nav.logout" class="spa-protected-nav hover:text-accent hidden"&gt;Logout&lt;/a&gt;
+</status>
+</kw>
+<msg time="2025-05-06T16:55:40.116292" level="INFO">${logged_in} = False</msg>
+<var>${logged_in}</var>
+<arg>Wait For Elements State</arg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:38.962276" elapsed="1.154515"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${logged_in}">
+<kw name="Go To Login Page">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:40.117792" level="INFO">Clicks the element 'id=navbarlogin'.</msg>
+<arg>id=navbarlogin</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.117291" elapsed="0.055699"/>
+</kw>
+<msg time="2025-05-06T16:55:40.172990" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Click</arg>
+<arg>id=navbarlogin</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.117291" elapsed="0.056198"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${status}">
+<kw name="Click" owner="Browser">
+<arg>id=herologin</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="NOT RUN" start="2025-05-06T16:55:40.173489" elapsed="0.000500"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:40.173489" elapsed="0.000500"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:40.173489" elapsed="0.000500"/>
+</if>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:40.177993" level="INFO">Waited for Element with selector id=loginForm at state visible</msg>
+<arg>id=loginForm</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.173989" elapsed="0.004004"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:40.116791" elapsed="0.061202"/>
+</kw>
+<kw name="Attempt Login">
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:40.178997" level="INFO">Fills the text 'test123@gmail.com' in the given field.</msg>
+<arg>id=login-email</arg>
+<arg>${email}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.178997" elapsed="0.007005"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:40.186502" level="INFO">Fills the text 'test123' in the given field.</msg>
+<arg>id=login-password</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.186002" elapsed="0.008016"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:40.195018" level="INFO">Clicks the element 'xpath=//form[@id='loginForm']//button[@type='submit']'.</msg>
+<arg>xpath=//form[@id='loginForm']//button[@type='submit']</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.194018" elapsed="0.029136"/>
+</kw>
+<arg>${VALID_EMAIL}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<status status="PASS" start="2025-05-06T16:55:40.177993" elapsed="0.045161"/>
+</kw>
+<kw name="Verify Login Success">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:40.315767" level="INFO">Waited for Element with selector id=page-dashboard at state visible</msg>
+<arg>id=page-dashboard</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.223652" elapsed="0.092115"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:40.321277" level="INFO">Waited for Element with selector id=logoutButton at state visible</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.316267" elapsed="0.005510"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:40.223652" elapsed="0.098125"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:40.116791" elapsed="0.204986"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:40.116791" elapsed="0.204986"/>
+</if>
+<status status="PASS" start="2025-05-06T16:55:38.961775" elapsed="1.360002"/>
+</kw>
+<kw name="Navigate To Page And Verify">
+<kw name="Go To" owner="Browser">
+<msg time="2025-05-06T16:55:40.326777" level="INFO">Successfully opened URL http://localhost:5173#/dashboard</msg>
+<arg>${URL}${page_hash}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.322277" elapsed="0.005001"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:40.332289" level="INFO">Waited for Element with selector id=page-dashboard at state visible</msg>
+<arg>${element_to_wait_for}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.327278" elapsed="0.005011"/>
+</kw>
+<arg>\#/dashboard</arg>
+<arg>id=page-dashboard</arg>
+<status status="PASS" start="2025-05-06T16:55:40.322277" elapsed="0.010012"/>
+</kw>
+<kw name="Logout User">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:40.337787" level="INFO">Waited for Element with selector id=logoutButton at state visible</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.333288" elapsed="0.004499"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:40.339300" level="INFO">Clicks the element 'id=logoutButton'.</msg>
+<arg>id=logoutButton</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.338793" elapsed="0.035539"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:40.332789" elapsed="0.041543"/>
+</kw>
+<kw name="Verify Logout Success">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:40.379344" level="INFO">Waited for Element with selector id=page-home at state visible</msg>
+<arg>id=page-home</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.375330" elapsed="0.004014"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:40.383347" level="INFO">Waited for Element with selector body at state visible</msg>
+<arg>body</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.379846" elapsed="0.003501"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:40.374834" elapsed="0.008513"/>
+</kw>
+<msg time="2025-05-06T16:55:40.385346" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:38.958263" elapsed="1.425582"/>
+</test>
+<test id="s1-t6" name="Interact With Sound Meditation" line="184">
+<kw name="Login If Necessary">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:41.546583" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/fail-screenshot-2.png" target="_blank"&gt;&lt;img src="browser/screenshot/fail-screenshot-2.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<msg time="2025-05-06T16:55:41.546583" level="INFO">See also file:///C:/Users/miska/MindMend/tests/frontendTest/playwright-log.txt for additional details.</msg>
+<msg time="2025-05-06T16:55:41.546583" level="FAIL">TimeoutError: locator.waitFor: Timeout 1000ms exceeded.
+Call log:
+  - waiting for locator('id=logoutButton') to be visible
+    7 × locator resolved to hidden &lt;a href="#/login" id="logoutButton" data-i18n-key="nav.logout" class="spa-protected-nav hover:text-accent hidden"&gt;Logout&lt;/a&gt;
+</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="FAIL" start="2025-05-06T16:55:40.393854" elapsed="1.153728">TimeoutError: locator.waitFor: Timeout 1000ms exceeded.
+Call log:
+  - waiting for locator('id=logoutButton') to be visible
+    7 × locator resolved to hidden &lt;a href="#/login" id="logoutButton" data-i18n-key="nav.logout" class="spa-protected-nav hover:text-accent hidden"&gt;Logout&lt;/a&gt;
+</status>
+</kw>
+<msg time="2025-05-06T16:55:41.547582" level="INFO">${logged_in} = False</msg>
+<var>${logged_in}</var>
+<arg>Wait For Elements State</arg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:40.393354" elapsed="1.154228"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${logged_in}">
+<kw name="Go To Login Page">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:41.548081" level="INFO">Clicks the element 'id=navbarlogin'.</msg>
+<arg>id=navbarlogin</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.548081" elapsed="0.024421"/>
+</kw>
+<msg time="2025-05-06T16:55:41.573001" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Click</arg>
+<arg>id=navbarlogin</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.548081" elapsed="0.024920"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${status}">
+<kw name="Click" owner="Browser">
+<arg>id=herologin</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="NOT RUN" start="2025-05-06T16:55:41.573506" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:41.573001" elapsed="0.000505"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:41.573001" elapsed="0.000505"/>
+</if>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:41.578002" level="INFO">Waited for Element with selector id=loginForm at state visible</msg>
+<arg>id=loginForm</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.573506" elapsed="0.004496"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:41.548081" elapsed="0.029921"/>
+</kw>
+<kw name="Attempt Login">
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:41.579005" level="INFO">Fills the text 'test123@gmail.com' in the given field.</msg>
+<arg>id=login-email</arg>
+<arg>${email}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.579005" elapsed="0.006505"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:41.586010" level="INFO">Fills the text 'test123' in the given field.</msg>
+<arg>id=login-password</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.585510" elapsed="0.007513"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:41.593524" level="INFO">Clicks the element 'xpath=//form[@id='loginForm']//button[@type='submit']'.</msg>
+<arg>xpath=//form[@id='loginForm']//button[@type='submit']</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.593023" elapsed="0.029973"/>
+</kw>
+<arg>${VALID_EMAIL}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<status status="PASS" start="2025-05-06T16:55:41.578002" elapsed="0.044994"/>
+</kw>
+<kw name="Verify Login Success">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:41.723636" level="INFO">Waited for Element with selector id=page-dashboard at state visible</msg>
+<arg>id=page-dashboard</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.623497" elapsed="0.100139"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:41.728137" level="INFO">Waited for Element with selector id=logoutButton at state visible</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.723636" elapsed="0.004501"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:41.622996" elapsed="0.105141"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:41.547582" elapsed="0.180555"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:41.547582" elapsed="0.181563"/>
+</if>
+<status status="PASS" start="2025-05-06T16:55:40.392855" elapsed="1.336290"/>
+</kw>
+<kw name="Navigate To Page And Verify">
+<kw name="Go To" owner="Browser">
+<msg time="2025-05-06T16:55:41.733651" level="INFO">Successfully opened URL http://localhost:5173#/exercises</msg>
+<arg>${URL}${page_hash}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.729649" elapsed="0.004002"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:41.752684" level="INFO">Waited for Element with selector id=page-exercises at state visible</msg>
+<arg>${element_to_wait_for}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.734150" elapsed="0.019037"/>
+</kw>
+<arg>\#/exercises</arg>
+<arg>id=page-exercises</arg>
+<status status="PASS" start="2025-05-06T16:55:41.729145" elapsed="0.024042"/>
+</kw>
+<kw name="Interact With Sound Meditation">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:41.754686" level="INFO">Clicks the element 'id=playPauseBtn-nature'.</msg>
+<arg>id=playPauseBtn-nature</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.754186" elapsed="0.071150"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-05-06T16:55:42.825981" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-05-06T16:55:41.825336" elapsed="1.000645"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:42.826486" level="INFO">Clicks the element 'id=playPauseBtn-nature'.</msg>
+<arg>id=playPauseBtn-nature</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:42.825981" elapsed="0.033037"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-05-06T16:55:43.859589" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-05-06T16:55:42.859018" elapsed="1.000571"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:43.860089" level="INFO">Clicks the element 'id=resetBtn-nature'.</msg>
+<arg>id=resetBtn-nature</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:43.859589" elapsed="0.013507"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:41.753686" elapsed="2.119410"/>
+</kw>
+<msg time="2025-05-06T16:55:43.875095" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:40.389853" elapsed="3.483744"/>
+</test>
+<test id="s1-t7" name="Interact With Breathing Meditation" line="189">
+<kw name="Login If Necessary">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:43.886605" level="INFO">Waited for Element with selector id=logoutButton at state visible</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:43.882602" elapsed="0.004003"/>
+</kw>
+<msg time="2025-05-06T16:55:43.887105" level="INFO">${logged_in} = True</msg>
+<var>${logged_in}</var>
+<arg>Wait For Elements State</arg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:43.882103" elapsed="0.005002"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${logged_in}">
+<kw name="Go To Login Page">
+<status status="NOT RUN" start="2025-05-06T16:55:43.887605" elapsed="0.000499"/>
+</kw>
+<kw name="Attempt Login">
+<arg>${VALID_EMAIL}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<status status="NOT RUN" start="2025-05-06T16:55:43.888104" elapsed="0.000000"/>
+</kw>
+<kw name="Verify Login Success">
+<status status="NOT RUN" start="2025-05-06T16:55:43.888104" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:43.887105" elapsed="0.000999"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:43.887105" elapsed="0.002006"/>
+</if>
+<status status="PASS" start="2025-05-06T16:55:43.881604" elapsed="0.007507"/>
+</kw>
+<kw name="Navigate To Page And Verify">
+<kw name="Go To" owner="Browser">
+<msg time="2025-05-06T16:55:43.893622" level="INFO">Successfully opened URL http://localhost:5173#/exercises</msg>
+<arg>${URL}${page_hash}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-05-06T16:55:43.889620" elapsed="0.004002"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:43.898120" level="INFO">Waited for Element with selector id=breathingList at state visible</msg>
+<arg>${element_to_wait_for}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:43.894122" elapsed="0.005002"/>
+</kw>
+<arg>\#/exercises</arg>
+<arg>id=breathingList</arg>
+<status status="PASS" start="2025-05-06T16:55:43.889111" elapsed="0.010013"/>
+</kw>
+<kw name="Interact With Breathing Meditation">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:43.900129" level="INFO">Clicks the element 'id=playPauseBtn-box'.</msg>
+<arg>id=playPauseBtn-box</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:43.899629" elapsed="0.042957"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-05-06T16:55:44.943424" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-05-06T16:55:43.942586" elapsed="1.000838"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:44.943929" level="INFO">Clicks the element 'id=playPauseBtn-box'.</msg>
+<arg>id=playPauseBtn-box</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:44.943424" elapsed="0.031344"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-05-06T16:55:45.975419" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-05-06T16:55:44.974768" elapsed="1.000651"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:45.976427" level="INFO">Clicks the element 'id=resetBtn-box'.</msg>
+<arg>id=resetBtn-box</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:45.975419" elapsed="0.014030"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:43.899124" elapsed="2.090325"/>
+</kw>
+<msg time="2025-05-06T16:55:45.992450" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:43.878095" elapsed="2.111856"/>
+</test>
+<test id="s1-t8" name="Play Pause Restart Tetris Game" line="194">
+<kw name="Login If Necessary">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:46.007463" level="INFO">Waited for Element with selector id=logoutButton at state visible</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:46.001960" elapsed="0.005503"/>
+</kw>
+<msg time="2025-05-06T16:55:46.007962" level="INFO">${logged_in} = True</msg>
+<var>${logged_in}</var>
+<arg>Wait For Elements State</arg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:46.001460" elapsed="0.006502"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${logged_in}">
+<kw name="Go To Login Page">
+<status status="NOT RUN" start="2025-05-06T16:55:46.007962" elapsed="0.000000"/>
+</kw>
+<kw name="Attempt Login">
+<arg>${VALID_EMAIL}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<status status="NOT RUN" start="2025-05-06T16:55:46.007962" elapsed="0.000000"/>
+</kw>
+<kw name="Verify Login Success">
+<status status="NOT RUN" start="2025-05-06T16:55:46.008969" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:46.007962" elapsed="0.001007"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:46.007962" elapsed="0.001007"/>
+</if>
+<status status="PASS" start="2025-05-06T16:55:46.000963" elapsed="0.008006"/>
+</kw>
+<kw name="Navigate To Page And Verify">
+<kw name="Go To" owner="Browser">
+<msg time="2025-05-06T16:55:46.014489" level="INFO">Successfully opened URL http://localhost:5173#/tetris</msg>
+<arg>${URL}${page_hash}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-05-06T16:55:46.009475" elapsed="0.005014"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:46.020502" level="INFO">Waited for Element with selector id=tetrisBoard at state visible</msg>
+<arg>${element_to_wait_for}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:46.014988" elapsed="0.005514"/>
+</kw>
+<arg>\#/tetris</arg>
+<arg>id=tetrisBoard</arg>
+<status status="PASS" start="2025-05-06T16:55:46.008969" elapsed="0.011533"/>
+</kw>
+<kw name="Start Tetris">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:46.022002" level="INFO">Clicks the element 'id=startTetrisBtn'.</msg>
+<arg>id=startTetrisBtn</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:46.021503" elapsed="0.035031"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:46.061542" level="INFO">Waited for Element with selector id=pauseResumeBtn at state visible</msg>
+<arg>id=pauseResumeBtn</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:46.056534" elapsed="0.005508"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:46.021002" elapsed="0.041040"/>
+</kw>
+<kw name="Pause Tetris">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:46.063043" level="INFO">Clicks the element 'id=pauseResumeBtn'.</msg>
+<arg>id=pauseResumeBtn</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:46.062541" elapsed="0.043669"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-05-06T16:55:47.107235" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-05-06T16:55:46.106712" elapsed="1.000523"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:46.062042" elapsed="1.045193"/>
+</kw>
+<kw name="Restart Tetris">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:47.108745" level="INFO">Clicks the element 'id=restartTetrisBtn'.</msg>
+<arg>id=restartTetrisBtn</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:47.107739" elapsed="0.015031"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:47.127766" level="INFO">Waited for Element with selector id=startTetrisBtn at state visible</msg>
+<arg>id=startTetrisBtn</arg>
+<arg>visible</arg>
+<arg>timeout=5s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:47.122770" elapsed="0.004996"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:47.107739" elapsed="0.020027"/>
+</kw>
+<msg time="2025-05-06T16:55:47.130277" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:45.996950" elapsed="1.130816"/>
+</test>
+<test id="s1-t9" name="Click Export Data Button" line="201">
+<kw name="Login If Necessary">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:47.144290" level="INFO">Waited for Element with selector id=logoutButton at state visible</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:47.138785" elapsed="0.005505"/>
+</kw>
+<msg time="2025-05-06T16:55:47.144290" level="INFO">${logged_in} = True</msg>
+<var>${logged_in}</var>
+<arg>Wait For Elements State</arg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:47.138785" elapsed="0.006009"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${logged_in}">
+<kw name="Go To Login Page">
+<status status="NOT RUN" start="2025-05-06T16:55:47.145292" elapsed="0.000000"/>
+</kw>
+<kw name="Attempt Login">
+<arg>${VALID_EMAIL}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<status status="NOT RUN" start="2025-05-06T16:55:47.145292" elapsed="0.000000"/>
+</kw>
+<kw name="Verify Login Success">
+<status status="NOT RUN" start="2025-05-06T16:55:47.145794" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:47.144794" elapsed="0.001000"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:47.144794" elapsed="0.001000"/>
+</if>
+<status status="PASS" start="2025-05-06T16:55:47.137778" elapsed="0.008016"/>
+</kw>
+<kw name="Navigate To Page And Verify">
+<kw name="Go To" owner="Browser">
+<msg time="2025-05-06T16:55:47.151801" level="INFO">Successfully opened URL http://localhost:5173#/dashboard</msg>
+<arg>${URL}${page_hash}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-05-06T16:55:47.146293" elapsed="0.005508"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:47.160822" level="INFO">Waited for Element with selector id=exportPDFBtnDashboard at state visible</msg>
+<arg>${element_to_wait_for}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:47.152302" elapsed="0.008520"/>
+</kw>
+<arg>\#/dashboard</arg>
+<arg>id=exportPDFBtnDashboard</arg>
+<status status="PASS" start="2025-05-06T16:55:47.145794" elapsed="0.015028"/>
+</kw>
+<kw name="Click Export Data On Dashboard">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:47.162322" level="INFO">Clicks the element 'id=exportPDFBtnDashboard'.</msg>
+<arg>id=exportPDFBtnDashboard</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:47.161823" elapsed="0.048078"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:47.161322" elapsed="0.049079"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-05-06T16:55:48.211362" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-05-06T16:55:47.210401" elapsed="1.000961"/>
+</kw>
+<msg time="2025-05-06T16:55:48.213867" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:47.133777" elapsed="1.077585"/>
+</test>
+<test id="s1-t10" name="Click Connect Polar H10" line="207">
+<kw name="Login If Necessary">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:48.225381" level="INFO">Waited for Element with selector id=logoutButton at state visible</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:48.220384" elapsed="0.004997"/>
+</kw>
+<msg time="2025-05-06T16:55:48.225881" level="INFO">${logged_in} = True</msg>
+<var>${logged_in}</var>
+<arg>Wait For Elements State</arg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:48.219881" elapsed="0.006000"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${logged_in}">
+<kw name="Go To Login Page">
+<status status="NOT RUN" start="2025-05-06T16:55:48.226384" elapsed="0.000000"/>
+</kw>
+<kw name="Attempt Login">
+<arg>${VALID_EMAIL}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<status status="NOT RUN" start="2025-05-06T16:55:48.226884" elapsed="0.000000"/>
+</kw>
+<kw name="Verify Login Success">
+<status status="NOT RUN" start="2025-05-06T16:55:48.226884" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:48.225881" elapsed="0.001003"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:48.225881" elapsed="0.001003"/>
+</if>
+<status status="PASS" start="2025-05-06T16:55:48.219385" elapsed="0.007996"/>
+</kw>
+<kw name="Navigate To Page And Verify">
+<kw name="Go To" owner="Browser">
+<msg time="2025-05-06T16:55:48.231890" level="INFO">Successfully opened URL http://localhost:5173#/dashboard</msg>
+<arg>${URL}${page_hash}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-05-06T16:55:48.227882" elapsed="0.004508"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:48.237390" level="INFO">Waited for Element with selector id=polarConnectBtn at state visible</msg>
+<arg>${element_to_wait_for}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:48.232390" elapsed="0.005500"/>
+</kw>
+<arg>\#/dashboard</arg>
+<arg>id=polarConnectBtn</arg>
+<status status="PASS" start="2025-05-06T16:55:48.227381" elapsed="0.010509"/>
+</kw>
+<kw name="Click Connect Polar H10 On Dashboard">
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:48.238893" level="INFO">Clicks the element 'id=polarConnectBtn'.</msg>
+<arg>id=polarConnectBtn</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:48.237890" elapsed="0.035993"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:48.237890" elapsed="0.035993"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-05-06T16:55:49.274728" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-05-06T16:55:48.274380" elapsed="1.000348"/>
+</kw>
+<msg time="2025-05-06T16:55:49.277732" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:48.216874" elapsed="1.058359"/>
+</test>
+<test id="s1-t11" name="Send Message To Chatbot And Verify Response" line="213">
+<kw name="Login If Necessary">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:49.293756" level="INFO">Waited for Element with selector id=logoutButton at state visible</msg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:49.286741" elapsed="0.007015"/>
+</kw>
+<msg time="2025-05-06T16:55:49.293756" level="INFO">${logged_in} = True</msg>
+<var>${logged_in}</var>
+<arg>Wait For Elements State</arg>
+<arg>id=logoutButton</arg>
+<arg>visible</arg>
+<arg>timeout=1s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-05-06T16:55:49.286741" elapsed="0.007515"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${logged_in}">
+<kw name="Go To Login Page">
+<status status="NOT RUN" start="2025-05-06T16:55:49.294756" elapsed="0.000000"/>
+</kw>
+<kw name="Attempt Login">
+<arg>${VALID_EMAIL}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<status status="NOT RUN" start="2025-05-06T16:55:49.294756" elapsed="0.000000"/>
+</kw>
+<kw name="Verify Login Success">
+<status status="NOT RUN" start="2025-05-06T16:55:49.295256" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-05-06T16:55:49.294256" elapsed="0.001000"/>
+</branch>
+<status status="PASS" start="2025-05-06T16:55:49.294256" elapsed="0.001000"/>
+</if>
+<status status="PASS" start="2025-05-06T16:55:49.286240" elapsed="0.009016"/>
+</kw>
+<kw name="Navigate To Page And Verify">
+<kw name="Go To" owner="Browser">
+<msg time="2025-05-06T16:55:49.300767" level="INFO">Successfully opened URL http://localhost:5173#/chat</msg>
+<arg>${URL}${page_hash}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-05-06T16:55:49.295757" elapsed="0.005010"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2025-05-06T16:55:49.307768" level="INFO">Waited for Element with selector id=chatWindow at state visible</msg>
+<arg>${element_to_wait_for}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2025-05-06T16:55:49.300767" elapsed="0.007001"/>
+</kw>
+<arg>\#/chat</arg>
+<arg>id=chatWindow</arg>
+<status status="PASS" start="2025-05-06T16:55:49.295757" elapsed="0.012011"/>
+</kw>
+<kw name="Send Chat Message">
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-05-06T16:55:49.309785" level="INFO">Fills the text 'Hello, Im feeling anxious today.' in the given field.</msg>
+<arg>id=chatInput</arg>
+<arg>${message}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:49.309283" elapsed="0.010024"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-05-06T16:55:49.319810" level="INFO">Clicks the element 'xpath=//form[@id='chatForm']//button[@type='submit']'.</msg>
+<arg>xpath=//form[@id='chatForm']//button[@type='submit']</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-05-06T16:55:49.319307" elapsed="0.038537"/>
+</kw>
+<arg>${CHAT_MESSAGE}</arg>
+<status status="PASS" start="2025-05-06T16:55:49.308777" elapsed="0.049067"/>
+</kw>
+<msg time="2025-05-06T16:55:49.360855" level="INFO">Set timeout to: 10000</msg>
+<status status="PASS" start="2025-05-06T16:55:49.281742" elapsed="0.076102"/>
+</test>
+<kw name="Close MindMend" type="TEARDOWN">
+<kw name="Close Browser" owner="Browser">
+<msg time="2025-05-06T16:55:49.466982" level="INFO">Closed browser</msg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-05-06T16:55:49.364355" elapsed="0.102627"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:49.363853" elapsed="0.103129"/>
+</kw>
+<status status="PASS" start="2025-05-06T16:55:36.210569" elapsed="13.256413"/>
+</suite>
+<statistics>
+<total>
+<stat pass="11" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="frontendTest" id="s1" pass="11" fail="0" skip="0">frontendTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

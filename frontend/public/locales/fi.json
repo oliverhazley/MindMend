@@ -28,22 +28,17 @@
   "exercises.mindfulnessTitle": "Mindfulness-harjoitukset",
   "exercises.breathingTitle": "Hengitysharjoitukset",
 
-
-  "exercises.mindfulness.nature.title":        "Metsäjoen solina",
-  "exercises.mindfulness.nature.description":  "Puron solisevat äänet",
-  "exercises.mindfulness.waves.title":         "Sadekuuro",
-  "exercises.mindfulness.waves.description":   "rankkasateen äänet",
-  "exercises.mindfulness.morning.title":       "Nuotio",
+  "exercises.mindfulness.nature.title": "Metsäjoen solina",
+  "exercises.mindfulness.nature.description": "Puron solisevat äänet",
+  "exercises.mindfulness.waves.title": "Sadekuuro",
+  "exercises.mindfulness.waves.description": "rankkasateen äänet",
+  "exercises.mindfulness.morning.title": "Nuotio",
   "exercises.mindfulness.morning.description": "Lempeät nuotion äänet",
 
-  "exercises.breathing.box.title":             "Laatikkohengitys",
-  "exercises.breathing.box.description":       "Laita äänet päälle ohjeita varten",
-  "exercises.breathing.478.title":             "4-7-8-hengitys",
-  "exercises.breathing.478.description":       "Laita äänet päälle ohjeita varten",
-
-
-
-
+  "exercises.breathing.box.title": "Laatikkohengitys",
+  "exercises.breathing.box.description": "Laita äänet päälle ohjeita varten",
+  "exercises.breathing.478.title": "4-7-8-hengitys",
+  "exercises.breathing.478.description": "Laita äänet päälle ohjeita varten",
 
   "tetris.instructions": "Käytä nuolinäppäimiä (← ↑ → ↓) tai pyyhkäisyä. ↓ = välitön pudotus",
   "tetris.scoreLabel": "Pisteet:",
@@ -85,11 +80,12 @@
   "profile.deleteAccountTitle": "Poista tili",
   "profile.deleteAccountBtn": "Poista tili",
 
-
   "login.title": "Kirjaudu sisään",
   "login.emailLabel": "Sähköposti",
   "login.passwordLabel": "Salasana",
   "login.submit": "Kirjaudu sisään",
+  "login.error.credentials": "Kirjautuminen epäonnistui. Tarkista sähköpostiosoitteesi ja salasanasi.",
+  "login.error.unexpected": "Jokin meni vikaan kirjautuessasi sisään. Yritä myöhemmin uudelleen.",
 
   "signup.title": "Luo tili",
   "signup.nameLabel": "Nimi",
@@ -97,6 +93,10 @@
   "signup.passwordLabel": "Salasana",
   "signup.confirmLabel": "Vahvista salasana",
   "signup.submit": "Rekisteröidy",
+  "signup.error.passwordsDontMatch": "Salasanat eivät täsmää. Syötä ne uudelleen.",
+  "signup.error.emailExists": "Tämä sähköpostiosoite on jo rekisteröity. Kirjaudu sisään sen sijaan.",
+  "signup.error.apiDefault": "Rekisteröityminen epäonnistui. Tarkista syötteesi tai yritä uudelleen.",
+  "signup.error.unexpected": "Jokin meni vikaan luotaessa tiliäsi. Yritä myöhemmin uudelleen.",
 
   "footer.copyright": "© 2025 MindMend. Kaikki oikeudet pidätetään.",
 
@@ -127,7 +127,7 @@
   "dashboard.progressLoading": "Ladataan HRV-kehityksen tietoja…",
 
   "dashboard.distributionTitle": "HRV-jakauma",
-  "tooltip.distributionInfo": "Jakauma näyttää, miten mittaukset jakautuvat eri tasoille – auttaa tunnistamaan johdonmukaisuutta tai stressiheilahteluja.",
+  "tooltip.distributionInfo": "Jakauma näyttää, miten mittaukset jakautuvat eri tasoille - auttaa tunnistamaan johdonmukaisuutta tai stressiheilahteluja.",
   "dashboard.distributionLoading": "Ladataan HRV-jakaumaa…",
 
   "dashboard.exportTitle": "Vie tiedot terapeutille",

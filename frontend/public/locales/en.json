@@ -1,4 +1,3 @@
-
 {
   "page.title": "MindMend",
 
@@ -29,17 +28,17 @@
   "exercises.mindfulnessTitle": "Mindfulness Exercises",
   "exercises.breathingTitle": "Breathing Exercises",
 
-  "exercises.mindfulness.nature.title":       "Forest Stream",
+  "exercises.mindfulness.nature.title": "Forest Stream",
   "exercises.mindfulness.nature.description": "Relaxing sounds of a stream",
-  "exercises.mindfulness.waves.title":        "Rainstorm",
-  "exercises.mindfulness.waves.description":  "Focused sounds of a rainstorm",
-  "exercises.mindfulness.morning.title":      "Campfire",
-  "exercises.mindfulness.morning.description":"Gentle sounds of a campfire",
+  "exercises.mindfulness.waves.title": "Rainstorm",
+  "exercises.mindfulness.waves.description": "Focused sounds of a rainstorm",
+  "exercises.mindfulness.morning.title": "Campfire",
+  "exercises.mindfulness.morning.description": "Gentle sounds of a campfire",
 
-  "exercises.breathing.box.title":            "Box Breathing",
-  "exercises.breathing.box.description":      "Turn sound on for instructions",
-  "exercises.breathing.478.title":            "4-7-8 Breathing",
-  "exercises.breathing.478.description":      "Turn sound on for instructions",
+  "exercises.breathing.box.title": "Box Breathing",
+  "exercises.breathing.box.description": "Turn sound on for instructions",
+  "exercises.breathing.478.title": "4-7-8 Breathing",
+  "exercises.breathing.478.description": "Turn sound on for instructions",
 
   "tetris.instructions": "Use arrow keys (← ↑ → ↓) or swipe. ↓ = instant drop",
   "tetris.scoreLabel": "Score:",
@@ -81,11 +80,12 @@
   "profile.deleteAccountTitle": "Delete Account",
   "profile.deleteAccountBtn": "Delete Account",
 
-
   "login.title": "Log In",
   "login.emailLabel": "Email",
   "login.passwordLabel": "Password",
   "login.submit": "Log In",
+  "login.error.credentials": "Login failed. Please check your email and password.",
+  "login.error.unexpected": "Something went wrong while logging you in. Please try again later.",
 
   "signup.title": "Create an Account",
   "signup.nameLabel": "Name",
@@ -93,6 +93,10 @@
   "signup.passwordLabel": "Password",
   "signup.confirmLabel": "Confirm Password",
   "signup.submit": "Sign Up",
+  "signup.error.passwordsDontMatch": "Passwords don't match. Please re-enter them.",
+  "signup.error.emailExists": "That email address is already registered. Please log in instead.",
+  "signup.error.apiDefault": "Sign-up failed. Please check your inputs or try again.",
+  "signup.error.unexpected": "Something went wrong while creating your account. Please try again later.",
 
   "footer.copyright": "© 2025 MindMend. All rights reserved.",
 
@@ -102,7 +106,7 @@
   "dashboard.batteryText": "Battery: --",
 
   "dashboard.pulseTitle": "Current Pulse",
-  "tooltip.pulseInfo": "Your heart’s beats per minute. Higher means faster heartbeat.",
+  "tooltip.pulseInfo": "Your heart's beats per minute. Higher means faster heartbeat.",
   "dashboard.pulseRangeLow": "Your pulse is in a healthy range.",
 
   "dashboard.rrTitle": "RR Intervals",
