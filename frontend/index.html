@@ -222,9 +222,11 @@
             data-i18n-key="nav.logout">Logout</a>
           <!-- Public-only links -->
           <a href="#/login"
+            id="navbarlogin"
             class="spa-public-nav hover:text-accent"
             data-i18n-key="nav.login">Login</a>
           <a href="#/signup"
+            id="navbarsignup"
             class="spa-public-nav hover:text-accent"
             data-i18n-key="nav.signup">Sign Up</a>
           <!-- Theme toggle (desktop) -->
@@ -1126,6 +1128,7 @@
                 <input
                   type="email"
                   name="email"
+                  id="login-email"
                   class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
                   required/>
               </label>
@@ -1137,6 +1140,7 @@
                 <input
                   type="password"
                   name="password"
+                  id="login-password"
                   class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
                   required/>
               </label>
@@ -1172,6 +1176,7 @@
                 <input
                   type="text"
                   name="name"
+                  id="signup-name"
                   class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
                   required/>
               </label>
@@ -1183,6 +1188,7 @@
                 <input
                   type="email"
                   name="email"
+                  id="signup-email"
                   class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
                   required/>
               </label>
@@ -1194,6 +1200,7 @@
                 <input
                   type="password"
                   name="password"
+                  id="signup-password"
                   class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
                   required/>
               </label>
@@ -1205,6 +1212,7 @@
                 <input
                   type="password"
                   name="confirm"
+                  id="signup-confirm"
                   class="w-full px-3 py-2 rounded bg-primary text-white focus:ring-2 focus:ring-accent"
                   required/>
               </label>

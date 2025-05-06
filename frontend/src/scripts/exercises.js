@@ -14,13 +14,13 @@
 // -------------------------------------------------------
 
 // We need to protect our exercises behind a login check.
-import { requireAuth } from './router.js';
+import {requireAuth} from './router.js';
 
 // These two functions give us your latest heart data.
-import { getCurrentPulse, getCurrentRMSSD } from './polarConnect.js';
+import {getCurrentPulse, getCurrentRMSSD} from './polarConnect.js';
 
 // This lets us trigger text translations on-the-fly.
-import { initI18n } from './i18n.js';
+import {initI18n} from './i18n.js';
 
 // We will keep track of every Audio object we create,
 // so we can stop them all if the user leaves the page.
@@ -34,7 +34,7 @@ const audioPlayers = [];
  */
 export function stopAllExerciseAudio() {
   audioPlayers.forEach((audio) => {
-    audio.pause();       // stop playback
+    audio.pause(); // stop playback
     audio.currentTime = 0; // rewind to start
   });
 }
@@ -56,11 +56,11 @@ export function initExercises() {
 
   // 3) Find the containers where we'll insert our exercise items.
   const mindfulnessList = document.getElementById('mindfulnessList');
-  const breathingList   = document.getElementById('breathingList');
+  const breathingList = document.getElementById('breathingList');
 
   // Clear out anything that was there before, so we start fresh.
   if (mindfulnessList) mindfulnessList.innerHTML = '';
-  if (breathingList)   breathingList.innerHTML   = '';
+  if (breathingList) breathingList.innerHTML = '';
 
   // 4) Find the elements where we show pulse and HRV values.
   const pulseValueEl = document.getElementById('pulseValue');
@@ -115,24 +115,24 @@ export function initExercises() {
   const mindfulnessItems = [
     {
       id: 'nature',
-      titleKey:       'exercises.mindfulness.nature.title',
+      titleKey: 'exercises.mindfulness.nature.title',
       descriptionKey: 'exercises.mindfulness.nature.description',
-      icon:           'tree-pine',
-      audioUrl:       '/sounds/stream.mp3',
+      icon: 'tree-pine',
+      audioUrl: '/sounds/stream.mp3',
     },
     {
       id: 'waves',
-      titleKey:       'exercises.mindfulness.waves.title',
+      titleKey: 'exercises.mindfulness.waves.title',
       descriptionKey: 'exercises.mindfulness.waves.description',
-      icon:           'cloud-rain',
-      audioUrl:       '/sounds/rain.mp3',
+      icon: 'cloud-rain',
+      audioUrl: '/sounds/rain.mp3',
     },
     {
       id: 'morning',
-      titleKey:       'exercises.mindfulness.morning.title',
+      titleKey: 'exercises.mindfulness.morning.title',
       descriptionKey: 'exercises.mindfulness.morning.description',
-      icon:           'flame-kindling',
-      audioUrl:       '/sounds/fire.mp3',
+      icon: 'flame-kindling',
+      audioUrl: '/sounds/fire.mp3',
     },
   ];
 
@@ -162,6 +162,7 @@ export function initExercises() {
 
     // Play/Pause button
     const playPauseBtn = document.createElement('button');
+    playPauseBtn.id = `playPauseBtn-${item.id}`;
     playPauseBtn.className =
       'playPauseBtn flex items-center justify-center w-9 h-9 rounded-md bg-blue-600 hover:bg-blue-700';
     playPauseBtn.dataset.state = 'play'; // start in “play” state
@@ -169,6 +170,7 @@ export function initExercises() {
 
     // Reset button (rewind to start)
     const resetBtn = document.createElement('button');
+    resetBtn.id = `resetBtn-${item.id}`;
     resetBtn.className =
       'resetBtn flex items-center justify-center w-9 h-9 rounded-md bg-gray-600 hover:bg-gray-700';
     resetBtn.innerHTML = `<i data-lucide="refresh-cw" class="w-4 h-4"></i>`;
@@ -194,8 +196,8 @@ export function initExercises() {
     // Helper: switch button from “play” to “pause” look
     function switchToPause() {
       playPauseBtn.dataset.state = 'pause';
-      playPauseBtn.classList.replace('bg-blue-600','bg-red-600');
-      playPauseBtn.classList.replace('hover:bg-blue-700','hover:bg-red-700');
+      playPauseBtn.classList.replace('bg-blue-600', 'bg-red-600');
+      playPauseBtn.classList.replace('hover:bg-blue-700', 'hover:bg-red-700');
       playPauseBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4"></i>`;
       lucide.createIcons(); // re-render icon
     }
@@ -203,8 +205,8 @@ export function initExercises() {
     // Helper: switch button from “pause” back to “play”
     function revertToPlay() {
       playPauseBtn.dataset.state = 'play';
-      playPauseBtn.classList.replace('bg-red-600','bg-blue-600');
-      playPauseBtn.classList.replace('hover:bg-red-700','hover:bg-blue-700');
+      playPauseBtn.classList.replace('bg-red-600', 'bg-blue-600');
+      playPauseBtn.classList.replace('hover:bg-red-700', 'hover:bg-blue-700');
       playPauseBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4"></i>`;
       lucide.createIcons();
     }
@@ -281,24 +283,25 @@ export function initExercises() {
   const breathingItems = [
     {
       id: 'box',
-      titleKey:       'exercises.breathing.box.title',
+      titleKey: 'exercises.breathing.box.title',
       descriptionKey: 'exercises.breathing.box.description',
-      icon:           'wind',
-      audioUrl:       '/sounds/box.mp3',
+      icon: 'wind',
+      audioUrl: '/sounds/box.mp3',
     },
     {
       id: '478',
-      titleKey:       'exercises.breathing.478.title',
+      titleKey: 'exercises.breathing.478.title',
       descriptionKey: 'exercises.breathing.478.description',
-      icon:           'wind',
-      audioUrl:       '/sounds/478.mp3',
+      icon: 'wind',
+      audioUrl: '/sounds/478.mp3',
     },
   ];
 
   breathingItems.forEach((item) => {
     // We repeat the exact same steps:
     const row = document.createElement('div');
-    row.className = 'flex items-center justify-between py-3 border-b border-gray-700 last:border-none';
+    row.className =
+      'flex items-center justify-between py-3 border-b border-gray-700 last:border-none';
 
     const leftDiv = document.createElement('div');
     leftDiv.className = 'flex items-center space-x-3';
@@ -314,12 +317,16 @@ export function initExercises() {
     rightDiv.className = 'flex space-x-2';
 
     const playPauseBtn = document.createElement('button');
-    playPauseBtn.className = 'playPauseBtn flex items-center justify-center w-9 h-9 rounded-md bg-blue-600 hover:bg-blue-700';
+    playPauseBtn.id = `playPauseBtn-${item.id}`;
+    playPauseBtn.className =
+      'playPauseBtn flex items-center justify-center w-9 h-9 rounded-md bg-blue-600 hover:bg-blue-700';
     playPauseBtn.dataset.state = 'play';
     playPauseBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4"></i>`;
 
     const resetBtn = document.createElement('button');
-    resetBtn.className = 'resetBtn flex items-center justify-center w-9 h-9 rounded-md bg-gray-600 hover:bg-gray-700';
+    resetBtn.id = `resetBtn-${item.id}`;
+    resetBtn.className =
+      'resetBtn flex items-center justify-center w-9 h-9 rounded-md bg-gray-600 hover:bg-gray-700';
     resetBtn.innerHTML = `<i data-lucide="refresh-cw" class="w-4 h-4"></i>`;
 
     rightDiv.append(playPauseBtn, resetBtn);
@@ -339,16 +346,16 @@ export function initExercises() {
 
     function switchToPause() {
       playPauseBtn.dataset.state = 'pause';
-      playPauseBtn.classList.replace('bg-blue-600','bg-red-600');
-      playPauseBtn.classList.replace('hover:bg-blue-700','hover:bg-red-700');
+      playPauseBtn.classList.replace('bg-blue-600', 'bg-red-600');
+      playPauseBtn.classList.replace('hover:bg-blue-700', 'hover:bg-red-700');
       playPauseBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4"></i>`;
       lucide.createIcons();
     }
 
     function revertToPlay() {
       playPauseBtn.dataset.state = 'play';
-      playPauseBtn.classList.replace('bg-red-600','bg-blue-600');
-      playPauseBtn.classList.replace('hover:bg-red-700','hover:bg-blue-700');
+      playPauseBtn.classList.replace('bg-red-600', 'bg-blue-600');
+      playPauseBtn.classList.replace('hover:bg-red-700', 'hover:bg-blue-700');
       playPauseBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4"></i>`;
       lucide.createIcons();
     }
