@@ -29,16 +29,16 @@
   "exercises.breathingTitle": "Hengitysharjoitukset",
 
   "exercises.mindfulness.nature.title": "Metsäjoen solina",
-  "exercises.mindfulness.nature.description": "Rentouttavat veden solinat ja lintujen laulu",
+  "exercises.mindfulness.nature.description": "Puron solisevat äänet",
   "exercises.mindfulness.waves.title": "Sadekuuro",
-  "exercises.mindfulness.waves.description": "Rentouttavat sadeäänet",
+  "exercises.mindfulness.waves.description": "rankkasateen äänet",
   "exercises.mindfulness.morning.title": "Nuotio",
-  "exercises.mindfulness.morning.description": "Lempeät nuotion loimun äänet",
+  "exercises.mindfulness.morning.description": "Lempeät nuotion äänet",
 
   "exercises.breathing.box.title": "Laatikkohengitys",
-  "exercises.breathing.box.description": "4-4-4-4 hengitystekniikka",
-  "exercises.breathing.478.title": "4-7-8 hengitys",
-  "exercises.breathing.478.description": "Rentouttava hengitysmenetelmä",
+  "exercises.breathing.box.description": "Laita äänet päälle ohjeita varten",
+  "exercises.breathing.478.title": "4-7-8-hengitys",
+  "exercises.breathing.478.description": "Laita äänet päälle ohjeita varten",
 
   "tetris.instructions": "Käytä nuolinäppäimiä (← ↑ → ↓) tai pyyhkäisyä. ↓ = välitön pudotus",
   "tetris.scoreLabel": "Pisteet:",

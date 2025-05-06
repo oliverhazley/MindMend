@@ -152,7 +152,7 @@ export function initExercises() {
       <div>
         <!-- The data-i18n-key attribute lets our translator swap in the right text -->
         <p class="font-semibold" data-i18n-key="${item.titleKey}"></p>
-        <p class="text-sm text-gray-400" data-i18n-key="${item.descriptionKey}"></p>
+        <p class="text-sm text-gray-400 pr-1" data-i18n-key="${item.descriptionKey}"></p>
       </div>
     `;
 
