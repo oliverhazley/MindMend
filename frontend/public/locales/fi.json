@@ -102,14 +102,13 @@
 
   "dashboard.connectTitle": "Yhdistä Polar H10",
   "tooltip.connectInfo": "Klikkaa ”Yhdistä”, valitse laite, paina ”Pariliitä” ja odota, että yhteys muodostuu.",
-  "dashboard.connectBtn": "Yhdistä",
+
   "dashboard.batteryText": "Paristo: --",
 
   "dashboard.pulseTitle": "Nykyinen syke",
   "tooltip.pulseInfo": "Sydämesi lyönnit minuutissa. Suurempi tarkoittaa nopeampaa sykettä.",
   "dashboard.pulseRangeLow": "Syke on terveellä tasolla.",
 
-  "dashboard.rrTitle": "RR-intervalit",
   "tooltip.rrInfo": "Aika sydämenlyöntien välillä millisekunneissa. Näyttää vaihtelun.",
 
   "dashboard.rmssdTitle": "Laskettu RMSSD",
@@ -132,5 +131,34 @@
 
   "dashboard.exportTitle": "Vie tiedot terapeutille",
   "tooltip.exportInfo": "Klikkaa ”Vie tiedot PDF:ksi” ladataksesi istuntaraporttisi terapeutillesi.",
-  "dashboard.exportBtn": "Vie tiedot PDF:ksi"
+  "dashboard.exportBtn": "Vie tiedot PDF:ksi",
+
+"dashboard.livePlaceholder": "Yhdistä laitteeseen nähdäksesi reaaliaikaiset tiedot.",
+
+
+"dashboard.connectBtn": "Yhdistä",
+"dashboard.connectingBtn": "Yhdistetään...",
+"dashboard.disconnectBtn": "Katkaise yhteys",
+"dashboard.disconnectingBtn": "Katkaistaan yhteys...",
+
+  "dashboard.pulseRangeHealthy": "Syke on terveellä tasolla.",
+  "dashboard.pulseRangeHigh": "Syke on koholla, yritä rentoutua.",
+  "dashboard.rmssdRangeLow": "HRV on alhainen - harkitse lepoa.",
+  "dashboard.rmssdRangeHigh": "Erinomainen HRV - vahva stressinsietokyky!",
+  "dashboard.barLabel": "Keskimääräinen HRV",
+  "dashboard.zoneLow": "Alhainen",
+  "dashboard.zoneModerate": "Kohtalainen",
+  "dashboard.zoneHigh": "Korkea",
+  "dashboard.distributionSummary": "Näytetään HRV-jakauma: {range}",
+  "dashboard.rrTitle": "RR-intervalit (ms)",
+
+
+  "polar.connect": "Yhdistä",
+  "polar.connecting": "Yhdistetään...",
+  "polar.disconnect": "Katkaise yhteys",
+  "polar.disconnecting": "Katkaistaan yhteys...",
+  "polar.connected": "Yhdistetty",
+  "polar.disconnected": "Ei yhteyttä",
+  "polar.battery": "Akun varaus: {level}%"
+
 }

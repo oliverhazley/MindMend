@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
-Sitemap: https://oliverhazley.github.io/MindMend/sitemap.xml
+Sitemap: https://mind-mend.live/sitemap.xml
+
 
 # Prevent crawling of non-content resources
 Disallow: /*.js$

@@ -102,19 +102,47 @@
 
   "dashboard.connectTitle": "Connect to Polar H10",
   "tooltip.connectInfo": "Click “Connect”, select your device, press “Pair” and wait while it connects.",
-  "dashboard.connectBtn": "Connect",
   "dashboard.batteryText": "Battery: --",
 
   "dashboard.pulseTitle": "Current Pulse",
   "tooltip.pulseInfo": "Your heart's beats per minute. Higher means faster heartbeat.",
   "dashboard.pulseRangeLow": "Your pulse is in a healthy range.",
 
-  "dashboard.rrTitle": "RR Intervals",
   "tooltip.rrInfo": "Time between heartbeats, in milliseconds. Shows variability.",
 
   "dashboard.rmssdTitle": "Calculated RMSSD",
   "tooltip.rmssdInfo": "A measure of heart rate variability. Higher is generally better.",
   "dashboard.rmssdRangeModerate": "Your HRV is moderate, suggesting balanced recovery and stress levels.",
+
+  "dashboard.livePlaceholder": "Please connect to a device to view live data.",
+
+
+  "dashboard.connectBtn": "Connect",
+  "dashboard.connectingBtn": "Connecting…",
+  "dashboard.disconnectBtn": "Disconnect",
+  "dashboard.disconnectingBtn": "Disconnecting…",
+
+  "dashboard.pulseRangeHealthy": "Your pulse is in a healthy range.",
+  "dashboard.pulseRangeHigh": "Your pulse is elevated, try to relax.",
+  "dashboard.rmssdRangeLow": "Your HRV is low - consider resting.",
+  "dashboard.rmssdRangeHigh": "Excellent HRV - strong stress resilience!",
+  "dashboard.barLabel": "Avg HRV",
+  "dashboard.zoneLow": "Low",
+  "dashboard.zoneModerate": "Moderate",
+  "dashboard.zoneHigh": "High",
+  "dashboard.distributionSummary": "Showing HRV distribution for {range}",
+  "dashboard.rrTitle": "RR Intervals (ms)",
+
+  "polar.connect": "Connect",
+  "polar.connecting": "Connecting...",
+  "polar.disconnect": "Disconnect",
+  "polar.disconnecting": "Disconnecting...",
+  "polar.connected": "Connected to Polar H10",
+  "polar.battery": "Battery: {level}%",
+
+
+  "polar.disconnected"  : "Not connected",
+
 
   "filter.select": "Select",
   "filter.day": "Day",
