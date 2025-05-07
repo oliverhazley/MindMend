@@ -8,6 +8,8 @@ Welcome to the **Backend** documentation of **MindMend**, a mental wellness and 
 
 ---
 
+## **Table of Contents**
+
 1. [Introduction](#introduction)
 2. [Links](#links)
 3. [Folder Structure](#folder-structure)
