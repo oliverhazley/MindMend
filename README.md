@@ -11,8 +11,8 @@ This is a project at Metropolia UAS (2025) - Created by Oliver Hazley, Miska Nur
 
 ## Links
 
-- **Published Frontend Application**: ![Mind-mend.live](https://mind-mend.live)
-- **Backend API Service**: ![Azure](https://mind-mend.azurewebsites.net/api)
+- **Published Frontend Application**: [Mind-mend.live](https://mind-mend.live)
+- **Backend API Service**: [Azure](https://mind-mend.azurewebsites.net/api)
 - **API Documentation**: [API Documentation](#)
 - **Frontend README**: [Frontend-specific Documentation](frontend/README.md)
 - **Backend README**: [Backend-specific Documentation](backend/README.md)
