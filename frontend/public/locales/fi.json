@@ -151,6 +151,7 @@
   "dashboard.zoneHigh": "Korkea",
   "dashboard.distributionSummary": "Näytetään HRV-jakauma: {range}",
   "dashboard.rrTitle": "RR-intervalit (ms)",
+  "dashboard.rmssdCalculating": "RMSSD:ää lasketaan, valmis 3 minuutin kuluttua",
 
 
   "polar.connect": "Yhdistä",
@@ -159,6 +160,31 @@
   "polar.disconnecting": "Katkaistaan yhteys...",
   "polar.connected": "Yhdistetty",
   "polar.disconnected": "Ei yhteyttä",
-  "polar.battery": "Akun varaus: {level}%"
+  "polar.battery": "Akun varaus: {level}%",
 
+
+  "dashboard.pulseAnalyticalVeryLow": "Sykkeesi on hyvin matala. Tämä voi olla normaalia urheilijoille tai erittäin hyväkuntoisille, mutta jos tunnet huimausta tai heikotusta, harkitse terveydenhuollon ammattilaisen konsultointia.",
+  "dashboard.pulseAnalyticalLow": "Sykkeesi on normaalin alarajalla. Tämä viittaa usein hyvään sydän- ja verisuonikuntoon.",
+  "dashboard.pulseAnalyticalNormal": "Sykkeesi on terveellisellä normaalilla tasolla, mikä viittaa hyvään sydän- ja verisuonitoimintaan.",
+  "dashboard.pulseAnalyticalElevated": "Sykkeesi on hieman koholla. Tämä voi johtua äskettäisestä toiminnasta, kofeiinista tai lievästä stressistä. Harkitse rentoutumistekniikoita.",
+  "dashboard.pulseAnalyticalHigh": "Sykkeesi on korkea. Tämä voi johtua liikunnasta, stressistä, ahdistuksesta tai tietyistä lääkkeistä. Jos olet levossa, harkitse rauhoittavaa toimintaa.",
+  "dashboard.pulseAnalyticalVeryHigh": "Sykkeesi on erittäin korkea. Jos et liiku, tämä voi viitata merkittävään stressiin tai mahdollisiin terveysongelmiin. Harkitse rentoutumista ja konsultoi terveydenhuollon ammattilaista, jos tila jatkuu.",
+
+  "dashboard.rmssdAnalyticalLow": "HRV on erittäin alhainen, mikä viittaa korkeaan stressiin tai väsymykseen. Harkitse lepäämistä ja stressitekijöiden vähentämistä.",
+  "dashboard.rmssdAnalyticalModeratelow": "HRV on suhteellisen alhainen. Tämä voi viitata kohonneeseen stressitasoon tai riittämättömään palautumiseen. Rentoutumiseen käytetty aika voisi olla hyödyllistä.",
+  "dashboard.rmssdAnalyticalModerate": "HRV on kohtalaisella tasolla, mikä viittaa tasapainoiseen tilaan stressin ja palautumisen välillä. Jatka normaaleja toimintoja.",
+  "dashboard.rmssdAnalyticalModeratehigh": "HRV on hyvä, mikä osoittaa tervettä stressinsietokykyä ja tehokasta palautumista. Kehosi reagoi hyvin nykyisiin olosuhteisiin.",
+  "dashboard.rmssdAnalyticalHigh": "HRV on erinomainen, mikä viittaa optimaaliseen autonomisen hermoston toimintaan ja vahvaan stressinsietokykyyn. Kehosi on ihanteellisessa palautumistilassa.",
+
+  "dashboard.notEnoughData": "Ei tarpeeksi tietoja, jatka edistymisesi seurantaa.",
+  "dashboard.noReadings": "Ei HRV-mittauksia analysoitavaksi.",
+  "dashboard.showingAverages": "Näytetään HRV-keskiarvot: {range}",
+
+  "dashboard.trendLow": "HRV-trendisi näyttää enimmäkseen alhaisia arvoja (ka: {avg}ms). Tämä voi viitata kohonneeseen stressiin tai riittämättömään palautumiseen. Harkitse enemmän lepoa ja stressiä vähentäviä aktiviteetteja.",
+  "dashboard.trendModerate": "HRV-trendisi näyttää pääasiassa kohtalaisia arvoja (ka: {avg}ms). Tämä viittaa tasapainoiseen tilaan stressin ja palautumisen välillä. Kehosi toimii hyvin, vaikka parantamisen varaa saattaa olla.",
+  "dashboard.trendHigh": "HRV-trendisi näyttää pääasiassa korkeita arvoja (ka: {avg}ms). Tämä viittaa erinomaiseen autonomiseen tasapainoon ja stressinsietokykyyn. Jatka terveitä tapojasi!",
+  "dashboard.trendMixed": "HRV näyttää sekoitetulta mallilta (ka: {avg}ms) {total} mittauksessa. Tämä vaihtelu voi heijastaa muuttuvia stressitasoja tai palautumismalleja päivittäisessä elämässäsi.",
+  "dashboard.preparingData": "Valmistellaan RR-Intervaali dataa"
 }
+
+

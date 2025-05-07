@@ -3,6 +3,8 @@
 // Handles loading language files, switching between languages, and updating the UI.
 // -----------------------------------------------------------------------------
 
+import { updateUIAfterLanguageChange } from './polarConnect.js';
+
 const STORAGE_KEY = 'lang';
 let currentLang = localStorage.getItem(STORAGE_KEY) || 'en';
 let currentTranslations = {};
@@ -48,6 +50,10 @@ async function initI18n() {
   const nextLang = currentLang === 'fi' ? 'EN' : 'FI';
   if (desktopLangIcon) desktopLangIcon.textContent = nextLang;
   if (mobileLangIcon) mobileLangIcon.textContent = nextLang;
+
+  // Call this function to update the dynamic UI elements that need translation
+  // This ensures connection button and message states are correctly translated
+  updateUIAfterLanguageChange();
 }
 
 function getText(key, fallbackText = '') {
@@ -63,11 +69,31 @@ function getText(key, fallbackText = '') {
   return key;
 }
 
+// Get the current language code
+function getCurrentLanguage() {
+  return currentLang;
+}
+
 // switch between 'fi' and 'en'
 function toggleLanguage() {
   currentLang = currentLang === 'fi' ? 'en' : 'fi';
   localStorage.setItem(STORAGE_KEY, currentLang);
   initI18n();
+
+  // Update charts after language change
+  try {
+    // Try to import and call onLanguageChanged from dashboard.js
+    // Using dynamic import to avoid circular dependency issues
+    import('./dashboard.js').then(module => {
+      if (typeof module.onLanguageChanged === 'function') {
+        module.onLanguageChanged();
+      }
+    }).catch(err => {
+      console.warn('Could not update charts after language change:', err);
+    });
+  } catch (err) {
+    console.warn('Error updating charts after language change:', err);
+  }
 }
 
 // wire up our toggle buttons
@@ -83,4 +109,4 @@ if (document.readyState === 'loading') {
 }
 
 // —— EXPORT SO OTHER MODULES CAN RE-TRIGGER TRANSLATION ——
-export {initI18n, getText};
+export {initI18n, getText, getCurrentLanguage};

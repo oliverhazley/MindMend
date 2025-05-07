@@ -132,6 +132,8 @@
   "dashboard.zoneHigh": "High",
   "dashboard.distributionSummary": "Showing HRV distribution for {range}",
   "dashboard.rrTitle": "RR Intervals (ms)",
+  "dashboard.rmssdCalculating": "Calculating RMSSD, ready after 3 minutes",
+  "dashboard.preparingData": "Preparing RR-Interval data",
 
   "polar.connect": "Connect",
   "polar.connecting": "Connecting...",
@@ -139,6 +141,29 @@
   "polar.disconnecting": "Disconnecting...",
   "polar.connected": "Connected to Polar H10",
   "polar.battery": "Battery: {level}%",
+
+
+  "dashboard.pulseAnalyticalVeryLow": "Your pulse is quite low. This could be normal for athletes or those who are very fit, but if you feel dizzy or weak, consider consulting a healthcare provider.",
+  "dashboard.pulseAnalyticalLow": "Your pulse is on the lower end of normal. This often indicates good cardiovascular fitness.",
+  "dashboard.pulseAnalyticalNormal": "Your pulse is in a healthy normal range, indicating good cardiovascular function.",
+  "dashboard.pulseAnalyticalElevated": "Your pulse is slightly elevated. This could be due to recent activity, caffeine, or mild stress. Consider some relaxation techniques.",
+  "dashboard.pulseAnalyticalHigh": "Your pulse is high. This could be due to exercise, stress, anxiety, or certain medications. If you're at rest, consider calming activities.",
+  "dashboard.pulseAnalyticalVeryHigh": "Your pulse is very high. If you're not exercising, this could indicate significant stress or potential health concerns. Consider relaxation and consult a healthcare provider if persistent.",
+
+  "dashboard.rmssdAnalyticalLow": "Your HRV is very low, suggesting high stress or fatigue. Consider taking a rest and reducing stressors.",
+  "dashboard.rmssdAnalyticalModeratelow": "Your HRV is relatively low. This may indicate elevated stress levels or insufficient recovery. Taking time to relax could be beneficial.",
+  "dashboard.rmssdAnalyticalModerate": "Your HRV is in a moderate range, suggesting a balanced state between stress and recovery. Continue with normal activities.",
+  "dashboard.rmssdAnalyticalModeratehigh": "Your HRV is good, indicating healthy stress resilience and effective recovery. Your body is responding well to current conditions.",
+  "dashboard.rmssdAnalyticalHigh": "Your HRV is excellent, suggesting optimal autonomic nervous system function and strong stress resilience. Your body is in an ideal recovery state.",
+
+  "dashboard.notEnoughData": "Not enough data, please keep tracking your progress.",
+  "dashboard.noReadings": "No HRV readings to analyze.",
+  "dashboard.showingAverages": "Showing HRV averages for: {range}",
+
+  "dashboard.trendLow": "Your HRV trend shows mostly low values (avg: {avg}ms). This may indicate elevated stress or insufficient recovery. Consider incorporating more rest and stress-reduction activities.",
+  "dashboard.trendModerate": "Your HRV trend shows primarily moderate values (avg: {avg}ms). This suggests a balanced state between stress and recovery. Your body is functioning well, though there may be room for improvement.",
+  "dashboard.trendHigh": "Your HRV trend shows predominantly high values (avg: {avg}ms). This suggests excellent autonomic balance and stress resilience. Keep up your healthy habits!",
+  "dashboard.trendMixed": "Your HRV shows a mixed pattern (avg: {avg}ms) across {total} readings. This variability could reflect changing stress levels or recovery patterns in your daily life.",
 
 
   "polar.disconnected"  : "Not connected",
