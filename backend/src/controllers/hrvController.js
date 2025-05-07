@@ -59,3 +59,5 @@ export async function getHRVReadings(req, res) {
     res.status(500).json({ message: "Server error fetching HRV readings" });
   }
 }
+
+

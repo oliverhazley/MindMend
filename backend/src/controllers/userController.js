@@ -5,8 +5,14 @@ import dotenv from 'dotenv';
 
 const getAllUsers = async (req, res) => {
   try {
+    // this is kind of placeholder - not sure if we need it in future - the security on this could be better
     const users = await userModel.getAllUsers();
-    res.status(200).json(users);
+    // Remove sensitive information like passwords
+    const safeUsers = users.map(user => {
+      const { password, ...safeUser } = user;
+      return safeUser;
+    });
+    res.status(200).json(safeUsers);
   } catch (error) {
     console.error('Error fetching all users:', error);
     return res.status(500).json({message: 'Internal server error'});
@@ -15,13 +21,23 @@ const getAllUsers = async (req, res) => {
 
 const getUserProfile = async (req, res, next) => {
   try {
-    const userId = req.user?.userId || req.params.userId;
-    if (!userId) return res.status(400).json({message: 'Missing user ID'});
+    // Get the authenticated user's ID from the token
+    const authenticatedUserId = req.user.userId;
+    // Get the requested user ID from params
+    const requestedUserId = parseInt(req.params.userId);
 
-    const user = await userModel.getUserById(userId);
+    // Ensure users can only access their own profile
+    if (authenticatedUserId !== requestedUserId) {
+      return res.status(403).json({message: 'Access denied. You can only view your own profile.'});
+    }
+
+    const user = await userModel.getUserById(requestedUserId);
     if (!user) return res.status(404).json({message: 'User not found'});
 
-    return res.json(user);
+    // Remove sensitive data
+    const { password, ...safeUser } = user;
+
+    return res.json(safeUser);
   } catch (err) {
     next(err);
   }
@@ -84,8 +100,9 @@ const loginUser = async (req, res) => {
       return res.status(401).json({message: 'Invalid email or password'});
     }
 
+    // Generate JWT token
     const token = jwt.sign(
-      {userId: user.user_Id, email: user.email},
+      {userId: user.user_id, email: user.email},
       process.env.JWT_SECRET,
       {
         expiresIn: '24h',
@@ -110,11 +127,24 @@ const loginUser = async (req, res) => {
 
 const changePassword = async (req, res) => {
   try {
+    // Get authenticated user ID from token
+    const authenticatedUserId = req.user.userId;
+
     const {userId, currentPassword, newPassword} = req.body;
+
+    // Ensure the authenticated user can only change their own password
+    if (parseInt(userId) !== authenticatedUserId) {
+      return res.status(403).json({message: 'Access denied. You can only update your own password.'});
+    }
+
     if (!userId || !currentPassword || !newPassword)
       return res.status(400).json({message: 'Missing fields'});
 
     const user = await userModel.getUserById(userId);
+    if (!user) {
+      return res.status(404).json({message: 'User not found'});
+    }
+
     const match = await bcrypt.compare(currentPassword, user.password);
     if (!match) return res.status(401).json({message: 'Wrong password'});
 
@@ -127,16 +157,25 @@ const changePassword = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  const {userId} = req.params;
-
   try {
-    // Validate input
-    if (!userId) {
-      return res.status(400).json({message: 'Please provide user ID'});
+    // Get authenticated user ID from token
+    const authenticatedUserId = req.user.userId;
+
+    // Get requested user ID from params
+    const requestedUserId = parseInt(req.params.userId);
+
+    // Ensure users can only delete their own account
+    if (authenticatedUserId !== requestedUserId) {
+      return res.status(403).json({message: 'Access denied. You can only delete your own account.'});
     }
 
     // Delete user
-    await userModel.deleteUser(userId);
+    const result = await userModel.deleteUser(requestedUserId);
+
+    if (!result) {
+      return res.status(404).json({message: 'User not found'});
+    }
+
     res.status(200).json({message: 'User deleted successfully'});
   } catch (error) {
     console.error('Error deleting user:', error);
@@ -152,3 +191,4 @@ export {
   changePassword,
   deleteUser,
 };
+
