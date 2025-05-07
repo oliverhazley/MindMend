@@ -11,8 +11,8 @@ This is a project at Metropolia UAS (2025) - Created by Oliver Hazley, Miska Nur
 
 ## Links
 
-- **Published Frontend Application**: [Frontend Link](#)
-- **Backend API Service**: [Backend Link](#)
+- **Published Frontend Application**: ![Mind-mend.live](https://mind-mend.live)
+- **Backend API Service**: ![Azure](https://mind-mend.azurewebsites.net/api)
 - **API Documentation**: [API Documentation](#)
 - **Frontend README**: [Frontend-specific Documentation](frontend/README.md)
 - **Backend README**: [Backend-specific Documentation](backend/README.md)
@@ -115,6 +115,7 @@ erDiagram
     }
     USERS ||--o{ HRV_READINGS : "has many"
 ````
+
 ### Note on Database Simplicity
 
 The database structure of MindMend is intentionally simple, adhering to the "keep it simple" philosophy, which avoids unnecessary complexity while meeting all functional requirements.
