@@ -122,7 +122,7 @@ All user endpoints are prefixed with `/api/users`.
 - **Request Body**:
   ```json
   {
-    "user_id": 1,
+    "userId": 1,
     "currentPassword": "oldpassword",
     "newPassword": "newpassword"
   }
@@ -130,13 +130,13 @@ All user endpoints are prefixed with `/api/users`.
 
 
 #### 1.5 - Get User Profile
-- **GET** `/api/users/profile/:user_id`
+- **GET** `/api/users/profile/:userId`
 - **Description**: Retrieve a user's profile information
 - **Authorization**: Required (must be the user or admin)
 
 
 #### 1.6 - Delete User
-- **DELETE** `/api/users/auth/delete/:user_id`
+- **DELETE** `/api/users/auth/delete/:userId`
 - **Description**: Delete a user account
 - **Authorization**: Required (must be the user or admin)
 
@@ -154,7 +154,7 @@ All HRV endpoints are prefixed with `/api/hrv`.
 - **Request Body**:
   ```json
   {
-    "user_id": 1,
+    "userId": 1,
     "hrv_value": 85.5,
     "reading_time": "2025-05-07T01:30:00Z"
   }
@@ -162,11 +162,11 @@ All HRV endpoints are prefixed with `/api/hrv`.
 
 
 #### 2.2 - Get HRV Readings
-- **GET** `/api/hrv?user_id=1&startDate=2025-05-01&endDate=2025-05-07`
+- **GET** `/api/hrv?userId=1&startDate=2025-05-01&endDate=2025-05-07`
 - **Description**: Retrieve HRV readings for a specific user within a date range
 - **Authorization**: Required (must be the user or admin)
 - **Query Parameters**:
-  - `user_id`: The user ID to fetch readings for (required)
+  - `userId`: The user ID to fetch readings for (required)
   - `startDate`: The start date for filtering readings (optional)
   - `endDate`: The end date for filtering readings (optional)
 
@@ -184,7 +184,7 @@ All chat endpoints are prefixed with `/api/chat`.
 - **Request Body**:
   ```json
   {
-    "user_id": 1,
+    "userId": 1,
     "message": "I'm feeling stressed right now"
   }
   ```
