@@ -9,6 +9,7 @@ This is a project at Metropolia UAS (2025) - Created by Oliver Hazley, Miska Nur
 
 ---
 
+
 ## Links
 
 - **Published Frontend Application**: [Mind-mend.live](https://mind-mend.live)
