@@ -33,8 +33,8 @@ MindMend's frontend serves as the user interface for the application. It is desi
 
 ## **2. Links**
 
-- **Published Frontend Application**: ![Mind-mend.live](https://mind-mend.live)
-- **Backend API Service**: ![Azure](https://mind-mend.azurewebsites.net/api)
+- **Published Frontend Application**: [Mind-mend.live](https://mind-mend.live)
+- **Backend API Service**: [Azure](https://mind-mend.azurewebsites.net/api)
 - **Root README**: [MindMend README](../README.md)  
 - **Backend Documentation**: [Backend README](../backend/README.md)  
 - **Testing Documentation**: [Testing README](../tests/README.md)  
