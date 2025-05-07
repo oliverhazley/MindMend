@@ -6,7 +6,7 @@ import chatRouter from './routers/chatRouter.js';
 import hrvRouter from './routers/hrvRouter.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Use Azure's PORT in production
+const PORT = process.env.PORT //|| 3000; // Use Azure's PORT in production
 const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'; // Listen on all interfaces in production
 
 const allowedOrigins = [
