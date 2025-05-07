@@ -1,13 +1,29 @@
 import express from 'express';
 import * as userController from '../controllers/userController.js';
+import {authenticate} from '../middlewares/authentication.js';
+import {authorizeSelf} from '../middlewares/authorization.js';
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.get('/', userController.getAllUsers);
-router.post('/auth/register', userController.registerUser);
-router.post('/auth/login', userController.loginUser);
-router.post('/auth/change-password', userController.changePassword);
-router.get('/profile/:userId', userController.getUserProfile);
-router.delete('/auth/delete/:userId', userController.deleteUser);
+userRouter.get('/', authenticate, userController.getAllUsers);
+userRouter.post('/auth/register', userController.registerUser);
+userRouter.post('/auth/login', userController.loginUser);
+userRouter.post(
+  '/auth/change-password',
+  authenticate,
+  userController.changePassword,
+);
+userRouter.get(
+  '/profile/:userId',
+  authenticate,
+  authorizeSelf,
+  userController.getUserProfile,
+);
+userRouter.delete(
+  '/auth/delete/:userId',
+  authenticate,
+  authorizeSelf,
+  userController.deleteUser,
+);
 
-export default router;
+export default userRouter;

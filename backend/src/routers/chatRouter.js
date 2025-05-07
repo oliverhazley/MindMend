@@ -1,10 +1,12 @@
 // src/routes/chatRouter.js
-import express from "express";
-import { handleChatMessage } from "../controllers/chatController.js";
+import express from 'express';
+import {handleChatMessage} from '../controllers/chatController.js';
+import {authenticate} from '../middlewares/authentication.js';
 
-const router = express.Router();
+const chatRouter = express.Router();
 
-// POST /api/chat
-router.post("/", handleChatMessage);
+chatRouter.use(authenticate);
 
-export default router;
+chatRouter.post('/', handleChatMessage);
+
+export default chatRouter;
