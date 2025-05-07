@@ -28,8 +28,6 @@ Welcome to the **Backend** documentation of **MindMend**, a mental wellness and 
 
 ## Introduction
 
----
-
 The backend of MindMend is built using Node.js, Express, and MySQL. It provides a RESTful API for the frontend to interact with the database and perform various operations related to user management, HRV data storage, and analysis.
 
 ---
