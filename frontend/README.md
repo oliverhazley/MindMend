@@ -333,8 +333,10 @@ This helps keep the database clean and the analysis meaningful.
 
 ## **8. References**
 
+
 - Icons from [Lucide](https://lucide.dev/)
 - Sounds from [Freesound](https://freesound.org/)
+- Meditation exercises from [handsonmeditation.com](https://handsonmeditation.com) (with Authors permission)
 - SVG backgrounds generated with [Haikei](https://haikei.app)
 - Frontend Framework: Tailwind CSS
 - Backend Framework: Node.js with Express.js
@@ -345,6 +347,7 @@ This helps keep the database clean and the analysis meaningful.
 - Stack overflow for bug fixing, help with various issues
 - ChatGPT for bug fixing, and help with various issues
 - Claude for bug fixing, and help with various issues
+- Gemini for bug fixing, and help with various issues
 
 
 ---
