@@ -11,10 +11,10 @@ const pool = mysql.createPool({
   queueLimit: 0,
 
   // force an encrypted connection, using Node's default trusted CAs
-  ssl: {
+  //ssl: {
     // this alone is enough to negotiate TLS
-   rejectUnauthorized: true
-  }
+   //rejectUnauthorized: true
+  //}
 });
 
 const promisePool = pool.promise();
