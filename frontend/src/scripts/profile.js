@@ -13,9 +13,11 @@ async function loadUserInfo() {
   const token = localStorage.getItem('token');
   if (!token) return;
   try {
-    // you can omit the userId in the URL if your backend ignores it
+    // Assumes backend has an endpoint like `/users/profile` or `/users/profile/me`
+    // that retrieves the profile of the user authenticated by the token.
+    // This endpoint would not require a userId in the path.
     const res = await fetch(
-      `${API_BASE_URL}/users/profile/${localStorage.getItem('user_id')}`,
+      `${API_BASE_URL}/users/me/profile`, // Or your specific "me" endpoint, e.g., /users/profile/me
       {headers: {Authorization: `Bearer ${token}`}},
     );
     if (!res.ok) throw await res.json();

@@ -58,6 +58,37 @@ const userRouter = express.Router();
 userRouter.get('/', authenticate, userController.getAllUsers);
 
 /**
+ * @api {get} /api/users/me/profile Get Current User's Profile
+ * @apiName GetCurrentUserProfile
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiUse AuthHeader
+ *
+ * @apiDescription Retrieves the profile information for the currently authenticated user.
+ *
+ * @apiSuccess {Number} user_id User's unique ID.
+ * @apiSuccess {String} name User's name.
+ * @apiSuccess {String} email User's email.
+ * @apiSuccess {String} created_at Timestamp of user creation.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "user_id": 1,
+ *       "name": "John Doe",
+ *       "email": "john.doe@example.com",
+ *       "created_at": "2025-05-08T10:00:00.000Z"
+ *     }
+ * @apiError (401 Unauthorized) Unauthorized No token provided or token is invalid/expired.
+ * @apiError (404 Not Found) NotFound User associated with token not found.
+ * @apiError (500 Internal Server Error) ServerError Internal server error.
+ */
+userRouter.get(
+  '/me/profile',
+  authenticate,
+  userController.getCurrentUserProfile,
+);
+
+/**
  * @api {post} /api/users/auth/register Register User
  * @apiName RegisterUser
  * @apiGroup User
