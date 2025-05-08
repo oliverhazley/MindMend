@@ -320,7 +320,7 @@ This helps keep the database clean and the analysis meaningful.
 
 ---
 
-### Known Issues
+## Known Issues
 
 - **Chatbot Language**: Sometimes responds in English even if the user is using Finnish.
 - **RMSSD Calculation**: The RMSSD calculation is not always accurate due to the nature of the data being collected. We are working on improving the filtering and calculation methods.
