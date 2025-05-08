@@ -7,8 +7,8 @@ const getAllUsers = async (req, res) => {
     // this is kind of placeholder - not sure if we need it in future - the security on this could be better
     const users = await userModel.getAllUsers();
     // Remove sensitive information like passwords
-    const safeUsers = users.map(user => {
-      const { password, ...safeUser } = user;
+    const safeUsers = users.map((user) => {
+      const {password, ...safeUser} = user;
       return safeUser;
     });
     res.status(200).json(safeUsers);
@@ -27,14 +27,16 @@ const getUserProfile = async (req, res, next) => {
 
     // Ensure users can only access their own profile
     if (authenticatedUserId !== requestedUserId) {
-      return res.status(403).json({message: 'Access denied. You can only view your own profile.'});
+      return res
+        .status(403)
+        .json({message: 'Access denied. You can only view your own profile.'});
     }
 
     const user = await userModel.getUserById(requestedUserId);
     if (!user) return res.status(404).json({message: 'User not found'});
 
     // Remove sensitive data
-    const { password, ...safeUser } = user;
+    const {password, ...safeUser} = user;
 
     return res.json(safeUser);
   } catch (err) {
@@ -133,7 +135,11 @@ const changePassword = async (req, res) => {
 
     // Ensure the authenticated user can only change their own password
     if (parseInt(userId) !== authenticatedUserId) {
-      return res.status(403).json({message: 'Access denied. You can only update your own password.'});
+      return res
+        .status(403)
+        .json({
+          message: 'Access denied. You can only update your own password.',
+        });
     }
 
     if (!userId || !currentPassword || !newPassword)
@@ -165,7 +171,11 @@ const deleteUser = async (req, res) => {
 
     // Ensure users can only delete their own account
     if (authenticatedUserId !== requestedUserId) {
-      return res.status(403).json({message: 'Access denied. You can only delete your own account.'});
+      return res
+        .status(403)
+        .json({
+          message: 'Access denied. You can only delete your own account.',
+        });
     }
 
     // Delete user
@@ -182,6 +192,25 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const getCurrentUserProfile = async (req, res, next) => {
+  try {
+    const authenticatedUserId = req.user.userId; // From token
+
+    const user = await userModel.getUserById(authenticatedUserId);
+    if (!user) {
+      // This case should ideally not happen if token is valid and user exists
+      return res.status(404).json({message: 'User not found'});
+    }
+
+    // Remove sensitive data like password before sending
+    const {password, ...safeUser} = user;
+    return res.json(safeUser);
+  } catch (err) {
+    console.error('Error fetching current user profile:', err);
+    next(err); // Pass to error handling middleware
+  }
+};
+
 export {
   getAllUsers,
   getUserProfile,
@@ -189,5 +218,5 @@ export {
   loginUser,
   changePassword,
   deleteUser,
+  getCurrentUserProfile,
 };
-
