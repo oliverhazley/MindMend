@@ -72,7 +72,7 @@ The backend of MindMend is built using Node.js, Express, and MySQL. It provides 
 
 The API endpoints are organized into three main categories: **1. User**, **2. HRV**, and **3. Chat**. Each category has its own set of routes and controllers to handle the respective operations.
 
-**[Detailed API documentation can be found here](https://users.metropolia.fi/~miskanu/MindMend/docs/)**
+**[Detailed API documentation can be found here](https://mind-mend.azurewebsites.net/api-docs)**
 
 ## Database
 
