@@ -9,12 +9,11 @@ This is a project at Metropolia UAS (2025) - Created by Oliver Hazley, Miska Nur
 
 ---
 
-
 ## Links
 
 - **Published Frontend Application**: [Mind-mend.live](https://mind-mend.live)
 - **Backend API Service**: [Azure](https://mind-mend.azurewebsites.net/api)
-- **API Documentation**: [API Documentation](#)
+- **API Documentation**: [API Documentation](https://mind-mend.azurewebsites.net/api-docs)
 - **Frontend README**: [Frontend-specific Documentation](frontend/README.md)
 - **Backend README**: [Backend-specific Documentation](backend/README.md)
 - **Testing README**: [Testing-specific Documentation](tests/README.md)
@@ -24,6 +23,7 @@ This is a project at Metropolia UAS (2025) - Created by Oliver Hazley, Miska Nur
 ## Features
 
 ### Implemented Features
+
 1. **HRV Monitoring**: Real-time HRV tracking and visualization.
 2. **Relaxation Exercises**: Mindfulness and breathing exercises with audio guidance.
 3. **User Authentication**: Secure login and registration system.
@@ -43,20 +43,21 @@ This is a project at Metropolia UAS (2025) - Created by Oliver Hazley, Miska Nur
 ## Libraries and Tools
 
 ### Frontend
+
 - **Tailwind CSS**: For styling.
 - **Chart.js**: For data visualizations.
 - **Lucide Icons**: For icons.
 - **Web Bluetooth**: For device connectivity (Polar H10).
 
 ### Backend
+
 - **Node.js**: Backend runtime.
 - **Express.js**: Web framework.
 
-
 ---
 
-
 ### Known Bugs/Issues
+
 - **Polar H10 Connection**: Does not work on Apple devices due to Safari's requirement for the WebKit API, which does not support Web Bluetooth.
 
 ---
@@ -94,40 +95,14 @@ This is a project at Metropolia UAS (2025) - Created by Oliver Hazley, Miska Nur
 
 For more details, refer to the [Frontend README](frontend/README.md) and [Backend README](backend/README.md).
 Testing documentation can be found at our [Testing README](tests/README.md)
+
 ---
-
-## Database Schema
-
-The database for MindMend. Below is the schema for the `users` and `hrv_readings` tables, represented using Mermaid markup:
-
-````mermaid
-erDiagram
-    USERS {
-        int user_id PK
-        string name UNIQUE
-        string email UNIQUE
-        string password
-    }
-    HRV_READINGS {
-        int hrv_id PK
-        int user_id FK
-        datetime reading_time
-        float hrv_value
-    }
-    USERS ||--o{ HRV_READINGS : "has many"
-````
-
-### Note on Database Simplicity
-
-The database structure of MindMend is intentionally simple, adhering to the "keep it simple" philosophy, which avoids unnecessary complexity while meeting all functional requirements.
-
 
 ## Project initiation instructions
 
 1.  Please follow the frontend initiation instructions in the [Frontend README](frontend/README.md) to set up the frontend.
 
 2.  Please follow the backend initiation instructions in the [Backend README](backend/README.md) to set up the backend.
-
 
 ---
 
@@ -136,9 +111,7 @@ The database structure of MindMend is intentionally simple, adhering to the "kee
 ### Test User Credentials
 
 | Email             | Password |
-|-------------------|----------|
+| ----------------- | -------- |
 | test123@gmail.com | test123  |
 
 ---
-
-

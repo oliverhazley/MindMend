@@ -9,25 +9,32 @@ Welcome to the **Testing** documentation of **MindMend**, a mental wellness and 
 
 ## Table of Contents
 
-1.  [Quick Links](#quick-links)
-2.  [Test Environment Setup](#test-environment-setup)
+1.  [Introduction](#introduction)
+2.  [Links](#links)
+3.  [Test Environment Setup](#test-environment-setup)
     - [1. Change Directory](#1-change-directory)
     - [2. Virtual Environment](#2-virtual-environment)
     - [3. Install Requirements](#3-install-requirements)
     - [4. Test Installation](#4-test-installation)
-3.  [Running Tests](#running-tests)
+4.  [Running Tests](#running-tests)
     - [Frontend Tests](#frontend-tests)
     - [Backend API Tests](#backend-api-tests)
-4.  [Understanding Test Results](#understanding-test-results)
-5.  [Configuration Notes](#configuration-notes)
+5.  [Understanding Test Results](#understanding-test-results)
+6.  [Configuration Notes](#configuration-notes)
 
 ---
 
-## Quick Links
+## Introduction
 
-- **Root README**: [MindMend Project README](../README.md)
-- **Frontend Documentation**: [Frontend README](../frontend/README.md)
-- **Backend Documentation**: [Backend README](../backend/README.md)
+MindMend's automated tests, setup, and execution procedures are used to ensure the quality and reliability of the MindMend application.
+
+## Links
+
+- **Published Frontend Application**: [Mind-mend.live](https://mind-mend.live)
+- **Backend API Service**: [Azure](https://mind-mend.azurewebsites.net/api)
+- **API Documentation**: [API Documentation](https://mind-mend.azurewebsites.net/api-docs)
+- **Frontend README**: [Frontend-specific Documentation](../frontend/README.md)
+- **Backend README**: [Backend-specific Documentation](../backend/README.md)
 
 ---
 
