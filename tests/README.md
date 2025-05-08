@@ -32,7 +32,7 @@ MindMend's automated tests, setup, and execution procedures are used to ensure t
 
 - **Published Frontend Application**: [Mind-mend.live](https://mind-mend.live)
 - **Backend API Service**: [Azure](https://mind-mend.azurewebsites.net/api)
-- **API Documentation**: [API Documentation](https://mind-mend.azurewebsites.net/api-docs)
+- **API Documentation**: [API Documentation](https://users.metropolia.fi/~miskanu/MindMend/docs/)
 - **Frontend README**: [Frontend-specific Documentation](../frontend/README.md)
 - **Backend README**: [Backend-specific Documentation](../backend/README.md)
 
