@@ -141,7 +141,6 @@ const changePassword = async (req, res) => {
   try {
     // Get authenticated user ID from token
     const authenticatedUserId = req.user.userId;
-
     const {userId, currentPassword, newPassword} = req.body;
 
     // Ensure the authenticated user can only change their own password
@@ -172,10 +171,8 @@ const changePassword = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    // Get authenticated user ID from token
+    // Get authenticated user ID from token and requested user ID from params
     const authenticatedUserId = req.user.userId;
-
-    // Get requested user ID from params
     const requestedUserId = parseInt(req.params.userId);
 
     // Ensure users can only delete their own account

@@ -3,7 +3,7 @@
 // Handles loading language files, switching between languages, and updating the UI.
 // -----------------------------------------------------------------------------
 
-import { updateUIAfterLanguageChange } from './polarConnect.js';
+import {updateUIAfterLanguageChange} from './polarConnect.js';
 
 const STORAGE_KEY = 'lang';
 let currentLang = localStorage.getItem(STORAGE_KEY) || 'en';
@@ -84,13 +84,15 @@ function toggleLanguage() {
   try {
     // Try to import and call onLanguageChanged from dashboard.js
     // Using dynamic import to avoid circular dependency issues
-    import('./dashboard.js').then(module => {
-      if (typeof module.onLanguageChanged === 'function') {
-        module.onLanguageChanged();
-      }
-    }).catch(err => {
-      console.warn('Could not update charts after language change:', err);
-    });
+    import('./dashboard.js')
+      .then((module) => {
+        if (typeof module.onLanguageChanged === 'function') {
+          module.onLanguageChanged();
+        }
+      })
+      .catch((err) => {
+        console.warn('Could not update charts after language change:', err);
+      });
   } catch (err) {
     console.warn('Error updating charts after language change:', err);
   }
@@ -108,5 +110,5 @@ if (document.readyState === 'loading') {
   initI18n();
 }
 
-// —— EXPORT SO OTHER MODULES CAN RE-TRIGGER TRANSLATION ——
+// EXPORT SO OTHER MODULES CAN RE-TRIGGER TRANSLATION
 export {initI18n, getText, getCurrentLanguage};

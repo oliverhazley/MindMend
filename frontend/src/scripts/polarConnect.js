@@ -25,9 +25,9 @@ let polarDevice = null;
 let pulse = null;
 
 // RR interval buffers
-let rrBuffer = [];           // For uploading to the server (accumulates for 3 minutes)
-let rrLive = [];             // For live display (recent samples only)
-let rmssdBuffer = [];        // For stable RMSSD calculation - large buffer of 3 minutes data
+let rrBuffer = []; // For uploading to the server (accumulates for 3 minutes)
+let rrLive = []; // For live display (recent samples only)
+let rmssdBuffer = []; // For stable RMSSD calculation - large buffer of 3 minutes data
 
 let latestRMSSD = null;
 let autoSaveInterval = null;
@@ -41,7 +41,7 @@ let pendingConnectionPromise = null; // Track if there's an active connection at
 let connectionState = 'disconnected';
 
 // Configuration for RMSSD calculation
-const RR_SAMPLES_FOR_LIVE = 60;     // Number of RR intervals to show on chart
+const RR_SAMPLES_FOR_LIVE = 60; // Number of RR intervals to show on chart
 const RMSSD_READY_TIME = 3 * 60 * 1000; // 3 minutes in milliseconds
 
 /**
@@ -52,11 +52,6 @@ const RMSSD_READY_TIME = 3 * 60 * 1000; // 3 minutes in milliseconds
  * - Connection status text
  * - Battery level indicators
  * - Dashboard data visibility based on connection state
- *
- * @param {Object} params - Parameters for updating the UI
- * @param {string} params.text - Text to display on buttons
- * @param {boolean} params.isConnected - Whether device is connected
- * @param {number|null} params.batteryLevel - Battery level percentage if available
  */
 function updatePolarUI({text, isConnected, batteryLevel = null}) {
   // Find all connect and disconnect buttons (both in dashboard and profile)
@@ -83,7 +78,7 @@ function updatePolarUI({text, isConnected, batteryLevel = null}) {
   ];
 
   // Update connect buttons visibility and text based on connection state
-  connectBtns.forEach(btn => {
+  connectBtns.forEach((btn) => {
     if (!btn) return;
 
     if (connectionState === 'disconnected') {
@@ -100,7 +95,7 @@ function updatePolarUI({text, isConnected, batteryLevel = null}) {
   });
 
   // Update disconnect buttons visibility and text based on connection state
-  disconnectBtns.forEach(btn => {
+  disconnectBtns.forEach((btn) => {
     if (!btn) return;
 
     if (connectionState === 'connected') {
@@ -109,7 +104,10 @@ function updatePolarUI({text, isConnected, batteryLevel = null}) {
       btn.disabled = false;
     } else if (connectionState === 'disconnecting') {
       btn.style.display = 'block';
-      btn.textContent = getText('dashboard.disconnectingBtn', 'Disconnecting...');
+      btn.textContent = getText(
+        'dashboard.disconnectingBtn',
+        'Disconnecting...',
+      );
       btn.disabled = true; // Disable during disconnection
     } else {
       btn.style.display = 'none'; // Hide disconnect button when disconnected or connecting
@@ -131,7 +129,10 @@ function updatePolarUI({text, isConnected, batteryLevel = null}) {
   batteryEls.forEach((el) => {
     if (!el) return;
     if (batteryLevel !== null) {
-      el.textContent = getText('polar.battery', 'Battery: {level}%').replace('{level}', batteryLevel);
+      el.textContent = getText('polar.battery', 'Battery: {level}%').replace(
+        '{level}',
+        batteryLevel,
+      );
       el.classList.remove('hidden');
     } else {
       el.textContent = '';
@@ -152,8 +153,6 @@ function updatePolarUI({text, isConnected, batteryLevel = null}) {
  * 3. Establishes connection to the device
  * 4. Sets up heart rate notifications
  * 5. Starts auto-saving RMSSD data every 3 minutes
- *
- * @returns {Promise<boolean>} Promise resolving to true if connection successful
  */
 export async function connectPolarH10() {
   // If a connection is already in progress, return the existing promise
@@ -189,7 +188,7 @@ export async function connectPolarH10() {
 
       polarDevice = await device.gatt.connect();
       isPolarConnected = true;
-      connectionState = 'connected';  // Update connection state
+      connectionState = 'connected'; // Update connection state
       connectionStartTime = Date.now(); // Record connection time for buffering
       rmssdReady = false; // Reset RMSSD ready flag
 
@@ -263,8 +262,6 @@ export async function connectPolarH10() {
  * This is called automatically when the device disconnects without
  * going through our disconnectPolarH10 function. It updates the
  * UI state to reflect the disconnection.
- *
- * @param {Event} event - The disconnection event
  */
 function handleDisconnection(event) {
   console.log('Device disconnected');
@@ -287,8 +284,6 @@ function handleDisconnection(event) {
  * 3. Saves final RMSSD data
  * 4. Closes the Bluetooth connection
  * 5. Resets all connection-related states
- *
- * @returns {Promise<boolean>} Promise resolving to true if disconnection successful
  */
 export async function disconnectPolarH10() {
   try {
@@ -344,8 +339,6 @@ export async function disconnectPolarH10() {
  * 2. Extracts RR intervals (time between heartbeats)
  * 3. Updates the rrBuffer, rrLive, and rmssdBuffer arrays with new data
  * 4. Calculates latest RMSSD value if buffering period is complete
- *
- * @param {Event} event - The notification event containing heart rate data
  */
 function handleHRNotification(event) {
   const value = event.target.value;
@@ -407,8 +400,6 @@ function handleHRNotification(event) {
  * 2. Calculates RMSSD from the RR interval buffer
  * 3. Sends the calculated value to the server
  * 4. Clears the RR buffer for the next calculation
- *
- * @returns {Promise<void>}
  */
 async function uploadRMSSD() {
   console.log('Uploading RMSSD...');
@@ -420,7 +411,7 @@ async function uploadRMSSD() {
 
   const corrected = correctRRIntervalsThreshold(rrBuffer);
   const rmssd = calculateRMSSD(corrected);
-  rrBuffer = [];  // Clear buffer after calculation
+  rrBuffer = []; // Clear buffer after calculation
 
   if (!rmssd || !isFinite(rmssd)) {
     console.log('Invalid RMSSD. Skipping.');
@@ -462,12 +453,15 @@ export function startAutoRMSSDSave() {
   if (autoSaveInterval !== null) return;
   console.log('Started auto-saving RMSSD every 3 mins');
 
-  autoSaveInterval = setInterval(() => {
-    const value = latestRMSSD;
-    if (value) {
-      uploadRMSSD();
-    }
-  }, 3 * 60 * 1000); // Exactly 3 minutes as requested
+  autoSaveInterval = setInterval(
+    () => {
+      const value = latestRMSSD;
+      if (value) {
+        uploadRMSSD();
+      }
+    },
+    3 * 60 * 1000,
+  ); // Exactly 3 minutes as requested
 }
 
 /**
@@ -496,11 +490,6 @@ export function stopAutoRMSSDSave() {
  *    a. Examine a window of surrounding samples
  *    b. Calculate the median of this local window
  *    c. If the current interval deviates from median by more than the threshold, replace it
- *
- * @param {number[]} rrArray - Array of RR intervals in milliseconds
- * @param {number} windowSize - Size of the sliding window for median calculation (default: 5)
- * @param {number} thresholdMs - Maximum allowed deviation from median in milliseconds (default: 150)
- * @returns {number[]} Corrected array of RR intervals
  */
 function correctRRIntervalsThreshold(
   rrArray,
@@ -555,9 +544,6 @@ function correctRRIntervalsThreshold(
  * 2. Squares each difference
  * 3. Takes the average of squared differences
  * 4. Calculates the square root to get RMSSD
- *
- * @param {number[]} rrArray - Array of RR intervals in milliseconds
- * @returns {number|null} Calculated RMSSD or null if not enough data
  */
 function calculateRMSSD(rrArray) {
   // Need at least 2 intervals to calculate a difference
@@ -584,8 +570,6 @@ function calculateRMSSD(rrArray) {
  * 1. Updates the visibility of data elements
  * 2. Shows/hides placeholder messages based on connection state
  * 3. Displays appropriate messages during RMSSD calculation
- *
- * @param {boolean} isConnected - Whether the device is connected
  */
 function updateDashboardDataVisibility(isConnected) {
   // Get elements for data display
@@ -604,27 +588,42 @@ function updateDashboardDataVisibility(isConnected) {
 
     // Add "Please connect" messages where needed
     if (hrvText) {
-      hrvText.textContent = getText('dashboard.livePlaceholder', 'Please connect to a device to view live data');
+      hrvText.textContent = getText(
+        'dashboard.livePlaceholder',
+        'Please connect to a device to view live data',
+      );
     }
 
     if (rmssdText) {
-      rmssdText.textContent = getText('dashboard.livePlaceholder', 'Please connect to a device to view live data');
+      rmssdText.textContent = getText(
+        'dashboard.livePlaceholder',
+        'Please connect to a device to view live data',
+      );
     }
 
     // Add message to RR chart
     if (rrChartMessage) {
-      rrChartMessage.textContent = getText('dashboard.livePlaceholder', 'Please connect to a device to view live data');
+      rrChartMessage.textContent = getText(
+        'dashboard.livePlaceholder',
+        'Please connect to a device to view live data',
+      );
       rrChartMessage.style.display = 'block';
     }
   } else if (isConnected && !rmssdReady && rmssdText) {
     // We're connected but RMSSD is not ready yet
     if (rmssdText) {
-      rmssdText.textContent = getText('dashboard.rmssdCalculating', 'Calculating RMSSD, ready after 3 minutes');
+      rmssdText.textContent = getText(
+        'dashboard.rmssdCalculating',
+        'Calculating RMSSD, ready after 3 minutes',
+      );
     }
 
     // Update RR chart message if connected but data still loading
     if (rrChartMessage && getRRData().length < 10) {
-      rrChartMessage.textContent = getText('dashboard.preparingData', 'Preparing RR interval data...');
+      rrChartMessage.textContent = getText(
+        'dashboard.preparingData',
+        'Preparing RR interval data...',
+      );
       rrChartMessage.style.display = 'block';
     } else if (rrChartMessage) {
       rrChartMessage.style.display = 'none';
@@ -635,7 +634,10 @@ function updateDashboardDataVisibility(isConnected) {
     if (rrChartMessage && getRRData().length >= 10) {
       rrChartMessage.style.display = 'none';
     } else if (rrChartMessage) {
-      rrChartMessage.textContent = getText('dashboard.preparingData', 'Preparing RR interval data...');
+      rrChartMessage.textContent = getText(
+        'dashboard.preparingData',
+        'Preparing RR interval data...',
+      );
       rrChartMessage.style.display = 'block';
     }
   }
@@ -651,8 +653,6 @@ function updateDashboardDataVisibility(isConnected) {
  * - 'connecting': Connection in progress
  * - 'connected': Device connected and working
  * - 'disconnecting': Disconnection in progress
- *
- * @returns {string} Current connection state
  */
 export function getConnectionState() {
   return connectionState;
@@ -663,8 +663,6 @@ export function getConnectionState() {
  *
  * RMSSD values need time to stabilize after connection.
  * This function returns true only after the 3-minute buffering period.
- *
- * @returns {boolean} Whether RMSSD data is ready to display
  */
 export function isRMSSDReady() {
   return rmssdReady;
@@ -679,8 +677,6 @@ export function isRMSSDReady() {
  *
  * The returned data is already filtered using the median filter
  * to ensure smooth visualization.
- *
- * @returns {number[]} Array of recent RR intervals or empty array if not ready
  */
 export function getRRData() {
   if (!isPolarConnected) return [];
@@ -692,11 +688,7 @@ export function getRRData() {
   return correctRRIntervalsThreshold(rrLive);
 }
 
-/**
- * Gets the current pulse (heart rate) value
- *
- * @returns {number} Current pulse or 0 if not connected
- */
+// Gets the current pulse (heart rate) value
 export function getCurrentPulse() {
   return isPolarConnected ? pulse || 0 : 0;
 }
@@ -711,19 +703,13 @@ export function getCurrentPulse() {
  * The RMSSD is calculated using all the samples collected during
  * the 3-minute buffer period and then maintained using a sliding window.
  * This provides a much more stable RMSSD value.
- *
- * @returns {number|null} Current RMSSD or null if not ready/connected
  */
 export function getCurrentRMSSD() {
   if (!isPolarConnected || !rmssdReady) return null;
   return latestRMSSD;
 }
 
-/**
- * Manually triggers an RMSSD upload to the database
- *
- * @returns {Promise<void>} Promise that resolves when upload completes
- */
+// Manually triggers an RMSSD upload to the database
 export function saveRMSSDtoDB() {
   return uploadRMSSD();
 }
@@ -739,7 +725,7 @@ export function updateUIAfterLanguageChange() {
   updatePolarUI({
     text: connectionState === 'connected' ? 'Disconnect' : 'Connect',
     isConnected: isPolarConnected,
-    batteryLevel: null // We don't know the battery level here, it will be hidden
+    batteryLevel: null, // We don't know the battery level here, it will be hidden
   });
 }
 
@@ -748,29 +734,36 @@ export function updateUIAfterLanguageChange() {
  *
  * This function analyzes the RMSSD value and returns a detailed
  * interpretation with health insights and recommendations.
- *
- * @param {number} rmssd - The RMSSD value to interpret
- * @returns {string} Detailed analysis of the RMSSD value
  */
 export function getAnalyticalTextForRMSSD(rmssd) {
   if (!rmssd || !isFinite(rmssd)) return '';
 
   // Return appropriate translated text based on RMSSD thresholds
   if (rmssd < 20) {
-    return getText('dashboard.rmssdAnalyticalLow',
-      'Your HRV is very low, suggesting high stress or fatigue. Consider taking a rest and reducing stressors.');
+    return getText(
+      'dashboard.rmssdAnalyticalLow',
+      'Your HRV is very low, suggesting high stress or fatigue. Consider taking a rest and reducing stressors.',
+    );
   } else if (rmssd < 40) {
-    return getText('dashboard.rmssdAnalyticalModeratelow',
-      'Your HRV is relatively low. This may indicate elevated stress levels or insufficient recovery. Taking time to relax could be beneficial.');
+    return getText(
+      'dashboard.rmssdAnalyticalModeratelow',
+      'Your HRV is relatively low. This may indicate elevated stress levels or insufficient recovery. Taking time to relax could be beneficial.',
+    );
   } else if (rmssd < 60) {
-    return getText('dashboard.rmssdAnalyticalModerate',
-      'Your HRV is in a moderate range, suggesting a balanced state between stress and recovery. Continue with normal activities.');
+    return getText(
+      'dashboard.rmssdAnalyticalModerate',
+      'Your HRV is in a moderate range, suggesting a balanced state between stress and recovery. Continue with normal activities.',
+    );
   } else if (rmssd < 80) {
-    return getText('dashboard.rmssdAnalyticalModeratehigh',
-      'Your HRV is good, indicating healthy stress resilience and effective recovery. Your body is responding well to current conditions.');
+    return getText(
+      'dashboard.rmssdAnalyticalModeratehigh',
+      'Your HRV is good, indicating healthy stress resilience and effective recovery. Your body is responding well to current conditions.',
+    );
   } else {
-    return getText('dashboard.rmssdAnalyticalHigh',
-      'Your HRV is excellent, suggesting optimal autonomic nervous system function and strong stress resilience. Your body is in an ideal recovery state.');
+    return getText(
+      'dashboard.rmssdAnalyticalHigh',
+      'Your HRV is excellent, suggesting optimal autonomic nervous system function and strong stress resilience. Your body is in an ideal recovery state.',
+    );
   }
 }
 
@@ -779,31 +772,40 @@ export function getAnalyticalTextForRMSSD(rmssd) {
  *
  * This function analyzes the pulse value and returns a detailed
  * interpretation with health insights.
- *
- * @param {number} pulse - The pulse value to interpret
- * @returns {string} Detailed analysis of the pulse value
  */
 export function getAnalyticalTextForPulse(pulse) {
   if (!pulse || !isFinite(pulse)) return '';
 
   // Return appropriate translated text based on pulse thresholds
   if (pulse < 50) {
-    return getText('dashboard.pulseAnalyticalVeryLow',
-      'Your pulse is quite low. This could be normal for athletes or those who are very fit, but if you feel dizzy or weak, consider consulting a healthcare provider.');
+    return getText(
+      'dashboard.pulseAnalyticalVeryLow',
+      'Your pulse is quite low. This could be normal for athletes or those who are very fit, but if you feel dizzy or weak, consider consulting a healthcare provider.',
+    );
   } else if (pulse < 60) {
-    return getText('dashboard.pulseAnalyticalLow',
-      'Your pulse is on the lower end of normal. This often indicates good cardiovascular fitness.');
+    return getText(
+      'dashboard.pulseAnalyticalLow',
+      'Your pulse is on the lower end of normal. This often indicates good cardiovascular fitness.',
+    );
   } else if (pulse < 80) {
-    return getText('dashboard.pulseAnalyticalNormal',
-      'Your pulse is in a healthy normal range, indicating good cardiovascular function.');
+    return getText(
+      'dashboard.pulseAnalyticalNormal',
+      'Your pulse is in a healthy normal range, indicating good cardiovascular function.',
+    );
   } else if (pulse < 100) {
-    return getText('dashboard.pulseAnalyticalElevated',
-      'Your pulse is slightly elevated. This could be due to recent activity, caffeine, or mild stress. Consider some relaxation techniques.');
+    return getText(
+      'dashboard.pulseAnalyticalElevated',
+      'Your pulse is slightly elevated. This could be due to recent activity, caffeine, or mild stress. Consider some relaxation techniques.',
+    );
   } else if (pulse < 120) {
-    return getText('dashboard.pulseAnalyticalHigh',
-      'Your pulse is high. This could be due to exercise, stress, anxiety, or certain medications. If you\'re at rest, consider calming activities.');
+    return getText(
+      'dashboard.pulseAnalyticalHigh',
+      "Your pulse is high. This could be due to exercise, stress, anxiety, or certain medications. If you're at rest, consider calming activities.",
+    );
   } else {
-    return getText('dashboard.pulseAnalyticalVeryHigh',
-      'Your pulse is very high. If you\'re not exercising, this could indicate significant stress or potential health concerns. Consider relaxation and consult a healthcare provider if persistent.');
+    return getText(
+      'dashboard.pulseAnalyticalVeryHigh',
+      "Your pulse is very high. If you're not exercising, this could indicate significant stress or potential health concerns. Consider relaxation and consult a healthcare provider if persistent.",
+    );
   }
 }

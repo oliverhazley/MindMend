@@ -13,13 +13,9 @@ async function loadUserInfo() {
   const token = localStorage.getItem('token');
   if (!token) return;
   try {
-    // Assumes backend has an endpoint like `/users/profile` or `/users/profile/me`
-    // that retrieves the profile of the user authenticated by the token.
-    // This endpoint would not require a userId in the path.
-    const res = await fetch(
-      `${API_BASE_URL}/users/me/profile`, // Or your specific "me" endpoint, e.g., /users/profile/me
-      {headers: {Authorization: `Bearer ${token}`}},
-    );
+    const res = await fetch(`${API_BASE_URL}/users/me/profile`, {
+      headers: {Authorization: `Bearer ${token}`},
+    });
     if (!res.ok) throw await res.json();
     const user = await res.json();
     document.getElementById('profileName').textContent = user.name;

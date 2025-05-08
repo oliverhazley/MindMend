@@ -8,19 +8,15 @@ import {showPage} from './router.js';
 import {stopAutoRMSSDSave} from './polarConnect.js'; //  Stop RMSSD saving
 import {updateNavbar} from './navbar.js'; // Refresh nav links
 
-/**
- * Attach logout behavior to both desktop & mobile buttons.
- */
+// Attach logout behavior to both desktop & mobile buttons.
 export function initLogout() {
   const logoutBtn = document.getElementById('logoutButton');
   const logoutBtnMobile = document.getElementById('logoutButtonMobile');
 
   // Unified logout handler
   const handleLogout = (event) => {
-    // ───────────────────────────────────────────────────────────────
     // PREVENT the default <a href> navigation (which was "#/login")
     // so we can control exactly where it goes: our landing page.
-    // ───────────────────────────────────────────────────────────────
     event.preventDefault();
 
     try {
