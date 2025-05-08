@@ -1,5 +1,9 @@
 import express from 'express';
 import * as userController from '../controllers/userController.js';
+import {
+  registerValidation,
+  loginValidation,
+} from '../utils/validators/userValidator.js';
 import {authenticate} from '../middlewares/authentication.js';
 import {authorizeSelf} from '../middlewares/authorization.js';
 
@@ -141,7 +145,11 @@ userRouter.get(
  *       "message": "Internal server error"
  *     }
  */
-userRouter.post('/auth/register', userController.registerUser);
+userRouter.post(
+  '/auth/register',
+  registerValidation,
+  userController.registerUser,
+);
 
 /**
  * @api {post} /api/users/auth/login Login User
@@ -197,7 +205,7 @@ userRouter.post('/auth/register', userController.registerUser);
  *       "message": "Internal server error"
  *     }
  */
-userRouter.post('/auth/login', userController.loginUser);
+userRouter.post('/auth/login', loginValidation, userController.loginUser);
 
 /**
  * @api {post} /api/users/auth/change-password Change Password

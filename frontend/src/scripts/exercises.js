@@ -26,12 +26,8 @@ import {initI18n} from './i18n.js';
 // so we can stop them all if the user leaves the page.
 const audioPlayers = [];
 
-/**
- * stopAllExerciseAudio
- * ---------------------
- * If the user switches away or wants to stop everything,
- * we pause and reset every audio clip we’ve created.
- */
+// If the user switches away or wants to stop everything,
+// we pause and reset every audio clip we’ve created.
 export function stopAllExerciseAudio() {
   audioPlayers.forEach((audio) => {
     audio.pause(); // stop playback
@@ -39,22 +35,18 @@ export function stopAllExerciseAudio() {
   });
 }
 
-/**
- * initExercises
- * -------------
- * This is the main function called when the Exercises page loads.
- * It builds all the UI, wires up buttons, and starts real-time updates.
- */
+// This is the main function called when the Exercises page loads.
+// It builds all the UI, wires up buttons, and starts real-time updates.
 export function initExercises() {
-  // 1) Make sure the user is logged in; otherwise, do nothing.
+  // Make sure the user is logged in; otherwise, do nothing.
   if (!requireAuth()) return;
 
   console.log('Loading exercises page');
 
-  // 2) Render all Lucide icons on the page.
+  // Render all Lucide icons on the page.
   lucide.createIcons();
 
-  // 3) Find the containers where we'll insert our exercise items.
+  // Find the containers where we'll insert our exercise items.
   const mindfulnessList = document.getElementById('mindfulnessList');
   const breathingList = document.getElementById('breathingList');
 
@@ -62,11 +54,11 @@ export function initExercises() {
   if (mindfulnessList) mindfulnessList.innerHTML = '';
   if (breathingList) breathingList.innerHTML = '';
 
-  // 4) Find the elements where we show pulse and HRV values.
+  // Find the elements where we show pulse and HRV values.
   const pulseValueEl = document.getElementById('pulseValue');
   const rmssdValueEl = document.getElementById('rmssdValue');
 
-  // 5) Every second, update the pulse & RMSSD display:
+  // Every second, update the pulse & RMSSD display:
   setInterval(() => {
     if (pulseValueEl) {
       const pulse = getCurrentPulse();
@@ -80,8 +72,8 @@ export function initExercises() {
     }
   }, 1000); // 1000 ms = 1 second
 
-  // 6) Set up our accordion buttons so sections can open/close.
-  //    We mark each button as “bound” so we don’t attach multiple listeners.
+  // Set up our accordion buttons so sections can open/close.
+  // We mark each button as “bound” so we don’t attach multiple listeners.
   document.querySelectorAll('.accordion-btn').forEach((btn) => {
     if (btn.dataset.bound === 'true') return;
     btn.dataset.bound = 'true';
@@ -106,12 +98,13 @@ export function initExercises() {
     });
   });
 
-  // === MINDFULNESS AUDIO ITEMS ===
-  // Define each mindfulness item with:
-  //  - id: a unique name
-  //  - titleKey & descriptionKey: translation keys for text
-  //  - icon: which Lucide icon to show
-  //  - audioUrl: which MP3 to play
+  /** MINDFULNESS AUDIO ITEMS
+  Define each mindfulness item with:
+  - id: a unique name
+  - titleKey & descriptionKey: translation keys for text
+  - icon: which Lucide icon to show
+  - audioUrl: which MP3 to play
+  */
   const mindfulnessItems = [
     {
       id: 'nature',
@@ -278,7 +271,7 @@ export function initExercises() {
     mindfulnessList.appendChild(progressWrapper);
   });
 
-  // === BREATHING EXERCISES ===
+  // BREATHING EXERCISES
   // Very similar to mindfulness, but with different audio clips.
   const breathingItems = [
     {
@@ -415,7 +408,7 @@ export function initExercises() {
     breathingList.appendChild(progressWrapper);
   });
 
-  // 7) Finally, re-render icons and trigger translation
+  // Finally, re-render icons and trigger translation
   lucide.createIcons();
   initI18n(); // This finds every element with data-i18n-key and swaps in the right text
 }

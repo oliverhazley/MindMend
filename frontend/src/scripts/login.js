@@ -60,12 +60,21 @@ export function initLogin() {
         });
 
         if (!response.ok) {
-          showError(
-            getText(
-              'login.error.credentials',
-              'Login failed. Please check your email and password.',
-            ),
-          );
+          const errorData = await response.json();
+          if (errorData.errors && errorData.errors.length > 0) {
+            // Display messages from express-validator
+            const messages = errorData.errors.map((err) => err.msg).join('. ');
+            showError(messages);
+          } else {
+            // Fallback to a generic or existing message
+            showError(
+              errorData.message ||
+                getText(
+                  'login.error.credentials',
+                  'Login failed. Please check your email and password.',
+                ),
+            );
+          }
           return;
         }
 

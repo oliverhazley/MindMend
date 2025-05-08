@@ -13,21 +13,15 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import {API_BASE_URL} from './config.js';
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  Helpers                                                       */
-/* ═══════════════════════════════════════════════════════════════ */
-
+// Helpers
 const isoDate = (d) => new Date(d).toISOString().split('T')[0]; // YYYY‑MM‑DD
 const monthKey = (d) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`; // YYYY‑MM
 
 const HEADER_CLR = [30, 144, 255]; // #1E90FF (MindMend accent blue)
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  Bucketing helpers                                             */
-/* ═══════════════════════════════════════════════════════════════ */
-
-// --- last 31 days (newest first) --------------------------------
+// Bucketing helpers
+// last 31 days (newest first)
 function bucketByDay(readings, days = 31) {
   const end = new Date();
   const start = new Date();
@@ -55,7 +49,7 @@ function bucketByDay(readings, days = 31) {
     });
 }
 
-// --- last 12 months (newest first) -------------------------------
+// last 12 months (newest first)
 function bucketByMonth(readings, monthsBack = 12) {
   const end = new Date();
   const buckets = {};
@@ -92,7 +86,7 @@ function bucketByMonth(readings, monthsBack = 12) {
     });
 }
 
-// --- Stress‑zone distribution -----------------------------------
+// Stress‑zone distribution
 function stressZones(readings) {
   const z = {low: 0, moderate: 0, high: 0};
   for (const {hrv_value} of readings) {
@@ -111,12 +105,9 @@ function stressZones(readings) {
   };
 }
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  PDF export                                                    */
-/* ═══════════════════════════════════════════════════════════════ */
-
+// PDF export
 export async function exportHRVPDF() {
-  /* auth guard -------------------------------------------------- */
+  // auth guard
   if (!localStorage.getItem('token')) {
     alert('You must be logged in to export data.');
     return;
@@ -131,20 +122,20 @@ export async function exportHRVPDF() {
       return;
     }
 
-    /* crunch numbers ------------------------------------------- */
+    // crunch numbers
     const last31 = bucketByDay(rows, 31);
     const last12 = bucketByMonth(rows, 12);
     const zones = stressZones(rows);
 
-    /* PDF setup ------------------------------------------------- */
+    // PDF setup
     const doc = new jsPDF({unit: 'mm', format: 'a4'});
     const today = isoDate(new Date());
 
-    /* 1) Cover -------------------------------------------------- */
+    // Cover
     doc.setFontSize(22).text('MindMend – HRV Report', 14, 25);
     doc.setFontSize(12).text(`Exported: ${today}`, 14, 34);
 
-    /* 2) Stress distribution (page 1) --------------------------- */
+    // Stress distribution (page 1)
     const yStressTitle = 48;
     doc.setFontSize(16).text('Stress‑zone distribution', 14, yStressTitle);
     autoTable(doc, {
@@ -159,7 +150,7 @@ export async function exportHRVPDF() {
       styles: {halign: 'center'},
     });
 
-    /* 3) Past 12 months summary (still page 1, under #2) -------- */
+    // Past 12 months summary (still page 1, under #2)
     const yMonthlyTitle = doc.lastAutoTable.finalY + 8; // dynamic Y – fixes overlap
     doc.setFontSize(16).text('Past 12 months summary', 14, yMonthlyTitle);
     autoTable(doc, {
@@ -170,7 +161,7 @@ export async function exportHRVPDF() {
       styles: {fontSize: 9, halign: 'center'},
     });
 
-    /* 4) Past 31 days summary (page 2) -------------------------- */
+    // Past 31 days summary (page 2)
     doc.addPage();
     const yDailyTitle = 16;
     doc.setFontSize(16).text('Past 31 days summary', 14, yDailyTitle);
@@ -182,7 +173,7 @@ export async function exportHRVPDF() {
       styles: {fontSize: 9, halign: 'center'},
     });
 
-    /* save ------------------------------------------------------ */
+    // save
     doc.save(`MindMend_HRV_Report_${today}.pdf`);
   } catch (err) {
     console.error('[MindMend] PDF export failed:', err);

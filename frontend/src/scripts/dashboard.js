@@ -26,7 +26,7 @@ import {
   getConnectionState,
   isRMSSDReady,
   getAnalyticalTextForRMSSD,
-  getAnalyticalTextForPulse
+  getAnalyticalTextForPulse,
 } from './polarConnect.js';
 import {requireAuth} from './router.js';
 import {API_BASE_URL} from './config.js';
@@ -58,7 +58,7 @@ export function initDashboard() {
   lastLanguage = getCurrentLanguage();
 
   // Provide a global function to refresh dashboard data
-  window.refreshDashboardData = async function() {
+  window.refreshDashboardData = async function () {
     console.log('Refreshing dashboard data...');
     await fetchAndUpdateHRVData();
   };
@@ -108,11 +108,13 @@ export function initDashboard() {
       type: 'bar',
       data: {
         labels,
-        datasets: [{
-          label: getText('dashboard.barLabel', 'Avg HRV'),
-          data,
-          backgroundColor: '#1E90FF'
-        }],
+        datasets: [
+          {
+            label: getText('dashboard.barLabel', 'Avg HRV'),
+            data,
+            backgroundColor: '#1E90FF',
+          },
+        ],
       },
       options: {
         responsive: true,
@@ -125,15 +127,8 @@ export function initDashboard() {
     });
   }
 
-  /**
-   * Renders the donut chart showing distribution of HRV readings
-   * across different zones (low, moderate, high)
-   *
-   * @param {Object} zones - Object containing counts of readings in each zone
-   * @param {number} zones.low - Count of low HRV readings
-   * @param {number} zones.moderate - Count of moderate HRV readings
-   * @param {number} zones.high - Count of high HRV readings
-   */
+  // Renders the donut chart showing distribution of HRV readings
+  // across different zones (low, moderate, high)
   function renderDonutChart(zones) {
     if (donutChart) donutChart.destroy();
 
@@ -144,13 +139,13 @@ export function initDashboard() {
 
     // Calculate total and percentages
     const total = zones.low + zones.moderate + zones.high;
-    let percentages = { low: 0, moderate: 0, high: 0 };
+    let percentages = {low: 0, moderate: 0, high: 0};
 
     if (total > 0) {
       percentages = {
         low: Math.round((zones.low / total) * 100),
         moderate: Math.round((zones.moderate / total) * 100),
-        high: Math.round((zones.high / total) * 100)
+        high: Math.round((zones.high / total) * 100),
       };
 
       // Ensure percentages add up to 100% (rounding can cause off-by-one errors)
@@ -158,9 +153,15 @@ export function initDashboard() {
       if (sum !== 100 && total > 0) {
         // Adjust the largest percentage to make sum 100%
         const diff = 100 - sum;
-        if (percentages.low >= percentages.moderate && percentages.low >= percentages.high) {
+        if (
+          percentages.low >= percentages.moderate &&
+          percentages.low >= percentages.high
+        ) {
           percentages.low += diff;
-        } else if (percentages.moderate >= percentages.low && percentages.moderate >= percentages.high) {
+        } else if (
+          percentages.moderate >= percentages.low &&
+          percentages.moderate >= percentages.high
+        ) {
           percentages.moderate += diff;
         } else {
           percentages.high += diff;
@@ -172,7 +173,7 @@ export function initDashboard() {
     const labels = [
       `${getText('dashboard.zoneLow', 'Low')} (${percentages.low}%)`,
       `${getText('dashboard.zoneModerate', 'Moderate')} (${percentages.moderate}%)`,
-      `${getText('dashboard.zoneHigh', 'High')} (${percentages.high}%)`
+      `${getText('dashboard.zoneHigh', 'High')} (${percentages.high}%)`,
     ];
 
     donutChart = new Chart(elements.donutCtx, {
@@ -183,9 +184,9 @@ export function initDashboard() {
           {
             data: [zones.low, zones.moderate, zones.high],
             backgroundColor: [
-              '#FF4500',  // Red for low (stress/poor)
-              '#FFD700',  // Yellow for moderate (normal)
-              '#00FF7F'   // Green for high (good)
+              '#FF4500', // Red for low (stress/poor)
+              '#FFD700', // Yellow for moderate (normal)
+              '#00FF7F', // Green for high (good)
             ],
           },
         ],
@@ -196,29 +197,22 @@ export function initDashboard() {
         plugins: {
           tooltip: {
             callbacks: {
-              label: function(context) {
+              label: function (context) {
                 const label = context.label || '';
                 const value = context.raw || 0;
-                const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                const percentage =
+                  total > 0 ? Math.round((value / total) * 100) : 0;
                 return `${label}: ${value} readings (${percentage}%)`;
-              }
-            }
-          }
-        }
+              },
+            },
+          },
+        },
       },
     });
   }
 
-  /**
-   * Groups HRV data by time interval for visualization
-   *
-   * This function organizes HRV readings into time buckets based on the
-   * selected range (day, week, month, year) to prepare data for charting.
-   *
-   * @param {Array<Object>} data - Array of HRV reading objects
-   * @param {string} range - Time range ('day', 'week', 'month', 'year')
-   * @returns {Object} Object with labels and values arrays for charting
-   */
+  // This function organizes HRV readings into time buckets based on the
+  // selected range (day, week, month, year) to prepare data for charting.
   function groupByInterval(data, range) {
     const now = new Date();
     const buckets = {};
@@ -276,7 +270,20 @@ export function initDashboard() {
           if (time >= startOfYear) {
             // Group by month
             const month = time.getMonth();
-            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const monthNames = [
+              'Jan',
+              'Feb',
+              'Mar',
+              'Apr',
+              'May',
+              'Jun',
+              'Jul',
+              'Aug',
+              'Sep',
+              'Oct',
+              'Nov',
+              'Dec',
+            ];
             key = monthNames[month];
           }
           break;
@@ -290,10 +297,26 @@ export function initDashboard() {
 
     // Define ordered labels for each range type
     const orderedLabels = {
-      day: Array.from({length: 24}, (_, i) => i.toString().padStart(2, '0') + ':00'),
+      day: Array.from(
+        {length: 24},
+        (_, i) => i.toString().padStart(2, '0') + ':00',
+      ),
       week: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       month: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
-      year: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      year: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ],
     };
 
     // Get the appropriate labels based on range
@@ -304,7 +327,7 @@ export function initDashboard() {
     const values = [];
 
     // Go through all possible labels in order
-    allLabels.forEach(label => {
+    allLabels.forEach((label) => {
       if (buckets[label] && buckets[label].length > 0) {
         labels.push(label);
 
@@ -318,16 +341,8 @@ export function initDashboard() {
     return {labels, values};
   }
 
-  /**
-   * Calculates distribution of HRV readings across zones
-   *
-   * This function counts how many readings fall into each HRV zone
-   * (low, moderate, high) within the selected time range.
-   *
-   * @param {Array<Object>} data - Array of HRV reading objects
-   * @param {string} range - Time range ('day', 'week', 'month', 'year')
-   * @returns {Object} Object with zones counts and total count
-   */
+  // This function counts how many readings fall into each HRV zone
+  // (low, moderate, high) within the selected time range.
   function calculateDistribution(data, range) {
     const now = new Date();
 
@@ -377,11 +392,7 @@ export function initDashboard() {
     return {zones, count: filtered.length};
   }
 
-  /**
-   * Fetches HRV data from the backend API
-   *
-   * @returns {Promise<Array>} Promise resolving to array of HRV readings
-   */
+  // Fetches HRV data from the backend API
   async function fetchHRVData() {
     try {
       const res = await fetch(`${API_URL}?user_id=${userId}`);
@@ -394,9 +405,7 @@ export function initDashboard() {
     }
   }
 
-  /**
-   * Fetches fresh data and updates charts
-   */
+  // Fetches fresh data and updates charts
   async function fetchAndUpdateHRVData() {
     try {
       // Fetch fresh data from API
@@ -426,8 +435,6 @@ export function initDashboard() {
    * 2. Groups and processes it according to selected range
    * 3. Updates bar and donut charts
    * 4. Generates analytical text about the data distribution
-   *
-   * @param {string} range - Time range ('day', 'week', 'month', 'year')
    */
   function updateCharts(range = 'week') {
     const data = JSON.parse(localStorage.getItem('cachedHRVData')) || [];
@@ -439,11 +446,11 @@ export function initDashboard() {
       renderDonutChart({low: 0, moderate: 0, high: 0});
       elements.msgEl.textContent = getText(
         'dashboard.notEnoughData',
-        'Not enough data, please keep tracking your progress.'
+        'Not enough data, please keep tracking your progress.',
       );
       elements.msgDonutEl.textContent = getText(
         'dashboard.noReadings',
-        'No HRV readings to analyze.'
+        'No HRV readings to analyze.',
       );
       return;
     }
@@ -454,7 +461,7 @@ export function initDashboard() {
     // Show time range in the chart message
     elements.msgEl.textContent = getText(
       'dashboard.showingAverages',
-      'Showing HRV averages for: {range}'
+      'Showing HRV averages for: {range}',
     ).replace('{range}', getText(`filter.${range}`, range));
 
     // Generate intelligent analytical text based on the distribution
@@ -465,41 +472,40 @@ export function initDashboard() {
       summary = getText('dashboard.noReadings', 'No HRV readings to analyze.');
     } else {
       // Calculate the average HRV across all readings in this range
-      const allValues = values.reduce((sum, value) => sum + value, 0) / values.length;
+      const allValues =
+        values.reduce((sum, value) => sum + value, 0) / values.length;
 
       // Provide trend analysis based on distribution pattern
       if (zones.high >= total * 0.5) {
         summary = getText(
           'dashboard.trendHigh',
-          'Your HRV trend shows predominantly high values (avg: {avg}ms). This suggests excellent autonomic balance and stress resilience. Keep up your healthy habits!'
+          'Your HRV trend shows predominantly high values (avg: {avg}ms). This suggests excellent autonomic balance and stress resilience. Keep up your healthy habits!',
         ).replace('{avg}', allValues.toFixed(1));
       } else if (zones.low >= total * 0.5) {
         summary = getText(
           'dashboard.trendLow',
-          'Your HRV trend shows mostly low values (avg: {avg}ms). This may indicate elevated stress or insufficient recovery. Consider incorporating more rest and stress-reduction activities.'
+          'Your HRV trend shows mostly low values (avg: {avg}ms). This may indicate elevated stress or insufficient recovery. Consider incorporating more rest and stress-reduction activities.',
         ).replace('{avg}', allValues.toFixed(1));
       } else if (zones.moderate >= total * 0.5) {
         summary = getText(
           'dashboard.trendModerate',
-          'Your HRV trend shows primarily moderate values (avg: {avg}ms). This suggests a balanced state between stress and recovery. Your body is functioning well, though there may be room for improvement.'
+          'Your HRV trend shows primarily moderate values (avg: {avg}ms). This suggests a balanced state between stress and recovery. Your body is functioning well, though there may be room for improvement.',
         ).replace('{avg}', allValues.toFixed(1));
       } else {
         summary = getText(
           'dashboard.trendMixed',
-          'Your HRV shows a mixed pattern (avg: {avg}ms) across {total} readings. This variability could reflect changing stress levels or recovery patterns in your daily life.'
+          'Your HRV shows a mixed pattern (avg: {avg}ms) across {total} readings. This variability could reflect changing stress levels or recovery patterns in your daily life.',
         )
-        .replace('{avg}', allValues.toFixed(1))
-        .replace('{total}', total);
+          .replace('{avg}', allValues.toFixed(1))
+          .replace('{total}', total);
       }
     }
 
     elements.msgDonutEl.textContent = summary;
   }
 
-  /**
-   * Updates charts when language changes
-   * This function is called on language toggle
-   */
+  // Updates charts when language changes
+  // This function is called on language toggle
   function checkAndUpdateChartsOnLanguageChange() {
     const currentLanguage = getCurrentLanguage();
 
@@ -513,22 +519,31 @@ export function initDashboard() {
 
       // Update RR chart label
       if (rrLineChart) {
-        rrLineChart.data.datasets[0].label = getText('dashboard.rrTitle', 'RR Intervals (ms)');
+        rrLineChart.data.datasets[0].label = getText(
+          'dashboard.rrTitle',
+          'RR Intervals (ms)',
+        );
         rrLineChart.update();
       }
 
       // Update RR chart message
       if (elements.rrChartMessage) {
         if (getConnectionState() === 'connected') {
-          elements.rrChartMessage.textContent = getText('dashboard.preparingData', 'Preparing RR interval data...');
+          elements.rrChartMessage.textContent = getText(
+            'dashboard.preparingData',
+            'Preparing RR interval data...',
+          );
         } else {
-          elements.rrChartMessage.textContent = getText('dashboard.livePlaceholder', 'Please connect to a device to view live data');
+          elements.rrChartMessage.textContent = getText(
+            'dashboard.livePlaceholder',
+            'Please connect to a device to view live data',
+          );
         }
       }
     }
   }
 
-  // === Live pulse and RMSSD updates every second
+  // Live pulse and RMSSD updates every second
   setInterval(() => {
     const pulse = getCurrentPulse();
     const rmssd = getCurrentRMSSD();
@@ -545,11 +560,15 @@ export function initDashboard() {
         elements.currentHRVValueEl.textContent = pulse;
 
         // Set appropriate translated analytical text based on pulse value
-        elements.currentHRVTextEl.textContent = getAnalyticalTextForPulse(pulse);
+        elements.currentHRVTextEl.textContent =
+          getAnalyticalTextForPulse(pulse);
       } else {
         // If not connected, show placeholder message
         elements.currentHRVValueEl.textContent = '--';
-        elements.currentHRVTextEl.textContent = getText('dashboard.livePlaceholder', 'Please connect to a device to view live data');
+        elements.currentHRVTextEl.textContent = getText(
+          'dashboard.livePlaceholder',
+          'Please connect to a device to view live data',
+        );
       }
     }
 
@@ -564,16 +583,22 @@ export function initDashboard() {
       } else if (isConnected && !rmssdReady) {
         // Connected but RMSSD not ready yet
         elements.rmssdValEl.textContent = '--';
-        elements.rmssdTextEl.textContent = getText('dashboard.rmssdCalculating', 'Calculating RMSSD, ready after 3 minutes');
+        elements.rmssdTextEl.textContent = getText(
+          'dashboard.rmssdCalculating',
+          'Calculating RMSSD, ready after 3 minutes',
+        );
       } else {
         // Not connected
         elements.rmssdValEl.textContent = '--';
-        elements.rmssdTextEl.textContent = getText('dashboard.livePlaceholder', 'Please connect to a device to view live data');
+        elements.rmssdTextEl.textContent = getText(
+          'dashboard.livePlaceholder',
+          'Please connect to a device to view live data',
+        );
       }
     }
   }, 1000);
 
-  // === RR line chart initialization and updates
+  // RR line chart initialization and updates
   if (elements.rrLineCtx) {
     if (rrLineChart) rrLineChart.destroy();
 
@@ -619,9 +644,15 @@ export function initDashboard() {
           const isConnected = getConnectionState() === 'connected';
 
           if (isConnected) {
-            elements.rrChartMessage.textContent = getText('dashboard.preparingData', 'Preparing RR interval data...');
+            elements.rrChartMessage.textContent = getText(
+              'dashboard.preparingData',
+              'Preparing RR interval data...',
+            );
           } else {
-            elements.rrChartMessage.textContent = getText('dashboard.livePlaceholder', 'Please connect to a device to view live data');
+            elements.rrChartMessage.textContent = getText(
+              'dashboard.livePlaceholder',
+              'Please connect to a device to view live data',
+            );
           }
         }
       }
@@ -695,10 +726,8 @@ export function initDashboard() {
   fetchHRVData().then(() => updateCharts('week'));
 }
 
-/**
- * Updates charts and text when language changes
- * This is called from i18n.js after language switch
- */
+// Updates charts and text when language changes
+// This is called from i18n.js after language switch
 export function onLanguageChanged() {
   const filterSelect = document.getElementById('globalHRVFilter');
   const selectedRange = filterSelect?.value || 'week';
@@ -711,7 +740,10 @@ export function onLanguageChanged() {
 
   // Update RR chart label if it exists
   if (rrLineChart) {
-    rrLineChart.data.datasets[0].label = getText('dashboard.rrTitle', 'RR Intervals (ms)');
+    rrLineChart.data.datasets[0].label = getText(
+      'dashboard.rrTitle',
+      'RR Intervals (ms)',
+    );
     rrLineChart.update();
   }
 
@@ -719,19 +751,21 @@ export function onLanguageChanged() {
   const rrChartMessage = document.getElementById('rrChartMessage');
   if (rrChartMessage) {
     if (getConnectionState() === 'connected') {
-      rrChartMessage.textContent = getText('dashboard.preparingData', 'Preparing RR interval data...');
+      rrChartMessage.textContent = getText(
+        'dashboard.preparingData',
+        'Preparing RR interval data...',
+      );
     } else {
-      rrChartMessage.textContent = getText('dashboard.livePlaceholder', 'Please connect to a device to view live data');
+      rrChartMessage.textContent = getText(
+        'dashboard.livePlaceholder',
+        'Please connect to a device to view live data',
+      );
     }
   }
 }
 
-/**
- * Updates all HRV charts based on selected time range
- * This function is also exposed to be called from outside
- *
- * @param {string} range - Time range ('day', 'week', 'month', 'year')
- */
+// Updates all HRV charts based on selected time range
+// This function is also exposed to be called from outside
 export function updateCharts(range = 'week') {
   const data = JSON.parse(localStorage.getItem('cachedHRVData')) || [];
   const msgEl = document.getElementById('hrvChartMsg');
@@ -798,7 +832,20 @@ export function updateCharts(range = 'week') {
         if (time >= startOfYear) {
           // Group by month
           const month = time.getMonth();
-          const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+          const monthNames = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+          ];
           key = monthNames[month];
         }
         break;
@@ -812,10 +859,26 @@ export function updateCharts(range = 'week') {
 
   // Define ordered labels for each range type
   const orderedLabels = {
-    day: Array.from({length: 24}, (_, i) => i.toString().padStart(2, '0') + ':00'),
+    day: Array.from(
+      {length: 24},
+      (_, i) => i.toString().padStart(2, '0') + ':00',
+    ),
     week: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     month: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
-    year: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    year: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ],
   };
 
   // Get the appropriate labels based on range
@@ -826,7 +889,7 @@ export function updateCharts(range = 'week') {
   const values = [];
 
   // Go through all possible labels in order
-  allLabels.forEach(label => {
+  allLabels.forEach((label) => {
     if (buckets[label] && buckets[label].length > 0) {
       labels.push(label);
 
@@ -876,7 +939,13 @@ export function updateCharts(range = 'week') {
       type: 'bar',
       data: {
         labels: [],
-        datasets: [{label: getText('dashboard.barLabel', 'Avg HRV'), data: [], backgroundColor: '#1E90FF'}],
+        datasets: [
+          {
+            label: getText('dashboard.barLabel', 'Avg HRV'),
+            data: [],
+            backgroundColor: '#1E90FF',
+          },
+        ],
       },
       options: {
         responsive: true,
@@ -892,13 +961,13 @@ export function updateCharts(range = 'week') {
 
     // Calculate total and percentages
     const total = zones.low + zones.moderate + zones.high;
-    let percentages = { low: 0, moderate: 0, high: 0 };
+    let percentages = {low: 0, moderate: 0, high: 0};
 
     // Create labels with percentages
     const labels = [
       `${getText('dashboard.zoneLow', 'Low')} (0%)`,
       `${getText('dashboard.zoneModerate', 'Moderate')} (0%)`,
-      `${getText('dashboard.zoneHigh', 'High')} (0%)`
+      `${getText('dashboard.zoneHigh', 'High')} (0%)`,
     ];
 
     donutChart = new Chart(donutCtx, {
@@ -909,9 +978,9 @@ export function updateCharts(range = 'week') {
           {
             data: [0, 0, 0],
             backgroundColor: [
-              '#FF4500',  // Red for low (stress/poor)
-              '#FFD700',  // Yellow for moderate (normal)
-              '#00FF7F'   // Green for high (good)
+              '#FF4500', // Red for low (stress/poor)
+              '#FFD700', // Yellow for moderate (normal)
+              '#00FF7F', // Green for high (good)
             ],
           },
         ],
@@ -919,15 +988,17 @@ export function updateCharts(range = 'week') {
       options: {responsive: true, maintainAspectRatio: false},
     });
 
-    if (msgEl) msgEl.textContent = getText(
-      'dashboard.notEnoughData',
-      'Not enough data, please keep tracking your progress.'
-    );
+    if (msgEl)
+      msgEl.textContent = getText(
+        'dashboard.notEnoughData',
+        'Not enough data, please keep tracking your progress.',
+      );
 
-    if (msgDonutEl) msgDonutEl.textContent = getText(
-      'dashboard.noReadings',
-      'No HRV readings to analyze.'
-    );
+    if (msgDonutEl)
+      msgDonutEl.textContent = getText(
+        'dashboard.noReadings',
+        'No HRV readings to analyze.',
+      );
     return;
   }
 
@@ -937,7 +1008,13 @@ export function updateCharts(range = 'week') {
     type: 'bar',
     data: {
       labels,
-      datasets: [{label: getText('dashboard.barLabel', 'Avg HRV'), data: values, backgroundColor: '#1E90FF'}],
+      datasets: [
+        {
+          label: getText('dashboard.barLabel', 'Avg HRV'),
+          data: values,
+          backgroundColor: '#1E90FF',
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -953,13 +1030,13 @@ export function updateCharts(range = 'week') {
 
   // Calculate total and percentages
   const total = zones.low + zones.moderate + zones.high;
-  let percentages = { low: 0, moderate: 0, high: 0 };
+  let percentages = {low: 0, moderate: 0, high: 0};
 
   if (total > 0) {
     percentages = {
       low: Math.round((zones.low / total) * 100),
       moderate: Math.round((zones.moderate / total) * 100),
-      high: Math.round((zones.high / total) * 100)
+      high: Math.round((zones.high / total) * 100),
     };
 
     // Ensure percentages add up to 100% (rounding can cause off-by-one errors)
@@ -967,9 +1044,15 @@ export function updateCharts(range = 'week') {
     if (sum !== 100 && total > 0) {
       // Adjust the largest percentage to make sum 100%
       const diff = 100 - sum;
-      if (percentages.low >= percentages.moderate && percentages.low >= percentages.high) {
+      if (
+        percentages.low >= percentages.moderate &&
+        percentages.low >= percentages.high
+      ) {
         percentages.low += diff;
-      } else if (percentages.moderate >= percentages.low && percentages.moderate >= percentages.high) {
+      } else if (
+        percentages.moderate >= percentages.low &&
+        percentages.moderate >= percentages.high
+      ) {
         percentages.moderate += diff;
       } else {
         percentages.high += diff;
@@ -981,7 +1064,7 @@ export function updateCharts(range = 'week') {
   const donutLabels = [
     `${getText('dashboard.zoneLow', 'Low')} (${percentages.low}%)`,
     `${getText('dashboard.zoneModerate', 'Moderate')} (${percentages.moderate}%)`,
-    `${getText('dashboard.zoneHigh', 'High')} (${percentages.high}%)`
+    `${getText('dashboard.zoneHigh', 'High')} (${percentages.high}%)`,
   ];
 
   donutChart = new Chart(donutCtx, {
@@ -992,9 +1075,9 @@ export function updateCharts(range = 'week') {
         {
           data: [zones.low, zones.moderate, zones.high],
           backgroundColor: [
-            '#FF4500',  // Red for low (stress/poor)
-            '#FFD700',  // Yellow for moderate (normal)
-            '#00FF7F'   // Green for high (good)
+            '#FF4500', // Red for low (stress/poor)
+            '#FFD700', // Yellow for moderate (normal)
+            '#00FF7F', // Green for high (good)
           ],
         },
       ],
@@ -1005,15 +1088,16 @@ export function updateCharts(range = 'week') {
       plugins: {
         tooltip: {
           callbacks: {
-            label: function(context) {
+            label: function (context) {
               const label = context.label || '';
               const value = context.raw || 0;
-              const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+              const percentage =
+                total > 0 ? Math.round((value / total) * 100) : 0;
               return `${label}: ${value} readings (${percentage}%)`;
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      },
     },
   });
 
@@ -1021,7 +1105,7 @@ export function updateCharts(range = 'week') {
   if (msgEl) {
     msgEl.textContent = getText(
       'dashboard.showingAverages',
-      'Showing HRV averages for: {range}'
+      'Showing HRV averages for: {range}',
     ).replace('{range}', getText(`filter.${range}`, range));
   }
 
@@ -1034,31 +1118,32 @@ export function updateCharts(range = 'week') {
       summary = getText('dashboard.noReadings', 'No HRV readings to analyze.');
     } else {
       // Calculate the average HRV across all readings in this range
-      const allValues = values.reduce((sum, value) => sum + value, 0) / values.length;
+      const allValues =
+        values.reduce((sum, value) => sum + value, 0) / values.length;
 
       // Provide trend analysis based on distribution pattern
       if (zones.high >= total * 0.5) {
         summary = getText(
           'dashboard.trendHigh',
-          'Your HRV trend shows predominantly high values (avg: {avg}ms). This suggests excellent autonomic balance and stress resilience. Keep up your healthy habits!'
+          'Your HRV trend shows predominantly high values (avg: {avg}ms). This suggests excellent autonomic balance and stress resilience. Keep up your healthy habits!',
         ).replace('{avg}', allValues.toFixed(1));
       } else if (zones.low >= total * 0.5) {
         summary = getText(
           'dashboard.trendLow',
-          'Your HRV trend shows mostly low values (avg: {avg}ms). This may indicate elevated stress or insufficient recovery. Consider incorporating more rest and stress-reduction activities.'
+          'Your HRV trend shows mostly low values (avg: {avg}ms). This may indicate elevated stress or insufficient recovery. Consider incorporating more rest and stress-reduction activities.',
         ).replace('{avg}', allValues.toFixed(1));
       } else if (zones.moderate >= total * 0.5) {
         summary = getText(
           'dashboard.trendModerate',
-          'Your HRV trend shows primarily moderate values (avg: {avg}ms). This suggests a balanced state between stress and recovery. Your body is functioning well, though there may be room for improvement.'
+          'Your HRV trend shows primarily moderate values (avg: {avg}ms). This suggests a balanced state between stress and recovery. Your body is functioning well, though there may be room for improvement.',
         ).replace('{avg}', allValues.toFixed(1));
       } else {
         summary = getText(
           'dashboard.trendMixed',
-          'Your HRV shows a mixed pattern (avg: {avg}ms) across {total} readings. This variability could reflect changing stress levels or recovery patterns in your daily life.'
+          'Your HRV shows a mixed pattern (avg: {avg}ms) across {total} readings. This variability could reflect changing stress levels or recovery patterns in your daily life.',
         )
-        .replace('{avg}', allValues.toFixed(1))
-        .replace('{total}', total);
+          .replace('{avg}', allValues.toFixed(1))
+          .replace('{total}', total);
       }
     }
 
