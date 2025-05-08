@@ -1,6 +1,7 @@
 import * as userModel from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import {validationResult} from 'express-validator';
 
 const getAllUsers = async (req, res) => {
   try {
@@ -45,6 +46,11 @@ const getUserProfile = async (req, res, next) => {
 };
 
 const registerUser = async (req, res) => {
+  const errors = validationResult(req); // Check for validation errors
+  if (!errors.isEmpty()) {
+    return res.status(400).json({errors: errors.array()});
+  }
+
   const {name, email, password} = req.body;
 
   try {
@@ -80,6 +86,11 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
+  const errors = validationResult(req); // Check for validation errors
+  if (!errors.isEmpty()) {
+    return res.status(400).json({errors: errors.array()});
+  }
+
   const {email, password} = req.body;
 
   try {
@@ -135,11 +146,9 @@ const changePassword = async (req, res) => {
 
     // Ensure the authenticated user can only change their own password
     if (parseInt(userId) !== authenticatedUserId) {
-      return res
-        .status(403)
-        .json({
-          message: 'Access denied. You can only update your own password.',
-        });
+      return res.status(403).json({
+        message: 'Access denied. You can only update your own password.',
+      });
     }
 
     if (!userId || !currentPassword || !newPassword)
@@ -171,11 +180,9 @@ const deleteUser = async (req, res) => {
 
     // Ensure users can only delete their own account
     if (authenticatedUserId !== requestedUserId) {
-      return res
-        .status(403)
-        .json({
-          message: 'Access denied. You can only delete your own account.',
-        });
+      return res.status(403).json({
+        message: 'Access denied. You can only delete your own account.',
+      });
     }
 
     // Delete user

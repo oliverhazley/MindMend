@@ -66,37 +66,39 @@ export function initSignup() {
     try {
       const response = await fetch(`${API_BASE_URL}/users/auth/register`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({name, email, password}),
       });
 
-      // If server rejects, inspect the JSON error payload
       if (!response.ok) {
-        let errorPayload = null;
-        try {
-          errorPayload = await response.json();
-        } catch (e) {
-          console.error('Failed to parse error JSON:', e);
-        }
-
+        const errorPayload = await response.json();
         console.error('Sign-up error payload:', errorPayload);
 
-        const msg = errorPayload?.message?.toLowerCase() || '';
-        if (msg.includes('already exists') || msg.includes('in use')) {
-          showError(
-            getText(
-              'signup.error.emailExists',
-              'That email address is already registered. Please log in instead.',
-            ),
-          );
+        if (errorPayload.errors && errorPayload.errors.length > 0) {
+          // Display messages from express-validator
+          const messages = errorPayload.errors.map((err) => err.msg).join('. ');
+          showError(messages);
         } else {
-          showError(
-            errorPayload?.message || // Keep server message if it exists
+          // Fallback to existing logic if 'errors' array is not present
+          const msg = errorPayload?.message?.toLowerCase() || '';
+          if (msg.includes('already exists') || msg.includes('in use')) {
+            showError(
               getText(
-                'signup.error.apiDefault',
-                'Sign-up failed. Please check your inputs or try again.',
+                'signup.error.emailExists',
+                'That email address is already registered. Please log in instead.',
               ),
-          );
+            );
+          } else {
+            showError(
+              errorPayload?.message || // Keep server message if it exists
+                getText(
+                  'signup.error.apiDefault',
+                  'Sign-up failed. Please check your inputs or try again.',
+                ),
+            );
+          }
         }
         return;
       }
